@@ -1,4 +1,4 @@
-import i3ipc
+from i3 import Wm
 import os
 import time
 import argparse
@@ -40,22 +40,7 @@ data = Container("splitv", 1.0, [
     App(0.2, "XTerm")
 ])
 
-DEBUG=False
-
-i3 = i3ipc.Connection()
-
-def command(cmd):
-    if DEBUG:
-        print(cmd)
-    else:
-        i3.command(cmd)
-
-def find_app_by_name_on_workspace(workspace, name):
-    for leave in workspace.leaves():
-        print(leave.name, name)
-        if leave.name is not None and name in leave.name:
-            return leave
-    return None
+wm = Wm()
 
 def atom_name(folder, file):
     file_name = os.path.basename(file)
@@ -64,40 +49,20 @@ def atom_name(folder, file):
 def terminal_name(folder, file):
     return "xterm | nw %s %s" % (folder, file)
 
-def find_app_by_name(name):
-    for workspace in i3.get_tree().workspaces():
-        app = find_app_by_name_on_workspace(workspace, name)
-        if app is not None:
-            return app
-    return None
-
-def find_atom_app(folder, file):
-    return find_app_by_name(atom_name(folder, file))
-
 def create_workspace(name):
-    command("workspace %s" % name)
+    wm.command("workspace %s" % name)
 
-def open_atom(folder, file, workspace_name):
-    command("exec atom -n %s %s" % (folder.replace(os.path.expanduser("~"), "~"), file))
+def open_atom(folder, file):
+    wm.command("exec atom -n %s %s" % (folder.replace(os.path.expanduser("~"), "~"), file))
 
-
-def open_terminal(folder, test_file, workspace_name):
-    command("exec run-test %s %s" % (folder, test_file))
-
-def get_current_workspace():
-    tree = i3.get_tree()
-    focused = tree.find_focused()
-    return focused.workspace()
+def open_terminal(folder, test_file):
+    wm.command("exec run-test %s %s" % (folder, test_file))
 
 def current_workspace_contains_atom(folder, file):
-    current_workspace = get_current_workspace()
+    return wm.has_app(atom_name(folder, file))
 
-    return find_app_by_name_on_workspace(current_workspace, atom_name(folder, file)) is not None
-
-def current_workspace_contains_terminal(folder, test_file):
-    current_workspace = get_current_workspace()
-
-    return find_app_by_name_on_workspace(current_workspace, terminal_name(folder, test_file)) is not None
+def current_workspace_contains_terminal(folder, file):
+    return wm.has_app(terminal_name(folder, file))
 
 def get_test_file(file):
     return file.replace('src', 'test').replace('.js', '_tests.js')
@@ -129,20 +94,18 @@ def atom_test(workspace_name, file):
         f.flush()
         tmp_name = f.name
 
-        command("focus parent, focus parent, focus parent, kill")
+        wm.command("focus parent, focus parent, focus parent, kill")
         time.sleep(1)
 
 
         folder = find_project_folder(file).replace(os.path.expanduser("~"), "~")
         test_file = get_test_file(file)
 
-        command("append_layout %s" % tmp_name)
+        wm.command("append_layout %s" % tmp_name)
 
-        open_terminal(folder, test_file, workspace_name)
-
-        open_atom(folder, file, workspace_name)
-
-        open_atom(folder, test_file, workspace_name)
+        open_terminal(folder, test_file)
+        open_atom(folder, file)
+        open_atom(folder, test_file)
 
         f.close()
 
