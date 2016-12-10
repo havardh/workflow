@@ -1,7 +1,10 @@
-from i3 import Wm
 import os
 import argparse
 import json
+
+from i3 import Wm
+from atom import Atom
+from run_test import RunTest
 
 class Container:
     layout=None
@@ -40,25 +43,6 @@ data = Container("splitv", 1.0, [
 
 wm = Wm()
 
-def atom_name(folder, file):
-    file_name = os.path.basename(file)
-    return "%s — %s — Atom" % (file_name, folder.replace(os.path.expanduser("~"), "~"))
-
-def terminal_name(folder, file):
-    return "xterm | nw %s %s" % (folder, file)
-
-def open_atom(folder, file):
-    wm.open("atom -n %s %s" % (folder.replace(os.path.expanduser("~"), "~"), file))
-
-def open_terminal(folder, test_file):
-    wm.open("run-test %s %s" % (folder, test_file))
-
-def current_workspace_contains_atom(folder, file):
-    return wm.has_app(atom_name(folder, file))
-
-def current_workspace_contains_terminal(folder, file):
-    return wm.has_app(terminal_name(folder, file))
-
 def get_test_file(file):
     return file.replace('src', 'test').replace('.js', '_tests.js')
 
@@ -76,27 +60,25 @@ def find_project_folder(file):
 def atom_test(workspace_name, file):
     wm.create_workspace(workspace_name)
 
-    folder = find_project_folder(file)
+    folder = find_project_folder(file).replace(os.path.expanduser("~"), "~")
     test_file = get_test_file(file)
 
-    has_term = current_workspace_contains_terminal(folder, test_file)
-    has_code = current_workspace_contains_atom(folder, file)
-    has_test = current_workspace_contains_atom(folder, test_file)
+    atom_code = Atom(folder, file)
+    atom_test = Atom(folder, test_file)
+    term_test = RunTest(folder, test_file)
+
+    has_term = wm.has_app(term_test)
+    has_code = wm.has_app(atom_code)
+    has_test = wm.has_app(atom_test)
 
     if not (has_term and has_code and has_test):
-
-
         wm.clear_workspace()
-
-        folder = find_project_folder(file).replace(os.path.expanduser("~"), "~")
-        test_file = get_test_file(file)
 
         wm.create_layout(data)
 
-        open_terminal(folder, test_file)
-        open_atom(folder, file)
-        open_atom(folder, test_file)
-
+        wm.open(term_test.cmd())
+        wm.open(atom_code.cmd())
+        wm.open(atom_test.cmd())
 
 def main():
     parser = argparse.ArgumentParser(description="Script for opening advisor:unit-testing")

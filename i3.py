@@ -42,12 +42,10 @@ class Wm:
         focused = tree.find_focused()
         return focused.workspace()
 
-    def has_app(self, name):
-
+    def has_app(self, app):
         workspace = self.get_current_workspace()
 
         for leave in workspace.leaves():
-            print(leave.name, name)
-            if leave.name is not None and name in leave.name:
+            if leave.name is not None and app.name() in leave.name:
                 return True
         return False
