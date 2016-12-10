@@ -5,6 +5,7 @@ import json
 from i3 import Wm
 from atom import Atom
 from run_test import RunTest
+from file_util import *
 
 class Container:
     layout=None
@@ -42,20 +43,6 @@ data = Container("splitv", 1.0, [
 ])
 
 wm = Wm()
-
-def get_test_file(file):
-    return file.replace('src', 'test').replace('.js', '_tests.js')
-
-def find_project_folder(file):
-    folder = os.path.dirname(file)
-
-    while folder != "/" and folder != "":
-        if os.path.exists(folder + "/.git"):
-            return folder
-        else:
-            folder = os.path.split(folder)[0]
-
-    return os.path.dirname(file)
 
 def atom_test(workspace_name, file):
     wm.create_workspace(workspace_name)
