@@ -47,7 +47,7 @@ wm = Wm()
 def atom_test(workspace_name, file):
     wm.create_workspace(workspace_name)
 
-    folder = find_project_folder(file).replace(os.path.expanduser("~"), "~")
+    folder = find_project_folder(file)
     test_file = get_test_file(file)
 
     atom_code = Atom(folder, file)
