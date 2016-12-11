@@ -34,47 +34,54 @@ class App:
         return json.dumps(self, default=lambda o: o.__dict__,
             sort_keys=True, indent=4)
 
-data = Container("splitv", 1.0, [
-    Container("splith", 0.8, [
-        App(0.5, "Atom"),
-        App(0.5, "Atom"),
-    ]),
-    App(0.2, "XTerm")
-])
+def parse_definition(meta):
+    workspace = "advisor:unit-testing",
 
-wm = Wm()
+    layout = Container("splitv", 1.0, [
+        Container("splith", 0.8, [
+            App(0.5, "Atom"),
+            App(0.5, "Atom"),
+        ]),
+        App(0.2, "XTerm")
+    ])
 
-def atom_test(workspace_name, file):
-    wm.create_workspace(workspace_name)
+    (file, folder, test_file) = meta
 
-    folder = find_project_folder(file)
-    test_file = get_test_file(file)
+    apps = [
+        Atom(folder, file),
+        Atom(folder, test_file),
+        XTerm("npm run watch:test:base -- ", [test_file], folder)
+    ]
 
-    atom_code = Atom(folder, file)
-    atom_test = Atom(folder, test_file)
-    term_test = XTerm("npm run watch:test:base -- ", [test_file], folder)
+    return (workspace, layout, apps)
 
-    has_term = wm.has_app(term_test)
-    has_code = wm.has_app(atom_code)
-    has_test = wm.has_app(atom_test)
 
-    if not (has_term and has_code and has_test):
+def atom_test(file):
+    wm = Wm()
+
+    meta = (file, find_project_folder(file), get_test_file(file))
+    (workspace, layout, apps) = parse_definition(meta)
+
+    wm.create_workspace(workspace)
+
+    has_all_apps=True
+    for app in apps:
+        if not wm.has_app(app):
+            has_all_apps=False
+
+    if not has_all_apps:
         wm.clear_workspace()
 
-        wm.create_layout(data)
+        wm.create_layout(layout)
 
-        wm.open(term_test.cmd())
-        wm.open(atom_code.cmd())
-        wm.open(atom_test.cmd())
+        for app in apps:
+            wm.open(app.cmd())
 
 def main():
     parser = argparse.ArgumentParser(description="Script for opening advisor:unit-testing")
     parser.add_argument("file", metavar='file')
     args = parser.parse_args()
 
-    atom_test(
-      workspace_name="advisor:unit-testing",
-      file=args.file
-    )
+    atom_test(args.file)
 
 main()
