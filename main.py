@@ -4,7 +4,7 @@ import json
 
 from i3 import Wm
 from atom import Atom
-from run_test import RunTest
+from xterm import XTerm
 from file_util import *
 
 class Container:
@@ -52,7 +52,7 @@ def atom_test(workspace_name, file):
 
     atom_code = Atom(folder, file)
     atom_test = Atom(folder, test_file)
-    term_test = RunTest(folder, test_file)
+    term_test = XTerm("npm run watch:test:base -- ", [test_file], folder)
 
     has_term = wm.has_app(term_test)
     has_code = wm.has_app(atom_code)
