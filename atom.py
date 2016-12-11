@@ -11,3 +11,6 @@ class Atom:
 
     def cmd(self):
         return "atom -n %s %s" % (self.folder.replace(os.path.expanduser("~"), "~"), self.file)
+
+    def __str__(self):
+        return "Atom(%s)" % file

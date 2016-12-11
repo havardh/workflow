@@ -8,8 +8,12 @@ class XTerm:
         return self.command + " ".join(self.args)
 
     def cmd(self):
-        cmd = self.command + " ".join(self.args)
+        cmd = self.command + " " + " ".join(self.args)
         name = self.name()
         print(cmd)
 
+
         return "cd %s && xterm -T '%s' -e '%s'" % (self.cwd, name, cmd)
+
+    def __str__(self):
+        return "XTerm[%s]" % name()
