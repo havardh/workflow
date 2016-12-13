@@ -1,8 +1,10 @@
 import os
 
+from react_util import find_route
+
 class GoogleChrome:
-    def __init__(self, url):
-        self.url = url
+    def __init__(self, file):
+        self.url = "http://localhost:9090/advisor/advisor/#" + find_route(file).replace(":caseRef", "1")
 
     def name(self):
         return "Advisory Application — Google Chrome"

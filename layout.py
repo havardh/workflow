@@ -66,7 +66,7 @@ def parse_apps(root, meta):
                 ))
             if app['name'] == "Google-chrome":
                 apps.append(GoogleChrome(
-                    url=app['url']
+                    file=meta[app['file']]
                 ))
             elif app['name'] == "XTerm":
                 apps.append(XTerm(

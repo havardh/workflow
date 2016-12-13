@@ -12,4 +12,4 @@ root:
         - app:
             percent: 0.5
             name: Google-chrome
-            url: http://localhost:9090/advisor/advisor/#/
+            file: file
