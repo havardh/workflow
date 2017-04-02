@@ -1,15 +1,16 @@
-workspace: advisor:component
-root:
-  container:
-      layout: splith
-      percent: 1.0
-      children:
-        - app:
-            percent: 0.5
-            name: Atom
-            folder: folder
-            file: file
-        - app:
-            percent: 0.5
-            name: Google-chrome
-            file: file
+workspace:
+  name: advisor:component
+  root:
+    container:
+        layout: splith
+        percent: 1.0
+        children:
+          - app:
+              percent: 0.5
+              name: Atom
+              folder: folder
+              file: file
+          - app:
+              percent: 0.5
+              name: Google-chrome
+              file: file

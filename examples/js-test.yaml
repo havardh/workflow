@@ -1,27 +1,28 @@
-workspace: advisor:unit-testing
-root:
-  container:
-    layout: splitv
-    percent: 1.0
-    children:
-      - container:
-          layout: splith
-          percent: 0.8
-          children:
-            - app:
-                percent: 0.5
-                name: Atom
-                folder: folder
-                file: file
-            - app:
-                percent: 0.5
-                name: Atom
-                folder: folder
-                file: test_file
-      - app:
-          percent: 0.2
-          name: XTerm
-          cwd: folder
-          cmd: npm run watch:test:base --
-          args:
-            - test_file
+workspace:
+  name: advisor:unit-testing
+  root:
+    container:
+      layout: splitv
+      percent: 1.0
+      children:
+        - container:
+            layout: splith
+            percent: 0.8
+            children:
+              - app:
+                  percent: 0.5
+                  name: Atom
+                  folder: folder
+                  file: file
+              - app:
+                  percent: 0.5
+                  name: Atom
+                  folder: folder
+                  file: test_file
+        - app:
+            percent: 0.2
+            name: XTerm
+            cwd: folder
+            cmd: npm run watch:test:base --
+            args:
+              - test_file

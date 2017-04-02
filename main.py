@@ -13,22 +13,23 @@ def run(config_file, file):
         "folder": find_project_folder(file),
         "test_file": get_test_file(file)
     }
-    (workspace, layout, apps) = parse(config_file, meta)
+    workspaces = parse(config_file, meta)
 
-    wm.create_workspace(workspace)
+    for workspace in workspaces:
+        wm.create_workspace(workspace)
 
-    has_all_apps=True
-    for app in apps:
-        if not wm.has_app(app):
-            has_all_apps=False
+        has_all_apps=True
+        for app in workspace.apps:
+            if not wm.has_app(app):
+                has_all_apps=False
 
-    if not has_all_apps:
-        wm.clear_workspace()
+        if not has_all_apps:
+            wm.clear_workspace()
 
-        wm.create_layout(layout)
+            wm.create_layout(workspace.layout)
 
-        for app in apps:
-            wm.open(app.cmd())
+            for app in workspace.apps:
+                wm.open(app.cmd())
 
 def main():
     parser = argparse.ArgumentParser(description="Script for opening advisor:unit-testing")

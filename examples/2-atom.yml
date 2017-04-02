@@ -1,0 +1,25 @@
+workspaces:
+  - workspace:
+      name: 2
+      sceen: eDP1
+      root:
+        container:
+          layout: splith
+          percent: 1.0
+          children:
+            - app:
+                percent: 1.0
+                name: Atom
+                folder: /home/havard/cicero/hb-advisory/frontend
+  - workspace:
+      name: 3
+      sceen: eDP1
+      root:
+        container:
+          layout: splith
+          percent: 1.0
+          children:
+            - app:
+                percent: 1.0
+                name: Atom
+                folder: /home/havard/cicero/hb-advisory/cap

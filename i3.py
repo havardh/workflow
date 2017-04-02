@@ -7,8 +7,8 @@ class Wm:
         self.con = i3ipc.Connection()
         self.debug = debug
 
-    def create_workspace(self, name):
-        self.command("workspace %s" % name)
+    def create_workspace(self, workspace):
+        self.command("workspace %s" % workspace.name)
 
     def clear_workspace(self):
         self.command("focus parent, focus parent, focus parent, kill")

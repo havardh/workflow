@@ -5,6 +5,16 @@ from chrome import GoogleChrome
 import json
 import yaml
 
+class Workspace:
+    name=None
+    apps=[]
+    layout=[]
+
+    def __init__(self, name, layout, apps):
+        self.name = name
+        self.layout = layout
+        self.apps = apps
+
 class Container:
     layout=None
     percent=None
@@ -86,6 +96,24 @@ def parse_apps(root, meta):
 
     return apps
 
+def parse_workspace(workspace, meta):
+
+    layout = parse_layout(workspace['root'])
+    apps = parse_apps(workspace['root'], meta)
+
+    return Workspace(workspace['name'], layout, apps)
+
+def parse_workspaces(config, meta):
+    if 'workspace' in config:
+        return [parse_workspace(config['workspace'], meta)]
+    elif 'workspaces' in config:
+        workspaces=[]
+        for workspace in config['workspaces']:
+            workspaces.append(parse_workspace(workspace['workspace'], meta))
+        return workspaces
+    else:
+        return []
+
 
 def parse(config_file, meta):
 
@@ -93,8 +121,4 @@ def parse(config_file, meta):
     config = yaml.load(f)
     f.close()
 
-    workspace = config['workspace']
-    layout = parse_layout(config['root'])
-    apps = parse_apps(config['root'], meta)
-
-    return (workspace, layout, apps)
+    return parse_workspaces(config, meta)
