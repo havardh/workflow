@@ -21,5 +21,4 @@ workspaces:
           children:
             - app:
                 percent: 1.0
-                name: Atom
-                folder: /home/havard/cicero/hb-advisory/cap
+                name: Slack
