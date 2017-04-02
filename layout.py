@@ -46,10 +46,34 @@ def parse_layout(node):
     else:
         return None
 
+def parse_field(field, app, meta):
+    if not field in app:
+        return None
+
+    if app[field] in meta:
+        return meta[app[field]]
+    else:
+        return app[field]
+
+def parse_app(app, meta):
+    if app['name'] == "Atom":
+        return Atom(
+            folder=parse_field('folder', app, meta),
+            file=parse_field('file', app, meta)
+        )
+    elif app['name'] == "Google-chrome":
+        return GoogleChrome(
+            file=parse_field('file', app, meta)
+        )
+    elif app['name'] == "XTerm":
+        return XTerm(
+            command=app['cmd'],
+            cwd=parse_field('cwd', app, meta),
+            args=[meta[arg] for arg in app['args']]
+        )
+
 def parse_apps(root, meta):
-
     apps = []
-
     nodes = [root]
 
     while nodes:
@@ -58,22 +82,8 @@ def parse_apps(root, meta):
             container = node['container']
             nodes.extend(container['children'])
         elif 'app' in node:
-            app = node['app']
-            if app['name'] == "Atom":
-                apps.append(Atom(
-                    folder=meta[app['folder']],
-                    file=meta[app['file']]
-                ))
-            if app['name'] == "Google-chrome":
-                apps.append(GoogleChrome(
-                    file=meta[app['file']]
-                ))
-            elif app['name'] == "XTerm":
-                apps.append(XTerm(
-                    command=app['cmd'],
-                    cwd=meta[app['cwd']],
-                    args=[meta[arg] for arg in app['args']]
-                ))
+            apps.append(parse_app(node['app'], meta))
+
     return apps
 
 
