@@ -3,6 +3,7 @@ from atom import Atom
 from xterm import XTerm
 from chrome import GoogleChrome
 from slack import Slack
+from idea import Idea
 import json
 import yaml
 
@@ -84,6 +85,8 @@ def parse_app(app, meta):
         )
     elif app['name'] == "Slack":
         return Slack()
+    elif app['name'] == "idea":
+        return Idea(folder=parse_field('folder', app, meta))
 
 def parse_apps(root, meta):
     apps = []

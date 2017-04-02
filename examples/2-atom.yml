@@ -22,3 +22,15 @@ workspaces:
             - app:
                 percent: 1.0
                 name: Slack
+  - workspace:
+      name: 4
+      sceen: eDP1
+      root:
+        container:
+          layout: splith
+          percent: 1.0
+          children:
+            - app:
+                percent: 1.0
+                name: idea
+                folder: /home/havard/cicero/hb-advisory/cap
