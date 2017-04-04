@@ -1,7 +1,7 @@
-from .file_util import *
-from .i3 import Wm
+from .utils.files import *
+from .layout import parse
+from .window_managers.i3 import Wm
 
-from workflow.layout import parse
 
 def run(config_file, file):
     wm = Wm()

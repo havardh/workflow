@@ -3,7 +3,7 @@ import sys
 
 import invoke
 
-from workflow.file_util import find_project_folder
+from .files import find_project_folder
 
 
 def execute(command):
