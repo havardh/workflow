@@ -1,4 +1,4 @@
-from .react_util import find_route
+from ..utils.react import find_route
 
 class GoogleChrome:
     def __init__(self, file):

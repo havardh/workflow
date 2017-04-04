@@ -1,11 +1,12 @@
 import json
+
 import yaml
 
-from .atom import Atom
-from .chrome import GoogleChrome
+from .apps.xterm import XTerm
+from .apps.atom import Atom
+from .apps.chrome import GoogleChrome
 from .idea import Idea
-from .slack import Slack
-from .xterm import XTerm
+from .apps.slack import Slack
 
 
 class Workspace:
