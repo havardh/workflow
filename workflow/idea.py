@@ -1,5 +1,3 @@
-import os
-
 class Idea:
     def __init__(self, folder):
         self.folder = folder

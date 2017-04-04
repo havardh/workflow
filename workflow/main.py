@@ -1,5 +1,5 @@
-from .utils.files import *
 from .layout import parse
+from .utils.files import *
 from .window_managers import Wm
 
 
@@ -16,10 +16,10 @@ def run(config_file, file):
     for workspace in workspaces:
         wm.create_workspace(workspace)
 
-        has_all_apps=True
+        has_all_apps = True
         for app in workspace.apps:
             if not wm.has_app(app):
-                has_all_apps=False
+                has_all_apps = False
 
         if not has_all_apps:
             wm.clear_workspace()

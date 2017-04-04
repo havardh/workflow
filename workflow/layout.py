@@ -2,49 +2,51 @@ import json
 
 import yaml
 
-from .apps.xterm import XTerm
 from .apps.atom import Atom
 from .apps.chrome import GoogleChrome
-from .idea import Idea
 from .apps.slack import Slack
+from .apps.xterm import XTerm
+from .idea import Idea
 
 
 class Workspace:
-    name=None
-    apps=[]
-    layout=[]
+    name = None
+    apps = []
+    layout = []
 
     def __init__(self, name, layout, apps):
         self.name = name
         self.layout = layout
         self.apps = apps
 
+
 class Container:
-    layout=None
-    percent=None
-    nodes=[]
+    layout = None
+    percent = None
+    nodes = []
 
     def __init__(self, layout, percent, nodes):
         self.layout = layout
         self.percent = percent
         self.nodes = nodes
 
-
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
-            sort_keys=True, indent=4)
+                          sort_keys=True, indent=4)
+
 
 class App:
-    percent=None
-    swallows=None
+    percent = None
+    swallows = None
 
     def __init__(self, percent, name):
         self.percent = percent
-        self.swallows = [{"class": "^"+name+"$"}]
+        self.swallows = [{"class": "^" + name + "$"}]
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
-            sort_keys=True, indent=4)
+                          sort_keys=True, indent=4)
+
 
 def parse_layout(node):
     if 'container' in node:
@@ -60,6 +62,7 @@ def parse_layout(node):
     else:
         return None
 
+
 def parse_field(field, app, meta):
     if not field in app:
         return None
@@ -68,6 +71,7 @@ def parse_field(field, app, meta):
         return meta[app[field]]
     else:
         return app[field]
+
 
 def parse_app(app, meta):
     if app['name'] == "Atom":
@@ -90,6 +94,7 @@ def parse_app(app, meta):
     elif app['name'] == "idea":
         return Idea(folder=parse_field('folder', app, meta))
 
+
 def parse_apps(root, meta):
     apps = []
     nodes = [root]
@@ -104,18 +109,19 @@ def parse_apps(root, meta):
 
     return apps
 
-def parse_workspace(workspace, meta):
 
+def parse_workspace(workspace, meta):
     layout = parse_layout(workspace['root'])
     apps = parse_apps(workspace['root'], meta)
 
     return Workspace(workspace['name'], layout, apps)
 
+
 def parse_workspaces(config, meta):
     if 'workspace' in config:
         return [parse_workspace(config['workspace'], meta)]
     elif 'workspaces' in config:
-        workspaces=[]
+        workspaces = []
         for workspace in config['workspaces']:
             workspaces.append(parse_workspace(workspace['workspace'], meta))
         return workspaces
@@ -124,7 +130,6 @@ def parse_workspaces(config, meta):
 
 
 def parse(config_file, meta):
-
     f = open(config_file)
     config = yaml.load(f)
     f.close()
