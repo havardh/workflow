@@ -1,9 +1,7 @@
-import os
-import argparse
+from .file_util import *
+from .i3 import Wm
 
-from i3 import Wm
-from file_util import *
-from layout import parse
+from workflow.layout import parse
 
 def run(config_file, file):
     wm = Wm()
@@ -30,13 +28,3 @@ def run(config_file, file):
 
             for app in workspace.apps:
                 wm.open(app.cmd())
-
-def main():
-    parser = argparse.ArgumentParser(description="Script for opening advisor:unit-testing")
-    parser.add_argument("config_file", metavar='config_file')
-    parser.add_argument("file", metavar='file')
-    args = parser.parse_args()
-
-    run(args.config_file, args.file)
-
-main()

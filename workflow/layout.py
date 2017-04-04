@@ -1,11 +1,12 @@
-import sys
-from atom import Atom
-from xterm import XTerm
-from chrome import GoogleChrome
-from slack import Slack
-from idea import Idea
 import json
 import yaml
+
+from .atom import Atom
+from .chrome import GoogleChrome
+from .idea import Idea
+from .slack import Slack
+from .xterm import XTerm
+
 
 class Workspace:
     name=None
