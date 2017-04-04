@@ -1,6 +1,8 @@
-import i3ipc
-import time
 import tempfile
+import time
+
+import i3ipc
+
 
 class Wm:
     def __init__(self, debug=False):

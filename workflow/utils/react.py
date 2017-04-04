@@ -14,9 +14,11 @@ def execute(command):
         print("No output for '%s'" % command)
         sys.exit(1)
 
+
 def find_parent(folder, name):
     result = execute("cd %s && git grep '%s' -- */src/*" % (folder, name))
     return result[0:result.index('.')]
+
 
 def find_page(folder, name):
     last_name = name
@@ -25,8 +27,10 @@ def find_page(folder, name):
         name = find_parent(folder, name)
     return (name, last_name)
 
+
 def find_imported_name(file, name):
     return execute("cat %s | grep %s" % (file, name)).split(' ')[1]
+
 
 def find_path(router_file, page_name):
     lines = execute("cat %s" % router_file).split("\n")
@@ -54,13 +58,14 @@ def find_path(router_file, page_name):
         route += "/" + m.group(0).replace('path="', "")[0:-1]
     return route
 
+
 def find_route(file):
     print(file)
     folder = find_project_folder(file)
     import_name = file.replace(folder + "/", "").replace(".js", "")
     (page, component) = find_page(folder, import_name)
 
-    page_import = page[page.index("/", page.index("/")+1)+1:]
+    page_import = page[page.index("/", page.index("/") + 1) + 1:]
     router = find_parent(folder, page_import)
 
     router_file = folder + "/" + router + ".js"

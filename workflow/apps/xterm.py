@@ -12,7 +12,6 @@ class XTerm:
         name = self.name()
         print(cmd)
 
-
         return "cd %s && xterm -T '%s' -e '%s'" % (self.cwd, name, cmd)
 
     def __str__(self):
