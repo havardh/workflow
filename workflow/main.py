@@ -1,6 +1,6 @@
 from .utils.files import *
 from .layout import parse
-from .window_managers.i3 import Wm
+from .window_managers import Wm
 
 
 def run(config_file, file):
