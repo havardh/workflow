@@ -1,0 +1,11 @@
+machine:
+  python:
+    version: 3.6.0
+
+test:
+  override:
+    - isort -rc -c workflow
+    - flake8
+    - py.test
+  post:
+    - cp -r coverage $CIRCLE_ARTIFACTS

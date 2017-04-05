@@ -1,0 +1,5 @@
+-r base.txt
+
+pytest==3.0.7
+flake8==3.3.0
+isort==4.2.5
