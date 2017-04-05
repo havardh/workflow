@@ -2,9 +2,9 @@ import json
 
 import yaml
 
-from .apps.idea import Idea
 from .apps.atom import Atom
 from .apps.chrome import GoogleChrome
+from .apps.idea import Idea
 from .apps.slack import Slack
 from .apps.xterm import XTerm
 
@@ -64,7 +64,7 @@ def parse_layout(node):
 
 
 def parse_field(field, app, meta):
-    if not field in app:
+    if field not in app:
         return None
 
     if app[field] in meta:

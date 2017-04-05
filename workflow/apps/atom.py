@@ -19,4 +19,4 @@ class Atom:
                                   self.file if self.file is not None else "")
 
     def __str__(self):
-        return "Atom(%s)" % file
+        return "Atom(%s)" % self.file

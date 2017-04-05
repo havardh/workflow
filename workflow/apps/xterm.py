@@ -15,4 +15,4 @@ class XTerm:
         return "cd %s && xterm -T '%s' -e '%s'" % (self.cwd, name, cmd)
 
     def __str__(self):
-        return "XTerm[%s]" % name()
+        return "XTerm[%s]" % self.name()
