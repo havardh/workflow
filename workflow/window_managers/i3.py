@@ -9,6 +9,23 @@ class Wm:
         self.con = i3ipc.Connection()
         self.debug = debug
 
+    def setup_workflow(self, workflow):
+        for workspace in workflow:
+            self.create_workspace(workspace)
+
+            has_all_apps = True
+            for app in workspace.apps:
+                if not self.has_app(app):
+                    has_all_apps = False
+
+            if not has_all_apps:
+                self.clear_workspace()
+
+                self.create_layout(workspace.layout)
+
+                for app in workspace.apps:
+                    self.open(app.cmd())
+
     def create_workspace(self, workspace):
         self.command("workspace %s" % workspace.name)
 
@@ -51,3 +68,4 @@ class Wm:
             if leave.name is not None and app.name() in leave.name:
                 return True
         return False
+
