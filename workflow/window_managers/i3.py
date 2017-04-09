@@ -1,13 +1,21 @@
 import tempfile
 import time
 
-import i3ipc
+from .base import AbstractWm
 
 
-class Wm:
+class Wm(AbstractWm):
     def __init__(self, debug=False):
-        self.con = i3ipc.Connection()
-        self.debug = debug
+        super(debug=debug)
+        try:
+            import i3ipc
+            self.con = i3ipc.Connection()
+        except ImportError:
+            pass
+
+    @property
+    def is_supported_in_current_environment(self):
+        return bool(self.con)
 
     def setup_workflow(self, workflow):
         for workspace in workflow:
