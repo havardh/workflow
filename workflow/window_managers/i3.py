@@ -68,4 +68,3 @@ class Wm:
             if leave.name is not None and app.name() in leave.name:
                 return True
         return False
-
