@@ -1,4 +1,6 @@
 workspace:
+  args:
+    - file
   name: advisor:component
   root:
     container:
@@ -8,9 +10,9 @@ workspace:
           - app:
               percent: 0.5
               name: Atom
-              folder: folder
-              file: file
+              folder: $project_root(file)
+              file: $file
           - app:
               percent: 0.5
               name: Google-chrome
-              file: file
+              url: $advisor_url(file)
