@@ -1,10 +1,9 @@
-from ..utils.react import find_route
+from ..utils.config import parse_field
 
 
 class GoogleChrome:
-    def __init__(self, file):
-        self.url = "http://localhost:9090/advisor/advisor/#" + find_route(file).replace(":caseRef",
-                                                                                        "1")
+    def __init__(self, app, args):
+        self.url = parse_field(app['url'], args)
 
     def name(self):
         return "Advisory Application — Google Chrome"

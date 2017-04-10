@@ -73,26 +73,15 @@ def parse_field(field, app, meta):
         return app[field]
 
 
-def parse_app(app, meta):
+def parse_app(app, args):
     if app['name'] == "Atom":
-        return Atom(
-            folder=parse_field('folder', app, meta),
-            file=parse_field('file', app, meta)
-        )
+        return Atom(app, args)
     elif app['name'] == "Google-chrome":
-        return GoogleChrome(
-            file=parse_field('file', app, meta)
-        )
+        return GoogleChrome(app, args)
     elif app['name'] == "XTerm":
-        return XTerm(
-            command=app['cmd'],
-            cwd=parse_field('cwd', app, meta),
-            args=[meta[arg] for arg in app['args']]
-        )
+        return XTerm(app, args)
     elif app['name'] == "Slack":
-        return Slack()
-    elif app['name'] == "idea":
-        return Idea(folder=parse_field('folder', app, meta))
+        return Slack(app, args)
 
 
 def parse_apps(root, meta):

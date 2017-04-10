@@ -3,7 +3,7 @@ import sys
 
 import invoke
 
-from .files import find_project_folder
+from .files import project_root
 
 
 def execute(command):
@@ -61,7 +61,7 @@ def find_path(router_file, page_name):
 
 def find_route(file):
     print(file)
-    folder = find_project_folder(file)
+    folder = project_root(file)
     import_name = file.replace(folder + "/", "").replace(".js", "")
     (page, component) = find_page(folder, import_name)
 

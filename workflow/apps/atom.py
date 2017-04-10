@@ -1,10 +1,13 @@
 import os
 
+from ..utils.config import parse_field
+
 
 class Atom:
-    def __init__(self, folder, file):
-        self.folder = folder
-        self.file = file
+    def __init__(self, app, args):
+
+        self.file = parse_field(app['file'], args)
+        self.folder = parse_field(app['folder'], args)
 
     def name(self):
         if self.file is not None:
