@@ -4,6 +4,8 @@ import yaml
 
 from .apps.atom import Atom
 from .apps.chrome import GoogleChrome
+from .apps.code import Code
+from .apps.emacs import Emacs
 from .apps.idea import Idea
 from .apps.slack import Slack
 from .apps.xterm import XTerm
@@ -82,6 +84,12 @@ def parse_app(app, args):
         return XTerm(app, args)
     elif app['name'] == "Slack":
         return Slack(app, args)
+    elif app['name'] == "Idea":
+        return Idea(app, args)
+    elif app['name'] == "Code":
+        return Code(app, args)
+    elif app['name'] == "Emacs":
+        return Emacs(app, args)
 
 
 def parse_apps(root, meta):
