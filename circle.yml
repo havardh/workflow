@@ -11,5 +11,8 @@ test:
     - isort -rc -c workflow
     - flake8
     - py.test
+    - coverage run --source=workflow -m py.test
   post:
-    - cp -r coverage $CIRCLE_ARTIFACTS
+    - coverage html
+    - coverage report
+    - cp -r htmlcov $CIRCLE_ARTIFACTS
