@@ -1,6 +1,10 @@
+from ..utils.config import parse_field
+
+
 class Idea:
-    def __init__(self, folder):
-        self.folder = folder
+    def __init__(self, app, args):
+
+        self.folder = parse_field(app['folder'], args)
 
     def name(self):
         return "jetbrains-idea"
