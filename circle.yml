@@ -2,6 +2,10 @@ machine:
   python:
     version: 3.6.0
 
+dependencies:
+  override:
+    - pip install -r requirements/dev.txt
+
 test:
   override:
     - isort -rc -c workflow
