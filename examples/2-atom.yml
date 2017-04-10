@@ -32,5 +32,5 @@ workspaces:
           children:
             - app:
                 percent: 1.0
-                name: idea
+                name: Idea
                 folder: /home/havard/cicero/hb-advisory/cap
