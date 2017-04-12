@@ -1,4 +1,4 @@
-from ..utils.files import project_root, test_file
+from ..utils.files import project_root, get_test_file
 from ..utils.react import find_route
 
 
@@ -8,7 +8,7 @@ def advisor_url(file):
 
 util_funtions = {
     "project_root": project_root,
-    "test_file": test_file,
+    "get_test_file": get_test_file,
     "advisor_url": advisor_url
 }
 
