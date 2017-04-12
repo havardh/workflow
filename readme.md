@@ -29,7 +29,7 @@ Now your layout consist of two instances of Atom one with code and one
 with tests, and a terminal running the tests. To achieve this in workflow
 we would add a layout file for this purpose:
 
-```
+```yaml
 workspace:
   args:
     - file
