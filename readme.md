@@ -52,14 +52,14 @@ workspace:
                   percent: 0.5
                   name: Atom
                   folder: $project_root(file)
-                  file: $test_file(file)
+                  file: $get_test_file(file)
         - app:
             percent: 0.2
             name: XTerm
             cwd: $project_root(file)
             cmd: npm run watch:test:base --
             args:
-              - $test_file(file)
+              - $get_test_file(file)
 ```
 
 The layout file contains a lot of detail, but the main points are the three `app`
