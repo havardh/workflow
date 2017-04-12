@@ -1,7 +1,7 @@
 import os
 
 
-def test_file(file):
+def get_test_file(file):
     return file.replace('src', 'test').replace('.js', '_tests.js')
 
 
