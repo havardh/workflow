@@ -11,6 +11,17 @@ from .apps.slack import Slack
 from .apps.xterm import XTerm
 
 
+APPS = {
+    'Atom': Atom,
+    'GoogleChrome': GoogleChrome,
+    'Code': Code,
+    'Emacs': Emacs,
+    'Idea': Idea,
+    'Slack': Slack,
+    'XTerm': XTerm
+}
+
+
 class Workspace:
     name = None
     apps = []
@@ -76,20 +87,7 @@ def parse_field(field, app, meta):
 
 
 def parse_app(app, args):
-    if app['name'] == "Atom":
-        return Atom(app, args)
-    elif app['name'] == "Google-chrome":
-        return GoogleChrome(app, args)
-    elif app['name'] == "XTerm":
-        return XTerm(app, args)
-    elif app['name'] == "Slack":
-        return Slack(app, args)
-    elif app['name'] == "Idea":
-        return Idea(app, args)
-    elif app['name'] == "Code":
-        return Code(app, args)
-    elif app['name'] == "Emacs":
-        return Emacs(app, args)
+    return APPS[app['name']](app, args)
 
 
 def parse_apps(root, meta):

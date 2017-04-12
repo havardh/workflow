@@ -14,5 +14,5 @@ workspace:
               file: $file
           - app:
               percent: 0.5
-              name: Google-chrome
+              name: GoogleChrome
               url: $advisor_url(file)
