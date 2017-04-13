@@ -5,6 +5,9 @@ class GoogleChrome:
     def __init__(self, app, args):
         self.url = parse_field(app['url'], args)
 
+    def window_class(self):
+        return "Google-chrome"
+
     def name(self):
         return "Advisory Application — Google Chrome"
 
