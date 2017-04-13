@@ -6,11 +6,9 @@ from ..utils.config import parse_field
 class Atom:
 
     def __init__(self, app, args):
+        self.window_class = "Atom"
         self.file = parse_field(app['file'], args)
         self.folder = parse_field(app['folder'], args)
-
-    def window_class(self):
-        return "Atom"
 
     def name(self):
         if self.file is not None:

@@ -35,7 +35,7 @@ class App:
 
     def __init__(self, app):
         self.percent = app.percent
-        self.swallows = [{"class": "^" + app.app.window_class() + "$"}]
+        self.swallows = [{"class": "^" + app.app.window_class + "$"}]
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,

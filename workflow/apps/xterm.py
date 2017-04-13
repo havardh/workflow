@@ -3,12 +3,10 @@ from ..utils.config import parse_field
 
 class XTerm:
     def __init__(self, app, args):
+        self.window_class = "XTerm"
         self.command = parse_field(app['cmd'], args)
         self.cwd = parse_field(app['cwd'], args)
         self.args = [parse_field(arg, args) for arg in app['args']]
-
-    def window_class(self):
-        return "XTerm"
 
     def name(self):
         return self.command + " ".join(self.args)
