@@ -3,8 +3,10 @@ import yaml
 from .apps.atom import Atom
 from .apps.chrome import GoogleChrome
 from .apps.code import Code
+from .apps.bash import Bash
 from .apps.emacs import Emacs
 from .apps.idea import Idea
+from .apps.notepad import Notepad
 from .apps.slack import Slack
 from .apps.xterm import XTerm
 
@@ -15,7 +17,9 @@ APPS = {
     'Emacs': Emacs,
     'Idea': Idea,
     'Slack': Slack,
-    'XTerm': XTerm
+    'XTerm': XTerm,
+    'Notepad': Notepad,
+    'Bash': Bash
 }
 
 
