@@ -1,5 +1,3 @@
-import json
-
 import yaml
 
 from .apps.atom import Atom
@@ -9,7 +7,6 @@ from .apps.emacs import Emacs
 from .apps.idea import Idea
 from .apps.slack import Slack
 from .apps.xterm import XTerm
-
 
 APPS = {
     'Atom': Atom,
@@ -24,109 +21,87 @@ APPS = {
 
 class Workspace:
     name = None
-    apps = []
     layout = []
 
-    def __init__(self, name, layout, apps):
+    def __init__(self, name, layout):
         self.name = name
         self.layout = layout
-        self.apps = apps
+
+    def app_list(self):
+        nodes = [self.layout]
+        apps = []
+
+        while nodes:
+            node = nodes.pop()
+            if isinstance(node, Container):
+                nodes.extend(node.children)
+            else:
+                apps.append(node.app)
+
+        return apps
 
 
 class Container:
     layout = None
     percent = None
-    nodes = []
+    children = []
 
-    def __init__(self, layout, percent, nodes):
+    def __init__(self, layout, percent, children):
         self.layout = layout
         self.percent = percent
-        self.nodes = nodes
-
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)
+        self.children = children
 
 
 class App:
     percent = None
-    swallows = None
+    app = None
 
-    def __init__(self, percent, name):
+    def __init__(self, percent, app):
         self.percent = percent
-        self.swallows = [{"class": "^" + name + "$"}]
-
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)
-
-
-def parse_layout(node):
-    if 'container' in node:
-        container = node['container']
-        return Container(
-            layout=container['layout'],
-            percent=container['percent'],
-            nodes=[parse_layout(child) for child in container['children']]
-        )
-    elif 'app' in node:
-        app = node['app']
-        return App(app['percent'], app['name'])
-    else:
-        return None
-
-
-def parse_field(field, app, meta):
-    if field not in app:
-        return None
-
-    if app[field] in meta:
-        return meta[app[field]]
-    else:
-        return app[field]
+        self.app = app
 
 
 def parse_app(app, args):
     return APPS[app['name']](app, args)
 
 
-def parse_apps(root, meta):
-    apps = []
-    nodes = [root]
-
-    while nodes:
-        node = nodes.pop(0)
-        if 'container' in node:
-            container = node['container']
-            nodes.extend(container['children'])
-        elif 'app' in node:
-            apps.append(parse_app(node['app'], meta))
-
-    return apps
-
-
-def parse_workspace(workspace, meta):
-    layout = parse_layout(workspace['root'])
-    apps = parse_apps(workspace['root'], meta)
-
-    return Workspace(workspace['name'], layout, apps)
+def parse_layout(node, args):
+    if 'container' in node:
+        container = node['container']
+        return Container(
+            layout=container['layout'],
+            percent=container['percent'],
+            children=[parse_layout(child, args) for child in container['children']]
+        )
+    elif 'app' in node:
+        app = node['app']
+        return App(app['percent'], parse_app(app, args))
+    else:
+        return None
 
 
-def parse_workspaces(config, meta):
+def parse_workspace(workspace, args):
+    return Workspace(
+        workspace['name'],
+        parse_layout(workspace['root'], args)
+    )
+
+
+def parse_workspaces(config, args):
     if 'workspace' in config:
-        return [parse_workspace(config['workspace'], meta)]
+        return [parse_workspace(config['workspace'], args)]
     elif 'workspaces' in config:
         workspaces = []
         for workspace in config['workspaces']:
-            workspaces.append(parse_workspace(workspace['workspace'], meta))
+            workspaces.append(parse_workspace(workspace['workspace'], args))
         return workspaces
     else:
         return []
 
 
-def parse(config_file, meta):
+def parse(config_file, args):
     f = open(config_file)
     config = yaml.load(f)
     f.close()
 
-    return parse_workspaces(config, meta)
+    return parse_workspaces(config, args)

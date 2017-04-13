@@ -1,7 +1,45 @@
+import json
 import tempfile
 import time
 
 import i3ipc
+
+from ..layout import Container as LayoutContainer
+
+
+def to_i3_layout(child):
+    if isinstance(child, LayoutContainer):
+        return Container(child)
+    else:
+        return App(child)
+
+
+class Container:
+    layout = None
+    percent = None
+    nodes = []
+
+    def __init__(self, container):
+        self.layout = container.layout
+        self.percent = container.percent
+        self.nodes = [to_i3_layout(child) for child in container.children]
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
+
+class App:
+    percent = None
+    swallows = None
+
+    def __init__(self, app):
+        self.percent = app.percent
+        self.swallows = [{"class": "^" + app.app.window_class() + "$"}]
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
 
 
 class Wm:
@@ -14,16 +52,16 @@ class Wm:
             self.create_workspace(workspace)
 
             has_all_apps = True
-            for app in workspace.apps:
+            for app in workspace.app_list():
                 if not self.has_app(app):
                     has_all_apps = False
 
             if not has_all_apps:
                 self.clear_workspace()
 
-                self.create_layout(workspace.layout)
+                self.create_layout(to_i3_layout(workspace.layout))
 
-                for app in workspace.apps:
+                for app in workspace.app_list():
                     self.open(app.cmd())
 
     def create_workspace(self, workspace):
