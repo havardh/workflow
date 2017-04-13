@@ -1,7 +1,7 @@
 import time
 
-from .base import AbstractWm
 from ..layout import App, Container
+from .base import AbstractWm
 
 
 class TileWm(AbstractWm):

@@ -2,9 +2,8 @@ import json
 import tempfile
 import time
 
-from .base import AbstractWm
-
 from ..layout import Container as LayoutContainer
+from .base import AbstractWm
 
 
 def to_i3_layout(child):

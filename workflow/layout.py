@@ -1,9 +1,9 @@
 import yaml
 
 from .apps.atom import Atom
+from .apps.bash import Bash
 from .apps.chrome import GoogleChrome
 from .apps.code import Code
-from .apps.bash import Bash
 from .apps.emacs import Emacs
 from .apps.idea import Idea
 from .apps.notepad import Notepad
