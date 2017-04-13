@@ -3,8 +3,10 @@ from ..utils.config import parse_field
 
 class Code:
     def __init__(self, app, args):
-
         self.file = parse_field(app['file'], args)
+
+    def window_class(self):
+        return "Code"
 
     def name(self):
         return "Code"

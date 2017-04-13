@@ -7,6 +7,9 @@ class XTerm:
         self.cwd = parse_field(app['cwd'], args)
         self.args = [parse_field(arg, args) for arg in app['args']]
 
+    def window_class(self):
+        return "XTerm"
+
     def name(self):
         return self.command + " ".join(self.args)
 
