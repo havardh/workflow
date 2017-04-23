@@ -1,10 +1,21 @@
 # workflow
 
-Workflow is a prototype for a workspace manager. Workflow aims to simply navigating
+Workflow is a prototype for a workspace manager. Workflow aims to simplify navigating
 complex window configurations. It does so by letting the user define layouts and
-a way to easily navigate between them. Workspace is meant to be an abstraction
+a way to easily navigate between them. Workflow is meant to be an abstraction
 layer on top of window managers like i3, awesome, and the proprietary ones found in 
 OSX and Windows.
+
+## Are we crOSs yet?
+
+| OS/wm        | Status              |
+|--------------|---------------------| 
+| i3           | Complete            | 
+| windows      | [For Review](https://github.com/havardh/workflow/pull/11)   |
+| OSX          | [In Progress](https://github.com/havardh/workflow/issues/3)   |
+| awesome      | [Up for grabs](https://github.com/havardh/workflow/issues/8)  |
+| Ubuntu/Unity | [Up for grabs](https://github.com/havardh/workflow/issues/13) |
+
 
 ## Example
 
@@ -64,9 +75,10 @@ workspace:
 
 The layout file contains a lot of detail, but the main points are the three `app`
 blocks containing the definition for how to open the three various programs.
-Each `app` block has a name and program specific arguments. The `Atom` program,
+Each `app` block has a _name_ and some _arguments_. The `Atom` program,
 being an text editor, takes a file and a base folder to open. The `XTerm` terminal
-accepts a `ccwd` (current working directory), a command to execute with a list of arguments.
+accepts a _command_, a _directory_ to execute the command from and a list of _arguments_
+to the command.
 
 To start this layout run the `workflow` command with the layout and the file as an
 argument.
