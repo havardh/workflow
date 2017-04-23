@@ -1,0 +1,26 @@
+workspace:
+  args:
+    - file
+  name: advisor:component
+  root:
+    container:
+      layout: splitv
+      percent: 1.0
+      children:
+        - container:
+            layout: splith
+            percent: 0.8
+            children:
+              - app:
+                  percent: 0.5
+                  name: Code
+                  folder: C:\Users\sirihavard\Documents\dev\js-example
+                  file: C:\Users\sirihavard\Documents\dev\js-example\code.js
+              - app:
+                  percent: 0.5
+                  name: Code
+                  folder: C:\Users\sirihavard\Documents\dev\js-example
+                  file: C:\Users\sirihavard\Documents\dev\js-example\code_test.js
+        - app:
+            percent: 0.2
+            name: Bash
