@@ -1,0 +1,50 @@
+{
+  "name": "workflow",
+  "version": "0.0.1",
+  "description": "Workflow-centric workspace manager",
+  "main": "index.js",
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "transform-flow-strip-types",
+      "transform-object-rest-spread"
+    ]
+  },
+  "scripts": {
+    "start": "babel-node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/havardh/workflow.git"
+  },
+  "keywords": [
+    "wm",
+    "i3",
+    "osx",
+    "windows"
+  ],
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/havardh/workflow/issues"
+  },
+  "homepage": "https://github.com/havardh/workflow#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-plugin-import": "^2.2.0",
+    "flow-bin": "^0.44.2"
+  },
+  "dependencies": {
+    "i3": "^0.2.1",
+    "tmp": "^0.0.31"
+  }
+}
