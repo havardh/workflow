@@ -8,7 +8,7 @@ export type SplitVConfig = {
 };
 
 export function SplitV(config: SplitVConfig) : SplitVConfig {
-  return {layout: "splitv", ...config };
+  return { layout: 'splitv', ...config };
 }
 
 export type SplitHConfig = {
@@ -17,5 +17,5 @@ export type SplitHConfig = {
 };
 
 export function SplitH(config: SplitHConfig): SplitHConfig {
-  return {layout: "splith", ...config };
+  return { layout: 'splith', ...config };
 }

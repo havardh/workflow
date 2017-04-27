@@ -1,23 +1,29 @@
 // @flow
-
-const [node, index, configFile, ...args] = process.argv;
-
-const config = require(`./examples/js-test`).default;
+import config from './examples/js-test';
 import workflow from './workflow';
 
-function parseArgs(config, args) {
-  if (typeof config === "object" && config.length && config.length === args.length) {
-    const argsObject = {}
-    config.forEach(arg => argsObject[arg] = args.shift());
+const [node, index, configFile, ...args] = process.argv; // eslint-disable-line no-unused-vars
+
+class InvalidArgument {
+  cause = null;
+
+  constructor(cause = 'InvalidArgument') {
+    this.cause = cause;
+  }
+}
+
+function parseArgs(config, args) { // eslint-disable-line no-shadow
+  if (typeof config === 'object' && config.length && config.length === args.length) {
+    const argsObject = {};
+    config.forEach((arg) => { argsObject[arg] = args.shift(); });
     return argsObject;
-  } else if (typeof config === "string" && args.length === 1) {
-    return {[config]: args[0]};
+  } else if (typeof config === 'string' && args.length === 1) {
+    return { [config]: args[0] };
+  }
+  if (args.length && config.length) {
+    throw new InvalidArgument(`Invalid arguments. Arugments ${args.join(' ')} did not match config: ${config.join(' ')}`);
   } else {
-    if (args.length && config.length) {
-      throw `Invalid arguments. Arugments ${args.join(' ')} did not match config: ${config.join(' ')}`;
-    } else {
-      throw "Invalid arguments";
-    }
+    throw new InvalidArgument();
   }
 }
 
