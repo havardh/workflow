@@ -1,5 +1,5 @@
 // @flow
-import type {WorkspaceConfig} from "../workflow";
+import type { WorkspaceConfig } from '../workflow';
 
 import { SplitV, SplitH } from '../workflow/layout';
 import { XTerm, Atom } from '../workflow/apps';
@@ -37,7 +37,7 @@ const workspace : WorkspaceConfig = {
         args: [
           ({ file }) => getTestFile(file),
         ],
-        open: ({ cwd, cmd, args }) => `cd ${cwd} && xterm -T '${cmd} ${args.join(' ')}' -e '${cmd} ${args.join(' ')}'`
+        open: ({ cwd, cmd, args }) => `cd ${cwd} && xterm -T '${cmd} ${args.join(' ')}' -e '${cmd} ${args.join(' ')}'`,
       }),
     ],
   }),
