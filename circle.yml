@@ -1,18 +1,8 @@
-machine:
-  python:
-    version: 3.6.0
-
 dependencies:
   override:
-    - pip install -r requirements/dev.txt
+    - yarn install
 
 test:
   override:
-    - isort -rc -c workflow
-    - flake8
-    - py.test
-    - coverage run --source=workflow -m py.test
-  post:
-    - coverage html
-    - coverage report
-    - cp -r htmlcov $CIRCLE_ARTIFACTS
+    - yarn run flow
+    - yarn run eslint
