@@ -595,6 +595,10 @@ binary-extensions@^1.0.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.8.0.tgz#48ec8d16df4377eae5fa5884682480af4d95c774"
 
+bindings@*, bindings@1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.2.1.tgz#14ad6113812d2d37d72e67b4cacb4bb726505f11"
+
 block-stream@*:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/block-stream/-/block-stream-0.0.9.tgz#13ebfe778a03205cfe03751481ebb4b3300c126a"
@@ -753,17 +757,17 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+debug@*, debug@2, debug@^2.1.1, debug@^2.2.0:
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.4.tgz#7586a9b3c39741c0282ae33445c4e8ac74734fe0"
+  dependencies:
+    ms "0.7.3"
+
 debug@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
   dependencies:
     ms "0.7.1"
-
-debug@^2.1.1, debug@^2.2.0:
-  version "2.6.4"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.4.tgz#7586a9b3c39741c0282ae33445c4e8ac74734fe0"
-  dependencies:
-    ms "0.7.3"
 
 deep-extend@~0.4.0:
   version "0.4.1"
@@ -1001,6 +1005,18 @@ event-emitter@~0.3.5:
     d "1"
     es5-ext "~0.10.14"
 
+exec-sync@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/exec-sync/-/exec-sync-0.1.6.tgz#817a1d4a6b5b2820d72d7536ca167b2bee7259b0"
+  dependencies:
+    ffi "=1.2.5"
+
+execSync@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/execSync/-/execSync-1.0.2.tgz#1f42eda582225180053224ecdd3fd1960fdb3139"
+  dependencies:
+    temp "~0.5.1"
+
 exit-hook@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/exit-hook/-/exit-hook-1.1.1.tgz#f05ca233b48c05d54fff07765df8507e95c02ff8"
@@ -1038,6 +1054,15 @@ fast-levenshtein@~2.0.4:
 fastqueue@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/fastqueue/-/fastqueue-0.1.0.tgz#6c691016b3806186476eeb05a717babb8f633c19"
+
+ffi@=1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/ffi/-/ffi-1.2.5.tgz#fb2bb328d40a396d5922c34e043e71d2f12a0e2d"
+  dependencies:
+    bindings "*"
+    debug "*"
+    ref "*"
+    ref-struct "*"
 
 figures@^1.3.5:
   version "1.7.0"
@@ -1216,6 +1241,10 @@ globby@^5.0.0:
 graceful-fs@^4.1.2, graceful-fs@^4.1.4:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
+
+graceful-fs@~1:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-1.2.3.tgz#15a4806a57547cb2d2dbf27f42e89a8c3451b364"
 
 "graceful-readlink@>= 1.0.0":
   version "1.0.1"
@@ -1601,7 +1630,7 @@ mute-stream@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.5.tgz#8fbfabb0a98a253d3184331f9e8deb7372fac6c0"
 
-nan@^2.3.0:
+nan@2, nan@^2.3.0:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45"
 
@@ -1848,6 +1877,21 @@ rechoir@^0.6.2:
   dependencies:
     resolve "^1.1.6"
 
+ref-struct@*:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ref-struct/-/ref-struct-1.1.0.tgz#5d5ee65ad41cefc3a5c5feb40587261e479edc13"
+  dependencies:
+    debug "2"
+    ref "1"
+
+ref@*, ref@1:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/ref/-/ref-1.3.4.tgz#724d2bf8ac85f8c8db194d3d85be6efe416bc1e5"
+  dependencies:
+    bindings "1"
+    debug "2"
+    nan "2"
+
 regenerate@^1.2.1:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.3.2.tgz#d1941c67bad437e1be76433add5b385f95b19260"
@@ -1964,6 +2008,12 @@ rimraf@2, rimraf@^2.2.8, rimraf@^2.5.1, rimraf@^2.6.1:
   dependencies:
     glob "^7.0.5"
 
+rimraf@~2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.1.4.tgz#5a6eb62eeda068f51ede50f29b3e5cd22f3d9bb2"
+  optionalDependencies:
+    graceful-fs "~1"
+
 run-async@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/run-async/-/run-async-0.1.0.tgz#c8ad4a5e110661e402a7d21b530e009f25f8e389"
@@ -1990,7 +2040,7 @@ set-immediate-shim@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/set-immediate-shim/-/set-immediate-shim-1.0.1.tgz#4b2b1b27eb808a9f8dcc481a58e5e56f599f3f61"
 
-shelljs@^0.7.5:
+shelljs@^0.7.5, shelljs@^0.7.7:
   version "0.7.7"
   resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.7.7.tgz#b2f5c77ef97148f4b4f6e22682e10bba8667cff1"
   dependencies:
@@ -2119,6 +2169,12 @@ tar@^2.2.1:
     block-stream "*"
     fstream "^1.0.2"
     inherits "2"
+
+temp@~0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/temp/-/temp-0.5.1.tgz#77ab19c79aa7b593cbe4fac2441768cad987b8df"
+  dependencies:
+    rimraf "~2.1.4"
 
 text-table@~0.2.0:
   version "0.2.0"

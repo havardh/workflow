@@ -2,7 +2,7 @@
   "name": "workflow",
   "version": "0.0.1",
   "description": "Workflow-centric workspace manager",
-  "main": "index.js",
+  "main": "workflow/index.js",
   "babel": {
     "presets": [
       "es2015"
@@ -44,7 +44,10 @@
     "flow-bin": "^0.44.2"
   },
   "dependencies": {
+    "exec-sync": "^0.1.6",
+    "execSync": "^1.0.2",
     "i3": "^0.2.1",
+    "shelljs": "^0.7.7",
     "tmp": "^0.0.31"
   }
 }
