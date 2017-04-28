@@ -43,4 +43,20 @@ const workspace : WorkspaceConfig = {
   }),
 };
 
+/*
+const workspace : WorkspaceConfig = {
+  name: 'advisor:unit-test',
+  args: 'file',
+  root: SplitV(1.0, [
+    SplitH(0.8, [
+      AtomGitFile(0.5),
+      AtomGitTestFile(0.5),
+    ],
+      ),
+    XTermTestWatchProject(0.2),
+  ],
+  ),
+};
+*/
+
 export default workspace;
