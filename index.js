@@ -34,7 +34,55 @@ function parseArgs(config, args) { // eslint-disable-line no-shadow
   return handleInvalidArguments(config, args);
 }
 
-function apply(config: WorkspaceConfig, args: mixed) { // eslint-disable-line no-unused-vars
+
+function parseValue(value, args) { // eslint-disable-line no-shadow
+  if (typeof value === 'function') {
+    return value(args);
+  } else if (typeof value === 'number' || typeof value === 'string') {
+    return value;
+  } else if (typeof value === 'object' && value.length) {
+    return value.map(v => parseValue(v, args));
+  }
+  return value;
+}
+
+function parseApp(config, args) {
+  const { open, percent } = config;
+  if (typeof open === 'string') {
+    return { open, percent };
+  }
+  const transformedConfig = {};
+
+  Object.keys(config)
+      .filter(key => key !== 'open')
+      // $FlowTodo
+      .forEach((key) => { transformedConfig[key] = parseValue(config[key], args); });
+
+  return {
+    percent,
+    open: open(transformedConfig),
+  };
+}
+
+function parseConfig(config, args) {
+  if (config.root) {
+    console.log('root');
+    return {
+      ...config,
+      root: parseConfig(config.root, args),
+    };
+  } else if (config.children) {
+    console.log('node');
+    return {
+      ...config,
+      children: config.children.map(child => parseConfig(child, args)),
+    };
+  }
+  console.log('app');
+  return parseApp(config, args);
+}
+
+function apply(config: WorkspaceConfig) { // eslint-disable-line no-unused-vars
   const i3 = new I3();
   i3.apply(config);
 }
@@ -49,5 +97,5 @@ export default function run(configs: {[string]: WorkspaceConfig}) {
     process.exit(1);
   }
 
-  apply(config, parseArgs(config.args, args));
+  apply(parseConfig(config, parseArgs(config.args, args)));
 }
