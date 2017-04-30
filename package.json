@@ -2,7 +2,14 @@
   "name": "workflow",
   "version": "0.0.1",
   "description": "Workflow-centric workspace manager",
-  "main": "workflow/index.js",
+  "main": "cli.js",
+  "files": [
+    "cli.js",
+    "index.js",
+    "helpers",
+    "layout",
+    "apps"
+  ],
   "babel": {
     "presets": [
       "es2015"
@@ -13,7 +20,7 @@
     ]
   },
   "scripts": {
-    "start": "babel-node index.js",
+    "start": "babel-node cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
