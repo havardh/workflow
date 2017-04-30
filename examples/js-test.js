@@ -1,11 +1,11 @@
 // @flow
-import type { WorkspaceConfig } from '../workflow';
+import type { WorkspaceConfig } from '../index';
 
-import { SplitV, SplitH } from '../workflow/layout';
-import { XTerm, Atom } from '../workflow/apps';
+import { SplitV, SplitH } from '../layout';
+import { XTerm, Atom } from '../apps';
 
-import { projectRoot } from '../workflow/helpers/git';
-import { getTestFile } from '../workflow/helpers/advisor';
+import { projectRoot } from '../helpers/git';
+import { getTestFile } from '../helpers/advisor';
 
 const workspace : WorkspaceConfig = {
   name: 'advisor:unit-test',
@@ -51,11 +51,9 @@ const workspace : WorkspaceConfig = {
     SplitH(0.8, [
       AtomGitFile(0.5),
       AtomGitTestFile(0.5),
-    ],
-      ),
+    ]),
     XTermTestWatchProject(0.2),
-  ],
-  ),
+  ]),
 };
 */
 
