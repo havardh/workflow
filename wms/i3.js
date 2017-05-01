@@ -5,6 +5,9 @@ import { writeFileSync } from 'fs';
 export default class I3 {
   constructor() {
     this.client = createClient();
+    setTimeout(() => {
+      this.client._stream.destroy(); // eslint-disable-line no-underscore-dangle
+    }, 10000);
   }
 
   apply(config) {
