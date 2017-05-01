@@ -68,6 +68,7 @@ function parseApp(config, args) {
 
   return {
     percent,
+    class: transformedConfig.class,
     open: open(transformedConfig),
   };
 }
