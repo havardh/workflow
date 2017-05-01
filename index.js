@@ -1,12 +1,17 @@
 // @flow
 /* eslint-disable no-console */
-import type { NodeConfig } from './node';
+import type { SplitVConfig, SplitHConfig } from './layout';
+import type { AppConfig } from './apps';
 
 import I3 from './wms/i3';
 
+export type NodeConfig = SplitVConfig | SplitHConfig | AppConfig;
+
+type Args = string | Array<string>
+
 export type WorkspaceConfig = {
   name: string,
-  args: string | Array<string>,
+  args: Args,
   root: NodeConfig,
 };
 
@@ -23,14 +28,18 @@ function handleInvalidArguments(config, args) {
   }
 }
 
-function parseArgs(config, args) { // eslint-disable-line no-shadow
+function parseArgs(
+  config: Args,
+  args: Array<string>,
+): {[string]: string} { // eslint-disable-line no-shadow
   if (typeof config === 'object' && config.length && config.length === args.length) {
     const argsObject = {};
-    config.forEach((arg) => { argsObject[arg] = args.shift(); });
+    config.forEach((arg) => { argsObject[String(arg)] = args.shift(); });
     return argsObject;
   } else if (typeof config === 'string' && args.length === 1) {
     return { [config]: args[0] };
   }
+  // $FlowTodo
   return handleInvalidArguments(config, args);
 }
 
@@ -55,8 +64,7 @@ function parseApp(config, args) {
 
   Object.keys(config)
       .filter(key => key !== 'open')
-      // $FlowTodo
-      .forEach((key) => { transformedConfig[key] = parseValue(config[key], args); });
+      .forEach((key: string) => { transformedConfig[key] = parseValue(config[key], args); });
 
   return {
     percent,
@@ -64,25 +72,18 @@ function parseApp(config, args) {
   };
 }
 
-function parseConfig(config, args) {
+function parseConfig(config: WorkspaceConfig | NodeConfig, args: {[string]:string}) {
   if (config.root) {
-    console.log('root');
-    return {
-      ...config,
-      root: parseConfig(config.root, args),
-    };
+    // $FlowTodo
+    return { ...config, root: parseConfig(config.root, args) };
   } else if (config.children) {
-    console.log('node');
-    return {
-      ...config,
-      children: config.children.map(child => parseConfig(child, args)),
-    };
+    // $FlowTodo
+    return { ...config, children: config.children.map(child => parseConfig(child, args)) };
   }
-  console.log('app');
   return parseApp(config, args);
 }
 
-function apply(config: WorkspaceConfig) { // eslint-disable-line no-unused-vars
+function apply(config) { // eslint-disable-line no-unused-vars
   const i3 = new I3();
   i3.apply(config);
 }
@@ -97,5 +98,7 @@ export default function run(configs: {[string]: WorkspaceConfig}) {
     process.exit(1);
   }
 
-  apply(parseConfig(config, parseArgs(config.args, args)));
+  const parameters = parseArgs(config.args, args);
+  const layout = parseConfig(config, parameters);
+  apply(layout);
 }

@@ -1,6 +1,6 @@
 // @flow
 
-import type { NodeConfig } from '../node';
+import type { NodeConfig } from '../index';
 
 export type SplitVConfig = {
   percent: number,

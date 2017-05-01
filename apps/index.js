@@ -19,15 +19,9 @@ export type XTermConfig = {
 export type AppConfig = AtomConfig | XTermConfig;
 
 export function Atom(config: AtomConfig): AtomConfig {
-  return {
-    ...config,
-    class: 'Atom',
-  };
+  return { ...config, class: 'Atom' };
 }
 
 export function XTerm(config: XTermConfig): XTermConfig {
-  return {
-    ...config,
-    class: 'XTerm',
-  };
+  return { ...config, class: 'XTerm' };
 }
