@@ -21,7 +21,8 @@
   },
   "scripts": {
     "start": "babel-node cli.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/* --compilers js:babel-core/register",
+    "watch": "mocha --watch test/* --compilers js:babel-core/register"
   },
   "repository": {
     "type": "git",
@@ -51,10 +52,11 @@
     "flow-bin": "^0.44.2"
   },
   "dependencies": {
-    "exec-sync": "^0.1.6",
-    "execSync": "^1.0.2",
     "i3": "^0.2.1",
     "shelljs": "^0.7.7",
-    "tmp": "^0.0.31"
+    "tmp": "^0.0.31",
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0",
+    "sinon": "^2.1.0"
   }
 }
