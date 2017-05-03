@@ -6,3 +6,4 @@
 
 [options]
 suppress_comment=.*\\$FlowTodo
+suppress_comment=.*\\$FlowSuppress
