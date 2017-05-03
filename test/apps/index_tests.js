@@ -5,7 +5,7 @@ import { expect } from 'chai';
 
 import { Atom, XTerm } from '../../apps';
 
-const config = { open: x => x };
+const config = { percent: 1.0, open: x => x };
 
 describe('Atom(config)', () => {
   it('should add splitv layout to config', () => {
