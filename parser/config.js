@@ -1,3 +1,4 @@
+// @flow
 import type { WorkspaceConfig, NodeConfig } from '../index';
 
 function parseValue(value, args) { // eslint-disable-line no-shadow
