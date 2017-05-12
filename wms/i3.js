@@ -1,6 +1,6 @@
 import { createClient } from 'i3';
-import { fileSync } from 'tmp';
-import { writeFileSync } from 'fs';
+import { file } from 'tmp-promise';
+import { outputFile } from 'fs-extra';
 
 export default class I3 {
   constructor() {
@@ -10,12 +10,12 @@ export default class I3 {
     }, 10000);
   }
 
-  apply(config) {
+  async apply(config) {
     this.createWorkspace(config);
 
     this.clearWorkspace();
 
-    this.createLayout(config.root);
+    await this.createLayout(config.root);
 
     this.findApps(config.root)
       .forEach(app => this.open(app));
@@ -29,15 +29,15 @@ export default class I3 {
     this.client.command('focus parent, focus parent, focus parent, kill');
   }
 
-  createLayout(node) {
+  async createLayout(node) {
     const layout = this.genLayout(node);
     const layoutJson = JSON.stringify(layout, null, '  ');
 
-    const tmpobj = fileSync({ prefix: 'workflow-', postfix: '.json' });
+    const tmpobj = await file({ prefix: 'workflow-', postfix: '.json' });
 
-    writeFileSync(tmpobj.fd, layoutJson);
+    await outputFile(tmpobj.path, layoutJson);
 
-    this.client.command(`append_layout ${tmpobj.name}`);
+    this.client.command(`append_layout ${tmpobj.path}`);
   }
 
   genLayout(node) {
