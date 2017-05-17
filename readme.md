@@ -78,15 +78,20 @@ const workspace : WorkspaceConfig = {
 };
 ```
 
-The layout file contains a lot of detail, but the main points are the three `app`
-blocks containing the definition for how to open the three various programs.
-Each `app` block has a _name_ and some _arguments_. The `Atom` program,
-being an text editor, takes a file and a base folder to open. The `XTerm` terminal
-accepts a _command_, a _directory_ to execute the command from and a list of _arguments_
-to the command.
+The layout file contains a lot of detail, but the main points are the `args` property at the top
+and the  three `apps` containing the definition for how to open the three various programs.
+
+Each `workspace` specifies an optional list of arguments, in this case a single argument called
+`file`. These arguments will be available to the rest of the configuration.
+
+Each 'app' has a single important property, the `open` function. This method tells
+`workflow` how to open the app. In addition to the `open` function the app can specify
+a number of application specific properties. `workflow` will use the arguments for the configuration
+and construct all the application specific properties. They will be passed to the `open` function to
+construct a single command used for opening the app.
 
 To start this layout run the `yarn start` command with the layout and the source file as an
-argument.
+argument. Try the following...
 
 ```
 yarn start -- jsTest add.js
