@@ -20,6 +20,10 @@ function apply(config) { // eslint-disable-line no-unused-vars
   i3.apply(config);
 }
 
+export function Workspace(config: WorkspaceConfig) {
+  return config;
+}
+
 export default function run(configs: {[string]: WorkspaceConfig}) {
   const [node, index, configFile, ...args] = process.argv; // eslint-disable-line no-unused-vars
 
