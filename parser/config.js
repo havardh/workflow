@@ -26,6 +26,7 @@ function parseApp(config, args) {
   return {
     percent,
     class: transformedConfig.class,
+    // $FlowTodo
     open: open(transformedConfig),
   };
 }
