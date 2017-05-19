@@ -14,7 +14,7 @@ export default class Base {
     if (node.children) {
       node.children.forEach(app => this.openNode(app));
     } else {
-      this.runCmd(node.open);
+      this.runCmd(node);
     }
   }
 

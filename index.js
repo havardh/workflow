@@ -1,6 +1,7 @@
 // @flow
 /* eslint-disable no-console */
-import I3 from './wms/i3';
+// import I3 from './wms/i3';
+import Windows from './wms/windows';
 import parseArgs from './parser/args';
 import parseConfig from './parser/config';
 import load from './loader/config';
@@ -17,7 +18,7 @@ export type WorkspaceConfig = {
 };
 
 function apply(config) { // eslint-disable-line no-unused-vars
-  const wm = new I3();
+  const wm = new Windows();
   return wm.apply(config);
 }
 
