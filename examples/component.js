@@ -1,31 +1,27 @@
-// @flow
-import type { WorkspaceConfig } from '../index';
+/* eslint-disable no-unused-vars */
+import React from '../helpers/jsx';
 
+import { Workspace } from '../index';
 import { SplitH } from '../layout';
 import { Chrome, Atom } from '../apps';
 
-import { projectRoot } from '../helpers/git';
 import { urlForComponent } from '../helpers/advisor';
 
-const workspace : WorkspaceConfig = {
-  name: 'advisor:component',
-  args: 'file',
-  root: SplitH({
-    percent: 0.8,
-    children: [
-      Atom({
-        percent: 0.5,
-        folder: ({ file }) => projectRoot(file),
-        file: ({ file }) => file,
-        open: ({ file }) => `atom -n ${file}`,
-      }),
-      Chrome({
-        percent: 0.5,
-        url: ({ file }) => urlForComponent(file),
-        open: ({ url }) => `google-chrome-stable --new-window ${url}`,
-      }),
-    ],
-  }),
-};
+const workspace =
+  <Workspace
+    name={'advisor:component'}
+    args={'file'}
+  >
+    <SplitH>
+      <Atom
+        file={({ file }) => file}
+        open={({ file }) => `atom -n ${file}`}
+      />
+      <Chrome
+        url={({ file }) => urlForComponent(file)}
+        open={({ url }) => `google-chrome-stable --new-window ${url}`}
+      />
+    </SplitH>
+  </Workspace>;
 
 export default workspace;
