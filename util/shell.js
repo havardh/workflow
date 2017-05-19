@@ -4,5 +4,5 @@
 import shell from 'shelljs';
 
 export function exec(cmd: string) {
-  return shell.exec(cmd);
+  return shell.exec(cmd, { silent: true, async: true });
 }
