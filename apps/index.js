@@ -26,7 +26,11 @@ export type ChromeConfig = {
 export type AppConfig = AtomConfig | XTermConfig | ChromeConfig;
 
 export function Atom(config: AtomConfig): AtomConfig {
-  return { ...config, class: 'Atom' };
+  return {
+    open: ({ file, folder }) => `atom -n ${folder} ${file}`,
+    ...config,
+    class: 'Atom',
+  };
 }
 
 export function XTerm(config: XTermConfig): XTermConfig {
