@@ -2,43 +2,48 @@ import Base from './base';
 
 export default class Tile extends Base {
 
-  apply(config) {
-    const rect = this.getDesktopRect();
+  async apply(config) {
+    const rect = await this.getDesktopRect();
 
     const { root } = config;
 
     this.openNode(root);
 
-    this.setPositions({ root, rect });
+    return this.setPositions({ root, rect });
   }
 
   setPositions({ root, rect }) {
     if (root.children) {
       const { x, y, width, height } = rect;
+      let tiles;
       if (root.layout === 'splitv') {
         let startX = x;
-        root.children.forEach((app) => {
-          this.setPositions({
-            root: app,
-            rect: { x: startX, y, width: width * app.percent, height },
-          });
+        tiles = root.children.map((app) => {
+          const currentStartX = startX;
           startX += width * app.percent;
+          return {
+            root: app,
+            rect: { x: currentStartX, y, width: width * app.percent, height },
+          };
         });
       } else {
         let startY = y;
-        root.children.forEach((app) => {
-          this.setPositions({
-            root: app,
-            rect: { x, y: startY, width, height: height * app.percent },
-          });
+        tiles = root.children.map((app) => {
+          const currentStartY = startY;
           startY += height * app.percent;
+          return {
+            root: app,
+            rect: { x, y: currentStartY, width, height: height * app.percent },
+          };
         });
       }
-    } else {
-      this.setPosition({
-        app: root,
-        position: rect,
-      });
+
+      return Promise.all(tiles.map(tile => this.setPositions(tile)));
     }
+
+    return this.setPosition({
+      app: root,
+      position: rect,
+    });
   }
 }

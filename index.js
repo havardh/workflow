@@ -16,25 +16,34 @@ export type WorkspaceConfig = {
 };
 
 function apply(config) { // eslint-disable-line no-unused-vars
-  const i3 = new I3();
-  i3.apply(config);
+  const wm = new I3();
+  return wm.apply(config);
 }
 
 export function Workspace(config: WorkspaceConfig) {
   return config;
 }
 
-export default function run(configs: {[string]: WorkspaceConfig}) {
-  const [node, index, configFile, ...args] = process.argv; // eslint-disable-line no-unused-vars
+export default async function run(configs: {[string]: WorkspaceConfig}) {
+  try {
+    const [node, index, configFile, ...args] = process.argv; // eslint-disable-line no-unused-vars
 
-  const config = configs[configFile];
+    const config = configs[configFile];
 
-  if (!config) {
-    console.log(`Could not find example: ${configFile}`);
+    if (!config) {
+      console.log(`Could not find example: ${configFile}`);
+      process.exit(1);
+    }
+
+    const parameters = parseArgs(config.args, args);
+    const layout = parseConfig(config, parameters);
+    await apply(layout);
+  } catch (error) {
+    if (process.env.NODE_ENV === 'production') {
+      console.error(String(error));
+    } else {
+      console.error(error.stack);
+    }
     process.exit(1);
   }
-
-  const parameters = parseArgs(config.args, args);
-  const layout = parseConfig(config, parameters);
-  apply(layout);
 }
