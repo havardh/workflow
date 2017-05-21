@@ -1,5 +1,23 @@
+#!/usr/bin/env node
 // @flow
-import examples from './examples';
-import run from './index';
+/* eslint-disable global-require, import/no-unresolved */
+require('babel-polyfill');
+require('babel-register');
 
-run(examples);
+try {
+  // $FlowTodo
+  const examples = require('./dist/examples');
+  // $FlowTodo
+  const run = require('./dist').default;
+
+  run(examples);
+} catch (error) {
+  if (error.code === 'MODULE_NOT_FOUND') {
+    const examples = require('./examples');
+    const run = require('./index').default;
+
+    run(examples);
+  } else {
+    throw error;
+  }
+}
