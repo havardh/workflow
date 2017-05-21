@@ -1,8 +1,7 @@
 // @flow
-/* eslint-env mocha */
+/* eslint-env jest */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable import/no-extraneous-dependencies */
-import { it, describe, beforeEach } from 'mocha';
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
@@ -38,8 +37,8 @@ describe('Tile', () => {
     wm.getDesktopRect.returns(windowRect);
   });
 
-  it('should find the desktop rectangle', () => {
-    wm.apply({ root: {} });
+  it('should find the desktop rectangle', async () => {
+    await wm.apply({ root: {} });
 
     expect(wm.getDesktopRect).to.have.been.called;
   });
@@ -48,14 +47,14 @@ describe('Tile', () => {
     const app = { percent: 1.0, open: 'open app' };
     const config = { root: app };
 
-    it('should call runCmd with the app command', () => {
-      wm.apply(config);
+    it('should call runCmd with the app command', async () => {
+      await wm.apply(config);
 
       expect(wm.runCmd).to.have.been.calledWith('open app');
     });
 
-    it('should call setPosition with the entire desktop rectangle', () => {
-      wm.apply(config);
+    it('should call setPosition with the entire desktop rectangle', async () => {
+      await wm.apply(config);
 
       expectApp(app).toBeAt(windowRect);
     });
@@ -72,22 +71,22 @@ describe('Tile', () => {
       },
     };
 
-    it('should call runCmd on both apps', () => {
-      wm.apply(config);
+    it('should call runCmd on both apps', async () => {
+      await wm.apply(config);
 
       expect(wm.runCmd).to.have.been.calledWith(app1.open);
       expect(wm.runCmd).to.have.been.calledWith(app2.open);
     });
 
-    it('should call setPosition with the left tile for the first app', () => {
-      wm.apply(config);
+    it('should call setPosition with the left tile for the first app', async () => {
+      await wm.apply(config);
 
       const position = { x: 0, y: 0, width: 512, height: 768 };
       expectApp(app1).toBeAt(position);
     });
 
-    it('should call setPosition with the right tile for the second app', () => {
-      wm.apply(config);
+    it('should call setPosition with the right tile for the second app', async () => {
+      await wm.apply(config);
 
       const position = { x: 512, y: 0, width: 512, height: 768 };
       expectApp(app2).toBeAt(position);
@@ -105,22 +104,22 @@ describe('Tile', () => {
       },
     };
 
-    it('should call runCmd on both apps', () => {
-      wm.apply(config);
+    it('should call runCmd on both apps', async () => {
+      await wm.apply(config);
 
       expect(wm.runCmd).to.have.been.calledWith('app 1');
       expect(wm.runCmd).to.have.been.calledWith('app 2');
     });
 
-    it('should call setPosition with the top tile for the first app', () => {
-      wm.apply(config);
+    it('should call setPosition with the top tile for the first app', async () => {
+      await wm.apply(config);
 
       const position = { x: 0, y: 0, width: 1024, height: 768 / 2 };
       expectApp(app1).toBeAt(position);
     });
 
-    it('should call setPosition with the bottom tile for the second app', () => {
-      wm.apply(config);
+    it('should call setPosition with the bottom tile for the second app', async () => {
+      await wm.apply(config);
 
       const position = { x: 0, y: 384, width: 1024, height: 768 / 2 };
       expectApp(app2).toBeAt(position);
@@ -139,30 +138,30 @@ describe('Tile', () => {
       },
     };
 
-    it('should call runCmd on all apps', () => {
-      wm.apply(config);
+    it('should call runCmd on all apps', async () => {
+      await wm.apply(config);
 
       expect(wm.runCmd).to.have.been.calledWith(app1.open);
       expect(wm.runCmd).to.have.been.calledWith(app2.open);
       expect(wm.runCmd).to.have.been.calledWith(app3.open);
     });
 
-    it('should call setPosition with the left tile for the first app', () => {
-      wm.apply(config);
+    it('should call setPosition with the left tile for the first app', async () => {
+      await wm.apply(config);
 
       const position = { x: 0, y: 0, width: 1024 * 0.33, height: 768 };
       expectApp(app1).toBeAt(position);
     });
 
-    it('should call setPosition with the middle tile for the second app', () => {
-      wm.apply(config);
+    it('should call setPosition with the middle tile for the second app', async () => {
+      await wm.apply(config);
 
       const position = { x: 1024 * 0.33, y: 0, width: 1024 * 0.33, height: 768 };
       expectApp(app2).toBeAt(position);
     });
 
-    it('should call setPosition with the right tile for the third app', () => {
-      wm.apply(config);
+    it('should call setPosition with the right tile for the third app', async () => {
+      await wm.apply(config);
 
       const position = { x: 2 * 1024 * 0.33, y: 0, width: 1024 * 0.34, height: 768 };
       expectApp(app3).toBeAt(position);
@@ -181,30 +180,30 @@ describe('Tile', () => {
       },
     };
 
-    it('should call runCmd on all apps', () => {
-      wm.apply(config);
+    it('should call runCmd on all apps', async () => {
+      await wm.apply(config);
 
       expect(wm.runCmd).to.have.been.calledWith(app1.open);
       expect(wm.runCmd).to.have.been.calledWith(app2.open);
       expect(wm.runCmd).to.have.been.calledWith(app3.open);
     });
 
-    it('should call setPosition with the top tile for the first app', () => {
-      wm.apply(config);
+    it('should call setPosition with the top tile for the first app', async () => {
+      await wm.apply(config);
 
       const position = { x: 0, y: 0, width: 1024, height: 768 * 0.33 };
       expectApp(app1).toBeAt(position);
     });
 
-    it('should call setPosition with the middle tile for the second app', () => {
-      wm.apply(config);
+    it('should call setPosition with the middle tile for the second app', async () => {
+      await wm.apply(config);
 
       const position = { x: 0, y: 768 * 0.33, width: 1024, height: 768 * 0.33 };
       expectApp(app2).toBeAt(position);
     });
 
-    it('should call setPosition with the right tile for the third app', () => {
-      wm.apply(config);
+    it('should call setPosition with the right tile for the third app', async () => {
+      await wm.apply(config);
 
       const position = { x: 0, y: 2 * 768 * 0.33, width: 1024, height: 768 * 0.34 };
       expectApp(app3).toBeAt(position);
@@ -227,30 +226,30 @@ describe('Tile', () => {
       },
     };
 
-    it('should call runCmd on all apps', () => {
-      wm.apply(config);
+    it('should call runCmd on all apps', async () => {
+      await wm.apply(config);
 
       expect(wm.runCmd).to.have.been.calledWith(app1.open);
       expect(wm.runCmd).to.have.been.calledWith(app2.open);
       expect(wm.runCmd).to.have.been.calledWith(app3.open);
     });
 
-    it('should call setPosition on the top left tile for the first app', () => {
-      wm.apply(config);
+    it('should call setPosition on the top left tile for the first app', async () => {
+      await wm.apply(config);
 
       const position = { x: 0, y: 0, width: 512, height: 768 * 0.8 };
       expectApp(app1).toBeAt(position);
     });
 
-    it('should call setPosition on the top left tile for the first app', () => {
-      wm.apply(config);
+    it('should call setPosition on the top left tile for the first app', async () => {
+      await wm.apply(config);
 
       const position = { x: 512, y: 0, width: 512, height: 768 * 0.8 };
       expectApp(app2).toBeAt(position);
     });
 
-    it('should call setPosition on the top left tile for the first app', () => {
-      wm.apply(config);
+    it('should call setPosition on the top left tile for the first app', async () => {
+      await wm.apply(config);
 
       const position = { x: 0, y: 768 * 0.8, width: 1024, height: 768 * 0.2 };
       expectApp(app3).toBeAt(position);
