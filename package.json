@@ -31,7 +31,8 @@
   },
   "scripts": {
     "start": "babel-node cli.js",
-    "test": "jest"
+    "test": "jest",
+    "watch": "jest --watch"
   },
   "repository": {
     "type": "git",
