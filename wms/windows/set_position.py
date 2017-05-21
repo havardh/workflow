@@ -1,25 +1,37 @@
 import sys
 import win32gui
 import win32con
+import win32process
+import time
 
-[ignore, app_name, x, y, width, height] = sys.argv
+[pid, x, y, width, height] = sys.argv[1:]
 
 x = int(x)
 y = int(y)
-right = x + int(width)
-bottom = y + int(height)
+right = int(width)
+bottom = int(height)
 
+def get_hwnd_for_pid (pid):
+  def callback (hwnd, hwnds):
+    if win32gui.IsWindowVisible (hwnd) and win32gui.IsWindowEnabled (hwnd):
+      _, found_pid = win32process.GetWindowThreadProcessId (hwnd)
+      if found_pid == pid:
+        hwnds.append (hwnd)
+    return True
+    
+  hwnds = []
+  win32gui.EnumWindows (callback, hwnds)
+  return hwnds
 
-def callback(hwnd, extra):
-    if app_name in win32gui.GetWindowText(hwnd):
-        win32gui.SetWindowPos(
-            hwnd,
-            win32con.HWND_TOP,
-            x,
-            y,
-            right,
-            bottom,
-            0
-        )
-		
-win32gui.EnumWindows(callback, None)
+hwnds = get_hwnd_for_pid(int(pid))
+
+for hwnd in hwnds:
+    win32gui.SetWindowPos(
+        hwnd,
+        win32con.HWND_TOP,
+        x,
+        y,
+        right,
+        bottom,
+        0
+    )

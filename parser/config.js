@@ -23,20 +23,9 @@ function parseApp(config, args) {
       .filter(key => key !== 'open')
       .forEach((key: string) => { transformedConfig[key] = parseValue(config[key], args); });
 
-  let name;
-  if (config.name) {
-    if (typeof config.name === 'string') {
-      // $FlowTodo
-      name = config.name(transformedConfig);
-    } else {
-      name = config.name;
-    }
-  }
-
   return {
     percent,
     class: transformedConfig.class,
-    name,
     // $FlowTodo
     open: open(transformedConfig),
   };

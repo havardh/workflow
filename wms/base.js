@@ -10,11 +10,12 @@ export default class Base {
     throw new Error('Not implemented');
   }
 
-  openNode(node) {
+  async openNode(node) {
     if (node.children) {
       node.children.forEach(app => this.openNode(app));
     } else {
-      this.runCmd(node);
+      const pid = await this.runCmd(node);
+      node.pid = pid;
     }
   }
 
