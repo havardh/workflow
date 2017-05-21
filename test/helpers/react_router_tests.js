@@ -1,8 +1,7 @@
 // @flow
-/* eslint-env mocha */
+/* eslint-env jest */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable import/no-extraneous-dependencies */
-import { it, describe, beforeEach, afterEach } from 'mocha';
 import chai, { expect } from 'chai';
 import { sandbox } from 'sinon';
 import sinonChai from 'sinon-chai';

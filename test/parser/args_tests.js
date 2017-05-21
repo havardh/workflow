@@ -1,9 +1,6 @@
 // @flow
-/* eslint-env mocha */
-import { it, describe } from 'mocha';
-import { expect } from 'chai';
-
-import parseArgs, { InvalidArgument, InvalidConfig } from '../../parser/args';
+/* eslint-env jest */
+import parseArgs from '../../parser/args';
 
 describe('parseArgs(args, args)', () => {
   describe('when config args is string', () => {
@@ -12,14 +9,14 @@ describe('parseArgs(args, args)', () => {
 
       const actual = parseArgs('file', ['file.js']);
 
-      expect(actual).to.deep.equal(expected);
+      expect(actual).toEqual(expected);
     });
 
     describe('when the arguments length is not 1', () => {
       it('should throw for zero arguments', () => {
         const fn = () => parseArgs('file', []);
 
-        expect(fn).to.throw(InvalidArgument);
+        expect(fn).toThrowErrorMatchingSnapshot();
       });
     });
 
@@ -27,7 +24,7 @@ describe('parseArgs(args, args)', () => {
       it('should throw exception', () => {
         const fn = () => parseArgs('file', ['file1.js', 'file2.js']);
 
-        expect(fn).to.throw(InvalidArgument);
+        expect(fn).toThrowErrorMatchingSnapshot();
       });
     });
   });
@@ -45,7 +42,7 @@ describe('parseArgs(args, args)', () => {
           ['file1.js', 'file2.js'],
         );
 
-        expect(actual).to.deep.equal(expected);
+        expect(actual).toEqual(expected);
       });
     });
 
@@ -53,7 +50,7 @@ describe('parseArgs(args, args)', () => {
       it('should throw InvalidArgument exception', () => {
         const fn = () => parseArgs(['file1', 'file2'], ['file1.js']);
 
-        expect(fn).to.throw(InvalidArgument);
+        expect(fn).toThrowErrorMatchingSnapshot();
       });
     });
   });
@@ -63,7 +60,7 @@ describe('parseArgs(args, args)', () => {
       // $FlowSuppress intentional error
       const fn = () => parseArgs(null, []);
 
-      expect(fn).to.throw(InvalidConfig);
+      expect(fn).toThrowErrorMatchingSnapshot();
     });
   });
 });

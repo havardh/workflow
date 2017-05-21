@@ -1,6 +1,5 @@
 // @flow
-/* eslint-env mocha */
-import { it, describe } from 'mocha';
+/* eslint-env jest */
 import { expect } from 'chai';
 
 import { Atom, XTerm } from '../../apps';
