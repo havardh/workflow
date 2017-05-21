@@ -3,6 +3,7 @@
 import I3 from './wms/i3';
 import parseArgs from './parser/args';
 import parseConfig from './parser/config';
+import load from './loader/config';
 
 import type { SplitVConfig, SplitHConfig } from './layout';
 import type { AppConfig } from './apps';
@@ -24,17 +25,11 @@ export function Workspace(config: WorkspaceConfig) {
   return config;
 }
 
-export default async function run(configs: {[string]: WorkspaceConfig}) {
+export default async function run() {
   try {
     const [node, index, configFile, ...args] = process.argv; // eslint-disable-line no-unused-vars
 
-    const config = configs[configFile];
-
-    if (!config) {
-      console.log(`Could not find example: ${configFile}`);
-      process.exit(1);
-    }
-
+    const config = load(configFile);
     const parameters = parseArgs(config.args, args);
     const layout = parseConfig(config, parameters);
     await apply(layout);

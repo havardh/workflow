@@ -6,17 +6,14 @@ require('babel-register');
 
 try {
   // $FlowTodo
-  const examples = require('./dist/examples').default;
-  // $FlowTodo
   const run = require('./dist').default;
 
-  run(examples);
+  run();
 } catch (error) {
   if (error.code === 'MODULE_NOT_FOUND') {
-    const examples = require('./examples').default;
     const run = require('./index').default;
 
-    run(examples);
+    run();
   } else {
     throw error;
   }
