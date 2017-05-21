@@ -52,30 +52,26 @@ export type NotepadConfig = {
   percent: number,
   file?: (any) => string,
   class?: string,
-  name: (any) => string,
   open?: (any) => string
 }
 
 export function Notepad(config: NotepadConfig): NotepadConfig {
   return {
     file: ({ file }) => file,
-    name: ({ file }) => `${file} - Notepad`,
     ...config,
-    open: ({ file }) => `notepad.exe ${file} &`,
+    open: ({ file }) => `notepad.exe ${file}`,
   };
 }
 
 export type IExplorerConfig = {
   percent: number,
   url: string,
-  name: string,
   open?: (any) => string,
 }
 
 export function IExplorer(config: IExplorerConfig): IExplorerConfig {
   return {
     ...config,
-    name: 'Windows Internet Explorer',
     open: ({ url }) => `"C:\\Program Files\\Internet Explorer\\iexplore.exe" ${url}`,
   };
 }

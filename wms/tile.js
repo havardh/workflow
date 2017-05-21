@@ -7,7 +7,7 @@ export default class Tile extends Base {
 
     const { root } = config;
 
-    this.openNode(root);
+    await this.openNode(root);
 
     return this.setPositions({ root, rect });
   }
