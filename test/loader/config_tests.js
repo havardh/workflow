@@ -9,6 +9,10 @@ import load from '../../loader/config';
 
 const sinon = sandbox.create();
 
+function ModuleNotFound() {
+  this.code = 'MODULE_NOT_FOUND';
+}
+
 describe('load(configFile)', () => {
   const expectedFile = { file: 'content' };
 
@@ -19,7 +23,7 @@ describe('load(configFile)', () => {
     sinon.stub(console, 'log');
 
     // $FlowTodo
-    RequireWrapper.require.throws(new Error());
+    RequireWrapper.require.throws(new ModuleNotFound());
 
     os.homedir.returns('/home/user');
     process.cwd.returns('/home/user/dev/workflow');
@@ -31,6 +35,15 @@ describe('load(configFile)', () => {
 
   it('should throw error when all loaders fails', () => {
     const fn = () => load('file.js');
+    expect(fn).toThrowErrorMatchingSnapshot();
+  });
+
+  it('should rethrow error when loaded module fails', () => {
+    // $FlowTodo
+    RequireWrapper.require.throws(new Error('Module error'));
+
+    const fn = () => load('file.js');
+
     expect(fn).toThrowErrorMatchingSnapshot();
   });
 
