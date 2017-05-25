@@ -14,7 +14,7 @@ export default function load(name: string): WorkspaceConfig {
 
   for (const option of options) {
     try {
-      const config = RequireWrapper.require(option);
+      const config = RequireWrapper.require(option).default;
       console.log(`Loaded: ${option}`);
       return config;
     } catch (error) {
