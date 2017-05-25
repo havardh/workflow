@@ -50,7 +50,7 @@ describe('Tile', () => {
     it('should call runCmd with the app command', async () => {
       await wm.apply(config);
 
-      expect(wm.runCmd).to.have.been.calledWith('open app');
+      expect(wm.runCmd).to.have.been.calledWithMatch({ open: 'open app' });
     });
 
     it('should call setPosition with the entire desktop rectangle', async () => {
@@ -74,8 +74,8 @@ describe('Tile', () => {
     it('should call runCmd on both apps', async () => {
       await wm.apply(config);
 
-      expect(wm.runCmd).to.have.been.calledWith(app1.open);
-      expect(wm.runCmd).to.have.been.calledWith(app2.open);
+      expect(wm.runCmd).to.have.been.calledWithMatch(app1);
+      expect(wm.runCmd).to.have.been.calledWithMatch(app2);
     });
 
     it('should call setPosition with the left tile for the first app', async () => {
@@ -107,8 +107,8 @@ describe('Tile', () => {
     it('should call runCmd on both apps', async () => {
       await wm.apply(config);
 
-      expect(wm.runCmd).to.have.been.calledWith('app 1');
-      expect(wm.runCmd).to.have.been.calledWith('app 2');
+      expect(wm.runCmd).to.have.been.calledWithMatch(app1);
+      expect(wm.runCmd).to.have.been.calledWithMatch(app2);
     });
 
     it('should call setPosition with the top tile for the first app', async () => {
@@ -141,9 +141,9 @@ describe('Tile', () => {
     it('should call runCmd on all apps', async () => {
       await wm.apply(config);
 
-      expect(wm.runCmd).to.have.been.calledWith(app1.open);
-      expect(wm.runCmd).to.have.been.calledWith(app2.open);
-      expect(wm.runCmd).to.have.been.calledWith(app3.open);
+      expect(wm.runCmd).to.have.been.calledWithMatch(app1);
+      expect(wm.runCmd).to.have.been.calledWithMatch(app2);
+      expect(wm.runCmd).to.have.been.calledWithMatch(app3);
     });
 
     it('should call setPosition with the left tile for the first app', async () => {
@@ -183,9 +183,9 @@ describe('Tile', () => {
     it('should call runCmd on all apps', async () => {
       await wm.apply(config);
 
-      expect(wm.runCmd).to.have.been.calledWith(app1.open);
-      expect(wm.runCmd).to.have.been.calledWith(app2.open);
-      expect(wm.runCmd).to.have.been.calledWith(app3.open);
+      expect(wm.runCmd).to.have.been.calledWithMatch(app1);
+      expect(wm.runCmd).to.have.been.calledWithMatch(app2);
+      expect(wm.runCmd).to.have.been.calledWithMatch(app3);
     });
 
     it('should call setPosition with the top tile for the first app', async () => {
@@ -229,9 +229,9 @@ describe('Tile', () => {
     it('should call runCmd on all apps', async () => {
       await wm.apply(config);
 
-      expect(wm.runCmd).to.have.been.calledWith(app1.open);
-      expect(wm.runCmd).to.have.been.calledWith(app2.open);
-      expect(wm.runCmd).to.have.been.calledWith(app3.open);
+      expect(wm.runCmd).to.have.been.calledWithMatch(app1);
+      expect(wm.runCmd).to.have.been.calledWithMatch(app2);
+      expect(wm.runCmd).to.have.been.calledWithMatch(app3);
     });
 
     it('should call setPosition on the top left tile for the first app', async () => {
