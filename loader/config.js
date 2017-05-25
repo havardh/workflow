@@ -17,7 +17,11 @@ export default function load(name: string): WorkspaceConfig {
       const config = RequireWrapper.require(option);
       console.log(`Loaded: ${option}`);
       return config;
-    } catch (e) { /* ignored */ }
+    } catch (error) {
+      if (error.code !== 'MODULE_NOT_FOUND') {
+        throw error;
+      }
+    }
   }
 
   console.log(`Could not load '${name}'`);
