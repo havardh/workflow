@@ -38,3 +38,12 @@ export class InvalidConfig extends BaseError {
     this.config = config;
   }
 }
+
+export class ConfigLoadError extends BaseError {
+  options: Array<string>
+
+  constructor(message: string, options: Array<string>) {
+    super(message);
+    this.options = options;
+  }
+}

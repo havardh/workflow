@@ -3,6 +3,7 @@
 import os from 'os';
 import type { WorkspaceConfig } from '../index';
 import RequireWrapper from '../util/require';
+import { ConfigLoadError } from '../error';
 
 export default function load(name: string): WorkspaceConfig {
   const options = [
@@ -21,8 +22,6 @@ export default function load(name: string): WorkspaceConfig {
 
   console.log(`Could not load '${name}'`);
   console.log('Tried:');
-  options.forEach(option => console.log(` - ${option}`));
-  process.exit(1);
-  // $FlowSuppress
-  return null;
+
+  throw new ConfigLoadError(`Could not load ${name}`, options);
 }
