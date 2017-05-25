@@ -51,7 +51,7 @@ describe('load(configFile)', () => {
     RequireWrapper.require
       // $FlowTodo
       .withArgs('/path/to/file.js')
-      .returns(expectedFile);
+      .returns({ default: expectedFile });
 
     const file = load('/path/to/file.js');
 
@@ -62,7 +62,7 @@ describe('load(configFile)', () => {
     RequireWrapper.require
       // $FlowTodo
       .withArgs('/home/user/.workflow/file.js')
-      .returns(expectedFile);
+      .returns({ default: expectedFile });
 
     const file = load('file.js');
 
@@ -73,7 +73,7 @@ describe('load(configFile)', () => {
     RequireWrapper.require
       // $FlowTodo
       .withArgs('/home/user/dev/workflow/examples/file.js')
-      .returns(expectedFile);
+      .returns({ default: expectedFile });
 
     const file = load('file.js');
 
@@ -84,7 +84,7 @@ describe('load(configFile)', () => {
     RequireWrapper.require
       // $FlowTodo
       .withArgs('/home/user/dev/workflow/examples/file.js')
-      .returns(expectedFile);
+      .returns({ default: expectedFile });
 
     load('file.js');
 
