@@ -15,7 +15,7 @@ export default class Base {
       node.children.forEach(app => this.openNode(app));
     } else {
       const pid = await this.runCmd(node);
-      node.pid = pid;
+      node.pid = pid; // eslint-disable-line no-param-reassign
     }
   }
 
