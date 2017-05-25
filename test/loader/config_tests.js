@@ -29,6 +29,11 @@ describe('load(configFile)', () => {
     sinon.restore();
   });
 
+  it('should throw error when all loaders fails', () => {
+    const fn = () => load('file.js');
+    expect(fn).toThrowErrorMatchingSnapshot();
+  });
+
   it('should require file directly', () => {
     RequireWrapper.require
       // $FlowTodo
