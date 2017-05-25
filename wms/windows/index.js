@@ -1,9 +1,8 @@
 import PythonShell from 'python-shell';
 import Tile from '../tile';
-import { exec } from '../../util/shell';
 
 const defaultOptions = {
-  pythonPath: 'C:\\Windows\\py.exe'
+  pythonPath: 'C:\\Windows\\py.exe',
 };
 
 class Windows extends Tile {
@@ -39,14 +38,13 @@ class Windows extends Tile {
   async runCmd(app) { // eslint-disable-line class-methods-use-this
     return new Promise((resolve, reject) => {
       const options = { ...defaultOptions, args: app.open };
-      PythonShell.run("wms/windows/open.py", options, (err, res) => {
+      PythonShell.run('wms/windows/open.py', options, (err, res) => {
         if (err) {
           reject(err);
         }
         resolve(JSON.parse(res[0]).pid);
       });
     });
-    
   }
 }
 
