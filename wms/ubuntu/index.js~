@@ -1,0 +1,22 @@
+import { Tile } from '../tile';
+
+class Ubuntu extends Tile {
+
+  async getDesktopRect() {
+      return Promise.resolve({
+	  x: 0,
+	  y: 0,
+	  width: 1024,
+	  height: 768,
+      });
+  }
+
+    async setPosition({app, position}) {
+	console.log({app, position});
+    }
+
+    async rumCmd(app) {
+	console.log(app);
+    }
+
+}

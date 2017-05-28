@@ -17,8 +17,8 @@ switch (platform) {
     Wm = require('./windows').default; // eslint-disable-line global-require
     break;
   case 'linux':
-    console.log('require i3');
-    Wm = require('./i3').default; // eslint-disable-line global-require
+    console.log('require ubuntu');
+    Wm = require('./ubuntu').default; // eslint-disable-line global-require
     break;
   default:
     console.log(`Platform '${platform}' not supported`);
