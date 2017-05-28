@@ -48,6 +48,31 @@ export function Chrome(config: ChromeConfig): ChromeConfig {
   };
 }
 
+export function Chromium(config) {
+  return {
+    open: ({ url }) => `chromium-browser --new-window ${url}`,
+    ...config,
+    class: 'Chromium',
+  };
+}
+
+export function Firefox(config) {
+  return {
+    open: ({ url }) => `firefox ${url}`,
+    ...config,
+    class: 'Navigator.Firefox',
+  };
+}
+
+export function Gedit(config) {
+  return {
+    open: ({ file }) => `gedit --new-window ${file}`,
+    ...config,
+    class: 'gedit.Gedit',
+  };
+}
+
+
 export type NotepadConfig = {
   percent: number,
   file?: (any) => string,

@@ -12,11 +12,10 @@ export default class Base {
 
   async openNode(node) {
     if (node.children) {
-      node.children.forEach(app => this.openNode(app));
-    } else {
-      const pid = await this.runCmd(node);
-      node.pid = pid; // eslint-disable-line no-param-reassign
+      return Promise.all(node.children.map(async app => this.openNode(app)));
     }
+    const pid = await this.runCmd(node);
+    node.pid = pid; // eslint-disable-line no-param-reassign
   }
 
   isSupportedHere() {
