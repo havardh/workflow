@@ -30,7 +30,7 @@
     ]
   },
   "scripts": {
-    "start": "babel-node cli.js",
+    "start": "node cli.js",
     "test": "jest",
     "watch": "jest --watch"
   },
