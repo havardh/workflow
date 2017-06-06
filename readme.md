@@ -10,11 +10,11 @@ OSX and Windows.
 
 | OS/wm        | Status              |
 |--------------|---------------------|
-| i3           | Complete            |
-| windows      | [For Review](https://github.com/havardh/workflow/pull/11)   |
+| i3           | Beta            |
+| windows      | Beta            |
 | OSX          | [In Progress](https://github.com/havardh/workflow/issues/3)   |
 | awesome      | [Up for grabs](https://github.com/havardh/workflow/issues/8)  |
-| Ubuntu/Unity | [Up for grabs](https://github.com/havardh/workflow/issues/13) |
+| Ubuntu/Unity | [In Progress](https://github.com/havardh/workflow/pull/24) |
 
 
 ## Example
