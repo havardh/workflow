@@ -48,7 +48,14 @@ export function Chrome(config: ChromeConfig): ChromeConfig {
   };
 }
 
-export function Chromium(config) {
+export type ChromiumConfig = {
+  percent: number,
+  class?: string,
+  url: string | (any) => string,
+  open?: (any) => string
+}
+
+export function Chromium(config: ChromiumConfig): ChromiumConfig {
   return {
     open: ({ url }) => `chromium-browser --new-window ${url}`,
     ...config,
@@ -56,7 +63,14 @@ export function Chromium(config) {
   };
 }
 
-export function Firefox(config) {
+export type FirefoxConfig = {
+  percent: number,
+  class?: string,
+  url: string | (any) => string,
+  open?: (any) => string
+}
+
+export function Firefox(config: FirefoxConfig): FirefoxConfig {
   return {
     open: ({ url }) => `firefox ${url}`,
     ...config,
@@ -64,7 +78,14 @@ export function Firefox(config) {
   };
 }
 
-export function Gedit(config) {
+export type GeditConfig = {
+  percent: number,
+  class?: string,
+  url: string | (any) => string,
+  open?: (any) => string
+}
+
+export function Gedit(config: GeditConfig): GeditConfig {
   return {
     open: ({ file }) => `gedit --new-window ${file}`,
     ...config,
