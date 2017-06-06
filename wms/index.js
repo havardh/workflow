@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
+import { which } from './../util/shell';
+
 const platform = process.platform;
 
 let Wm = () => {
   console.log('Platform not supported');
   process.exit(0);
 };
-
-console.log(platform);
 
 switch (platform) {
   case 'darwin':
@@ -17,8 +17,27 @@ switch (platform) {
     Wm = require('./windows').default; // eslint-disable-line global-require
     break;
   case 'linux':
-    console.log('require ubuntu');
-    Wm = require('./ubuntu').default; // eslint-disable-line global-require
+
+    if (which('i3-msg').code === 0) {
+      Wm = require('./i3').default; // eslint-disable-line global-require
+    } else if (which('wmctrl').code === 0) {
+      Wm = require('./ubuntu').default; // eslint-disable-line global-require
+    } else {
+      console.log('Could not find supported windows manager controller');
+      console.log('');
+      console.log(`Platform '${platform}' supports the following wm controllers`);
+      console.log(' - i3-msg');
+      console.log(' - wmctrl');
+      console.log('');
+      console.log('If you are using Ubuntu and are unsure which to use.');
+      console.log('Install wmctrl with `sudo apt-get install wmctrl`');
+      console.log('');
+      console.log('If you are using a different windows manager not listed here on linux,');
+      console.log('be sure to check out the issue page on github and add an issue if your wm is missing.');
+      console.log('Look for it here: https://github.com/havardh/workflow/issues');
+      console.log('');
+      process.exit(1);
+    }
     break;
   default:
     console.log(`Platform '${platform}' not supported`);
