@@ -9,6 +9,7 @@ import load from './loader/config';
 import type { SplitVConfig, SplitHConfig } from './layout';
 import type { AppConfig } from './apps';
 import type { Args } from './parser/args';
+import type { Config } from './parser/config';
 
 export type NodeConfig = SplitVConfig | SplitHConfig | AppConfig;
 export type WorkspaceConfig = {
@@ -17,7 +18,7 @@ export type WorkspaceConfig = {
   root: NodeConfig,
 };
 
-function apply(config) { // eslint-disable-line no-unused-vars
+function apply(config: Config) { // eslint-disable-line no-unused-vars
   return Wm.apply(config);
 }
 

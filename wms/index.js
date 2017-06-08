@@ -1,5 +1,8 @@
+// @flow
 /* eslint-disable no-console */
 import { which } from './../util/shell';
+
+import type { Config } from '../parser/config';
 
 const platform = process.platform;
 
@@ -46,4 +49,9 @@ switch (platform) {
     break;
 }
 
-export default new Wm();
+const wm = new Wm();
+export default {
+  apply(config: Config) {
+    wm.apply(config);
+  },
+};

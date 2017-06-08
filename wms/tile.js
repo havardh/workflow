@@ -1,8 +1,27 @@
+// @flow
+/* eslint-disable class-methods-use-this */
 import Base from './base';
+
+import type { Config, Node, App } from '../parser/config';
+
+export type Rect = {|
+  x: number,
+  y: number,
+  width: number,
+  height: number
+|};
 
 export default class Tile extends Base {
 
-  async apply(config) {
+  getDesktopRect() {
+    throw new Error('Not implemented');
+  }
+
+  setPosition({ app, position }: {app: App, position: Rect}) { // eslint-disable-line no-unused-vars
+    throw new Error('Not implemented');
+  }
+
+  async apply(config: Config) {
     const rect = await this.getDesktopRect();
 
     const { root } = config;
@@ -12,7 +31,7 @@ export default class Tile extends Base {
     return this.setPositions({ root, rect });
   }
 
-  setPositions({ root, rect }) {
+  setPositions({ root, rect }: {root: Node, rect: Rect}) {
     if (root.children) {
       const { x, y, width, height } = rect;
       let tiles;
