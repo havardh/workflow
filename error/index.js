@@ -1,3 +1,4 @@
+// @flow
 import type { Args } from '../parser/args';
 
 class BaseError extends Error {

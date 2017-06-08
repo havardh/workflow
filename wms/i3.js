@@ -1,8 +1,20 @@
+// @flow
 import { createClient } from 'i3';
 import { file } from 'tmp-promise';
 import { outputFile } from 'fs-extra';
 
+import type { Config, Node, App } from '../parser/config';
+
+type Client = {
+  _stream: {
+    destroy: () => void
+  },
+  command: (string) => void,
+};
+
 export default class I3 {
+  client: Client
+
   constructor() {
     this.client = createClient();
     setTimeout(() => {
@@ -10,7 +22,7 @@ export default class I3 {
     }, 10000);
   }
 
-  async apply(config) {
+  async apply(config: Config) {
     this.createWorkspace(config);
 
     this.clearWorkspace();
@@ -21,7 +33,7 @@ export default class I3 {
       .forEach(app => this.open(app));
   }
 
-  createWorkspace(config) {
+  createWorkspace(config: Config) {
     this.client.command(`workspace ${config.name}`);
   }
 
@@ -29,7 +41,7 @@ export default class I3 {
     this.client.command('focus parent, focus parent, focus parent, kill');
   }
 
-  async createLayout(node) {
+  async createLayout(node: Node) {
     const layout = this.genLayout(node);
     const layoutJson = JSON.stringify(layout, null, '  ');
 
@@ -40,7 +52,7 @@ export default class I3 {
     this.client.command(`append_layout ${tmpobj.path}`);
   }
 
-  genLayout(node) {
+  genLayout(node: Node) {
     const { percent } = node;
     if (node.layout) {
       const { layout } = node;
@@ -51,12 +63,13 @@ export default class I3 {
     return {
       percent,
       swallows: [{
+        // $FlowTodo
         class: `^${node.class}$`,
       }],
     };
   }
 
-  findApps(root) {
+  findApps(root: Node) {
     const apps = [];
 
     if (root.children) {
@@ -70,7 +83,7 @@ export default class I3 {
     return apps;
   }
 
-  open(app) {
+  open(app: App) {
     this.client.command(`exec ${app.open}`);
   }
 

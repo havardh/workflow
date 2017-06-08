@@ -1,5 +1,10 @@
+// @flow
+/* eslint-disable class-methods-use-this */
 import PythonShell from 'python-shell';
 import Tile from '../tile';
+
+import type { App } from '../../parser/config';
+import type { Rect } from '../tile';
 
 const defaultOptions = {
   pythonPath: 'C:\\Windows\\py.exe',
@@ -7,7 +12,7 @@ const defaultOptions = {
 
 class Windows extends Tile {
 
-  async getDesktopRect() { // eslint-disable-line class-methods-use-this
+  async getDesktopRect() {
     return new Promise((resolve, reject) => {
       PythonShell.run('wms/windows/get_desktop_rect.py', defaultOptions, (err, res) => {
         if (err) {
@@ -18,7 +23,7 @@ class Windows extends Tile {
     });
   }
 
-  async setPosition({ app, position }) { // eslint-disable-line class-methods-use-this
+  async setPosition({ app, position }: {app: App, position: Rect}) {
     return new Promise((resolve, reject) => {
       const { x, y, width, height } = position;
       const options = {
@@ -35,7 +40,7 @@ class Windows extends Tile {
     });
   }
 
-  async runCmd(app) { // eslint-disable-line class-methods-use-this
+  async runCmd(app: App) { // eslint-disable-line class-methods-use-this
     return new Promise((resolve, reject) => {
       const options = { ...defaultOptions, args: app.open };
       PythonShell.run('wms/windows/open.py', options, (err, res) => {

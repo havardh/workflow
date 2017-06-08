@@ -15,8 +15,11 @@ const windowRect = { x: 0, y: 0, width: 1024, height: 768 };
 class SpyWm extends Tile {
   constructor() {
     super();
+    // $FlowTodo
     this.getDesktopRect = sinon.stub();
+    // $FlowTodo
     this.setPosition = sinon.stub();
+    // $FlowTodo
     this.runCmd = sinon.stub();
   }
 }
@@ -38,14 +41,15 @@ describe('Tile', () => {
   });
 
   it('should find the desktop rectangle', async () => {
-    await wm.apply({ root: {} });
+    const app = { percent: 1.0, open: 'open app', class: 'test' };
+    await wm.apply({ root: app, name: 'test' });
 
     expect(wm.getDesktopRect).to.have.been.called;
   });
 
   describe('when the config contains a root app', () => {
-    const app = { percent: 1.0, open: 'open app' };
-    const config = { root: app };
+    const app = { percent: 1.0, open: 'open app', class: 'test' };
+    const config = { name: 'test-config', root: app };
 
     it('should call runCmd with the app command', async () => {
       await wm.apply(config);
@@ -61,9 +65,10 @@ describe('Tile', () => {
   });
 
   describe('when the config contains two apps with vertical split', () => {
-    const app1 = { percent: 0.5, open: 'app 1' };
-    const app2 = { percent: 0.5, open: 'app 2' };
+    const app1 = { percent: 0.5, open: 'app 1', class: 'test' };
+    const app2 = { percent: 0.5, open: 'app 2', class: 'test' };
     const config = {
+      name: 'test-config',
       root: {
         layout: 'splitv',
         percent: 1.0,
@@ -94,9 +99,10 @@ describe('Tile', () => {
   });
 
   describe('when the config contains two apps with horizontal split', () => {
-    const app1 = { percent: 0.5, open: 'app 1' };
-    const app2 = { percent: 0.5, open: 'app 2' };
+    const app1 = { percent: 0.5, open: 'app 1', class: 'test' };
+    const app2 = { percent: 0.5, open: 'app 2', class: 'test' };
     const config = {
+      name: 'test-config',
       root: {
         layout: 'splith',
         percent: 1.0,
@@ -127,10 +133,11 @@ describe('Tile', () => {
   });
 
   describe('when the config contains three apps with vertical split', () => {
-    const app1 = { percent: 0.33, open: 'app 1' };
-    const app2 = { percent: 0.33, open: 'app 2' };
-    const app3 = { percent: 0.34, open: 'app 3' };
+    const app1 = { percent: 0.33, open: 'app 1', class: 'test' };
+    const app2 = { percent: 0.33, open: 'app 2', class: 'test' };
+    const app3 = { percent: 0.34, open: 'app 3', class: 'test' };
     const config = {
+      name: 'test-config',
       root: {
         layout: 'splitv',
         percent: 1.0,
@@ -169,10 +176,11 @@ describe('Tile', () => {
   });
 
   describe('when the config contains three apps with horizontal split', () => {
-    const app1 = { percent: 0.33, open: 'app 1' };
-    const app2 = { percent: 0.33, open: 'app 2' };
-    const app3 = { percent: 0.34, open: 'app 3' };
+    const app1 = { percent: 0.33, open: 'app 1', class: 'test' };
+    const app2 = { percent: 0.33, open: 'app 2', class: 'test' };
+    const app3 = { percent: 0.34, open: 'app 3', class: 'test' };
     const config = {
+      name: 'test-config',
       root: {
         layout: 'splith',
         percent: 1.0,
@@ -211,10 +219,11 @@ describe('Tile', () => {
   });
 
   describe('when the config contains nested splits', () => {
-    const app1 = { percent: 0.5, open: 'app 1' };
-    const app2 = { percent: 0.5, open: 'app 2' };
-    const app3 = { percent: 0.2, open: 'app 3' };
+    const app1 = { percent: 0.5, open: 'app 1', class: 'test' };
+    const app2 = { percent: 0.5, open: 'app 2', class: 'test' };
+    const app3 = { percent: 0.2, open: 'app 3', class: 'test' };
     const config = {
+      name: 'test-config',
       root: {
         layout: 'splith',
         percent: 1.0,
