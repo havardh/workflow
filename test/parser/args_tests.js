@@ -3,6 +3,13 @@
 import parseArgs from '../../parser/args';
 
 describe('parseArgs(args, args)', () => {
+  describe('when config args is undefined', () => {
+    it('should return an empty object', () => {
+      const actual = parseArgs(undefined, []);
+
+      expect(actual).toEqual({});
+    });
+  });
   describe('when config args is string', () => {
     it('should map first argument to named argument', () => {
       const expected = { file: 'file.js' };
