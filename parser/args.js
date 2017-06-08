@@ -35,7 +35,7 @@ function validateArguments(config, args) {
 }
 
 export default function parseArgs(
-  config: Args,
+  config?: Args,
   args: Array<string>,
 ): {[string]: string} { // eslint-disable-line no-shadow
   validateArguments(config, args);
