@@ -1,0 +1,8 @@
+#!/bin/bash
+
+Xvfb :2 &
+DISPLAY=:2 i3 &
+
+DISPLAY=:2 npm run test
+
+pkill Xvfb
