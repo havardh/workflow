@@ -1,4 +1,3 @@
-// @flow
 /* eslint-disable no-console */
 // import I3 from './wms/i3';
 import Wm from './wms';

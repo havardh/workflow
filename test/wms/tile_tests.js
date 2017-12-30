@@ -15,11 +15,8 @@ const windowRect = { x: 0, y: 0, width: 1024, height: 768 };
 class SpyWm extends Tile {
   constructor() {
     super();
-    // $FlowTodo
     this.getDesktopRect = sinon.stub();
-    // $FlowTodo
     this.setPosition = sinon.stub();
-    // $FlowTodo
     this.runCmd = sinon.stub();
   }
 }

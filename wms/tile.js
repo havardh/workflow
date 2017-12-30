@@ -1,4 +1,3 @@
-// @flow
 /* eslint-disable class-methods-use-this */
 import Base from './base';
 
