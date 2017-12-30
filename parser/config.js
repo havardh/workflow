@@ -36,6 +36,12 @@ function parseApp(config: AppConfig, args): App {
       percent,
     };
   }
+
+  if (config.componentWillMount) {
+    // $FlowTodo
+    config.componentWillMount(transformedConfig);
+  }
+
   return {
     percent,
     class: transformedConfig.class,
@@ -61,9 +67,7 @@ function parseNode(config: NodeConfig, args: {[string]:string}): Node {
   if (config.children) {
     return {
       percent: config.percent,
-      // $FlowTodo
       layout: config.layout,
-      // $FlowTodo
       children: config.children.map(child => parseNode(child, args)),
     };
   }
