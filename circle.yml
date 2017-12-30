@@ -1,4 +1,10 @@
+machine:
+  node:
+    version: 8.0.0
+
 dependencies:
+  pre:
+    - node --version
   override:
     - yarn install
 
@@ -6,3 +12,4 @@ test:
   override:
     - yarn run flow
     - yarn run eslint
+    - yarn run test

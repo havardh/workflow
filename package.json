@@ -31,6 +31,7 @@
   },
   "scripts": {
     "start": "node cli.js",
+    "eslint": "eslint .",
     "test": "jest",
     "watch": "jest --watch"
   },

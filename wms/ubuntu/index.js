@@ -1,14 +1,12 @@
 import PythonShell from 'python-shell';
-
-import Tile from '../tile';
 import shell from 'shelljs';
 
-const leftPadding = 64;
-const topPadding = 24;
+import Tile from '../tile';
 
 export default class Ubuntu extends Tile {
 
-  async getDesktopRect() {
+  async getDesktopRect() { // eslint-disable-line class-methods-use-this
+    /* eslint-disable no-useless-escape */
     const result = shell.exec('xrandr | grep \'\*\' | awk \'{print $1}\'', { silent: true });
 
     const widthXHeight = result.stdout.replace('\n', '');
@@ -24,9 +22,7 @@ export default class Ubuntu extends Tile {
     });
   }
 
-  async setPosition({ app, position }) {
-    console.log(app);
-
+  async setPosition({ app, position }) {  // eslint-disable-line class-methods-use-this
     let windowId;
     while (!windowId) {
       const result = shell.exec(`wmctrl -l -p | grep ${app.pid} | awk '{ print $1 }'`,
@@ -37,13 +33,10 @@ export default class Ubuntu extends Tile {
     }
 
     const { x, y, width, height } = position;
-    console.log(`wmctrl -i -r ${windowId} -e ${x},${y},${width},${height}`);
-    const result = shell.exec(
+    shell.exec(
       `wmctrl -i -r ${windowId} -e 0,${x},${y},${width},${height}`,
       { silent: true },
     );
-
-    console.log(result);
 
     return Promise.resolve({});
   }
@@ -59,15 +52,12 @@ export default class Ubuntu extends Tile {
       const script = new PythonShell('wms/windows/open.py', options);
 
       script.on('message', (data) => {
-        console.log('message');
         resolve(data.pid);
       });
       script.on('error', (error) => {
-        console.log('error');
         reject(error);
       });
       script.end(() => {
-        console.log('end');
         // resolve(pid);
       });
     });
