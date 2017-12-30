@@ -1,8 +1,12 @@
 #!/bin/bash
 
-Xvfb :2 &
-DISPLAY=:2 i3 &
+Xvfb :2 >/dev/null 2>/dev/null &
+DISPLAY=:2 i3 >/dev/null 2>/dev/null &
 
-DISPLAY=:2 npm run test
+if [ "$1" = "-u" ]; then
+  DISPLAY=:2 npm run test -- -u
+else
+  DISPLAY=:2 npm run test
+fi
 
-pkill Xvfb
+pkill Xvfb >/dev/null 2>/dev/null
