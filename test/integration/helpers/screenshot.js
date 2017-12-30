@@ -1,7 +1,7 @@
 import { readFile } from 'fs';
 import screenshot from 'desktop-screenshot';
 
-const path = '/home/havard/dev/workflow/tmp/screenshot.png';
+const path = `${process.cwd()}/.screenshot.png`;
 
 export default async function take() {
   return new Promise((resolve, reject) => {
