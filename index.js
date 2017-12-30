@@ -17,7 +17,7 @@ export type WorkspaceConfig = {
   root: NodeConfig,
 };
 
-function apply(config: Config) { // eslint-disable-line no-unused-vars
+async function apply(config) { // eslint-disable-line no-unused-vars
   return Wm.apply(config);
 }
 
@@ -26,9 +26,13 @@ export function Workspace(config: WorkspaceConfig) {
 }
 
 export default async function run() {
-  try {
-    const [node, index, configFile, ...args] = process.argv; // eslint-disable-line no-unused-vars
+  const [node, index, configFile, ...args] = process.argv; // eslint-disable-line no-unused-vars
 
+  await runWith(configFile, args); // eslint-disable-line no-use-before-define
+}
+
+export async function runWith(configFile, args) {
+  try {
     const config = load(configFile);
     const parameters = parseArgs(config.args, args);
     const layout = parseConfig(config, parameters);
