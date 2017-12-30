@@ -14,6 +14,29 @@ export function Atom(config: AtomConfig): AtomConfig {
     class: 'Atom',
   };
 }
+export type CodeConfig = {
+  percent: number,
+  class?: string,
+  open?: (any) => string,
+  folder?: string | (any) => string,
+  file?: string | (any) => string,
+};
+
+export function Code(config: AtomConfig): AtomConfig {
+  return {
+    open: ({ file }) => `code -n ${file}`,
+    ...config,
+    class: 'Code',
+  };
+}
+
+export function Emacs(config: AtomConfig): AtomConfig {
+  return {
+    open: ({ file }) => `emacs ${file}`,
+    ...config,
+    class: 'Emacs',
+  };
+}
 
 export type XTermConfig = {
   percent: number,
@@ -27,7 +50,10 @@ export type XTermConfig = {
 export function XTerm(config: XTermConfig): XTermConfig {
   function open({ cwd, cmd, args }) {
     const argsString = (args || []).join(' ');
-    return `cd ${cwd} && xterm -T '${cmd} ${argsString}' -e '${cmd} ${argsString}'`;
+    if (cmd) {
+      return `cd ${cwd} && xterm -T '${cmd} ${argsString}' -e '${cmd} ${argsString}'`;
+    }
+    return `cd ${cwd} && xterm -T '${cmd} ${argsString}' -hold`;
   }
 
   return { open, ...config, class: 'XTerm' };
@@ -124,6 +150,7 @@ export function IExplorer(config: IExplorerConfig): IExplorerConfig {
 
 export type AppConfig =
     AtomConfig
+  | CodeConfig
   | XTermConfig
   | ChromeConfig
   | NotepadConfig
