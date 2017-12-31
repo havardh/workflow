@@ -27,8 +27,8 @@ jobs:
           name: "JavaScript FlowType Check"
           command: yarn flow
       - store_test_results:
-          path: reports/junit
+          path: reports
       - store_artifacts:
-          path: reports/junit
+          path: reports
       - store_artifacts:
           path: test/integration/__image_snapshots__
