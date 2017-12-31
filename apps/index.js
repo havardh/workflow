@@ -50,10 +50,11 @@ export type XTermConfig = {
 export function XTerm(config: XTermConfig): XTermConfig {
   function open({ cwd, cmd, args }) {
     const argsString = (args || []).join(' ');
+
     if (cmd) {
-      return `cd ${cwd} && xterm -T '${cmd} ${argsString}' -e '${cmd} ${argsString}'`;
+      return `cd ${cwd} && xterm -T '${cmd} ${argsString}' -c '${cmd} ${argsString}'`;
     }
-    return `cd ${cwd} && xterm -T '${cmd} ${argsString}' -hold`;
+    return `cd ${cwd} && xterm -ls -T '${cmd} ${argsString}' -hold`;
   }
 
   return { open, ...config, class: 'XTerm' };
