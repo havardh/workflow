@@ -1,15 +1,34 @@
-machine:
-  node:
-    version: 8.0.0
-
-dependencies:
-  pre:
-    - node --version
-  override:
-    - yarn install
-
-test:
-  override:
-    - yarn run flow
-    - yarn run eslint
-    - yarn run test
+version: 2
+jobs:
+  build:
+    docker:
+      - image: havardh/workflow-i3:0.0.1
+    working_directory: ~/workflow
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: "JavaScript Linter"
+          command: yarn eslint -- --format junit -o reports/js-lint-results.xml
+      - run:
+          name: "JavaScript Test Suite"
+          environment:
+            JEST_JUNIT_OUTPUT: reports/js-test-results.xml
+          command: ./scripts/ci-i3
+      - run:
+          name: "JavaScript FlowType Check"
+          command: yarn flow
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
+      - store_artifacts:
+          path: test/integration/__image_snapshots__
