@@ -11,4 +11,8 @@ else
   DISPLAY=:2 yarn run test -- --ci --testResultsProcessor="jest-junit"
 fi
 
+TEST_RETURN_CODE=$?
+
 pkill Xvfb >/dev/null 2>/dev/null
+
+exit $TEST_RETURN_CODE
