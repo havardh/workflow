@@ -1,5 +1,6 @@
 // @flow
 /* eslint-env jest */
+/* global jasmine */
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 
 import take from './helpers/screenshot';
@@ -28,6 +29,7 @@ describe('Integration tests', () => {
 
     waitFor(2);
 
+    // $FlowTodo
     expect(await take()).toMatchImageSnapshot();
   });
 

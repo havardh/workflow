@@ -31,7 +31,7 @@ export default async function run() {
   await runWith(configFile, args); // eslint-disable-line no-use-before-define
 }
 
-export async function runWith(configFile, args) {
+export async function runWith(configFile: string, args: Array<string>) {
   try {
     const config = load(configFile);
     const parameters = parseArgs(config.args, args);
