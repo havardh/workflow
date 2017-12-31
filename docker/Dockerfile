@@ -5,3 +5,6 @@ RUN sudo apt-get install -y xvfb
 
 # Install workflow test dependencies
 RUN sudo apt-get install -y i3 xterm scrot
+
+# Set PS1
+RUN sudo echo 'export PS1="\w # "' >> ~/.bash_profile

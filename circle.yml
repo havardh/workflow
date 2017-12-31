@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: havardh/workflow-i3:0.0.1
+      - image: havardh/workflow-i3:0.0.2
     working_directory: ~/workflow
     steps:
       - checkout
