@@ -4,9 +4,9 @@ Xvfb :2 >/dev/null 2>/dev/null &
 DISPLAY=:2 i3 >/dev/null 2>/dev/null &
 
 if [ "$1" = "-u" ]; then
-  DISPLAY=:2 npm run test -- -u
+  DISPLAY=:2 yarn run test -- --ci --testResultsProcessor="jest-junit" -u
 else
-  DISPLAY=:2 npm run test
+  DISPLAY=:2 yarn run test -- --ci --testResultsProcessor="jest-junit"
 fi
 
 pkill Xvfb >/dev/null 2>/dev/null
