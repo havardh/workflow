@@ -51,7 +51,7 @@ switch (platform) {
 
 const wm = new Wm();
 export default {
-  apply(config: Config) {
-    wm.apply(config);
+  async apply(config: Config) {
+    return wm.apply(config);
   },
 };
