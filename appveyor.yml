@@ -10,7 +10,7 @@ init:
 # Install scripts--runs after repo cloning
 install:
   # Install the latest stable version of Node
-  - ps: Install-Product node $env:nodejs_version
+  - ps: Install-Product node $env:nodejs_version x64
   - set PATH=%APPDATA%\yarn;%PATH%
   - yarn
 
