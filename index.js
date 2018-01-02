@@ -17,7 +17,7 @@ export type WorkspaceConfig = {
   root: NodeConfig,
 };
 
-async function apply(config) { // eslint-disable-line no-unused-vars
+async function apply(config: Config) { // eslint-disable-line no-unused-vars
   return Wm.apply(config);
 }
 
