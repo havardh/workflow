@@ -1,18 +1,79 @@
 #!/bin/bash
 
-export PS1="\w # "
-
+echo "Staring Xvfb on :2 ..."
 Xvfb :2 >/dev/null 2>/dev/null &
-DISPLAY=:2 i3 >/dev/null 2>/dev/null &
+XVFB_PID=$!
+sleep 1
+ps aux | grep 'Xvfb :2' | grep -v grep >/dev/null 2>/dev/null
+if [ $? -eq 0 ]; then
+  echo "... Started as $XVFB_PID"
+  echo ""
+else
+  echo ""
+  echo "Could not start Xvfb on :2"
+  echo ""
+  echo "Retrying ..."
+  Xvfb :2 >/dev/null 2>/dev/null &
+  XVFB_PID=$!
+  sleep 1
+  ps aux | grep 'Xvfb :2' | grep -v grep >/dev/null 2>/dev/null
 
+  if [ $? -eq 0 ]; then
+    echo "... Started as $XVFB_PID"
+    echo ""
+  else
+    echo ""
+    echo "Could not start Xvfb on :2"
+    exit 1
+  fi
+fi
+
+echo "Staring i3 on :2 ..."
+DISPLAY=:2 i3 >/dev/null 2>/dev/null &
+sleep 1
+DISPLAY=:2 i3-msg 'exec echo 1' >/dev/null 2>/dev/null
+if [ $? -eq 0 ]; then
+  echo "... Started"
+  echo ""
+else
+  echo ""
+  echo "Could not start i3 on :2"
+  echo ""
+  echo "Retrying ..."
+  DISPLAY=:2 i3 >/dev/null 2>/dev/null &
+  sleep 1
+  DISPLAY=:2 i3-msg 'exec echo 1'
+
+  if [ $? -eq 0 ]; then
+    echo ""
+    echo "... Started"
+  else
+    echo ""
+    echo "Could not start i3 on :2"
+    exit 1
+  fi
+fi
+
+
+echo "Executing tests ..."
 if [ "$1" = "-u" ]; then
   DISPLAY=:2 yarn run test -- --ci --testResultsProcessor="jest-junit" -u
 else
   DISPLAY=:2 yarn run test -- --ci --testResultsProcessor="jest-junit"
 fi
-
 TEST_RETURN_CODE=$?
+echo "... Done"
+echo ""
 
-pkill Xvfb >/dev/null 2>/dev/null
+
+echo "Stopping Xvfb with PID $XVFB_PID ..."
+kill -9 $XVFB_PID >/dev/null 2>/dev/null
+if [ $? -eq 0 ]; then
+  echo "... Stopped"
+  echo ""
+else
+  echo "Could not stop Xvfb on :2"
+  echo ""
+fi
 
 exit $TEST_RETURN_CODE
