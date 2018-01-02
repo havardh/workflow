@@ -1,0 +1,32 @@
+# Test agains
+environment:
+  matrix:
+    - nodejs_version: '8'
+
+# Fix line endings in Windows. (runs before repo cloning)
+init:
+  - git config --global core.autocrlf input
+
+# Install scripts--runs after repo cloning
+install:
+  # Install the latest stable version of Node
+  - ps: Install-Product node $env:nodejs_version
+  - set PATH=%APPDATA%\yarn;%PATH%
+  - yarn
+
+# Disable automatic builds
+build: off
+
+# Post-install test scripts
+test_script:
+  # Output debugging info
+  - node --version
+  - yarn --version
+  # run tests and run build
+  - yarn run eslint
+  - yarn run flow
+
+# Cache node_modules for faster builds
+cache:
+  - "%LOCALAPPDATA%\\Yarn"
+  - node_modules -> package.json
