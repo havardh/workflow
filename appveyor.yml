@@ -9,6 +9,8 @@ init:
 
 # Install scripts--runs after repo cloning
 install:
+  # Install python
+  - choco install python --version 2.7.6
   # Install the latest stable version of Node
   - ps: Install-Product node $env:nodejs_version x64
   - set PATH=%APPDATA%\yarn;%PATH%
@@ -25,6 +27,7 @@ test_script:
   # run tests and run build
   - yarn run eslint
   - yarn run flow
+  - yarn run test -u
 
 artifacts:
   - path: reports
