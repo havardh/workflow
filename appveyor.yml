@@ -26,6 +26,13 @@ test_script:
   - yarn run eslint
   - yarn run flow
 
+artifacts:
+  - path: reports
+    name: Junit Reports
+
+  - path: test/integration/__image_snapshots__
+    name: Snapshot Images
+
 # Cache node_modules for faster builds
 cache:
   - "%LOCALAPPDATA%\\Yarn"
