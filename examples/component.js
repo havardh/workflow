@@ -3,7 +3,7 @@ import React from '../helpers/jsx';
 
 import { Workspace } from '../index';
 import { SplitH } from '../layout';
-import { Chrome, Atom } from '../apps';
+import { Chrome, Atom } from '../apps/linux';
 
 import { urlForComponent } from '../helpers/advisor';
 

@@ -3,7 +3,7 @@ import React from '../helpers/jsx';
 
 import { Workspace } from '../index';
 import { SplitV, SplitH } from '../layout';
-import { XTerm, Code } from '../apps';
+import { Terminal, TextEditor } from '../apps/defaults';
 
 import { projectRoot } from '../helpers/git';
 import { getTestFile } from '../helpers/advisor';
@@ -18,17 +18,17 @@ const workspace =
   <Workspace name={'advisor:unit-test'} args={'file'} >
     <SplitV>
       <SplitH>
-        <Code
+        <TextEditor
           folder={({ file }) => projectRoot(file)}
           file={({ file }) => file}
         />
-        <Code
+        <TextEditor
           folder={({ file }) => projectRoot(file)}
           file={({ file }) => getTestFile(file)}
           componentWillMount={(({ file }) => touch(file))}
         />
       </SplitH>
-      <XTerm
+      <Terminal
         cwd={({ file }) => projectRoot(file)}
         cmd={'npm run watch:test --'}
         args={[({ file }) => getTestFile(file)]}
