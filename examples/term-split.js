@@ -9,8 +9,8 @@ import { TextEditor } from '../apps/defaults';
 const workspace =
   <Workspace name={'term:split'} >
     <SplitH>
-      <TextEditor percent={0.8} cwd={process.cwd()} />
-      <TextEditor percent={0.2} cwd={process.cwd()} />
+      <TextEditor percent={0.8} />
+      <TextEditor percent={0.2} />
     </SplitH>
   </Workspace>;
 
