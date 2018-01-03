@@ -2,7 +2,7 @@
 /* eslint-env jest */
 import { expect } from 'chai';
 
-import { SplitV, SplitH } from '../../layout';
+import { SplitV, SplitH } from '../../../layout';
 
 const config = { percent: 0.1, children: [] };
 

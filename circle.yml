@@ -21,7 +21,12 @@ jobs:
       - run:
           name: "JavaScript Test Suite"
           environment:
-            JEST_JUNIT_OUTPUT: reports/js-test-results.xml
+            JEST_JUNIT_OUTPUT: reports/js-unit-test-results.xml
+          command: yarn test:unit
+      - run:
+          name: "JavaScript Test Suite"
+          environment:
+            JEST_JUNIT_OUTPUT: reports/js-integration-test-results.xml
           command: ./scripts/ci-i3
       - run:
           name: "JavaScript FlowType Check"

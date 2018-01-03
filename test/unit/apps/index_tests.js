@@ -2,7 +2,7 @@
 /* eslint-env jest */
 import { expect } from 'chai';
 
-import { Atom, XTerm } from '../../apps';
+import { Atom, XTerm } from '../../../apps/linux';
 
 const config = { percent: 1.0, open: x => x };
 
