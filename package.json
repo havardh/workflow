@@ -32,7 +32,9 @@
   "scripts": {
     "start": "node cli.js",
     "eslint": "eslint .",
-    "test": "jest",
+    "test:all": "jest ",
+    "test:unit": "jest test/unit",
+    "test:integration": "jest test/integration",
     "watch": "jest --watch"
   },
   "repository": {

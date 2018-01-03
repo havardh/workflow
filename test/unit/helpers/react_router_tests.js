@@ -7,9 +7,9 @@ import { sandbox } from 'sinon';
 import sinonChai from 'sinon-chai';
 
 
-import * as Git from '../../helpers/git';
-import * as Shell from '../../util/shell';
-import { findRouteForComponent } from '../../helpers/react_router';
+import * as Git from '../../../helpers/git';
+import * as Shell from '../../../util/shell';
+import { findRouteForComponent } from '../../../helpers/react_router';
 
 chai.use(sinonChai);
 

@@ -2,7 +2,7 @@
 /* eslint-env jest */
 import { expect } from 'chai';
 
-import { getTestFile } from '../../helpers/advisor';
+import { getTestFile } from '../../../helpers/advisor';
 
 describe('getTestFile(file)', () => {
   it('should transform source file to test file', () => {

@@ -57,9 +57,9 @@ fi
 
 echo "Executing tests ..."
 if [ "$1" = "-u" ]; then
-  DISPLAY=:2 yarn run test -- --ci --testResultsProcessor="jest-junit" -u
+  DISPLAY=:2 yarn run test:integration -- --ci --testResultsProcessor="jest-junit" -u
 else
-  DISPLAY=:2 yarn run test -- --ci --testResultsProcessor="jest-junit"
+  DISPLAY=:2 yarn run test:integration -- --ci --testResultsProcessor="jest-junit"
 fi
 TEST_RETURN_CODE=$?
 echo "... Done"
