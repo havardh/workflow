@@ -3,7 +3,7 @@ import React from '../helpers/jsx';
 
 import { Workspace } from '../index';
 import { SplitV, SplitH } from '../layout';
-import { Firefox, Gedit } from '../apps';
+import { Firefox, Gedit } from '../apps/linux';
 
 const workspace =
   <Workspace name={'firefox'} args={'url'} >

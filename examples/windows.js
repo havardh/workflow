@@ -3,7 +3,7 @@ import React from '../helpers/jsx';
 
 import { SplitV } from '../layout';
 import { Workspace } from '../index';
-import { Notepad, IExplorer } from '../apps';
+import { Notepad, IExplorer } from '../apps/windows';
 
 import { urlForComponent } from '../helpers/advisor';
 

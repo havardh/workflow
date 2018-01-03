@@ -3,14 +3,14 @@ import React from '../helpers/jsx';
 
 import { Workspace } from '../index';
 import { SplitH } from '../layout';
-import { XTerm } from '../apps';
+import { TextEditor } from '../apps/defaults';
 
 
 const workspace =
   <Workspace name={'term:split'} >
     <SplitH>
-      <XTerm percent={0.8} cwd={process.cwd()} />
-      <XTerm percent={0.2} cwd={process.cwd()} />
+      <TextEditor percent={0.8} cwd={process.cwd()} />
+      <TextEditor percent={0.2} cwd={process.cwd()} />
     </SplitH>
   </Workspace>;
 
