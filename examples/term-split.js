@@ -3,14 +3,14 @@ import React from '../helpers/jsx';
 
 import { Workspace } from '../index';
 import { SplitH } from '../layout';
-import { TextEditor } from '../apps/defaults';
+import { Terminal } from '../apps/defaults';
 
 
 const workspace =
   <Workspace name={'term:split'} >
     <SplitH>
-      <TextEditor percent={0.8} />
-      <TextEditor percent={0.2} />
+      <Terminal percent={0.8} />
+      <Terminal percent={0.2} />
     </SplitH>
   </Workspace>;
 
