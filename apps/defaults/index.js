@@ -1,7 +1,16 @@
 // @flow
 /* eslint-disable no-console */
 
-const platform = (() => {
+import os from 'os';
+import RequireWrapper from '../../util/require';
+
+const defaultApps = [
+  'Terminal',
+  'Browser',
+  'TextEditor',
+];
+
+const platformDefaults = (() => {
   switch (process.platform) {
     case 'darwin':
       console.log('Comming soon. Track progress at https://github.com/havardh/workflow/issues/3');
@@ -12,7 +21,7 @@ const platform = (() => {
     case 'linux':
       return require('./linux'); // eslint-disable-line global-require
     default:
-      console.log(`Platform '${platform}' not supported`);
+      console.log(`Platform '${process.platform}' not supported`);
       console.log('Look for an issue for your platform here: https://github.com/havardh/workflow/issues');
       process.exit(0);
       break;
@@ -20,6 +29,23 @@ const platform = (() => {
   throw new Error('not reachable');
 })();
 
-export const Terminal = platform.Terminal;
-export const Browser = platform.Browser;
-export const TextEditor = platform.TextEditor;
+
+const userDefaults = (() => {
+  try {
+    return RequireWrapper.require(`${os.homedir()}/.workflow/apps/defaults`);
+  } catch (error) {
+    if (error.code !== 'MODULE_NOT_FOUND') {
+      throw error;
+    } else {
+      return {};
+    }
+  }
+})();
+
+const defaults = {};
+
+defaultApps.forEach((app) => {
+  defaults[app] = userDefaults[app] || platformDefaults[app];
+});
+
+export default defaults;
