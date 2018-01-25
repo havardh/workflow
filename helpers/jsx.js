@@ -14,7 +14,7 @@ const React = {
     }
     return node({
       percent: 0.5,
-      children: [...rest],
+      children: [...rest.filter(child => typeof child !== 'string')],
     });
   },
 };
