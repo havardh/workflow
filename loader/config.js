@@ -6,6 +6,10 @@ import RequireWrapper from '../util/require';
 import { ConfigLoadError } from '../error';
 
 export default function load(name: string): WorkspaceConfig {
+  if (!name.endsWith('.js')) {
+    name += '.js'; // eslint-disable-line no-param-reassign
+  }
+
   const options = [
     name,
     `${os.homedir()}/.workflow/${name}`,

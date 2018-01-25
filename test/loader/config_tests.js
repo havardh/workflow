@@ -57,6 +57,17 @@ describe('load(configFile)', () => {
     expect(file).toEqual(expectedFile);
   });
 
+  it('should append missing .js to absolute path', () => {
+    RequireWrapper.require
+      // $FlowTodo
+      .withArgs('/path/to/file.js')
+      .returns({ default: expectedFile });
+
+    const file = load('/path/to/file');
+
+    expect(file).toEqual(expectedFile);
+  });
+
   it('should require file from ~/.workflow', () => {
     RequireWrapper.require
       // $FlowTodo
@@ -68,7 +79,29 @@ describe('load(configFile)', () => {
     expect(file).toEqual(expectedFile);
   });
 
+  it('should append missing .js when require from ~/.workflow', () => {
+    RequireWrapper.require
+      // $FlowTodo
+      .withArgs('/home/user/.workflow/file.js')
+      .returns({ default: expectedFile });
+
+    const file = load('file');
+
+    expect(file).toEqual(expectedFile);
+  });
+
   it('should require file from workflow examples', () => {
+    RequireWrapper.require
+      // $FlowTodo
+      .withArgs(`${path}/../examples/file.js`)
+      .returns({ default: expectedFile });
+
+    const file = load('file.js');
+
+    expect(file).toEqual(expectedFile);
+  });
+
+  it('should append missing .js when require from workflow examples', () => {
     RequireWrapper.require
       // $FlowTodo
       .withArgs(`${path}/../examples/file.js`)
