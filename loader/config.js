@@ -23,7 +23,6 @@ export default function load(name: string): WorkspaceConfig {
       return config;
     } catch (error) {
       if (error.code !== 'MODULE_NOT_FOUND' && error.code !== 'ENOENT') {
-        console.log(error.code);
         throw error;
       }
     }
