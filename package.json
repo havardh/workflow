@@ -72,6 +72,7 @@
   },
   "dependencies": {
     "babel-core": "^6.26.0",
+    "babel-plugin-module-rewrite": "^0.2.0",
     "babel-polyfill": "^6.9.0",
     "babel-register": "^6.24.1",
     "desktop-screenshot": "^0.1.1",
