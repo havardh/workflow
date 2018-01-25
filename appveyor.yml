@@ -27,7 +27,7 @@ test_script:
   # run tests and run build
   - yarn run eslint
   - yarn run flow
-  - yarn run test:all -u
+  - yarn run test:unit
 
 artifacts:
   - path: reports
