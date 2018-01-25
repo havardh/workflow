@@ -16,9 +16,9 @@ function ModuleNotFound() {
 describe('load(configFile)', () => {
   const expectedFile = { file: 'content' };
 
+  const path = __dirname.replace('/test', '');
   beforeEach(() => {
     sinon.stub(RequireWrapper, 'require');
-    sinon.stub(process, 'cwd');
     sinon.stub(os, 'homedir');
     sinon.stub(console, 'log');
 
@@ -26,7 +26,6 @@ describe('load(configFile)', () => {
     RequireWrapper.require.throws(new ModuleNotFound());
 
     os.homedir.returns('/home/user');
-    process.cwd.returns('/home/user/dev/workflow');
   });
 
   afterEach(() => {
@@ -72,7 +71,7 @@ describe('load(configFile)', () => {
   it('should require file from workflow examples', () => {
     RequireWrapper.require
       // $FlowTodo
-      .withArgs('/home/user/dev/workflow/examples/file.js')
+      .withArgs(`${path}/../examples/file.js`)
       .returns({ default: expectedFile });
 
     const file = load('file.js');
@@ -83,7 +82,7 @@ describe('load(configFile)', () => {
   it('should require in specific order', () => {
     RequireWrapper.require
       // $FlowTodo
-      .withArgs('/home/user/dev/workflow/examples/file.js')
+      .withArgs(`${path}/../examples/file.js`)
       .returns({ default: expectedFile });
 
     load('file.js');
@@ -93,6 +92,6 @@ describe('load(configFile)', () => {
 
     expect(calls[0].args[0]).toEqual('file.js');
     expect(calls[1].args[0]).toEqual('/home/user/.workflow/file.js');
-    expect(calls[2].args[0]).toEqual('/home/user/dev/workflow/examples/file.js');
+    expect(calls[2].args[0]).toEqual(`${path}/../examples/file.js`);
   });
 });

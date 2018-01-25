@@ -9,7 +9,7 @@ export default function load(name: string): WorkspaceConfig {
   const options = [
     name,
     `${os.homedir()}/.workflow/${name}`,
-    `${process.cwd()}/examples/${name}`,
+    `${__dirname}/../examples/${name}`,
   ];
 
   for (const option of options) {
