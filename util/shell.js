@@ -3,8 +3,8 @@
 
 import shell from 'shelljs';
 
-export function exec(cmd: string) {
-  return shell.exec(cmd, { silent: true, async: true });
+export function exec(cmd: string, async: boolean = true) {
+  return shell.exec(cmd, { silent: true, async });
 }
 
 export function which(cmd: string) {

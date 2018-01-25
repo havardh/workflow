@@ -3,19 +3,50 @@
 import { projectRoot } from './git';
 import { exec } from '../util/shell';
 
-function findParent(root, file) {
-  const results = exec(`cd ${root} && git grep '${file}' -- */src/*`);
-  return results.split('\n')[0].split(':')[0].replace('.js', '');
+function removeOneDirectory(file: string): string {
+  const index = file.indexOf('/');
+
+  if (index === -1) {
+    return '';
+  }
+
+  return file.substring(index + 1);
 }
 
-function findImportedName(file, name) {
-  const importLine = exec(`cat ${file}.js | grep ${name}`);
-  return importLine.split(' ')[1];
+function findParent(root: string, file: string): string {
+  let filename = file;
+  let parent;
+  while (!parent && filename) {
+    const results = exec(`cd ${root} && git grep '${filename}' -- */src/*`, false);
+    parent = results.split('\n')[0].split(':')[0].replace('.js', '');
+    if (parent) {
+      return parent;
+    }
+    filename = removeOneDirectory(filename);
+  }
+  throw new Error(`Could not find ${file} in ${root}`);
 }
 
+function findImportedName(file: string, name: string): string {
+  let importName = name;
+  let importedName;
+  while (!importedName && importName) {
+    const importLine = exec(`cat ${file}.js | grep ${importName}`, false);
+    importedName = importLine.split(' ')[1];
+    if (importedName) {
+      return importedName;
+    }
+    importName = removeOneDirectory(importName);
+  }
 
-function indentationOf(route) {
-  return route && route.indexOf('<');
+  return '';
+}
+
+function indentationOf(route: string): number {
+  if (route) {
+    return route.indexOf('<');
+  }
+  return -1;
 }
 
 function getPath(line) {
@@ -26,7 +57,7 @@ function getPath(line) {
 }
 
 function findPath(routerFile, page) {
-  const lines = exec(`cat ${routerFile}.js`).split('\n');
+  const lines = exec(`cat ${routerFile}.js`, false).split('\n');
 
   const routeSegments = [];
   let indexOfPage = -1;

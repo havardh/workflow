@@ -10,6 +10,6 @@ export function getTestFile(file: string): string { // eslint-disable-line no-un
 
 export function urlForComponent(file: string): string {
   const route = findRouteForComponent(file);
-  return `http://localhost:8080/advisor/advisor/#/${route}`
+  return `http://localhost:9090/advisor/advisor/#/${route}`
     .replace(':caseRef', '1');
 }
