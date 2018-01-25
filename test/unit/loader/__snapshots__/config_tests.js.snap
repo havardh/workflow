@@ -3,3 +3,5 @@
 exports[`load(configFile) should rethrow error when loaded module fails 1`] = `"Module error"`;
 
 exports[`load(configFile) should throw error when all loaders fails 1`] = `"Could not load file.js"`;
+
+exports[`load(configFile) should throw loading error when reading all files fails 1`] = `"Could not load file.js"`;
