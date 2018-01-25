@@ -1,24 +1,12 @@
 // @flow
-/* eslint-disable import/prefer-default-export, import/no-dynamic-require, global-require, no-use-before-define */
+/* eslint-disable import/prefer-default-export, import/no-dynamic-require */
+/* eslint-disable global-require, no-use-before-define, no-console */
 
 import os from 'os';
-import { readFileSync, writeFileSync } from 'fs';
-import { transform } from 'babel-core';
-import crypto from 'crypto';
+import { read, write, compile, hash } from './require-deps';
+import RequireWrapper from './require';
 
 const cacheFolder = `${os.homedir()}/.workflow/cache`;
-
-const babelOptions = {
-  presets: [
-    'es2015',
-  ],
-  plugins: [
-    'transform-flow-strip-types',
-    'transform-object-rest-spread',
-    'transform-async-to-generator',
-    'transform-react-jsx',
-  ],
-};
 
 export function requireWrapper(name: string) {
   const file = read(name);
@@ -27,23 +15,23 @@ export function requireWrapper(name: string) {
     console.log('Caching:', name);
     console.log('Here:', cacheName(name));
     cache(name, file, compile(file));
+  } else {
+    console.log('cached', cacheName(name));
   }
 
-  return requireCached(name);
-}
-
-function read(name: string): string {
-  return readFileSync(name, { encoding: 'utf8' });
-}
-
-function compile(file: string) {
-  return transform(file, babelOptions).code;
+  console.log('Reading', cacheName(name));
+  try {
+    return RequireWrapper.require(cacheName(name));
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 
 function isCached(name, file) {
   const cacheFileName = cacheName(name);
   try {
-    const cachedFileContent = readFileSync(cacheFileName, { encoding: 'utf8' });
+    const cachedFileContent = read(cacheFileName);
 
     const [first, second] = cachedFileContent.split('\n');
 
@@ -62,26 +50,16 @@ function cache(name, uncompiled, compiled) {
 ${compiled}
   `;
 
-  writeFileSync(cacheFileName, cacheFileContent);
+  write(cacheFileName, cacheFileContent);
 }
 
 function cacheName(name: string) {
   const parts = name.split('/');
   const filename = parts[parts.length - 1];
 
+  console.log('Cache name:', `${cacheFolder}/${filename}`);
+
   return `${cacheFolder}/${filename}`;
-}
-
-function hash(file) {
-  return crypto
-    .createHash('md5')
-    .update(file)
-    .digest('hex');
-}
-
-function requireCached(name: string) {
-  // $FlowSuppress
-  return require(cacheName(name));
 }
 
 export default { require: requireWrapper };

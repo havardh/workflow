@@ -4,13 +4,17 @@
 import os from 'os';
 import { sandbox } from 'sinon';
 
-import RequireWrapper from '../../../util/require';
-import load from '../../../loader/config';
+import RequireWrapper from '../../util/requireCompiled';
+import load from '../../loader/config';
 
 const sinon = sandbox.create();
 
 function ModuleNotFound() {
   this.code = 'MODULE_NOT_FOUND';
+}
+
+function FileReadFailed() {
+  this.code = 'ENOENT';
 }
 
 describe('load(configFile)', () => {
@@ -37,6 +41,14 @@ describe('load(configFile)', () => {
     expect(fn).toThrowErrorMatchingSnapshot();
   });
 
+  it('should throw loading error when reading all files fails', () => {
+    // $FlowTodo
+    RequireWrapper.require.throws(new FileReadFailed());
+
+    const fn = () => load('file.js');
+    expect(fn).toThrowErrorMatchingSnapshot();
+  });
+
   it('should rethrow error when loaded module fails', () => {
     // $FlowTodo
     RequireWrapper.require.throws(new Error('Module error'));
@@ -46,7 +58,7 @@ describe('load(configFile)', () => {
     expect(fn).toThrowErrorMatchingSnapshot();
   });
 
-  it('should require file directly', () => {
+  it('should require absolute path', () => {
     RequireWrapper.require
       // $FlowTodo
       .withArgs('/path/to/file.js')
