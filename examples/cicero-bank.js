@@ -3,7 +3,7 @@ import React from '../helpers/jsx';
 
 import { Workspace } from '../index';
 import { SplitV, SplitH } from '../layout';
-import { XTerm, Atom } from '../apps/linux';
+import { XTerm, Atom } from '../apps';
 
 import { projectRoot } from '../helpers/git';
 import { getTestFile } from '../helpers/advisor';
