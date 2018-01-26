@@ -9,8 +9,8 @@ import { Terminal } from '../apps/defaults';
 const workspace =
   <Workspace name={'term:split'} >
     <SplitH>
-      <Terminal percent={0.8} />
-      <Terminal percent={0.2} />
+      <Terminal percent={0.8} cwd={process.cwd()} />
+      <Terminal percent={0.2} cwd={process.cwd()} />
     </SplitH>
   </Workspace>;
 
