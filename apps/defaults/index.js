@@ -48,4 +48,6 @@ defaultApps.forEach((app) => {
   defaults[app] = userDefaults[app] || platformDefaults[app];
 });
 
-export default defaults;
+export const Terminal = defaults.Terminal;
+export const Browser = defaults.Browser;
+export const TextEditor = defaults.TextEditor;
