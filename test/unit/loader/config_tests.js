@@ -16,7 +16,7 @@ function ModuleNotFound() {
 describe('load(configFile)', () => {
   const expectedFile = { file: 'content' };
 
-  const path = __dirname.replace('/test', '');
+  const path = __dirname.replace('/test/unit', '');
   beforeEach(() => {
     sinon.stub(RequireWrapper, 'require');
     sinon.stub(os, 'homedir');
