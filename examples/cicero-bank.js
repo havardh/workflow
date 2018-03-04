@@ -20,7 +20,6 @@ const workspace =
   <Workspace
     name={'advisor:unit-test'}
     args={'file'}
-    // componentWillMount={onWorkspace}
   >
     <SplitV>
       <SplitH>

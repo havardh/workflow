@@ -37,11 +37,6 @@ function parseApp(config: AppConfig, args): App {
     };
   }
 
-  if (config.componentWillMount) {
-    // $FlowTodo
-    config.componentWillMount(transformedConfig);
-  }
-
   return {
     percent,
     class: transformedConfig.class,
