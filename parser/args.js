@@ -30,7 +30,7 @@ function validateArguments(config, args) {
     }
   } else if (typeof config !== 'undefined') {
     throw new InvalidConfig(
-      `expected config.args to be of type 'string' or 'array, got: ${typeof config}'`, config);
+      `expected config.args to be of type 'string' or 'array', got: ${typeof config}'`, config);
   }
 }
 
