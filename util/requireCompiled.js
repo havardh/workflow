@@ -19,7 +19,6 @@ export function requireWrapper(name: string) {
     try {
       return RequireWrapper.require(name);
     } catch (e) {
-      console.log(e);
       throw e;
     }
   }
