@@ -4,8 +4,8 @@
 import os from 'os';
 import { sandbox } from 'sinon';
 
-import RequireWrapper from '../../util/requireCompiled';
-import load from '../../loader/config';
+import RequireWrapper from '../../../util/requireCompiled';
+import load from '../../../loader/config';
 
 const sinon = sandbox.create();
 
