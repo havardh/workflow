@@ -6,9 +6,24 @@ import os from 'os';
 import { read, write, compile, hash } from './require-deps';
 import RequireWrapper from './require';
 
+let isCacheDisabled = false;
 const cacheFolder = `${os.homedir()}/.workflow/cache`;
 
+export function disableCache() {
+  isCacheDisabled = true;
+}
+
 export function requireWrapper(name: string) {
+  if (isCacheDisabled) {
+    console.log('Cache disabled:', name);
+    try {
+      return RequireWrapper.require(name);
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  }
+
   const file = read(name);
 
   if (!isCached(name, file)) {

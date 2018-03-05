@@ -5,6 +5,7 @@ import { toMatchImageSnapshot } from 'jest-image-snapshot';
 
 import take from './helpers/screenshot';
 
+import { disableCache } from '../../util/requireCompiled';
 import { runWith } from '../../index';
 
 expect.extend({ toMatchImageSnapshot });
@@ -20,6 +21,7 @@ function waitFor(seconds) {
 describe('Integration tests', () => {
   let originalTimeout;
   beforeAll(() => {
+    disableCache();
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
   });
