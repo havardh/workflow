@@ -12,7 +12,6 @@ const babelOptions = {
     'transform-object-rest-spread',
     'transform-async-to-generator',
     'transform-react-jsx',
-    ['module-rewrite', { replaceFunc: './babel-rewrite-imports.js' }],
   ],
 };
 
