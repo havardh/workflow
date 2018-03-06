@@ -1,8 +1,6 @@
+import render, { Workspace, Layout, SplitH, Apps } from 'react-workflow';
 import React from 'react';
-import render, { Workspace, Layout } from '../src';
 
-import { SplitH } from '../src/layouts/split';
-import Apps from '../src/apps';
 const { Code, Chrome } = Apps;
 
 export default render(
