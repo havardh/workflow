@@ -9,7 +9,7 @@ export function Notepad(config: NotepadConfig): NotepadConfig {
   return {
     file: ({ file }) => file,
     ...config,
-    open: ({ file }) => `notepad.exe ${file}`,
+    open: ({ file }) => `notepad.exe ${file || ""}`,
   };
 }
 
@@ -35,6 +35,6 @@ export type PowerShellConfig = {
 export function PowerShell(config: PowerShellConfig): PowerShell {
   return {
     ...config,
-    open: () => 'start powershell',
+    open: () => 'powershell.exe',
   };
 }
