@@ -19,6 +19,7 @@ export default class Base {
     }
     const pid = await this.runCmd(node);
     node.pid = pid; // eslint-disable-line no-param-reassign
+
     return Promise.resolve(node);
   }
 
