@@ -61,3 +61,10 @@ typings/
 .screenshot.png
 
 dist/
+
+# Windows files
+Include/
+Scripts/
+Lib/
+.vscode/
+.cache/
