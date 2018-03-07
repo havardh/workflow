@@ -5,20 +5,22 @@ import type { WorkspaceConfig } from '../index';
 import RequireWrapper from '../util/requireCompiled';
 import { ConfigLoadError } from '../error';
 
-export default function load(name: string): WorkspaceConfig {
+export default function load(name: string, context): WorkspaceConfig {
   if (!name.endsWith('.js')) {
     name += '.js'; // eslint-disable-line no-param-reassign
   }
 
+  const { userFolder } = context;
+
   const options = [
     name,
-    `${os.homedir()}/.workflow/${name}`,
+    `${userFolder}/flows/${name}`,
     `${__dirname}/../examples/${name}`,
   ];
 
   for (const option of options) {
     try {
-      const config = RequireWrapper.require(option).default;
+      const config = RequireWrapper.require(option, context).default;
       console.log(`Loaded: ${option}`);
       return config;
     } catch (error) {
