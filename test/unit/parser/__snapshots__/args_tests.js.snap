@@ -9,4 +9,4 @@ exports[`parseArgs(args, args) when config args is string when the argument leng
 
 exports[`parseArgs(args, args) when config args is string when the arguments length is not 1 should throw for zero arguments 1`] = `"single argument 'file' wanted, got: ''"`;
 
-exports[`parseArgs(args, args) when config is invalid type should throw InvalidConfig exception 1`] = `"expected config.args to be of type 'string' or 'array, got: object'"`;
+exports[`parseArgs(args, args) when config is invalid type should throw InvalidConfig exception 1`] = `"expected config.args to be of type 'string' or 'array', got: object'"`;
