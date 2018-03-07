@@ -25,15 +25,17 @@ export function Workspace(config: WorkspaceConfig) {
   return config;
 }
 
-export default async function run() {
+export default async function run(context) {
   const [node, index, configFile, ...args] = process.argv; // eslint-disable-line no-unused-vars
 
-  await runWith(configFile, args); // eslint-disable-line no-use-before-define
+  // console.log(context);
+
+  await runWith(configFile, args, context); // eslint-disable-line no-use-before-define
 }
 
-export async function runWith(configFile: string, args: Array<string>) {
+export async function runWith(configFile: string, args: Array<string>, context) {
   try {
-    const config = load(configFile);
+    const config = load(configFile, context);
     const parameters = parseArgs(config.args, args);
     const layout = parseConfig(config, parameters);
     await apply(layout);

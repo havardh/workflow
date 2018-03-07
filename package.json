@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "Workflow-centric workspace manager",
   "main": "cli.js",
-  "bin": {
-    "workflow": "cli.js"
-  },
   "files": [
     "cli.js",
     "index.js",

@@ -7,13 +7,15 @@ import { read, write, compile, hash } from './require-deps';
 import RequireWrapper from './require';
 
 let isCacheDisabled = false;
-const cacheFolder = `${os.homedir()}/.workflow/cache`;
 
 export function disableCache() {
   isCacheDisabled = true;
 }
 
-export function requireWrapper(name: string) {
+export function requireWrapper(name: string, context) {
+  const userFolder = (context && context.userFolder) || `${os.homedir()}/.workflow/cache`;
+  const cacheFolder = `${userFolder}/cache`;
+
   if (isCacheDisabled) {
     console.log('Cache disabled:', name);
     try {
@@ -25,25 +27,26 @@ export function requireWrapper(name: string) {
 
   const file = read(name);
 
-  if (!isCached(name, file)) {
+  const cacheFileName = cacheName(cacheFolder, name);
+  if (!isCached(cacheFolder, name, file)) {
     console.log('Caching:', name);
-    console.log('Here:', cacheName(name));
-    cache(name, file, compile(file));
+    console.log('Here:', cacheFileName);
+    cache(cacheFolder, name, file, compile(file));
   } else {
-    console.log('cached', cacheName(name));
+    console.log('cached', cacheFileName);
   }
 
-  console.log('Reading', cacheName(name));
+  console.log('Reading', cacheFileName);
   try {
-    return RequireWrapper.require(cacheName(name));
+    return RequireWrapper.require(cacheFileName);
   } catch (e) {
     console.log(e);
     throw e;
   }
 }
 
-function isCached(name, file) {
-  const cacheFileName = cacheName(name);
+function isCached(cacheFolder, name, file) {
+  const cacheFileName = cacheName(cacheFolder, name);
   try {
     const cachedFileContent = read(cacheFileName);
 
@@ -55,8 +58,8 @@ function isCached(name, file) {
   }
 }
 
-function cache(name, uncompiled, compiled) {
-  const cacheFileName = cacheName(name);
+function cache(cacheFolder, name, uncompiled, compiled) {
+  const cacheFileName = cacheName(cacheFolder, name);
 
 
   const cacheFileContent = `// ${name}
@@ -67,7 +70,7 @@ ${compiled}
   write(cacheFileName, cacheFileContent);
 }
 
-function cacheName(name: string) {
+function cacheName(cacheFolder: string, name: string) {
   const parts = name.split('/');
   const filename = parts[parts.length - 1];
 

@@ -1,7 +1,6 @@
 // @flow
 /* eslint-disable no-console */
 
-import os from 'os';
 import RequireWrapper from '../../util/require';
 
 const defaultApps = [
