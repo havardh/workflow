@@ -18,6 +18,8 @@ const apps = {
 
 export function generateAppComponent({ params, xClass, open }) {
   return class extends Component {
+    static displayName = `app-${xClass}`;
+
     render() {
       const { props } = this;
 

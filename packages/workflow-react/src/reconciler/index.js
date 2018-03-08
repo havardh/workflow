@@ -1,31 +1,26 @@
 import emptyObject from 'fbjs/lib/emptyObject';
-import { createElement, getHostContextNode } from '../utils/createElement';
-
 import Reconciler from 'react-reconciler';
+
+import { createElement, getHostContextNode } from '../utils/createElement';
 
 const WorkflowRenderer = Reconciler({
   appendInitialChild(parentInstance, child) {
     if (parentInstance.appendChild) {
       parentInstance.appendChild(child);
     } else {
-      parentInstance.root = child;
+      parentInstance.root = child; // eslint-disable-line no-param-reassign
     }
   },
 
   createInstance(type, props) {
-    return createElement(type, props);/*
-    return {
-      type,
-      children: [],
-      prop: props.prop,
-    };*/
+    return createElement(type, props);
   },
 
   createTextInstance(text) {
     return { text };
   },
 
-  finalizeInitialChildren(element, type, props) {
+  finalizeInitialChildren() {
     return false;
   },
 
@@ -37,7 +32,7 @@ const WorkflowRenderer = Reconciler({
     // noop
   },
 
-  prepareUpdate(element, type, oldProps, newProps) {
+  prepareUpdate() {
     return {};
   },
 
@@ -45,7 +40,7 @@ const WorkflowRenderer = Reconciler({
     // noop
   },
 
-  resetTextContent(element) {
+  resetTextContent() {
     // noop
   },
 
@@ -54,11 +49,11 @@ const WorkflowRenderer = Reconciler({
     // return emptyObject;
   },
 
-  getChildHostContext(instance) {
+  getChildHostContext() {
     return emptyObject;
   },
 
-  shouldSetTextContent(type, props) {
+  shouldSetTextContent() {
     return false;
   },
 
@@ -71,7 +66,7 @@ const WorkflowRenderer = Reconciler({
       if (parentInstance.appendChild) {
         parentInstance.appendChild(child);
       } else {
-        parentInstance.root = child;
+        parentInstance.root = child; // eslint-disable-line no-param-reassign
       }
     },
 
@@ -79,32 +74,32 @@ const WorkflowRenderer = Reconciler({
       if (parentInstance.appendChild) {
         parentInstance.appendChild(child);
       } else {
-        parentInstance.root = child;
+        parentInstance.root = child; // eslint-disable-line no-param-reassign
       }
     },
 
-    removeChild(parentInstance, child) {
+    removeChild() {
       // noop
     },
 
-    removeChildFromContainer(parentInstance, child) {
+    removeChildFromContainer() {
       // noop
     },
 
-    insertBefore(parentInstance, child, beforeChild) {
+    insertBefore() {
       // noop
     },
 
     commitUpdate(instance, updatePayload, type, oldProps, newProps) {
-      instance.prop = newProps.prop;
+      instance.prop = newProps.prop; // eslint-disable-line no-param-reassign
     },
 
-    commitMount(instance, updatePayload, type, oldProps, newProps) {
+    commitMount() {
       // noop
     },
 
     commitTextUpdate(instance, oldText, newText) {
-      instance.text = newText;
+      instance.text = newText; // eslint-disable-line no-param-reassign
     },
   },
 });

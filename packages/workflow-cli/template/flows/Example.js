@@ -1,5 +1,3 @@
-import Apps from '../apps/user';
-
 const Code = {
   class: 'Code',
   open: ({ file }) => `code -n ${file}`,

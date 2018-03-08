@@ -1,5 +1,3 @@
 flow-typed/*
 
-packages/workflow-react/*
-packages/workflow-cli/*
 packages/**/node_modules/*

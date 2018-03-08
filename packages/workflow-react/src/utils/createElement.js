@@ -2,7 +2,7 @@ import { Root, Workspace, Layout, App } from '../components';
 
 import { ROOT_NODE } from '../render';
 
-export function getHostContextNode(rootNode) {
+export function getHostContextNode() {
   return ROOT_NODE;
 }
 

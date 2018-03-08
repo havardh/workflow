@@ -12,9 +12,7 @@ export default class Workspace {
   }
 
   renderChildren() {
-    for (const child of this.children) {
-      child.render();
-    }
+    this.children.forEach(child => child.render());
   }
 
   tree() {

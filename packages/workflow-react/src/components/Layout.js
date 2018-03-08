@@ -16,9 +16,7 @@ export default class Layout {
   }
 
   renderChildren() {
-    for (const child of this.children) {
-      child.render();
-    }
+    this.children.forEach(child => child.render());
   }
 
   tree() {
