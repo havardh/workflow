@@ -11,6 +11,18 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
       - run: yarn install
+      - run:
+          name: "Install packages/workflow-cli"
+          working_directory: packages/workflow-cli
+          command: yarn install
+      - run:
+          name: "Install packages/workflow-core"
+          working_directory: packages/workflow-core
+          command: yarn install
+      - run:
+          name: "Install packages/workflow-react"
+          working_directory: packages/workflow-react
+          command: yarn install
       - save_cache:
           paths:
             - node_modules
@@ -21,12 +33,7 @@ jobs:
       - run:
           name: "JavaScript Test Suite"
           environment:
-            JEST_JUNIT_OUTPUT: reports/js-unit-test-results.xml
-          command: yarn test:unit
-      - run:
-          name: "JavaScript Test Suite"
-          environment:
-            JEST_JUNIT_OUTPUT: reports/js-integration-test-results.xml
+            JEST_JUNIT_OUTPUT: reports/js-test-results.xml
           command: ./scripts/ci-i3
       - run:
           name: "JavaScript FlowType Check"
@@ -36,4 +43,4 @@ jobs:
       - store_artifacts:
           path: reports
       - store_artifacts:
-          path: test/integration/__image_snapshots__
+          path: packages/workflow-core/test/integration/__image_snapshots__

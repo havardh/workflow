@@ -1,10 +1,4 @@
 {
   "extends": "airbnb-base",
   "parser": "babel-eslint",
-
-  "settings": {
-    "import/resolver": {
-      ["./resolver"]: {}
-    },
-  }
 }
