@@ -1,8 +1,8 @@
 const parse = (inputComponent) => {
-  function parseComponent(inputComponent) {
-    inputComponent.render();
+  function parseComponent(inputComp) {
+    inputComp.render();
 
-    return inputComponent;
+    return inputComp;
   }
 
   function tree() {

@@ -17,6 +17,6 @@ export default class App {
     };
   }
 
-  render() {
+  render() { // eslint-disable-line class-methods-use-this
   }
 }

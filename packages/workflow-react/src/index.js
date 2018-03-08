@@ -1,11 +1,11 @@
 import render from './render';
 
+import * as Layouts from './layouts/split';
+import Apps from './apps';
+
 const App = 'APP';
 const Layout = 'LAYOUT';
 const Workspace = 'WORKSPACE';
-
-import * as Layouts from './layouts/split';
-import Apps from './apps';
 
 export default render;
 
