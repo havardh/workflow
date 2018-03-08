@@ -32,7 +32,7 @@ describe('Integration tests', () => {
   });
 
   test(`${platform}:term:split`, async () => {
-    await runWith('term-split', [], context);
+    await runWith(`${__dirname}/flows/term-split`, [], context);
 
     waitFor(2);
 

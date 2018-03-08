@@ -19,7 +19,7 @@ export default function load(name: string, context: Context): WorkspaceConfig {
   const options = [
     name,
     `${userFolder}/flows/${name}`,
-    `${__dirname}/../../examples/${name}`,
+    //`${__dirname}/../../examples/${name}`,
   ];
 
   for (const option of options) {
