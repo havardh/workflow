@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-const os = require('os');
-const spawn = require('child_process').spawn;
+/* eslint-env node */
+const os = require("os");
+const spawn = require("child_process").spawn;
 
 const dev = false;
 const userCli = dev
@@ -11,9 +12,9 @@ function cli(context) {
   context.commandFolder = process.cwd(); // eslint-disable-line no-param-reassign
 
   const [node, cmd, ...args] = process.argv; // eslint-disable-line no-unused-vars
-  const env = Object.create(process.env);
+  var env = Object.create(process.env);
   env.NODE_PATH = `${os.homedir()}/.workflow2/node_modules`;
-  spawn(userCli, args, { stdio: 'inherit', env });
+  spawn(userCli, args, { stdio: "inherit", env: env });
 }
 
 if (require.main === module) {
@@ -21,5 +22,5 @@ if (require.main === module) {
 }
 
 module.exports = {
-  cli,
+  cli
 };

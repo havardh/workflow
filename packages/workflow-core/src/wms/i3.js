@@ -1,4 +1,5 @@
 // @flow
+/* eslint-env node */
 import { createClient } from 'i3';
 import { file } from 'tmp-promise';
 import { outputFile } from 'fs-extra';

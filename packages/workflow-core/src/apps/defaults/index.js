@@ -1,4 +1,5 @@
 // @flow
+/* eslint-env node */
 /* eslint-disable no-console */
 import os from 'os';
 import RequireWrapper from '../../util/require';

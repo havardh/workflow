@@ -1,5 +1,5 @@
 // @flow
-/* eslint-env jest */
+/* eslint-env node, jest */
 /* global jasmine */
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 

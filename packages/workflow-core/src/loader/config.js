@@ -1,4 +1,5 @@
 // @flow
+/* eslint-env node */
 /* eslint-disable no-console, global-require, no-restricted-syntax, import/no-dynamic-require */
 import type { WorkspaceConfig } from '../index';
 import RequireWrapper from '../util/requireCompiled';

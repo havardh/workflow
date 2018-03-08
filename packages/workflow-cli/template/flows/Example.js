@@ -1,3 +1,4 @@
+/* eslint-env node */
 const Code = {
   class: 'Code',
   open: ({ file }) => `code -n ${file}`,
