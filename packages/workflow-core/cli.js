@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-env node */
 /* eslint-disable global-require, import/no-unresolved */
 require('babel-polyfill');
 require('babel-register');

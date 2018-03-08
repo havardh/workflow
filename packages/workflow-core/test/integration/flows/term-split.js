@@ -1,3 +1,4 @@
+/* eslint-env node */
 /* eslint-disable no-unused-vars */
 import React from '../../../src/helpers/jsx';
 

@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-/* eslint-disable global-require */
-
+/* eslint-env node */
 function cli(context) {
-  context.userFolder = __dirname; // eslint-disable-line no-param-reassign
+  context.userFolder = __dirname;
 
-  require('workflow-core/cli').cli(context); // eslint-disable-line import/no-unresolved
+  require('workflow-core/cli').cli(context);
 }
 
 if (require.main === module) {

@@ -1,4 +1,5 @@
 // @flow
+/* eslint-env node */
 /* eslint-disable import/prefer-default-export, import/no-dynamic-require */
 /* eslint-disable global-require, no-use-before-define, no-console */
 

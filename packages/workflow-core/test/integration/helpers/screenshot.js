@@ -1,3 +1,4 @@
+/* eslint-env node */
 import { readFile } from 'fs';
 import screenshot from 'desktop-screenshot';
 

@@ -1,5 +1,6 @@
-import React from 'react'; // eslint-disable-line
-import render, { Workspace, Layouts, Apps } from 'workflow-react'; // eslint-disable-line
+/* eslint-env node */
+import React from 'react';
+import render, { Workspace, Layouts, Apps } from 'workflow-react';
 
 const { SplitH } = Layouts;
 const { Code, Chrome } = Apps;
