@@ -20,8 +20,8 @@
       "start": "node cli.js"
   },
   "dependencies": {
-    "workflow-core": "file:~/dev/workflow/packages/workflow-core",
-    "workflow-react": "file:~/dev/workflow/packages/workflow-react",
+    "workflow-core": "0.0.1",
+    "workflow-react": "0.0.1",
     "react": "^16.2.0",
     "babel-core": "^6.26.0",
     "babel-plugin-module-rewrite": "^0.2.0",

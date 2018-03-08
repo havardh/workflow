@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-// @flow
 /* eslint-disable global-require, import/no-unresolved */
 require('babel-polyfill');
 require('babel-register');
 
-function cli(context: {userFolder: string}) {
+function cli(context) {
   const workflowFolder = __dirname;
   try {
     // $FlowTodo
