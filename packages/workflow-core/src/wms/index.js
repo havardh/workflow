@@ -14,8 +14,7 @@ let Wm = () => {
 
 switch (platform) {
   case 'darwin':
-    console.log('Comming soon. Track progress at https://github.com/havardh/workflow/issues/3');
-    process.exit(0);
+    Wm = require('./osx').default;
     break;
   case 'win32':
     Wm = require('./windows').default; // eslint-disable-line global-require
