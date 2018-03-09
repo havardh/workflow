@@ -1,7 +1,6 @@
 import osascript from "node-osascript";
 
 import {spawn} from "child_process";
-import {difference} from "lodash";
 
 import Tile from './tile';
 import shell from 'shelljs';
@@ -74,11 +73,6 @@ export default class Osx extends Tile {
       const program = "/usr/bin/open";
       const args = ["-a", app.name, app.open];
 
-      /*const pidsBefore = shell.exec(
-        `ps aux | grep -v grep | grep -i "${app.name}" | awk '{print $2;}'`,
-        {silent: true}
-      ).stdout.split('\n').filter(str => str.length);*/
-
       const options = { detached: true, cwd: app.cwd, stdio: "inherit" };
       spawn(program, args || [], options);
 
@@ -86,9 +80,6 @@ export default class Osx extends Tile {
         `ps aux | grep -v grep | grep -i "${app.name}" | awk '{print $2;}'`,
         {silent: true}
       ).stdout.split('\n').filter(str => str.length);
-
-
-      // const pids = difference(pidsAfter, pidsBefore);
 
       resolve(pids);
     });
