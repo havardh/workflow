@@ -17,6 +17,7 @@ export type App = {|
   pid?: string,
   percent: number,
   class: string,
+  name: string,
   open: string,
 |};
 
@@ -32,6 +33,7 @@ function parseApp(config: AppConfig, args): App {
   if (typeof open === 'string') {
     return {
       open,
+      name: transformedConfig.name,
       class: transformedConfig.class,
       percent,
     };
@@ -40,6 +42,7 @@ function parseApp(config: AppConfig, args): App {
   return {
     percent,
     class: transformedConfig.class,
+    name: transformedConfig.name,
     // $FlowTodo
     open: open(transformedConfig),
   };
