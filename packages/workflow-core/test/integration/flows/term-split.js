@@ -1,17 +1,17 @@
 /* eslint-env node */
 /* eslint-disable no-unused-vars */
-import React from '../../../src/helpers/jsx';
+import React from 'workflow-core/src/helpers/jsx';
 
-import { Workspace } from '../../../src/index';
-import { SplitH } from '../../../src/layout';
-import { Terminal } from '../../../src/apps/defaults';
+import { Workspace } from 'workflow-core/src/index';
+import { SplitH } from 'workflow-core/src/layout';
+import { Terminal, TextEditor } from 'workflow-core/src/apps/defaults';
 
 
 const workspace =
   <Workspace name={'term:split'} >
     <SplitH>
-      <Terminal cwd={process.cwd()} percent={0.8} />
-      <Terminal cwd={process.cwd()} percent={0.2} />
+      <TextEditor file={__filename} percent={0.4} />
+      <Terminal cwd={process.cwd()} percent={0.6} />
     </SplitH>
   </Workspace>;
 
