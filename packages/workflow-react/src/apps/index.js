@@ -28,9 +28,9 @@ export function generateAppComponent({ params, xClass, open }) {
       return (
         <App
           {...appProps}
-          percent={props.percent}
           class={xClass}
           open={open}
+          percent={props.percent}
         />
       );
     }

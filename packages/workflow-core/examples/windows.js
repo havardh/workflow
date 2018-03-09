@@ -8,7 +8,7 @@ import { Notepad, IExplorer } from '../src/apps/windows';
 import { urlForComponent } from '../src/helpers/advisor';
 
 const workspace =
-  <Workspace name={'windows'} args={'file'} >
+  <Workspace args={'file'} name={'windows'} >
     <SplitV>
       <Notepad file={({ file }) => file} />
       <IExplorer url={'rust-lang.org'} />

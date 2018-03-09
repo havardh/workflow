@@ -9,9 +9,9 @@ type Props = {
 }
 
 export const SplitV = ({ percent, children }: Props) => (
-  <Layout percent={percent} layout="splitv">{children}</Layout>
+  <Layout layout="splitv" percent={percent}>{children}</Layout>
 );
 
 export const SplitH = ({ percent, children }: Props) => (
-  <Layout percent={percent} layout="splith">{children}</Layout>
+  <Layout layout="splith" percent={percent}>{children}</Layout>
 );
