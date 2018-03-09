@@ -49,8 +49,6 @@ export default class Osx extends Tile {
       Promise.all(app.pid.map(pid => new Promise((resolve, reject) => {
         const script = setPositionScript(pid, position);
 
-        console.log(script)
-
         osascript.execute(script, function(err, result, raw) {
           if (err) {
             reject(err);

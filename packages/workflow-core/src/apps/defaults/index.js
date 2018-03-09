@@ -14,7 +14,6 @@ const platformDefaults = (() => {
   switch (process.platform) {
     case 'darwin':
       return require('./osx'); // eslint-disable-line global-require
-      break;
     case 'win32':
       return require('./windows'); // eslint-disable-line global-require
     case 'linux':
