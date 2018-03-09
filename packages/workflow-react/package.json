@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/havardh/workflow/issues"
   },
-  "homepage": "https://github.com/havardh/workflow/packages/react-workflow#readme",
+  "homepage": "https://github.com/havardh/workflow/tree/master/packages/workflow-react#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
