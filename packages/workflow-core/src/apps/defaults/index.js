@@ -13,8 +13,7 @@ const defaultApps = [
 const platformDefaults = (() => {
   switch (process.platform) {
     case 'darwin':
-      console.log('Comming soon. Track progress at https://github.com/havardh/workflow/issues/3');
-      process.exit(0);
+      return require('./osx'); // eslint-disable-line global-require
       break;
     case 'win32':
       return require('./windows'); // eslint-disable-line global-require
