@@ -75,7 +75,7 @@ jobs:
           name: "JavaScript Test Suite"
           environment:
             JEST_JUNIT_OUTPUT: reports/js-test-results.xml
-          command: yarn jest
+          command: yarn jest unit
       - run:
           name: "JavaScript Linter"
           command: yarn eslint -- --format junit -o reports/js-lint-results.xml
