@@ -90,7 +90,7 @@ export default class Osx extends Tile {
 
       // const pids = difference(pidsAfter, pidsBefore);
 
-      resolve(pidsAfter);
+      resolve(pids);
     });
   }
 }
