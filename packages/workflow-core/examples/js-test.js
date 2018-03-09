@@ -15,23 +15,23 @@ function touch(file) {
 }
 
 const workspace =
-  <Workspace name={'advisor:unit-test'} args={'file'} >
+  <Workspace args={'file'} name={'advisor:unit-test'} >
     <SplitV>
       <SplitH>
         <TextEditor
-          folder={({ file }) => projectRoot(file)}
           file={({ file }) => file}
+          folder={({ file }) => projectRoot(file)}
         />
         <TextEditor
-          folder={({ file }) => projectRoot(file)}
-          file={({ file }) => getTestFile(file)}
           componentWillMount={(({ file }) => touch(file))}
+          file={({ file }) => getTestFile(file)}
+          folder={({ file }) => projectRoot(file)}
         />
       </SplitH>
       <Terminal
-        cwd={({ file }) => projectRoot(file)}
-        cmd={'npm run watch:test --'}
         args={[({ file }) => getTestFile(file)]}
+        cmd={'npm run watch:test --'}
+        cwd={({ file }) => projectRoot(file)}
       />
     </SplitV>
   </Workspace>;

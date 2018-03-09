@@ -6,7 +6,7 @@ import { SplitV, SplitH } from '../src/layout';
 import { Firefox, Gedit } from '../src/apps/linux';
 
 const workspace =
-  <Workspace name={'firefox'} args={'url'} >
+  <Workspace args={'url'} name={'firefox'} >
     <SplitH>
       <Gedit file={() => 'file.js'} />
       <Firefox url={({ url }) => url} />

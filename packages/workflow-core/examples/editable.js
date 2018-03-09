@@ -19,8 +19,8 @@ const workspace =
       <SplitH>
         <Chrome url={() => url} />
         <Atom
-          folder={() => root}
           file={() => `${root}/index.js`}
+          folder={() => root}
         />
       </SplitH>
       <XTerm

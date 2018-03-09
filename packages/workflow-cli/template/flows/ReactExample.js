@@ -13,7 +13,7 @@ const { Code, Chrome } = Apps;
 export default render(
   <Workspace name={'workflow-react-example'}>
     <SplitH percent={1}>
-      <Code percent={0.2} file={__filename} />
+      <Code file={__filename} percent={0.2} />
       <Chrome
         percent={0.8}
         url={'https://github.com/havardh/workflow/tree/master/packages/workflow-cli'}

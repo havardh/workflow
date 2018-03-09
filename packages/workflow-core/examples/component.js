@@ -8,7 +8,7 @@ import { Chrome, Atom } from '../src/apps/linux';
 import { urlForComponent } from '../src/helpers/advisor';
 
 const workspace =
-  <Workspace name={'advisor:component'} args={'file'} >
+  <Workspace args={'file'} name={'advisor:component'} >
     <SplitH>
       <Atom file={({ file }) => file} />
       <Chrome url={({ file }) => urlForComponent(file)} />

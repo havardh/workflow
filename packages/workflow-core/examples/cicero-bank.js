@@ -18,24 +18,24 @@ function onWorkspace() {
 
 const workspace =
   <Workspace
-    name={'advisor:unit-test'}
     args={'file'}
+    name={'advisor:unit-test'}
   >
     <SplitV>
       <SplitH>
         <Atom
-          folder={({ file }) => projectRoot(file)}
           file={({ file }) => file}
+          folder={({ file }) => projectRoot(file)}
         />
         <Atom
-          folder={({ file }) => projectRoot(file)}
           file={({ file }) => getTestFile(file)}
+          folder={({ file }) => projectRoot(file)}
         />
       </SplitH>
       <XTerm
-        cwd={({ file }) => projectRoot(file)}
-        cmd={'npm run watch:test:base --'}
         args={[({ file }) => getTestFile(file)]}
+        cmd={'npm run watch:test:base --'}
+        cwd={({ file }) => projectRoot(file)}
       />
     </SplitV>
   </Workspace>;
