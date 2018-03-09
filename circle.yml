@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build-linux:
     docker:
       - image: havardh/workflow-i3:0.0.2
     working_directory: ~/workflow
@@ -44,3 +44,54 @@ jobs:
           path: reports
       - store_artifacts:
           path: packages/workflow-core/test/integration/__image_snapshots__
+  build-macos:
+    macos:
+      xcode: "9.0"
+    working_directory: ~/workflow
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: yarn install
+      - run:
+          name: "Install packages/workflow-cli"
+          working_directory: packages/workflow-cli
+          command: yarn install
+      - run:
+          name: "Install packages/workflow-core"
+          working_directory: packages/workflow-core
+          command: yarn install
+      - run:
+          name: "Install packages/workflow-react"
+          working_directory: packages/workflow-react
+          command: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: "JavaScript Test Suite"
+          environment:
+            JEST_JUNIT_OUTPUT: reports/js-test-results.xml
+          command: yarn jest
+      - run:
+          name: "JavaScript Linter"
+          command: yarn eslint -- --format junit -o reports/js-lint-results.xml
+      - run:
+          name: "JavaScript FlowType Check"
+          command: yarn flow
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: reports
+      - store_artifacts:
+          path: packages/workflow-core/test/integration/__image_snapshots__
+
+workflows:
+  version: 2
+  workflow_jobs:
+    jobs:
+      - build-linux
+      - build-macos
