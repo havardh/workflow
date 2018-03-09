@@ -18,11 +18,7 @@ Note: both `Example` and `Example.js` are valid identifiers for this workflow.
 
 The initial layout of the `workflow` home folder is here described. You
 are free to modify it to your liking. The only **required** file in this
-folder is the `cli.js` file which is executed by the `workflow` command.  
-
-### `.git/`
-This folder is a `git` repository. You can use the `git` command to manage this
-repository.
+folder is the `cli.js` file which is executed by the `workflow` command.
 
 ### `apps/`
 A folder for specifying your default apps and any applications definitions that
