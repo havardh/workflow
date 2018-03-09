@@ -49,7 +49,7 @@ export default class Osx extends Tile {
       Promise.all(app.pid.map(pid => new Promise((resolve, reject) => {
         const script = setPositionScript(pid, position);
 
-        osascript.execute(script, function(err, result, raw) {
+        osascript.execute(script, function(err, result) {
           if (err) {
             reject(err);
             return;
@@ -70,25 +70,25 @@ export default class Osx extends Tile {
   }
 
   async runCmd(app) { // eslint-disable-line class-methods-use-this
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const program = "/usr/bin/open";
       const args = ["-a", app.name, app.open];
 
-      const pidsBefore = shell.exec(
+      /*const pidsBefore = shell.exec(
         `ps aux | grep -v grep | grep -i "${app.name}" | awk '{print $2;}'`,
         {silent: true}
-      ).stdout.split('\n').filter(str => str.length);
+      ).stdout.split('\n').filter(str => str.length);*/
 
       const options = { detached: true, cwd: app.cwd, stdio: "inherit" };
-      const process = spawn(program, args || [], options);
+      spawn(program, args || [], options);
 
-      const pidsAfter = shell.exec(
+      const pids = shell.exec(
         `ps aux | grep -v grep | grep -i "${app.name}" | awk '{print $2;}'`,
         {silent: true}
       ).stdout.split('\n').filter(str => str.length);
 
 
-      const pids = difference(pidsAfter, pidsBefore);
+      // const pids = difference(pidsAfter, pidsBefore);
 
       resolve(pidsAfter);
     });
