@@ -1,5 +1,5 @@
 // @flow
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { transform } from 'babel-core';
 import crypto from 'crypto';
 
@@ -22,6 +22,12 @@ export function read(name: string): string {
 
 export function write(name: string, content: string) {
   writeFileSync(name, content);
+}
+
+export function ensureDirExists(name: string) {
+  if (!existsSync(name)){
+    mkdirSync(name);
+  }
 }
 
 export function compile(file: string) {
