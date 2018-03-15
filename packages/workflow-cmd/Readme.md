@@ -1,4 +1,4 @@
-# workflow wm
+# workflow cmd
 
 This module is the entry point into workflow. It should be installed globally
 by

@@ -4,8 +4,7 @@
   "description": "Command line interface for workflow.",
   "main": "cli.js",
   "bin": {
-    "workflow": "cli.js",
-    "wf": "cli.js"
+    "workflow": "cli.js"
   },
   "scripts": {
     "postinstall": "scripts/postinstall.js"
