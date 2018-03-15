@@ -14,7 +14,7 @@ export default {
     layout: 'splith',
     percent: 1.0,
     children: [
-      { ...Chrome, url: 'github.com/havardh/workflow/tree/master/packages/workflow-cli', percent: 0.5 },
+      { ...Chrome, url: 'github.com/havardh/workflow/tree/master/packages/workflow-cmd', percent: 0.5 },
       { ...Code, file: __filename, percent: 0.5 },
     ],
   },

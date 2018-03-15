@@ -2,7 +2,7 @@
 
 This folder is your personal configuration of workflow. In it you can override
 defaults and contain your own flows. This folder has been initialized by the
-`workflow-cli` tool in the post install hook of running `npm i -g workflow-cli`.
+`workflow-cmd` tool in the post install hook of running `npm i -g workflow-cmd`.
 
 The `workflow` command can be used globally to execute workflows defined in the
 `/flows` folder. To executed the example workflow run the following command from

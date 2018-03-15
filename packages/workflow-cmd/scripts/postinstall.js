@@ -6,7 +6,7 @@ const ncp = require("ncp").ncp;
 const os = require("os");
 const npm = require("../src/npm");
 const source = "template";
-const destination = `${os.homedir()}/.workflow2`;
+const destination = `${os.homedir()}/.workflow`;
 
 ncp(source, destination, err => {
   if (err) {
