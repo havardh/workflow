@@ -4,7 +4,7 @@
 /* eslint-disable global-require, no-use-before-define, no-console */
 
 import os from 'os';
-import { read, write, compile, hash } from './require-deps';
+import { read, write, ensureDirExists, compile, hash } from './require-deps';
 import RequireWrapper from './require';
 import type { Context } from '../loader/config';
 
@@ -69,6 +69,7 @@ function cache(cacheFolder, name, uncompiled, compiled) {
 ${compiled}
   `;
 
+  ensureDirExists(cacheFolder);
   write(cacheFileName, cacheFileContent);
 }
 
