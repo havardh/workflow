@@ -1,6 +1,6 @@
 {
   "name": "workflow-cmd",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Command line interface for workflow.",
   "main": "cli.js",
   "bin": {
