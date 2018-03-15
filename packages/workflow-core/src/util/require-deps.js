@@ -5,13 +5,15 @@ import crypto from 'crypto';
 
 const babelOptions = {
   presets: [
-    'es2015',
+    "flow",
+    "react",
+    ["env", {
+      "targets": {
+        "node": "current"
+      }
+    }]
   ],
-  plugins: [
-    'transform-object-rest-spread',
-    'transform-async-to-generator',
-    'transform-react-jsx',
-  ],
+  plugins: ["transform-object-rest-spread", "transform-class-properties"]
 };
 
 export function read(name: string): string {

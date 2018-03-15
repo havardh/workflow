@@ -1,21 +1,31 @@
 #!/usr/bin/env node
 /* eslint-env node */
 /* eslint-disable global-require, import/no-unresolved */
-require('babel-polyfill');
-require('babel-register');
 
 function cli(context) {
-  const workflowFolder = __dirname;
+    context.workflowFolder = __dirname;
   try {
     // $FlowTodo
     const run = require('./dist').default;
-
-    run({ ...context, workflowFolder });
+    run(context);
   } catch (error) {
     if (error.code === 'MODULE_NOT_FOUND') {
+      require('babel-register')({
+        presets: [
+          "flow",
+          "react",
+          ["env", {
+            "targets": {
+              "node": "current"
+            }
+          }]
+        ],
+        plugins: ["transform-object-rest-spread", "transform-class-properties"]
+      });
+
       const run = require('./src/index').default;
 
-      run({ ...context, workflowFolder });
+      run(context);
     } else {
       throw error;
     }

@@ -3,16 +3,26 @@
   "version": "0.0.1",
   "description": "Workflow-centric workspace manager",
   "main": "cli.js",
+  "files": [
+    "dist",
+    "cli.js"
+  ],
   "babel": {
     "presets": [
-      "es2015"
+      "flow",
+      "react",
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
     ],
     "plugins": [
-      "transform-class-properties",
-      "transform-flow-strip-types",
       "transform-object-rest-spread",
-      "transform-async-to-generator",
-      "transform-react-jsx"
+      "transform-class-properties"
     ]
   },
   "jest": {
@@ -22,6 +32,8 @@
   },
   "scripts": {
     "start": "node cli.js",
+    "prepublishOnly": "npm run build",
+    "build": "babel src -d dist",
     "test:all": "jest ",
     "test:unit": "jest test/unit",
     "test:integration": "jest test/integration",
@@ -44,7 +56,8 @@
   },
   "homepage": "https://github.com/havardh/workflow#readme",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "flow-bin": "^0.44.2",
     "jest-junit": "^3.4.1",
     "sinon": "^2.1.0",
@@ -52,14 +65,11 @@
   },
   "dependencies": {
     "babel-core": "^6.26.0",
-    "babel-plugin-module-rewrite": "^0.2.0",
-    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-polyfill": "^6.9.0",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-node8": "^1.2.0",
+    "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
     "chai": "^3.5.0",
     "desktop-screenshot": "^0.1.1",
