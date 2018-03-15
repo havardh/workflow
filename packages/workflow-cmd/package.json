@@ -1,10 +1,11 @@
 {
-  "name": "workflow-cli",
+  "name": "workflow-cmd",
   "version": "0.0.1",
   "description": "Command line interface for workflow.",
   "main": "cli.js",
   "bin": {
-    "workflow": "cli.js"
+    "workflow": "cli.js",
+    "wf": "cli.js"
   },
   "scripts": {
     "postinstall": "scripts/postinstall.js"

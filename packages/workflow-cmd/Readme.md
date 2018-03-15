@@ -1,10 +1,10 @@
-# Workflow cli
+# workflow wm
 
 This module is the entry point into workflow. It should be installed globally
 by
 
 ```
-npm install -g workflow-cli
+npm install -g workflow-cmd
 ```
 
 The installation will create a folder `~/.workflow` which contains the

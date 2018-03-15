@@ -12,8 +12,8 @@ jobs:
           - v1-dependencies-
       - run: yarn install
       - run:
-          name: "Install packages/workflow-cli"
-          working_directory: packages/workflow-cli
+          name: "Install packages/workflow-cmd"
+          working_directory: packages/workflow-cmd
           command: yarn install
       - run:
           name: "Install packages/workflow-core"
@@ -56,8 +56,8 @@ jobs:
           - v1-macos-dependencies-
       - run: yarn install
       - run:
-          name: "Install packages/workflow-cli"
-          working_directory: packages/workflow-cli
+          name: "Install packages/workflow-cmd"
+          working_directory: packages/workflow-cmd
           command: yarn install
       - run:
           name: "Install packages/workflow-core"
