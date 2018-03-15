@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "babel src -d dist",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
