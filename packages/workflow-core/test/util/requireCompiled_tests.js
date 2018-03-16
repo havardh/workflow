@@ -23,6 +23,7 @@ describe('load(configFile)', () => {
     sinon.stub(Deps, 'read');
     sinon.stub(Deps, 'write');
     sinon.stub(Deps, 'hash');
+    sinon.stub(Deps, 'ensureDirExists');
     sinon.stub(RequireWrapper, 'require');
 
     RequireWrapper.require = sinon.stub();
