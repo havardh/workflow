@@ -1,3 +1,5 @@
 flow-typed/*
 
 packages/**/node_modules/*
+
+dist/
