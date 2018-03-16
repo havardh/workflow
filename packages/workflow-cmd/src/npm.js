@@ -1,5 +1,5 @@
 /* eslint-env node */
-var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
 
 class Npm {
 
@@ -9,9 +9,9 @@ class Npm {
   }
 
   install(cb) {
-    exec('npm i', {
-      cwd: this.dir
-    }, cb);
+    const cmd = spawn('npm', ['i'], { stdio: "inherit", cwd: this.dir });
+    cmd.on('close', () => cb(null));
+    cmd.on('error', cb);
 
     return this;
   }
