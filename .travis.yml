@@ -12,3 +12,5 @@ script:
   - yarn eslint
   - yarn flow
   - yarn test
+after_failure:
+  - ./script/travis-update-snapshot

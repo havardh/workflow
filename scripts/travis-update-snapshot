@@ -1,0 +1,22 @@
+#!/bin/bash
+
+SNAPSHOT_DIRECTORY=packages/workflow-core/test/integration/__image_snapshots__/
+
+# Exit early if there are no changes in the snapshot directory
+if [[ -z $(git status $SNAPSHOT_DIRECTORY -s)]] then
+  echo "No snapshots to update"
+  exit 0
+else
+
+# Determine branch names
+CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
+SNAPSHOT_BRANCH="$CURRENT_BRANCH-snapshot/$TRAVIS_JOB_NUMBER"
+
+# Create branch
+git checkout -b $SNAPSHOT_BRANCH
+
+yarn jest -u integration
+
+rm -rf $SNAPSHOT_DIRECTORY/__diff_output__
+git add $SNAPSHOT_DIRECTORY/*
+git push -u origin $SNAPSHOT_BRANCH
