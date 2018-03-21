@@ -10,6 +10,8 @@ export type Rect = {|
   height: number
 |};
 
+
+
 export default class Tile extends Base {
 
   getDesktopRect() {
@@ -27,7 +29,14 @@ export default class Tile extends Base {
 
     await this.openNode(root);
 
-    return this.setPositions({ root, rect });
+    const positions = await this.setPositions({ root, rect });
+
+    await this.postApply();
+
+    return positions;
+  }
+
+  async postApply() {
   }
 
   setPositions({ root, rect }: {root: Node, rect: Rect}) {

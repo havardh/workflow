@@ -1218,6 +1218,10 @@ dom-walk@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/dom-walk/-/dom-walk-0.1.1.tgz#672226dc74c8f799ad35307df936aba11acd6018"
 
+duplex-child-process@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/duplex-child-process/-/duplex-child-process-0.0.5.tgz#1c2462b8ec8fd01e432836ebbd592bcdffbb65e9"
+
 ecc-jsbn@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"
@@ -2763,6 +2767,12 @@ os-locale@^1.4.0:
 os-tmpdir@^1.0.0, os-tmpdir@^1.0.1, os-tmpdir@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
+
+osascript@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/osascript/-/osascript-1.2.0.tgz#de82e292f0891dd0858ac5528e5ac772061c2a47"
+  dependencies:
+    duplex-child-process "0.0.5"
 
 osenv@^0.1.4:
   version "0.1.5"
