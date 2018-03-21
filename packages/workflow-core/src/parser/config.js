@@ -1,4 +1,3 @@
-// @flow
 import type { WorkspaceConfig, NodeConfig } from '../index';
 import type { AppConfig } from '../apps';
 
@@ -19,6 +18,7 @@ export type App = {|
   class: string,
   name: string,
   open: string,
+  jxa: any,
 |};
 
 function parseApp(config: AppConfig, args): App {
@@ -46,9 +46,9 @@ function parseApp(config: AppConfig, args): App {
     percent,
     class: transformedConfig.class,
     name: transformedConfig.name,
-    jxa,
     // $FlowTodo
     open: open(transformedConfig),
+    jxa,
   };
 }
 
