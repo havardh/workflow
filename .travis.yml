@@ -5,6 +5,8 @@ node_js:
   - 8
 install:
   - sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" "INSERT INTO access VALUES ('kTCCServiceAccessibility','com.apple.Terminal',0,1,1,NULL,NULL);"
+  - brew tap caskroom/cask
+  - brew cask install iterm2
   - yarn
 script:
   - yarn eslint
