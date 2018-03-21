@@ -1,15 +1,7 @@
 import * as osascript from "osascript";
 import shell from 'shelljs';
-import {difference} from "lodash";
-import {spawn} from "child_process";
 
 import Tile from '../tile';
-
-function waitFor(millis) {
-  const waitTill = new Date(new Date().getTime() + (millis));
-
-  while (waitTill > new Date());
-}
 
 function setPositionScript(app, position) {
   // Executed in jxa context
@@ -56,8 +48,6 @@ export default class Osx extends Tile {
   async setPosition({app, position}) {
     const script = setPositionScript(app, position);
 
-    const options = {type: "JavaScript"};
-
     this.scripts.push(script);
 
     return Promise.resolve();
@@ -79,7 +69,7 @@ export default class Osx extends Tile {
     })
   }
 
-  async runCmd(app) { // eslint-disable-line class-methods-use-this
+  async runCmd() { // eslint-disable-line class-methods-use-this
     // app is opened in setPosition method
     return Promise.resolve({});
   }

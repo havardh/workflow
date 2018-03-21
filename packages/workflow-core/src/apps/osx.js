@@ -1,4 +1,4 @@
-
+/* global Application, delay */
 
 export function Terminal(config) {
   return {
@@ -52,8 +52,6 @@ export function iTerm2(config) {
       },
 
       run: function run(window, app) {
-        const iTerm = Application("iTerm")
-
         const pane = window.currentSession();
 
         if (app.cwd) {
