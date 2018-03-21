@@ -22,27 +22,31 @@ export type App = {|
 |};
 
 function parseApp(config: AppConfig, args): App {
-  const { open, percent } = config;
+  const { open, percent, jxa } = config;
 
   const transformedConfig = {};
 
   Object.keys(config)
-      .filter(key => key !== 'open')
+      .filter(key => key !== 'open' && key !== "jxa")
       .forEach((key: string) => { transformedConfig[key] = parseValue(config[key], args); });
 
   if (typeof open === 'string') {
     return {
+      ...config,
       open,
       name: transformedConfig.name,
       class: transformedConfig.class,
+      jxa,
       percent,
     };
   }
 
   return {
+    ...config,
     percent,
     class: transformedConfig.class,
     name: transformedConfig.name,
+    jxa,
     // $FlowTodo
     open: open(transformedConfig),
   };
