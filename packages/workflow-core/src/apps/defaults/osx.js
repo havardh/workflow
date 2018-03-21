@@ -1,5 +1,5 @@
-import { Terminal as TerminalApp, Safari, TextEdit } from '../osx';
+import { iTerm2, Safari, Atom } from '../osx';
 
-export const Terminal = TerminalApp;
+export const Terminal = iTerm2;
 export const Browser = Safari;
-export const TextEditor = TextEdit;
+export const TextEditor = Atom;
