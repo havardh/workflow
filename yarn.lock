@@ -1068,10 +1068,6 @@ buffer-equal@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/buffer-equal/-/buffer-equal-0.0.1.tgz#91bc74b11ea405bc916bc6aa908faafa5b4aac4b"
 
-buffers@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/buffers/-/buffers-0.1.1.tgz#b24579c3bed4d6d396aeee6d9a8ae7f5482ab7bb"
-
 builtin-modules@^1.0.0, builtin-modules@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
@@ -1478,6 +1474,10 @@ domexception@^1.0.0:
   resolved "https://registry.yarnpkg.com/domexception/-/domexception-1.0.1.tgz#937442644ca6a31261ef36e3ec677fe805582c90"
   dependencies:
     webidl-conversions "^4.0.2"
+
+duplex-child-process@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/duplex-child-process/-/duplex-child-process-0.0.5.tgz#1c2462b8ec8fd01e432836ebbd592bcdffbb65e9"
 
 ecc-jsbn@~0.1.1:
   version "0.1.1"
@@ -3377,12 +3377,6 @@ node-notifier@^5.2.1:
     shellwords "^0.1.1"
     which "^1.3.0"
 
-node-osascript@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/node-osascript/-/node-osascript-2.0.0.tgz#26e22bfd067d6e74d154570d9857efc6020080c9"
-  dependencies:
-    buffers "^0.1.1"
-
 node-pre-gyp@^0.6.39:
   version "0.6.39"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.6.39.tgz#c00e96860b23c0e1420ac7befc5044e1d78d8649"
@@ -3535,6 +3529,12 @@ os-locale@^2.0.0:
 os-tmpdir@^1.0.0, os-tmpdir@^1.0.1, os-tmpdir@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
+
+osascript@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/osascript/-/osascript-1.2.0.tgz#de82e292f0891dd0858ac5528e5ac772061c2a47"
+  dependencies:
+    duplex-child-process "0.0.5"
 
 osenv@^0.1.4:
   version "0.1.5"
