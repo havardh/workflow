@@ -1,4 +1,9 @@
 #!/bin/bash
 
-defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Bluetooth.menu"
-killall SystemUIServer
+# Hide Dock
+defaults write com.apple.Dock autohide -bool TRUE
+killall Dock
+
+# Hide Menu Bar
+defaults write NSGlobalDomain _HIHideMenuBar -bool true
+killall Finder
