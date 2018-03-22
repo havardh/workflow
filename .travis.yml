@@ -3,14 +3,18 @@ sudo: true
 os: osx
 osx_image: xcode8
 node_js:
-  - 8
+- 8
 install:
-  - sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" "INSERT INTO access VALUES ('kTCCServiceAccessibility','com.apple.Terminal',0,1,1,NULL,NULL);"
-  - brew cask install iterm2
-  - yarn
+- sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" "INSERT INTO access
+  VALUES ('kTCCServiceAccessibility','com.apple.Terminal',0,1,1,NULL,NULL);"
+- brew cask install iterm2
+- yarn
 script:
-  - yarn eslint
-  - yarn flow
-  - yarn test
+- yarn eslint
+- yarn flow
+- yarn test
 after_script:
-  - ./scripts/travis-update-snapshot
+- "./scripts/travis-update-snapshot"
+env:
+  global:
+    secure: U3Dt4uDGSR8LOZfg0GyFbodl+dKmi8t+kqKE71Y6UxXV4ClYleM5A4G12wGBUvueHwx7e8LVqE9d2vWgKpUxT4+Mq0tXlay2x4vim56uLIAZ5qGUc7SyMlK04xA22WK7DLhILkoRLbxNTPVkOInQ1P/9qrQ5CoYwCQZWEAORpXtst379WWms0aNkUZNhBIjCiRX1cStBitquY8Aa7B7FSh6kKvM1frO/EX3Xd+Ex0bydFmbDV98abxECW7lumV8bpYTeYvg+0rE4RALT0jJrsVkHceFH56nxZpJ/T8iOyUKxhU2tNT/N19elu5SjLVATvI0HmXq6sxtg91FUwBJMJUQ4MwsiJOtM8OJ1Mh6m+HlX7WSFXl7W5ri21t8efSbfa/mASYi6zE7GS1io4kurPErN+/6YBNbuR4Z9Zz2PH/PU26xRu23Lb8lnAuijEHiWrEZSVU9zTHgIpwdltcrSkmBwBY79E0pVd1pqGabTklBPodIRhPrb7MhU4gvbuiW712R9YJjpYBMD7pkpRliJhzVexiDr8V3H149EWts5+NRNjLdJMwx55OpzF2Eu1n3Se/p5wwluHUkhPYJ6FWm2bAfOrZDsH29ekYBiMk8Esu7X6qyPKh0SEX8i6mUN/aAjtAdhHWmKAr9gBqXIgjItF/tEv4M1DKaGR9HTmNe9yxY=
