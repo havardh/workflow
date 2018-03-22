@@ -11,7 +11,7 @@ fi
 rm -rf $SNAPSHOT_DIRECTORY/__diff_output__
 
 # Determine branch names
-if [[ -z <$TRAVIS_PULL_REQUEST_BRANCH ]]; then
+if [[ -z $TRAVIS_PULL_REQUEST_BRANCH ]]; then
   CURRENT_BRANCH=$TRAVIS_BRANCH
 else
   CURRENT_BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
