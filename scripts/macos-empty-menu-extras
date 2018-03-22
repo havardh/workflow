@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+echo 'export PS1="\w # "' >> ~/.bashrc
+
 # Hide Dock
 defaults write com.apple.Dock autohide -bool TRUE
 killall Dock
