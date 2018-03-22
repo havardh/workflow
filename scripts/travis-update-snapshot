@@ -8,6 +8,8 @@ if [[ -z $(git status $SNAPSHOT_DIRECTORY -s)]] then
   exit 0
 else
 
+rm -rf $SNAPSHOT_DIRECTORY/__diff_output__
+
 # Determine branch names
 CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
 SNAPSHOT_BRANCH="$CURRENT_BRANCH-snapshot/$TRAVIS_JOB_NUMBER"
@@ -19,7 +21,6 @@ git checkout -b $SNAPSHOT_BRANCH
 yarn jest -u integration
 
 # Commit and push the updated snapshots to origin
-rm -rf $SNAPSHOT_DIRECTORY/__diff_output__
 git add $SNAPSHOT_DIRECTORY/*
 git commit -m 'test: update snapshot for osx
 
