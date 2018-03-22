@@ -46,15 +46,11 @@ class Windows extends Tile {
   async runWithStart({program, args}) {
     const before = await this.getPids(program);
 
-    await exec("start " + program + " " + (args || []).join(" "));
+    exec("start " + program + " " + (args || []).join(" "));
 
     const after = await this.getPids(program);
 
-    console.log(before, after);
-
     const [pid] = difference(after, before)
-
-    console.log(pid)
 
     return pid;
   }
