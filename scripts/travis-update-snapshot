@@ -20,6 +20,13 @@ git checkout -b $SNAPSHOT_BRANCH
 # Run integration tests and update new snapshots
 yarn jest -u integration
 
+# Setup git credentials
+git config --global user.email "travis@travis-ci.org"
+git config --global user.name "Travis CI"
+
+# Setup github remote
+git remote set-url origin https://${GH_TOKEN}@github.com/havardh/workflow.git
+
 # Commit and push the updated snapshots to origin
 git add $SNAPSHOT_DIRECTORY/*
 git commit -m 'test: update snapshot for osx
