@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+# Make the bash prompt independent of deploy
 echo 'export PS1="\w # "' >> ~/.bashrc
 
 # Hide Dock
