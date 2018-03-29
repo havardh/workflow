@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# This script aligns the desktop layout of a osx instance for
+# portability of integration tests between machines
+
+# Set terminal to bash
+chsh -s `which bash`
+
+# Make the bash prompt independent of deploy
+echo 'export PS1="# "' >> ~/.bashrc
+#echo 'export PS1="# "' >> ~/.bash_profile
+
+# Set iTerm2 profile
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$TRAVIS_BUILD_DIR/scripts/iTerm"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+killall iTerm2
+
+# Hide Dock
+defaults write com.apple.Dock autohide -bool TRUE
+killall Dock
+
+# Hide Menu Bar
+open -a "Finder"
+defaults write NSGlobalDomain _HIHideMenuBar -bool true
+killall Finder
