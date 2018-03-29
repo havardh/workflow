@@ -8,12 +8,12 @@ install:
 - sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" "INSERT INTO access
   VALUES ('kTCCServiceAccessibility','com.apple.Terminal',0,1,1,NULL,NULL);"
 - brew cask install iterm2
-- "./scripts/macos-empty-menu-extras"
+- "./scripts/macos-ci-desktop-layout"
 - yarn
 script:
 - yarn eslint
 - yarn flow
-- yarn test
+- travis_retry yarn test
 after_script:
 - "./scripts/travis-update-snapshot"
 env:
