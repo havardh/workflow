@@ -34,7 +34,7 @@ describe('Integration tests', () => {
   test(`${platform}:term:split`, async () => {
     await runWith(`${__dirname}/flows/term-split`, [], context);
 
-    waitFor(2);
+    waitFor(4);
 
     // $FlowTodo
     expect(await take()).toMatchImageSnapshot();
