@@ -3,6 +3,12 @@
 
 import type { Config, Node, App } from '../parser/config';
 
+function waitFor(millis) {
+  const waitTill = new Date(new Date().getTime() + (millis));
+
+  while (waitTill > new Date());
+}
+
 export default class Base {
 
   apply(config: Config) { // eslint-disable-line no-unused-vars
@@ -15,7 +21,15 @@ export default class Base {
 
   async openNode(node: Node) {
     if (node.children) {
-      return Promise.all(node.children.map(async app => this.openNode(app)));
+      const promises = [];
+      for (const child of node.children) {
+        const promise = await this.openNode(child)
+        waitFor(10);
+        promises.push(promise);
+      }
+
+
+      return Promise.all(promises);
     }
     const pid = await this.runCmd(node);
     node.pid = pid; // eslint-disable-line no-param-reassign
