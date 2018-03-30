@@ -28,7 +28,7 @@ test_script:
   # run tests and run build
   - yarn run eslint
   - yarn run flow
-  - yarn jest
+  - yarn jest -- --forceExit
 
 artifacts:
   - path: reports
