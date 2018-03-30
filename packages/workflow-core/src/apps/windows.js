@@ -35,6 +35,11 @@ export type PowerShellConfig = {
 export function PowerShell(config: PowerShellConfig): PowerShell {
   return {
     ...config,
-    open: () => 'powershell.exe',
+    windows: {
+      program: "powershell.exe",
+      start: true,
+      args: []
+    },
+    open: () => "powershell.exe"
   };
 }
