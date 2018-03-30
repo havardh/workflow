@@ -25,7 +25,7 @@ class Windows extends Tile {
     });
   }
 
-  async getPids(program) {
+  async getPids(program: string) {
     return new Promise((resolve, reject) => {
       exec(`tasklist /FI "IMAGENAME eq ${program}"`, (err, stdout) => {
         if (err) {
@@ -43,15 +43,12 @@ class Windows extends Tile {
       );
   }
 
-  async runWithStart({program, args}) {
+  async runWithStart({program, args}: {program: string, args: Array<string>}) {
     const before = await this.getPids(program);
-
     exec("start " + program + " " + (args || []).join(" "));
-
     const after = await this.getPids(program);
 
-    const [pid] = difference(after, before)
-
+    const [pid] = difference(after, before);
     return pid;
   }
 
