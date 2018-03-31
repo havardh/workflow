@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SNAPSHOT_DIRECTORY=packages/workflow-core/test/integration/__image_snapshots__
+SNAPSHOT_DIRECTORY=test/integration/__image_snapshots__
 BRANCH_PREFIX=travis-update-snapshot
 
 # Exit early if there are no changes in the snapshot directory

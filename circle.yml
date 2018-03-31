@@ -43,7 +43,7 @@ jobs:
       - store_artifacts:
           path: reports
       - store_artifacts:
-          path: packages/workflow-core/test/integration/__image_snapshots__
+          path: test/integration/__image_snapshots__
   build-macos:
     macos:
       xcode: "9.0"
@@ -87,7 +87,7 @@ jobs:
       - store_artifacts:
           path: reports
       - store_artifacts:
-          path: packages/workflow-core/test/integration/__image_snapshots__
+          path: test/integration/__image_snapshots__
 
 workflows:
   version: 2

@@ -34,7 +34,7 @@ test_script:
   - appveyor-retry yarn jest -- --forceExit
 
 on_failure:
-  - ps: Get-ChildItem .\packages\workflow-core\test\integration\__image_snapshots__\__diff_output__\*.png | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+  - ps: Get-ChildItem .\test\integration\__image_snapshots__\__diff_output__\*.png | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
 on_finish:
   - ps: ./scripts/appveyor-update-snapshot.ps1
