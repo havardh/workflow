@@ -34,10 +34,8 @@ test_script:
   - yarn jest -- --forceExit
 
 on_finish:
-  - ps: ./Scripts/appveyor-update-snapshot.ps1
-
-after_script:
   - ps: Get-ChildItem .\packages\workflow-core\test\integration\__image_snapshots__\__diff_output__\*.png | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+  - ps: ./Scripts/appveyor-update-snapshot.ps1
 
 # Cache node_modules for faster builds
 cache:
