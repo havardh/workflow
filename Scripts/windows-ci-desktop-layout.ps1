@@ -7,7 +7,7 @@ Set-ExecutionPolicy RemoteSigned
 echo 'function prompt {"# "}' > $PROFILE
 
 # Set PowerShell window title to 'PowerShell'
-echo '$host.ui.RawUI.WindowTitle = "PowerShell"' > $PROFILE 
+echo '$host.ui.RawUI.WindowTitle = "PowerShell"' >> $PROFILE 
 
 # Hide taskbar
 $p='HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3'
