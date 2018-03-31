@@ -8,6 +8,24 @@
     "test": "jest",
     "watch": "jest --watch"
   },
+  "babel": {
+    "presets": [
+      "flow",
+      "react",
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-object-rest-spread",
+      "transform-class-properties"
+    ]
+  },
   "jest": {
     "testMatch": [
       "**/test/**/*_tests.js"

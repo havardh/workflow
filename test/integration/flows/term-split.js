@@ -6,7 +6,6 @@ import { Workspace } from 'workflow-core/src/index';
 import { SplitH } from 'workflow-core/src/layout';
 import { Terminal } from 'workflow-core/src/apps/defaults';
 
-
 const workspace =
   <Workspace name={'term:split'} >
     <SplitH>

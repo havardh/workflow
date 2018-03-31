@@ -1,5 +1,5 @@
 
-$SNAPSHOT_DIRECTORY="packages/workflow-core/test/integration/__image_snapshots__"
+$SNAPSHOT_DIRECTORY="test/integration/__image_snapshots__"
 $BRANCH_PREFIX="update-snapshot"
 
 # Clean up all other running instances from previous integration tests
