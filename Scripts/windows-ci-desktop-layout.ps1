@@ -1,5 +1,8 @@
 # Set prompt to '# '
-new-item -itemtype file -path $profile -force
+
+$PROFILE="$Home\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+
+new-item -itemtype file -path $PROFILE -force
 Set-ExecutionPolicy RemoteSigned
 echo 'function prompt {"# "}' > $PROFILE
 
