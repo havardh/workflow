@@ -2,6 +2,9 @@
 $SNAPSHOT_DIRECTORY="packages/workflow-core/test/integration/__image_snapshots__"
 $BRANCH_PREFIX="update-snapshot"
 
+# Clean up all other running instances from previous integration tests
+Get-Process Powershell | Where-Object { $_.ID -ne $pid } | Stop-Process
+
 # Exit early if there are no changes in the snapshot directory
 if ($(git status $SNAPSHOT_DIRECTORY -s) -eq $null) {
   echo "No snapshots to update"
