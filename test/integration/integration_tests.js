@@ -5,8 +5,8 @@ import { toMatchImageSnapshot } from 'jest-image-snapshot';
 
 import take from './helpers/screenshot';
 
-import { disableCache } from 'workflow-core/src/util/requireCompiled';
-import { runWith } from 'workflow-core/src/index';
+import { disableCache } from '../../packages/workflow-core/src/util/requireCompiled';
+import { runWith } from '../../packages/workflow-core/src/index';
 
 expect.extend({ toMatchImageSnapshot });
 
