@@ -6,7 +6,7 @@ environment:
   matrix:
     - nodejs_version: '8'
   access_token:
-    secure: xl/DOD+43yfh+yw5zLcYazakf8AjgD/1XkDiekFwPY/oBPruovwJQU3n/Lp8h7jE    
+    secure: xl/DOD+43yfh+yw5zLcYazakf8AjgD/1XkDiekFwPY/oBPruovwJQU3n/Lp8h7jE
 
 # Fix line endings in Windows. (runs before repo cloning)
 init:
@@ -18,7 +18,7 @@ install:
   - ps: Install-Product node $env:nodejs_version x64
   - set PATH=%APPDATA%\yarn;%PATH%
   - yarn
-  - ps: ./Scripts/windows-ci-desktop-layout.ps1
+  - ps: ./scripts/windows-ci-desktop-layout.ps1
 
 # Disable automatic builds
 build: off
@@ -37,7 +37,7 @@ on_failure:
   - ps: Get-ChildItem .\packages\workflow-core\test\integration\__image_snapshots__\__diff_output__\*.png | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
 on_finish:
-  - ps: ./Scripts/appveyor-update-snapshot.ps1
+  - ps: ./scripts/appveyor-update-snapshot.ps1
 
 # Cache node_modules for faster builds
 cache:
