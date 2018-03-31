@@ -5,6 +5,8 @@ image:
 environment:
   matrix:
     - nodejs_version: '8'
+  access_token:
+    secure: xl/DOD+43yfh+yw5zLcYazakf8AjgD/1XkDiekFwPY/oBPruovwJQU3n/Lp8h7jE    
 
 # Fix line endings in Windows. (runs before repo cloning)
 init:
@@ -30,6 +32,9 @@ test_script:
   - yarn run eslint
   - yarn run flow
   - yarn jest -- --forceExit
+
+on_finish:
+  - ps: ./Scripts/appveyor-update-snapshot.ps1
 
 artifacts:
   - path: reports
