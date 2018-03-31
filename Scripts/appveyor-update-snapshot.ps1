@@ -21,6 +21,10 @@ if ($CURRENT_BRANCH.startsWith($BRANCH_PREFIX)) {
 # Enable Credentials Store
 git config --global credential.helper store
 
+# Setup git credentials
+git config --global user.email "team@appveyor.com"
+git config --global user.name "AppVeyor CI"
+
 # Setup token based credentials
 Add-Content "$HOME\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
 
@@ -34,10 +38,6 @@ git checkout -b $SNAPSHOT_BRANCH
 
 # Run integration tests and update new snapshots
 yarn jest -u integration --forceExit
-
-# Setup git credentials
-git config --global user.email "team@appveyor.com"
-git config --global user.name "AppVeyor CI"
 
 # Setup github remote
 git remote set-url origin https://github.com/havardh/workflow.git
