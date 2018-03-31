@@ -31,7 +31,7 @@ test_script:
   # run tests and run build
   - yarn run eslint
   - yarn run flow
-  - yarn jest -- --forceExit
+  - appveyor-retry yarn jest -- --forceExit
 
 on_finish:
   - ps: Get-ChildItem .\packages\workflow-core\test\integration\__image_snapshots__\__diff_output__\*.png | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
