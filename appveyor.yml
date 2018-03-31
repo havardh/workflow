@@ -36,12 +36,8 @@ test_script:
 on_finish:
   - ps: ./Scripts/appveyor-update-snapshot.ps1
 
-artifacts:
-  - path: reports
-    name: Junit Reports
-
-  - path: packages/workflow-core/test/integration/__image_snapshots__
-    name: Snapshot Images
+after_script:
+  - ps: Get-ChildItem .\packages\workflow-core\test\integration\__image_snapshots__\__diff_output__\*.png | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
 # Cache node_modules for faster builds
 cache:
