@@ -1,12 +1,5 @@
 /* eslint-env node */
-const Code = {
-  class: 'Code',
-  open: ({ file }) => `code -n ${file}`,
-};
-const Chrome = {
-  class: 'Google-chrome',
-  open: ({ url }) => `google-chrome-stable --new-window ${url}`,
-};
+import { TextEditor, Browser} from "workflow-core/src/apps/defaults";
 
 export default {
   name: 'workflow-example',
@@ -14,8 +7,8 @@ export default {
     layout: 'splith',
     percent: 1.0,
     children: [
-      { ...Chrome, url: 'github.com/havardh/workflow/tree/master/packages/workflow-cmd', percent: 0.5 },
-      { ...Code, file: __filename, percent: 0.5 },
+      { ...Browser, url: 'http://github.com/havardh/workflow/tree/master/packages/workflow-cmd', percent: 0.5 },
+      { ...TextEditor, file: __filename, percent: 0.5 },
     ],
   },
 };
