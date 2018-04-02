@@ -54,7 +54,7 @@ class Windows extends Tile {
 
   async runCmd(app: App) { // eslint-disable-line class-methods-use-this
     return new Promise(async (resolve) => {
-      const {program, start, args} = app.windows;
+      const {program, start, args} = app.open;
 
       if (start) {
         resolve(await(this.runWithStart({program, args})));

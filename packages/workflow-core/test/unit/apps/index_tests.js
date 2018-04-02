@@ -4,26 +4,14 @@ import { expect } from 'chai';
 
 import { Atom, XTerm } from '../../../src/apps/linux';
 
-const config = { percent: 1.0, open: x => x };
-
-describe('Atom(config)', () => {
-  it('should add splitv layout to config', () => {
-    const input = { ...config };
-    const expected = { ...config, class: 'Atom' };
-
-    const actual = Atom(input);
-
-    expect(actual).to.deep.equal(expected);
+describe('Atom', () => {
+  it('should have class "Atom"', () => {
+    expect(Atom.class).to.equal('Atom');
   });
 });
 
-describe('XTerm(config)', () => {
-  it('should add splith layout to config', () => {
-    const input = { ...config };
-    const expected = { ...config, class: 'XTerm' };
-
-    const actual = XTerm(input);
-
-    expect(actual).to.deep.equal(expected);
+describe('XTerm', () => {
+  it('should have class "XTerm"', () => {
+    expect(XTerm.class).to.equal("XTerm");
   });
 });
