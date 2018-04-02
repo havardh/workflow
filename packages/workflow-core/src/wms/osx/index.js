@@ -9,7 +9,7 @@ function setPositionScript(app, position) {
     window.bounds = position;
   }
 
-  const {open, run} = app.jxa;
+  const {open, run} = app.open;
 
   return `
     (function () {

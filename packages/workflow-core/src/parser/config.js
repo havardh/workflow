@@ -1,5 +1,8 @@
+import {mapValues} from "lodash";
+
 import type { WorkspaceConfig, NodeConfig } from '../index';
 import type { AppConfig } from '../apps';
+
 
 function parseValue(value, args) { // eslint-disable-line no-shadow
   if (typeof value === 'function') {
@@ -22,34 +25,11 @@ export type App = {|
 |};
 
 function parseApp(config: AppConfig, args): App {
-  const { open, percent, jxa } = config;
+  const { open, ...rest } = config;
 
-  const transformedConfig = {};
+  const transformedConfig = mapValues(rest, value => parseValue(value, args));
 
-  Object.keys(config)
-      .filter(key => key !== 'open' && key !== "jxa")
-      .forEach((key: string) => { transformedConfig[key] = parseValue(config[key], args); });
-
-  if (typeof open === 'string') {
-    return {
-      ...config,
-      open,
-      name: transformedConfig.name,
-      class: transformedConfig.class,
-      jxa,
-      percent,
-    };
-  }
-
-  return {
-    ...config,
-    percent,
-    class: transformedConfig.class,
-    name: transformedConfig.name,
-    // $FlowTodo
-    open: open(transformedConfig),
-    jxa,
-  };
+  return { ...transformedConfig, open };
 }
 
 export type LayoutNode = {|

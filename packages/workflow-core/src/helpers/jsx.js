@@ -7,10 +7,11 @@ const React = {
           root: rest[0],
         });
       }
-      return node({
+      return {
+        ...node,
         percent: 0.5,
         ...args,
-      });
+      };
     }
     return node({
       percent: 0.5,

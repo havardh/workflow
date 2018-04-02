@@ -85,7 +85,7 @@ export default class I3 {
   }
 
   open(app: App) {
-    this.client.command(`exec ${app.open}`);
+    this.client.command(`exec ${app.open(app)}`);
   }
 
 }
