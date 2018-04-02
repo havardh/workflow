@@ -17,6 +17,14 @@ if (existsSync(destination)) {
       console.log("Workflow home directory found at: " + destination);
       console.log("Update feature is not yet implemented");
       console.log();
+
+      console.log(`Copying: ${__dirname}/${source}/flows -> ${destination}/flows`);
+      ncp(source + "/flows", destination + "/flows", { clobber: true }, err => {
+        if (err) {
+          return console.error(err);
+        }
+        console.log("All files copied");
+      });
     } else {
       console.error("Invalid workflow home folder found at: " + destination);
       console.error(
