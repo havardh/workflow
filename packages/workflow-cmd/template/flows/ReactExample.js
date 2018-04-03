@@ -1,9 +1,11 @@
 /* eslint-env node */
+
 import React from 'react';
 import render, { Workspace, Layouts, Apps } from 'workflow-react';
 
 const { SplitH } = Layouts;
-const { Code, Chrome } = Apps;
+const { TextEditor, Browser } = Apps.defaults;
+
 
 /*
   NB this workflow requires the library workflow-react
@@ -13,8 +15,8 @@ const { Code, Chrome } = Apps;
 export default render(
   <Workspace name={'workflow-react-example'}>
     <SplitH percent={1}>
-      <Code percent={0.2} file={__filename} />
-      <Chrome
+      <TextEditor percent={0.2} file={__filename} />
+      <Browser
         percent={0.8}
         url={'https://github.com/havardh/workflow/tree/master/packages/workflow-cmd'}
       />
