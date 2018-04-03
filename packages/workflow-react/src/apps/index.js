@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { pick, mapValues } from 'lodash';
+import { Apps } from "workflow-core";
 
 import { App } from '../';
 
-import * as defaultApps from "workflow-core/src/apps/defaults";
-
-export function generateAppComponent({ params, xClass, open }) {
+export function generateAppComponent({ params, xClass, name, open }) {
   return class extends Component {
-    static displayName = `app-${xClass}`;
+    static displayName = `app-${xClass || name}`;
 
     render() {
       const { props } = this;
@@ -18,6 +17,7 @@ export function generateAppComponent({ params, xClass, open }) {
         <App
           {...appProps}
           xClass={xClass}
+          name={name}
           open={open}
           percent={props.percent}
         />
@@ -26,4 +26,4 @@ export function generateAppComponent({ params, xClass, open }) {
   };
 }
 
-export const defaults = mapValues(defaultApps, generateAppComponent);
+export const defaults = mapValues(Apps.defaults, generateAppComponent);
