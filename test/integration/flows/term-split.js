@@ -6,12 +6,11 @@ import render, { Workspace, Layouts, Apps } from '../../../packages/workflow-rea
 const { SplitH } = Layouts;
 const { Terminal } = Apps.defaults;
 
-const workspace =
+export default render(
   <Workspace name={'term:split'} >
     <SplitH>
       <Terminal cwd={process.cwd()} percent={0.8} />
       <Terminal cwd={process.cwd()} percent={0.2} />
     </SplitH>
-  </Workspace>;
-
-export default render(workspace);
+  </Workspace>
+);
