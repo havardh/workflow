@@ -1,7 +1,7 @@
 import render from './render';
 
 import * as Layouts from './layouts/split';
-import Apps from './apps';
+import * as Apps from './apps';
 
 const App = 'APP';
 const Layout = 'LAYOUT';

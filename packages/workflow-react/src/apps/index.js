@@ -3,18 +3,7 @@ import { pick, mapValues } from 'lodash';
 
 import { App } from '../';
 
-const apps = {
-  Code: {
-    params: ['file'],
-    xClass: 'Code',
-    open: ({ file }) => `code -n ${file}`,
-  },
-  Chrome: {
-    params: ['url'],
-    xClass: 'Google-chrome',
-    open: ({ url }) => `google-chrome-stable --new-window ${url}`,
-  },
-};
+import * as defaultApps from "workflow-core/src/apps/defaults";
 
 export function generateAppComponent({ params, xClass, open }) {
   return class extends Component {
@@ -28,7 +17,7 @@ export function generateAppComponent({ params, xClass, open }) {
       return (
         <App
           {...appProps}
-          class={xClass}
+          xClass={xClass}
           open={open}
           percent={props.percent}
         />
@@ -37,6 +26,4 @@ export function generateAppComponent({ params, xClass, open }) {
   };
 }
 
-const components = mapValues(apps, generateAppComponent);
-
-export default components;
+export const defaults = mapValues(defaultApps, generateAppComponent);
