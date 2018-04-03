@@ -1,10 +1,10 @@
 /* eslint-env node */
 /* eslint-disable no-unused-vars */
-import React from 'workflow-core/src/helpers/jsx';
+import React from 'react';
+import render, { Workspace, Layouts, Apps } from '../../../packages/workflow-react';
 
-import { Workspace } from 'workflow-core/src/index';
-import { SplitH } from 'workflow-core/src/layout';
-import { Terminal } from 'workflow-core/src/apps/defaults';
+const { SplitH } = Layouts;
+const { Terminal } = Apps.defaults;
 
 const workspace =
   <Workspace name={'term:split'} >
@@ -14,4 +14,4 @@ const workspace =
     </SplitH>
   </Workspace>;
 
-export default workspace;
+export default render(workspace);
