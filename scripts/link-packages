@@ -1,0 +1,10 @@
+#!/bin/bash
+
+pushd packages/workflow-core
+yarn link
+popd
+
+pushd packages/workflow-react
+yarn link
+yarn link workflow-core
+popd
