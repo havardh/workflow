@@ -6,7 +6,7 @@ function cli(context) {
     context.workflowFolder = __dirname;
   try {
     // $FlowTodo
-    const run = require('./dist').default;
+    const run = require('./index').default;
     run(context);
   } catch (error) {
     if (error.code === 'MODULE_NOT_FOUND') {
