@@ -1,4 +1,9 @@
 // @flow
+import * as defaults from "./defaults";
+import * as linux from "./linux";
+import * as osx from "./osx";
+import * as windows from "./windows";
+
 export type TerminalConfig = {
   percent: number,
   class?: string,
@@ -30,3 +35,5 @@ export type AppConfig =
     TerminalConfig
   | TextEditorConfig
   | BrowserConfig;
+
+export default { defaults, linux, osx, windows };
