@@ -3,10 +3,6 @@
   "version": "0.0.2",
   "description": "Workflow-centric workspace manager",
   "main": "cli.js",
-  "files": [
-    "dist",
-    "cli.js"
-  ],
   "babel": {
     "presets": [
       "flow",
@@ -32,8 +28,11 @@
   },
   "scripts": {
     "start": "node cli.js",
-    "prepublishOnly": "npm run build",
-    "build": "babel src -d dist",
+    "build": "npm run build:code && npm run build:package",
+    "build:code": "babel src -d dist && cp -rf package.json dist",
+    "build:package": "cp -rf ./{package.json,readme.md,cli.js} dist",
+    "dist": "npm run build && cd dist && npm publish",
+    "link": "npm run build && cd dist && npm link",
     "test:all": "jest ",
     "test:unit": "jest test/unit",
     "test:integration": "jest test/integration",
