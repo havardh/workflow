@@ -65,7 +65,7 @@ export default class I3 {
       percent,
       swallows: [{
         // $FlowTodo
-        class: `^${node.class}$`,
+        class: `^${node.xClass}$`,
       }],
     };
   }
