@@ -1,19 +1,23 @@
 export const Atom = {
+  params: ["file"],
   open: ({ file }) => `atom -n ${file}`,
-  class: 'Atom',
+  xClass: 'Atom',
 };
 
 export const Code = {
+  params: ["file"],
   open: ({ file }) => `code -n ${file}`,
-  class: 'Code',
+  xClass: 'Code',
 };
 
 export const Emacs = {
+  params: ["file"],
   open: ({ file }) => `emacs ${file}`,
-  class: 'Emacs',
+  xClass: 'Emacs',
 };
 
 export const XTerm = {
+  params: ["cwd", "cmd", "args"],
   open: ({ cwd, cmd, args }) => {
     const argsString = (args || []).join(' ');
 
@@ -22,25 +26,29 @@ export const XTerm = {
     }
     return `cd ${cwd} && xterm -ls -T '${cmd} ${argsString}' -hold`;
   },
-  class: 'XTerm'
+  xClass: 'XTerm'
 };
 
 export const Chrome = {
+  params: ["url"],
   open: ({ url }) => `google-chrome-stable --new-window ${url}`,
-  class: 'Google-chrome',
+  xClass: 'Google-chrome',
 };
 
 export const Chromium = {
+  params: ["url"],
   open: ({ url }) => `chromium-browser --new-window ${url}`,
-  class: 'Chromium',
+  xClass: 'Chromium',
 };
 
 export const Firefox = {
+  params: ["url"],
   open: ({ url }) => `firefox ${url}`,
   class: 'Navigator.Firefox',
 };
 
 export const Gedit = {
+  params: ["file"],
   open: ({ file }) => `gedit --new-window ${file}`,
-  class: 'gedit.Gedit',
+  xClass: 'gedit.Gedit',
 };
