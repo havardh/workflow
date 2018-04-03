@@ -1,5 +1,5 @@
 /* eslint-env node */
-import { TextEditor, Browser} from "workflow-core/src/apps/defaults";
+import { TextEditor, Browser} from "workflow-core/apps/defaults";
 
 export default {
   name: 'workflow-example',
