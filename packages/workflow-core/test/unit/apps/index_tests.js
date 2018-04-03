@@ -6,12 +6,12 @@ import { Atom, XTerm } from '../../../src/apps/linux';
 
 describe('Atom', () => {
   it('should have class "Atom"', () => {
-    expect(Atom.class).to.equal('Atom');
+    expect(Atom.xClass).to.equal('Atom');
   });
 });
 
 describe('XTerm', () => {
   it('should have class "XTerm"', () => {
-    expect(XTerm.class).to.equal("XTerm");
+    expect(XTerm.xClass).to.equal("XTerm");
   });
 });
