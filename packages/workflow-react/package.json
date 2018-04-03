@@ -3,7 +3,10 @@
   "version": "0.0.2",
   "description": "",
   "main": "index.js",
-  "files": ["dist", "index.js"],
+  "files": [
+    "dist",
+    "index.js"
+  ],
   "babel": {
     "presets": [
       "flow",
@@ -17,7 +20,10 @@
         }
       ]
     ],
-    "plugins": ["transform-object-rest-spread", "transform-class-properties"]
+    "plugins": [
+      "transform-object-rest-spread",
+      "transform-class-properties"
+    ]
   },
   "scripts": {
     "build": "babel src -d dist",
@@ -27,14 +33,16 @@
     "type": "git",
     "url": "git+https://github.com/havardh/workflow.git"
   },
-  "keywords": ["react", "workflow"],
+  "keywords": [
+    "react",
+    "workflow"
+  ],
   "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/havardh/workflow/issues"
   },
-  "homepage":
-    "https://github.com/havardh/workflow/tree/master/packages/workflow-react#readme",
+  "homepage": "https://github.com/havardh/workflow/tree/master/packages/workflow-react#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3"
@@ -48,6 +56,7 @@
     "fbjs": "^0.8.16",
     "lodash": "^4.17.5",
     "react": "^16.2.0",
-    "react-reconciler": "^0.7.0"
+    "react-reconciler": "^0.7.0",
+    "workflow-core": "^0.0.2"
   }
 }
