@@ -19,6 +19,7 @@ install:
   - set PATH=%APPDATA%\yarn;%PATH%
   - yarn
   - ps: ./scripts/windows-ci-desktop-layout.ps1
+  - sh: ./scripts/link-packages
 
 # Disable automatic builds
 build: off

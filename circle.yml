@@ -28,6 +28,9 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
+          name: "Link Packages"
+          command: ./scripts/link-packages
+      - run:
           name: "JavaScript Linter"
           command: yarn eslint -- --format junit -o reports/js-lint-results.xml
       - run:
