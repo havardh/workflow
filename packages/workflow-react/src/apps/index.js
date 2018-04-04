@@ -4,7 +4,7 @@ import { Apps } from "workflow-core";
 
 import { App } from '../';
 
-export function generateAppComponent({ params, xClass, name, open }) {
+export function createComponent({ params, xClass, name, open }) {
   return class extends Component {
     static displayName = `app-${xClass || name}`;
 
@@ -26,7 +26,7 @@ export function generateAppComponent({ params, xClass, name, open }) {
   };
 }
 
-export const defaults = mapValues(Apps.defaults, generateAppComponent);
-export const linux = mapValues(Apps.linux, generateAppComponent);
-export const osx = mapValues(Apps.osx, generateAppComponent);
-export const windows = mapValues(Apps.windows, generateAppComponent);
+export const defaults = mapValues(Apps.defaults, createComponent);
+export const linux = mapValues(Apps.linux, createComponent);
+export const osx = mapValues(Apps.osx, createComponent);
+export const windows = mapValues(Apps.windows, createComponent);
