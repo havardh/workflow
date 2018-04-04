@@ -1,3 +1,4 @@
+/* eslint-disable */
 const screenshot = require("desktop-screenshot");
 const Path = require("path");
 
