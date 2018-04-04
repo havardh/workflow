@@ -18,11 +18,8 @@ install:
   - ps: Install-Product node $env:nodejs_version x64
   - set PATH=%APPDATA%\yarn;%PATH%
   - yarn
+  - ps: ./scripts/install-and-link-packages.ps1
   - ps: ./scripts/windows-ci-desktop-layout.ps1
-  - cd packages/workflow-cmd && yarn && cd ../..
-  - cd packages/workflow-core && yarn && cd ../..
-  - cd packages/workflow-react && yarn && cd ../..
-  - ps: ./scripts/link-packages.ps1
 
 # Disable automatic builds
 build: off
