@@ -7,12 +7,13 @@
     "workflow": "cli.js"
   },
   "scripts": {
-    "postinstall": "scripts/postinstall.js"
+    "postinstall": "node scripts/postinstall.js"
   },
   "repository": "https://github.com/havardh/workflow",
   "author": "Håvard Wormdal Høiby",
   "license": "MIT",
   "dependencies": {
+    "cross-spawn": "^6.0.5",
     "ncp": "^2.0.0"
   }
 }

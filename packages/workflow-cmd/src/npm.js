@@ -1,5 +1,5 @@
 /* eslint-env node */
-var spawn = require('child_process').spawn;
+var spawn = require('cross-spawn');
 
 class Npm {
 
