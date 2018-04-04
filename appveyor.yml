@@ -41,7 +41,8 @@ test_script:
   - node ./scripts/screenshot.js screenshot_test/after-jest.png
 
 on_failure:
-  - ps: Get-ChildItem .\test\integration\__image_snapshots__\__diff_output__\*.png | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+  - ps: New-Item -ItemType Directory -Force -Path .\test\integration\__image_snapshots\__diff_output__
+  - ps: try { Get-ChildItem .\test\integration\__image_snapshots__\__diff_output__\*.png | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name } } catch { echo error }
 
 on_finish:
   - ps: ./scripts/appveyor-update-snapshot.ps1
