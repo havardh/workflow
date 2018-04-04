@@ -27,3 +27,6 @@ export function generateAppComponent({ params, xClass, name, open }) {
 }
 
 export const defaults = mapValues(Apps.defaults, generateAppComponent);
+export const linux = mapValues(Apps.linux, generateAppComponent);
+export const osx = mapValues(Apps.osx, generateAppComponent);
+export const windows = mapValues(Apps.windows, generateAppComponent);
