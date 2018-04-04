@@ -18,11 +18,8 @@ install:
   - ps: Install-Product node $env:nodejs_version x64
   - set PATH=%APPDATA%\yarn;%PATH%
   - yarn
-  - node ./scripts/screenshot.js screenshot_test/after-yarn.png
   - ps: ./scripts/install-and-link-packages.ps1
-  - node ./scripts/screenshot.js screenshot_test/after-install-and-link.png
   - ps: ./scripts/windows-ci-desktop-layout.ps1
-  - node ./scripts/screenshot.js screenshot_test/after-windows-ci.png
 
 # Disable automatic builds
 build: off
@@ -34,19 +31,15 @@ test_script:
   - yarn --version
   # run tests and run build
   - yarn run eslint
-  - node ./scripts/screenshot.js screenshot_test/after-lint.png
   - yarn run flow
-  - node ./scripts/screenshot.js screenshot_test/after-flow.png
   - appveyor-retry yarn jest -- --forceExit
-  - node ./scripts/screenshot.js screenshot_test/after-jest.png
 
 on_failure:
-  - ps: New-Item -ItemType Directory -Force -Path .\test\integration\__image_snapshots\__diff_output__
-  - ps: try { Get-ChildItem .\test\integration\__image_snapshots__\__diff_output__\*.png | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name } } catch { echo error }
+  - ps: New-Item -ItemType Directory -Force -Path .\test\integration\__image_snapshots__\__diff_output__
+  - ps: Get-ChildItem .\test\integration\__image_snapshots__\__diff_output__\*.png | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
 on_finish:
   - ps: ./scripts/appveyor-update-snapshot.ps1
-  - ps: Get-ChildItem .\screenshot_test*.png | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
 # Cache node_modules for faster builds
 cache:
