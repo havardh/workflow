@@ -22,7 +22,7 @@ install:
   - cd packages/workflow-cmd && yarn && cd ../..
   - cd packages/workflow-core && yarn && cd ../..
   - cd packages/workflow-react && yarn && cd ../..
-  - sh: ./scripts/link-packages
+  - ps: ./scripts/link-packages.ps1
 
 # Disable automatic builds
 build: off
