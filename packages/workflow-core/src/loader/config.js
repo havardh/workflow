@@ -23,6 +23,7 @@ export default function load(name: string, context: Context): WorkspaceConfig {
     //`${__dirname}/../../examples/${name}`,
   ];
 
+  const errors = [];
   for (const option of options) {
     try {
       const config = RequireWrapper.require(option, context).default;
@@ -31,12 +32,19 @@ export default function load(name: string, context: Context): WorkspaceConfig {
     } catch (error) {
       if (error.code !== 'MODULE_NOT_FOUND' && error.code !== 'ENOENT') {
         throw error;
+      } else {
+        errors.push(error);
       }
     }
   }
 
   console.log(`Could not load '${name}'`);
   console.log('Tried:', options);
+
+  console.log("Got errors: ");
+  for (const error of errors) {
+    console.error(error);
+  }
 
   throw new ConfigLoadError(`Could not load ${name}`, options);
 }
