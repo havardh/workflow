@@ -14,9 +14,9 @@ install:
 - travis_retry brew cask install iterm2
 - "./scripts/macos-ci-desktop-layout"
 - yarn
-- "cd packages/workflow-cmd && yarn"
-- "cd packages/workflow-core && yarn"
-- "cd packages/workflow-react && yarn"
+- "pushd packages/workflow-cmd && yarn && popd"
+- "pushd packages/workflow-core && yarn && popd"
+- "pushd packages/workflow-react && yarn && popd"
 - "./scripts/link-packages"
 script:
 - yarn eslint
