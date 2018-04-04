@@ -19,9 +19,9 @@ install:
   - set PATH=%APPDATA%\yarn;%PATH%
   - yarn
   - ps: ./scripts/windows-ci-desktop-layout.ps1
-  - sh: cd packages/workflow-cmd && yarn
-  - sh: cd packages/workflow-core && yarn
-  - sh: cd packages/workflow-react && yarn
+  - cd packages/workflow-cmd && yarn && cd ../..
+  - cd packages/workflow-core && yarn && cd ../..
+  - cd packages/workflow-react && yarn && cd ../..
   - sh: ./scripts/link-packages
 
 # Disable automatic builds
