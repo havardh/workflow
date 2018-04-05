@@ -12,6 +12,8 @@ const { TextEditor, Browser } = Apps.defaults;
   Run npm i workflow-react from your workflow homefolder
 */
 
+// Docs: https://github.com/havardh/workflow/blob/master/packages/workflow-react/Readme.md
+
 export default render(
   <Workspace name={'workflow-react-example'}>
     <SplitH percent={1}>
