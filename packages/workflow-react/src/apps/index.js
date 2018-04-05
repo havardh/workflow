@@ -1,26 +1,18 @@
 import React, { Component } from 'react';
-import { pick, mapValues } from 'lodash';
+import { mapValues } from 'lodash';
 import { Apps } from "workflow-core";
 
 import { App } from '../';
 
-export function createComponent({ params, xClass, name, open }) {
+export function createComponent({ open, xClass, name }) {
   return class extends Component {
     static displayName = `app-${xClass || name}`;
 
     render() {
-      const { props } = this;
-
-      const appProps = pick(props, params);
+      const props = {open, xClass, name};
 
       return (
-        <App
-          {...appProps}
-          xClass={xClass}
-          name={name}
-          open={open}
-          percent={props.percent}
-        />
+        <App {...props} {...this.props} />
       );
     }
   };
