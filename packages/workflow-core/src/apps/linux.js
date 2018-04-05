@@ -44,7 +44,7 @@ export const Chromium = {
 export const Firefox = {
   params: ["url"],
   open: ({ url }) => `firefox ${url}`,
-  class: 'Navigator.Firefox',
+  xClass: 'Navigator.Firefox',
 };
 
 export const Gedit = {
