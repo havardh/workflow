@@ -73,6 +73,7 @@ export const Atom = {
     open: function open(app) {
       const Atom = Application("Atom")
       Atom.open(app.file);
+      Atom.activate();
       return Atom.windows[0];
     },
     run: function run() {}
