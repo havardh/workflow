@@ -10,19 +10,8 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
+      - run: yarn config set workspaces-experimental true
       - run: yarn install
-      - run:
-          name: "Install packages/workflow-cmd"
-          working_directory: packages/workflow-cmd
-          command: yarn install
-      - run:
-          name: "Install packages/workflow-core"
-          working_directory: packages/workflow-core
-          command: yarn install
-      - run:
-          name: "Install packages/workflow-react"
-          working_directory: packages/workflow-react
-          command: yarn install
       - save_cache:
           paths:
             - node_modules
@@ -47,54 +36,9 @@ jobs:
           path: reports
       - store_artifacts:
           path: test/integration/__image_snapshots__
-  build-macos:
-    macos:
-      xcode: "9.0"
-    working_directory: ~/workflow
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-          - v1-macos-dependencies-{{ checksum "package.json" }}
-          - v1-macos-dependencies-
-      - run: yarn install
-      - run:
-          name: "Install packages/workflow-cmd"
-          working_directory: packages/workflow-cmd
-          command: yarn install
-      - run:
-          name: "Install packages/workflow-core"
-          working_directory: packages/workflow-core
-          command: yarn install
-      - run:
-          name: "Install packages/workflow-react"
-          working_directory: packages/workflow-react
-          command: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-macos-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: "JavaScript Test Suite"
-          environment:
-            JEST_JUNIT_OUTPUT: reports/js-test-results.xml
-          command: yarn jest unit
-      - run:
-          name: "JavaScript Linter"
-          command: yarn eslint -- --format junit -o reports/js-lint-results.xml
-      - run:
-          name: "JavaScript FlowType Check"
-          command: yarn flow
-      - store_test_results:
-          path: reports
-      - store_artifacts:
-          path: reports
-      - store_artifacts:
-          path: test/integration/__image_snapshots__
 
 workflows:
   version: 2
   workflow_jobs:
     jobs:
       - build-linux
-      - build-macos
