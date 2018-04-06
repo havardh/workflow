@@ -43,7 +43,7 @@ export default class Tile extends Base {
     if (root.children) {
       const { x, y, width, height } = rect;
       let tiles;
-      if (root.layout === 'splitv') {
+      if (root.layout === 'splith') {
         let startX = x;
         tiles = root.children.map((app) => {
           const currentStartX = startX;

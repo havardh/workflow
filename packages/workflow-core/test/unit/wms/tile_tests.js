@@ -61,13 +61,13 @@ describe('Tile', () => {
     });
   });
 
-  describe('when the config contains two apps with vertical split', () => {
+  describe('when the config contains two apps with horizontal split', () => {
     const app1 = { percent: 0.5, open: 'app 1', class: 'test' };
     const app2 = { percent: 0.5, open: 'app 2', class: 'test' };
     const config = {
       name: 'test-config',
       root: {
-        layout: 'splitv',
+        layout: 'splith',
         percent: 1.0,
         children: [app1, app2],
       },
@@ -95,13 +95,13 @@ describe('Tile', () => {
     });
   });
 
-  describe('when the config contains two apps with horizontal split', () => {
+  describe('when the config contains two apps with vertical split', () => {
     const app1 = { percent: 0.5, open: 'app 1', class: 'test' };
     const app2 = { percent: 0.5, open: 'app 2', class: 'test' };
     const config = {
       name: 'test-config',
       root: {
-        layout: 'splith',
+        layout: 'splitv',
         percent: 1.0,
         children: [app1, app2],
       },
@@ -129,14 +129,14 @@ describe('Tile', () => {
     });
   });
 
-  describe('when the config contains three apps with vertical split', () => {
+  describe('when the config contains three apps with horizontal split', () => {
     const app1 = { percent: 0.33, open: 'app 1', class: 'test' };
     const app2 = { percent: 0.33, open: 'app 2', class: 'test' };
     const app3 = { percent: 0.34, open: 'app 3', class: 'test' };
     const config = {
       name: 'test-config',
       root: {
-        layout: 'splitv',
+        layout: 'splith',
         percent: 1.0,
         children: [app1, app2, app3],
       },
@@ -172,14 +172,14 @@ describe('Tile', () => {
     });
   });
 
-  describe('when the config contains three apps with horizontal split', () => {
+  describe('when the config contains three apps with vertical split', () => {
     const app1 = { percent: 0.33, open: 'app 1', class: 'test' };
     const app2 = { percent: 0.33, open: 'app 2', class: 'test' };
     const app3 = { percent: 0.34, open: 'app 3', class: 'test' };
     const config = {
       name: 'test-config',
       root: {
-        layout: 'splith',
+        layout: 'splitv',
         percent: 1.0,
         children: [app1, app2, app3],
       },
@@ -222,10 +222,10 @@ describe('Tile', () => {
     const config = {
       name: 'test-config',
       root: {
-        layout: 'splith',
+        layout: 'splitv',
         percent: 1.0,
         children: [{
-          layout: 'splitv',
+          layout: 'splith',
           percent: 0.8,
           children: [app1, app2],
         }, app3],
