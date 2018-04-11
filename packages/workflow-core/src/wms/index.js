@@ -14,7 +14,7 @@ let Wm = () => {
 
 import osx from "./osx/index";
 import windows from "./windows/index";
-import i3 from "./i3";
+import i3 from "workflow-wm-i3";
 import ubuntu from "./ubuntu/index";
 
 switch (platform) {
