@@ -14,8 +14,7 @@ if (platform !== "win32") {
 } else {
   const ffi = require("ffi");
   const ref = require("ref");
-  const StructType = require("ref-struct");
-  const Struct = StructType();
+  const Struct = require("ref-struct");
 
   const HWND_TOP = 0;
   const FLAG = 0;
