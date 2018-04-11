@@ -14,12 +14,19 @@ const bundles = [{
     "babel-core",
     "crypto",
     "workflow-wm-i3",
-    "workflow-wm-osx"
+    "workflow-wm-osx",
+    "workflow-wm-windows"
   ]
 }, {
   name: "workflow-wm-osx",
   external: ["osascript", "shelljs"]
-}]
+}, {
+  name: "workflow-wm-windows",
+  external: ["ffi", "ref", "ref-struct", "lodash", "child_process"]
+}, {
+  name: "workflow-wm-windows-python",
+  external: ["python-shell"]
+}];
 
 function createConfig(bundle) {
   const {name, external} = bundle;
