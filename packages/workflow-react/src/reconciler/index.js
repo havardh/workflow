@@ -1,5 +1,6 @@
-import emptyObject from 'fbjs/lib/emptyObject';
 import Reconciler from 'react-reconciler';
+
+const emptyObject = {};
 
 import { createElement, getHostContextNode } from '../utils/createElement';
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { mapValues } from 'lodash';
 import { Apps } from "workflow-core";
 
-import { App } from '../';
+import { App } from '../components';
 
 export function createComponent({ open, xClass, name }) {
   return class extends Component {

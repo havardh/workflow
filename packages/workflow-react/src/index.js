@@ -1,11 +1,9 @@
-import render from './render';
+import render from './render/index';
 
 import * as Layouts from './layouts/split';
-import * as Apps from './apps';
+import * as Apps from './apps/index';
 
-const App = 'APP';
-const Layout = 'LAYOUT';
-const Workspace = 'WORKSPACE';
+import {App, Layout, Workspace} from "./components";
 
 export default render;
 
