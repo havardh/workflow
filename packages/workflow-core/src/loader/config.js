@@ -3,7 +3,7 @@
 /* eslint-disable no-console, global-require, no-restricted-syntax, import/no-dynamic-require */
 import type { WorkspaceConfig } from '../index';
 import RequireWrapper from '../util/requireCompiled';
-import { ConfigLoadError } from '../error';
+import { ConfigLoadError } from '../error/index';
 
 export type Context = {
   userFolder: string,

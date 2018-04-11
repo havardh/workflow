@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-env node */
 // import I3 from './wms/i3';
-import Wm from './wms';
+import Wm from './wms/index';
 import parseArgs from './parser/args';
 import parseConfig from './parser/config';
 import load from './loader/config';

@@ -1,5 +1,5 @@
 // @flow
-import * as defaults from "./defaults";
+import * as defaults from "./defaults/index";
 import * as linux from "./linux";
 import * as osx from "./osx";
 import * as windows from "./windows";

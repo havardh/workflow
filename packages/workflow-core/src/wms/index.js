@@ -12,19 +12,23 @@ let Wm = () => {
   process.exit(0);
 };
 
+import osx from "./osx/index";
+import windows from "./windows/index";
+import i3 from "./i3";
+import ubuntu from "./ubuntu/index";
+
 switch (platform) {
   case 'darwin':
-    Wm = require('./osx').default;
+    Wm = osx;
     break;
   case 'win32':
-    Wm = require('./windows').default; // eslint-disable-line global-require
+    Wm = windows;
     break;
   case 'linux':
-
     if (which('i3-msg').code === 0) {
-      Wm = require('./i3').default; // eslint-disable-line global-require
+      Wm = i3; // eslint-disable-line global-require
     } else if (which('wmctrl').code === 0) {
-      Wm = require('./ubuntu').default; // eslint-disable-line global-require
+      Wm = ubuntu; // eslint-disable-line global-require
     } else {
       console.log('Could not find supported windows manager controller');
       console.log('');

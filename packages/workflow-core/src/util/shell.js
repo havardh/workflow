@@ -1,7 +1,8 @@
 // @flow
 /* eslint-disable import/prefer-default-export */
+/* eslint-env node */
 
-import shell from 'shelljs';
+const shell = require('shelljs');
 
 export function exec(cmd: string, async: boolean = true) {
   return shell.exec(cmd, { silent: true, async });
