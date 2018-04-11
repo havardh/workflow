@@ -1,4 +1,5 @@
 /* eslint-env node */
+/* eslint-disable no-console, no-inner-declarations */
 
 let ffi, ref, Struct;
 let failed = false;
