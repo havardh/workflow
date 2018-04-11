@@ -3,7 +3,7 @@ import shell from 'shelljs';
 
 import Tile from 'shared/tile';
 
-export default class Ubuntu extends Tile {
+export default class Wmctrl extends Tile {
 
   async getDesktopRect() { // eslint-disable-line class-methods-use-this
     /* eslint-disable no-useless-escape */

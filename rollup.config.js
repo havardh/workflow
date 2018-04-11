@@ -26,6 +26,9 @@ const bundles = [{
 }, {
   name: "workflow-wm-windows-python",
   external: ["python-shell"]
+}, {
+  name: "workflow-wm-wmctrl",
+  external: ["python-shell"]
 }];
 
 function createConfig(bundle) {

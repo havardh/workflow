@@ -15,7 +15,7 @@ let Wm = () => {
 import osx from "workflow-wm-osx";
 import windows from "workflow-wm-windows";
 import i3 from "workflow-wm-i3";
-import ubuntu from "./ubuntu/index";
+import wmctrl from "workflow-wm-wmctrl";
 
 switch (platform) {
   case 'darwin':
@@ -28,7 +28,7 @@ switch (platform) {
     if (which('i3-msg').code === 0) {
       Wm = i3; // eslint-disable-line global-require
     } else if (which('wmctrl').code === 0) {
-      Wm = ubuntu; // eslint-disable-line global-require
+      Wm = wmctrl; // eslint-disable-line global-require
     } else {
       console.log('Could not find supported windows manager controller');
       console.log('');

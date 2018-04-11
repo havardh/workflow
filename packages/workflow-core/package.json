@@ -43,7 +43,8 @@
     "python-shell": "^0.4.0",
     "shelljs": "^0.8.1",
     "workflow-wm-i3": "0.0.1",
-    "workflow-wm-osx": "0.0.1"
+    "workflow-wm-osx": "0.0.1",
+    "workflow-wm-wmctrl": "0.0.1"
   },
   "optionalDependencies": {
     "workflow-wm-windows": "0.0.1"
