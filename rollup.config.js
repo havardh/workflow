@@ -21,6 +21,9 @@ const bundles = [{
   name: "workflow-react",
   external: ["react", "react-reconciler", "lodash", "workflow-core"]
 }, {
+  name: "workflow-wm-i3",
+  external: ["i3", "fs-extra", "tmp-promise"]
+}, {
   name: "workflow-wm-osx",
   external: ["osascript", "shelljs"]
 }, {
