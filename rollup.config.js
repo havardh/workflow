@@ -15,7 +15,8 @@ const bundles = [{
     "crypto",
     "workflow-wm-i3",
     "workflow-wm-osx",
-    "workflow-wm-windows"
+    "workflow-wm-windows",
+    "workflow-wm-wmctrl"
   ]
 }, {
   name: "workflow-react",
@@ -34,7 +35,7 @@ const bundles = [{
   external: ["python-shell"]
 }, {
   name: "workflow-wm-wmctrl",
-  external: ["python-shell"]
+  external: ["python-shell", "shelljs"]
 }];
 
 function createConfig(bundle) {
