@@ -1,7 +1,7 @@
 // @flow
 /* eslint-disable import/prefer-default-export */
 import { projectRoot } from './git';
-import { exec } from '../util/shell';
+import { exec } from 'shared/shell';
 
 function removeOneDirectory(file: string): string {
   const index = file.indexOf('/');

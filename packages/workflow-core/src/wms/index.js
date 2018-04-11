@@ -1,7 +1,7 @@
 // @flow
 /* eslint-env node */
 /* eslint-disable no-console */
-import { which } from './../util/shell';
+import { which } from 'shared/shell';
 
 import type { Config } from '../parser/config';
 

@@ -8,7 +8,7 @@ import sinonChai from 'sinon-chai';
 
 
 import * as Git from '../../../src/helpers/git';
-import * as Shell from '../../../src/util/shell';
+import * as Shell from 'shared/shell';
 import { findRouteForComponent } from '../../../src/helpers/react_router';
 
 chai.use(sinonChai);

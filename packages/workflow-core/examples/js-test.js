@@ -8,7 +8,7 @@ import { Terminal, TextEditor } from '../src/apps/defaults';
 import { projectRoot } from '../src/helpers/git';
 import { getTestFile } from '../src/helpers/advisor';
 
-import { exec } from '../src/util/shell';
+import { exec } from '../../shared/shell';
 
 function touch(file) {
   exec(`touch ${file}`);
