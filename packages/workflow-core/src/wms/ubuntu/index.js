@@ -1,7 +1,7 @@
 import PythonShell from 'python-shell';
 import shell from 'shelljs';
 
-import Tile from '../tile';
+import Tile from 'shared/tile';
 
 export default class Ubuntu extends Tile {
 

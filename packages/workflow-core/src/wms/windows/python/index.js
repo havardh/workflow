@@ -1,10 +1,10 @@
 // @flow
 /* eslint-disable class-methods-use-this */
 import PythonShell from 'python-shell';
-import Tile from '../../tile';
 
 import type { App } from '../../../parser/config';
 import type { Rect } from '../../tile';
+import Tile from 'shared/tile';
 
 const defaultOptions = {
   pythonPath: 'C:\\Windows\\py.exe',
