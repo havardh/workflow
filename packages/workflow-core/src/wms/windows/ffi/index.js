@@ -1,12 +1,8 @@
-// @flow
 /* eslint-disable class-methods-use-this */
 import * as WinApi from "./win_api"
 import Tile from 'shared/tile';
 import { spawn, exec } from "child_process";
 import {difference} from "lodash";
-
-import type { App } from '../../../parser/config';
-import type { Rect } from '../../tile';
 
 class Windows extends Tile {
 
@@ -16,7 +12,7 @@ class Windows extends Tile {
     });
   }
 
-  async setPosition({ app, position }: {app: App, position: Rect}) {
+  async setPosition({ app, position }) {
     return new Promise((resolve) => {
       const { x, y, width, height } = position;
 
@@ -25,7 +21,7 @@ class Windows extends Tile {
     });
   }
 
-  async getPids(program: string) {
+  async getPids(program) {
     return new Promise((resolve, reject) => {
       exec(`tasklist /FI "IMAGENAME eq ${program}"`, (err, stdout) => {
         if (err) {
@@ -43,7 +39,7 @@ class Windows extends Tile {
       );
   }
 
-  async runWithStart({program, args}: {program: string, args: Array<string>}) {
+  async runWithStart({program, args}) {
     const before = await this.getPids(program);
     exec("start " + program + " " + (args || []).join(" "));
     const after = await this.getPids(program);
@@ -52,7 +48,7 @@ class Windows extends Tile {
     return pid;
   }
 
-  async runCmd(app: App) { // eslint-disable-line class-methods-use-this
+  async runCmd(app) { // eslint-disable-line class-methods-use-this
     return new Promise(async (resolve) => {
       const {program, start, args} = app.open;
 
