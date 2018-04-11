@@ -1,7 +1,7 @@
 import * as osascript from "osascript";
 import shell from 'shelljs';
 
-import Tile from '../tile';
+import Tile from 'shared/tile';
 
 function setPositionScript(app, position) {
   // Executed in jxa context

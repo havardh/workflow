@@ -1,7 +1,7 @@
 // @flow
 /* eslint-disable class-methods-use-this */
 import * as WinApi from "./win_api"
-import Tile from '../../tile';
+import Tile from 'shared/tile';
 import { spawn, exec } from "child_process";
 import {difference} from "lodash";
 

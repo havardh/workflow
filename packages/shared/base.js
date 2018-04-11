@@ -1,7 +1,4 @@
-// @flow
 /* eslint-disable class-methods-use-this */
-
-import type { Config, Node, App } from '../parser/config';
 
 function waitFor(millis) {
   const waitTill = new Date(new Date().getTime() + (millis));
@@ -11,15 +8,15 @@ function waitFor(millis) {
 
 export default class Base {
 
-  apply(config: Config) { // eslint-disable-line no-unused-vars
+  apply(config) { // eslint-disable-line no-unused-vars
     throw new Error('Not implemented');
   }
 
-  runCmd(app: App) { // eslint-disable-line no-unused-vars
+  runCmd(app) { // eslint-disable-line no-unused-vars
     throw new Error('Not implemented');
   }
 
-  async openNode(node: Node) {
+  async openNode(node) {
     if (node.children) {
       const promises = [];
       for (const child of node.children) {

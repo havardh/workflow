@@ -6,7 +6,7 @@ import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
-import Tile from '../../../src/wms/tile';
+import Tile from '../../tile';
 
 chai.use(sinonChai);
 
