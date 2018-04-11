@@ -3,18 +3,20 @@
 const os = require("os");
 const spawn = require("child_process").spawn;
 
-const dev = false;
-const userCli = dev
-  ? `${__dirname}/template`
-  : `${os.homedir()}/.workflow/cli.js`;
+
+const dev = process.env.WORKFLOW_DEV_MODE;
+const baseFolder = dev
+  ? `${__dirname}/../workflow-template`
+  : `${os.homedir()}/.workflow`;
 
 function cli(context) {
   context.commandFolder = process.cwd(); // eslint-disable-line no-param-reassign
 
   const [node, cmd, ...args] = process.argv; // eslint-disable-line no-unused-vars
+
   var env = Object.create(process.env);
-  env.NODE_PATH = `${os.homedir()}/.workflow/node_modules`;
-  spawn(userCli, args, { stdio: "inherit", env: env });
+  env.NODE_PATH = `${baseFolder}/node_modules`;
+  spawn(`${baseFolder}/cli.js`, args, { stdio: "inherit", env: env });
 }
 
 if (require.main === module) {
