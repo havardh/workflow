@@ -40,11 +40,10 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
-    "node-osascript": "^2.0.0",
-    "osascript": "^1.2.0",
     "python-shell": "^0.4.0",
     "shelljs": "^0.8.1",
-    "workflow-wm-i3": "0.0.1"
+    "workflow-wm-i3": "0.0.1",
+    "workflow-wm-osx": "0.0.1"
   },
   "optionalDependencies": {
     "ffi": "^2.2.0",
