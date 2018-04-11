@@ -12,7 +12,7 @@ let Wm = () => {
   process.exit(0);
 };
 
-import osx from "./osx/index";
+import osx from "workflow-wm-osx";
 import windows from "./windows/index";
 import i3 from "workflow-wm-i3";
 import ubuntu from "./ubuntu/index";
