@@ -5,9 +5,9 @@ import { sandbox } from 'sinon';
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
 
-import * as Deps from '../../src/util/require-deps';
-import RequireWrapper from '../../src/util/require';
-import RequireCompiledWrapper from '../../src/util/requireCompiled';
+import * as Deps from '../../../src/util/require-deps';
+import RequireWrapper from '../../../src/util/require';
+import RequireCompiledWrapper from '../../../src/util/requireCompiled';
 
 chai.use(sinonChai);
 
