@@ -1,0 +1,31 @@
+{
+  "name": "workflow-wm-windows",
+  "version": "0.0.1",
+  "description": "Windows window manager adapter for workflow",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/havardh/workflow.git"
+  },
+  "keywords": [
+    "wm",
+    "workflow",
+    "workflow-wm",
+    "windows"
+  ],
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/havardh/workflow/issues"
+  },
+  "homepage": "https://github.com/havardh/workflow/tree/master/packages/workflow-wm-windows#readme",
+  "dependencies": {
+    "ffi": "^2.2.0",
+    "lodash": "^4.17.5",
+    "ref": "^1.3.5",
+    "ref-struct": "^1.1.0"
+  }
+}

@@ -13,7 +13,7 @@ let Wm = () => {
 };
 
 import osx from "workflow-wm-osx";
-import windows from "./windows/index";
+import windows from "workflow-wm-windows";
 import i3 from "workflow-wm-i3";
 import ubuntu from "./ubuntu/index";
 

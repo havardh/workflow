@@ -3733,6 +3733,10 @@ python-shell@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/python-shell/-/python-shell-0.4.0.tgz#259c5470d885292b22e906a57b085f651752f956"
 
+python-shell@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/python-shell/-/python-shell-0.5.0.tgz#461983bafd092010bc2760c365b13e7d50aab231"
+
 qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
