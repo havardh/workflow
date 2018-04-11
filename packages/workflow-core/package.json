@@ -29,18 +29,15 @@
     "url": "https://github.com/havardh/workflow/issues"
   },
   "homepage": "https://github.com/havardh/workflow#readme",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0"
-  },
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
-    "python-shell": "^0.4.0",
+    "lodash": "^4.17.5",
     "shelljs": "^0.8.1",
     "workflow-wm-i3": "0.0.1",
     "workflow-wm-osx": "0.0.1",
