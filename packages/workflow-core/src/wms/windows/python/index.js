@@ -1,9 +1,5 @@
-// @flow
 /* eslint-disable class-methods-use-this */
 import PythonShell from 'python-shell';
-
-import type { App } from '../../../parser/config';
-import type { Rect } from '../../tile';
 import Tile from 'shared/tile';
 
 const defaultOptions = {
@@ -23,7 +19,7 @@ class Windows extends Tile {
     });
   }
 
-  async setPosition({ app, position }: {app: App, position: Rect}) {
+  async setPosition({ app, position }) {
     return new Promise((resolve, reject) => {
       const { x, y, width, height } = position;
       const options = {
@@ -40,7 +36,7 @@ class Windows extends Tile {
     });
   }
 
-  async runCmd(app: App) { // eslint-disable-line class-methods-use-this
+  async runCmd(app) { // eslint-disable-line class-methods-use-this
     return new Promise((resolve, reject) => {
       const options = { ...defaultOptions, args: app.open };
       PythonShell.run('wms/windows/python/open.py', options, (err, res) => {
