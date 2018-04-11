@@ -13,26 +13,24 @@
     "watch": "jest --watch"
   },
   "babel": {
+    "presets": [
+      "flow",
+      "react",
+      [
+        "env",
+        {
+          "modules": false,
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-object-rest-spread",
+      "transform-class-properties"
+    ],
     "env": {
-      "production": {
-        "presets": [
-          "flow",
-          "react",
-          [
-            "env",
-            {
-              "modules": false,
-              "targets": {
-                "node": "current"
-              }
-            }
-          ]
-        ],
-        "plugins": [
-          "transform-object-rest-spread",
-          "transform-class-properties"
-        ]
-      },
       "test": {
         "presets": [
           "flow",
