@@ -1,3 +1,3 @@
-import Windows from "./ffi";
+import Windows from "./ffi/index";
 
 export default Windows;
