@@ -58,7 +58,7 @@
       "**/test/**/*_tests.js"
     ],
     "transformIgnorePatterns": [
-      "/node_modules/(?!workflow-core|shared)"
+      "/node_modules/(?!workflow-.*|shared)"
     ],
     "transform": {
       "^.+\\.js$": "babel-jest"

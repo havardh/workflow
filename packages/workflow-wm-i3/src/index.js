@@ -1,20 +1,9 @@
-// @flow
 /* eslint-env node */
 import { createClient } from 'i3';
 import { file } from 'tmp-promise';
 import { outputFile } from 'fs-extra';
 
-import type { Config, Node, App } from '../parser/config';
-
-type Client = {
-  _stream: {
-    destroy: () => void
-  },
-  command: (string) => void,
-};
-
 export default class I3 {
-  client: Client
 
   constructor() {
     this.client = createClient();
@@ -23,7 +12,7 @@ export default class I3 {
     }, 10000);
   }
 
-  async apply(config: Config) {
+  async apply(config) {
     this.createWorkspace(config);
 
     this.clearWorkspace();
@@ -34,7 +23,7 @@ export default class I3 {
       .forEach(app => this.open(app));
   }
 
-  createWorkspace(config: Config) {
+  createWorkspace(config) {
     this.client.command(`workspace ${config.name}`);
   }
 
@@ -42,7 +31,7 @@ export default class I3 {
     this.client.command('focus parent, focus parent, focus parent, kill');
   }
 
-  async createLayout(node: Node) {
+  async createLayout(node) {
     const layout = this.genLayout(node);
     const layoutJson = JSON.stringify(layout, null, '  ');
 
@@ -53,7 +42,7 @@ export default class I3 {
     this.client.command(`append_layout ${tmpobj.path}`);
   }
 
-  genLayout(node: Node) {
+  genLayout(node) {
     const { percent } = node;
     if (node.layout) {
       const { layout } = node;
@@ -70,7 +59,7 @@ export default class I3 {
     };
   }
 
-  findApps(root: Node) {
+  findApps(root) {
     const apps = [];
 
     if (root.children) {
@@ -84,7 +73,7 @@ export default class I3 {
     return apps;
   }
 
-  open(app: App) {
+  open(app) {
     this.client.command(`exec ${app.open(app)}`);
   }
 
