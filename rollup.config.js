@@ -44,7 +44,7 @@ function createConfig(bundle) {
       babel({ exclude: 'node_modules/**'}),
       alias({ shared: __dirname + "/packages/shared"})
     ],
-    external: bundle.external
+    external
   };
 }
 
