@@ -1,5 +1,5 @@
 import run, {runWith} from "./run";
-import Apps from "./apps";
+import Apps from "./apps/index";
 import { disableCache } from './util/requireCompiled';
 
 export default run;

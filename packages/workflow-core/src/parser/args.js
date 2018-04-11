@@ -1,6 +1,6 @@
 // @flow
 /* eslint-disable no-console */
-import { InvalidArgument, InvalidConfig } from '../error';
+import { InvalidArgument, InvalidConfig } from '../error/index';
 
 export type Args = string | Array<string>
 

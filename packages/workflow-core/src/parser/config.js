@@ -1,4 +1,6 @@
-import {mapValues} from "lodash";
+import * as lodash from "lodash";
+
+const {mapValues} = lodash;
 
 import type { WorkspaceConfig, NodeConfig } from '../index';
 import type { AppConfig } from '../apps';

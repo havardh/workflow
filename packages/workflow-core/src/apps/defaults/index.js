@@ -10,14 +10,18 @@ const defaultApps = [
   'TextEditor',
 ];
 
+import * as windows from "./windows";
+import * as osx from "./osx";
+import * as linux from "./linux";
+
 const platformDefaults = (() => {
   switch (process.platform) {
     case 'darwin':
-      return require('./osx'); // eslint-disable-line global-require
+      return osx;
     case 'win32':
-      return require('./windows'); // eslint-disable-line global-require
+      return windows;
     case 'linux':
-      return require('./linux'); // eslint-disable-line global-require
+      return linux;
     default:
       console.log(`Platform '${process.platform}' not supported`);
       console.log('Look for an issue for your platform here: https://github.com/havardh/workflow/issues');
