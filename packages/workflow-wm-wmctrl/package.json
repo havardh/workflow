@@ -1,0 +1,34 @@
+{
+  "name": "workflow-wm-wmctrl",
+  "version": "0.0.1",
+  "description": "wmctrl window manager adapter for workflow",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "start": "node cli.js",
+    "prepublishOnly": "npm run build",
+    "build": "babel src -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/havardh/workflow.git"
+  },
+  "keywords": [
+    "wm",
+    "workflow",
+    "workflow-wm",
+    "i3"
+  ],
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/havardh/workflow/issues"
+  },
+  "homepage": "https://github.com/havardh/workflow/tree/master/packages/workflow-wm-wmctrl#readme",
+  "dependencies": {
+    "python-shell": "^0.5.0",
+    "shelljs": "^0.8.1"
+  }
+}
