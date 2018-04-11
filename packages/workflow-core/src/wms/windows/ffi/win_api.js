@@ -1,23 +1,8 @@
 /* eslint-env node */
 /* eslint-disable no-console, no-inner-declarations */
 
-let ffi, ref, Struct;
-let failed = false;
-try {
-  ffi = require("ffi");
-  ref = require("ref");
-  Struct = require("ref-struct").default;
-} catch (error) {
-  failed = true;
-
-  const platform = process.platform;
-  if (platform === "win32") {
-    console.error("Missing required dependencies");
-    throw error;
-  }
-}
-
-if (failed) {
+const platform = process.platform;
+if (platform !== "win32") {
   module.exports = {
     getDesktopRect: function () {
       throw new Error("Not supported on this platform");
@@ -27,6 +12,11 @@ if (failed) {
     }
   };
 } else {
+  const ffi = require("ffi");
+  const ref = require("ref");
+  const StructType = require("ref-struct");
+  const Struct = StructType();
+
   const HWND_TOP = 0;
   const FLAG = 0;
 
