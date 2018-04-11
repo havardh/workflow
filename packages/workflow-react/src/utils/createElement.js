@@ -1,6 +1,6 @@
-import { Root, Workspace, Layout, App } from '../components';
+import { Root, Workspace, Layout, App } from '../components/index';
 
-import { ROOT_NODE } from '../render';
+import { ROOT_NODE } from '../render/index';
 
 export function getHostContextNode() {
   return ROOT_NODE;

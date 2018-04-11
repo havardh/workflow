@@ -1,6 +1,6 @@
 import { createElement } from '../utils/createElement';
-import WorkflowRenderer from '../reconciler/';
-import parse from '../parse/';
+import WorkflowRenderer from '../reconciler/index';
+import parse from '../parse/index';
 
 export let ROOT_NODE = {}; // eslint-disable-line import/no-mutable-exports
 

@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 
-import { Layout } from '..';
+import { Layout } from '../components';
 
 type Props = {
   percent: number,

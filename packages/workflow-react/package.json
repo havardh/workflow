@@ -7,28 +7,6 @@
     "dist",
     "index.js"
   ],
-  "babel": {
-    "presets": [
-      "flow",
-      "react",
-      [
-        "env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "transform-object-rest-spread",
-      "transform-class-properties"
-    ]
-  },
-  "scripts": {
-    "build": "babel src -d dist",
-    "prepublishOnly": "npm run build"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/havardh/workflow.git"
@@ -48,12 +26,6 @@
     "babel-eslint": "^7.2.3"
   },
   "dependencies": {
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-flow": "^6.23.0",
-    "babel-preset-react": "^6.24.1",
-    "fbjs": "^0.8.16",
     "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-reconciler": "^0.7.0",
