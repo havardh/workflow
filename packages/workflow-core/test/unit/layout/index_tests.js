@@ -4,7 +4,7 @@ import { expect } from 'chai';
 
 import { SplitV, SplitH } from '../../../src/layout';
 
-const config = { percent: 0.1, children: [] };
+const config = { type: "layout", percent: 0.1, children: [] };
 
 describe('SplitV(config)', () => {
   it('should add splitv layout to config', () => {
