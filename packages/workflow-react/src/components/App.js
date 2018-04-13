@@ -13,6 +13,7 @@ export default class App {
   tree() {
     const { props } = this;
     return {
+      type: "app",
       ...omit(props, 'children'),
     };
   }

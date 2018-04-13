@@ -3,12 +3,13 @@
 import type { NodeConfig } from '../index';
 
 export type SplitVConfig = {
+  type: "layout",
   percent: number,
   children: Array<NodeConfig>,
 };
 
 export function SplitV(config: SplitVConfig) : SplitVConfig {
-  return { layout: 'splitv', ...config };
+  return { type: "layout", layout: 'splitv', ...config };
 }
 
 export type SplitHConfig = {
@@ -17,5 +18,5 @@ export type SplitHConfig = {
 };
 
 export function SplitH(config: SplitHConfig): SplitHConfig {
-  return { layout: 'splith', ...config };
+  return { type: "layout", layout: 'splith', ...config };
 }

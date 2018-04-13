@@ -17,7 +17,7 @@ export default class Base {
   }
 
   async openNode(node) {
-    if (node.children) {
+    if (node.type === "layout") {
       const promises = [];
       for (const child of node.children) {
         const promise = await this.openNode(child)

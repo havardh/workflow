@@ -1,6 +1,7 @@
 /* global Application, delay */
 
 export const Terminal = {
+  type: "app",
   params: ["cwd", "cmd"],
   open: {
     open: function open() {
@@ -33,6 +34,7 @@ export const Terminal = {
 };
 
 export const iTerm2 = {
+  type: "app",
   params: ["cwd", "cmd"],
   open: {
     open: function open() {
@@ -62,12 +64,14 @@ export const iTerm2 = {
 };
 
 export const TextEdit = {
+  type: "app",
   params: ["file"],
   open: ({ file }) => file,
   name: 'TextEdit',
 };
 
 export const Atom = {
+  type: "app",
   params: ["file"],
   open: {
     open: function open(app) {
@@ -82,6 +86,7 @@ export const Atom = {
 };
 
 export const Safari = {
+  type: "app",
   params: ["url"],
   open: {
     open: function open() {

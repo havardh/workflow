@@ -23,7 +23,7 @@ async function apply(config: Config) { // eslint-disable-line no-unused-vars
 }
 
 export function Workspace(config: WorkspaceConfig) {
-  return config;
+  return {type: "workspace", ...config};
 }
 
 export default async function run(context) {

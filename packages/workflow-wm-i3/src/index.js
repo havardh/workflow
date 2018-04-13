@@ -44,7 +44,7 @@ export default class I3 {
 
   genLayout(node) {
     const { percent } = node;
-    if (node.layout) {
+    if (node.type === "layout") {
       const { layout } = node;
       const children = node.children.map(this.genLayout.bind(this));
 
@@ -62,11 +62,11 @@ export default class I3 {
   findApps(root) {
     const apps = [];
 
-    if (root.children) {
+    if (root.type == "layout") {
       root.children
         .forEach(node => this.findApps(node)
           .forEach(app => apps.push(app)));
-    } else if (root.open) {
+    } else if (root.type === "app") {
       return [root];
     }
 
