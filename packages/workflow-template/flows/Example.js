@@ -5,6 +5,7 @@ const { Browser, TextEditor } = Apps.defaults
 export default {
   name: 'workflow-example',
   root: {
+    type: "layout",
     layout: 'splith',
     percent: 1.0,
     children: [

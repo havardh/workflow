@@ -29,7 +29,7 @@ export default class Tile extends Base {
   }
 
   setPositions({ root, rect }) {
-    if (root.children) {
+    if (root.type === "layout") {
       const { x, y, width, height } = rect;
       let tiles;
       if (root.layout === 'splith') {

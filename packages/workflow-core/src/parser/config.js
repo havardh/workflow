@@ -31,7 +31,7 @@ function parseApp(config: AppConfig, args): App {
 
   const transformedConfig = mapValues(rest, value => parseValue(value, args));
 
-  return { ...transformedConfig, open };
+  return { type: "app", ...transformedConfig, open };
 }
 
 export type LayoutNode = {|
@@ -48,8 +48,9 @@ export type Config = {|
 |};
 
 function parseNode(config: NodeConfig, args: {[string]:string}): Node {
-  if (config.children) {
+  if (config.type === "layout") {
     return {
+      type: "layout",
       percent: config.percent,
       layout: config.layout,
       children: config.children.map(child => parseNode(child, args)),
@@ -63,6 +64,7 @@ export default function parseConfig(
   args: {[string]:string},
 ): Config {
   return {
+    type: "workspace",
     name: config.name,
     root: parseNode(config.root, args),
   };

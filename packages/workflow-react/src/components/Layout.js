@@ -23,6 +23,7 @@ export default class Layout {
     const { props, children } = this;
 
     return {
+      type: "layout", 
       ...omit(props, 'children'),
       children: children.map(child => child.tree()),
     };
