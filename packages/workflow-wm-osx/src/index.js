@@ -59,8 +59,12 @@ export default class Osx extends Tile {
         delay(0.5);
       `);
 
-      osascript.eval(script,  function(err, result) {
+      osascript.eval(script, function(err, result) {
         if (err) {
+          console.error("Failed to execute osascript:");
+          console.error(script);
+          console.error();
+
           reject(err);
           return;
         }
