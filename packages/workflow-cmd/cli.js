@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 /* eslint-env node */
+/* eslint-disable no-console */
 const os = require("os");
 const spawn = require("child_process").spawn;
 

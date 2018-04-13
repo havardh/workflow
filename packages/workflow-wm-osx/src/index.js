@@ -1,3 +1,5 @@
+/* eslint-env node */
+/* eslint-disable no-console */
 import * as osascript from "osascript";
 import shell from 'shelljs';
 

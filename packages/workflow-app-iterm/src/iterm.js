@@ -1,7 +1,10 @@
-import React from "react";
+/* @flow */
+/* global Application */
+import * as React from "react";
 import {App} from "workflow-react";
 
 function open() {
+  // $FlowTodo
   const iTerm = Application("iTerm");
   if (iTerm.running()) {
     const window = iTerm.createWindowWithDefaultProfile();
@@ -36,12 +39,7 @@ function run(window, app) {
         pane.write({text: "clear"})
       }
       if (app.cmd) {
-        if (typeof app.cmd === "function") {
-          console.log(app);
-          pane.write({text: app.cmd()})
-        } else {
-          pane.write({text: app.cmd})
-        }
+        pane.write({text: app.cmd})
       }
   }
 
@@ -82,7 +80,7 @@ function run(window, app) {
   }
 }
 
-const ITerm = ({children}) => (
+const ITerm = ({children}: { children: React.Node }) => (
   <App
     type={'app'}
     open={{open, run}}
