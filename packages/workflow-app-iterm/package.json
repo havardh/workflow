@@ -1,0 +1,46 @@
+{
+    "name": "workflow-app-iterm",
+    "version": "0.0.1",
+    "description": "iTerm app wrapper for workflow.",
+    "main": "index.js",
+    "repository": "https://github.com/havardh/workflow",
+    "author": "Håvard Wormdal Høiby",
+    "license": "MIT",
+    "babel": {
+      "presets": [
+        "flow",
+        "react",
+        [
+          "env",
+          {
+            "targets": {
+              "node": "current"
+            }
+          }
+        ]
+      ],
+      "plugins": [
+        "transform-object-rest-spread",
+        "transform-class-properties"
+      ]
+    },
+    "scripts": {
+      "ItermSplit": "node cli.js flows/ItermSplit"
+    },
+    "devDependencies": {
+      "babel-core": "^6.26.0",
+      "babel-plugin-transform-class-properties": "^6.24.1",
+      "babel-plugin-transform-object-rest-spread": "^6.26.0",
+      "babel-polyfill": "^6.9.0",
+      "babel-preset-env": "^1.6.1",
+      "babel-preset-flow": "^6.23.0",
+      "babel-preset-react": "^6.24.1",
+      "babel-register": "^6.24.1",
+      "react": "^16.2.0",
+      "workflow-core": "0.0.3"
+    },
+    "dependencies": {
+      "workflow-react": "0.0.4"
+    }
+  }
+  
