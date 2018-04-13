@@ -9,6 +9,11 @@ const baseFolder = dev
   ? `${__dirname}/../workflow-template`
   : `${os.homedir()}/.workflow`;
 
+if (dev) {
+  console.log("Running in dev mode");
+  console.log(`From: ${baseFolder}`);
+}
+
 function cli(context) {
   context.commandFolder = process.cwd(); // eslint-disable-line no-param-reassign
 
