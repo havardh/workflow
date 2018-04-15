@@ -38,15 +38,15 @@ describe('Tile', () => {
   });
 
   it('should find the desktop rectangle', async () => {
-    const app = { percent: 1.0, open: 'open app', class: 'test' };
-    await wm.apply({ root: app, name: 'test' });
+    const app = { type:'app', percent: 1.0, open: 'open app', class: 'test' };
+    await wm.apply({ type: 'workspace', root: app, name: 'test' });
 
     expect(wm.getDesktopRect).to.have.been.called;
   });
 
   describe('when the config contains a root app', () => {
-    const app = { percent: 1.0, open: 'open app', class: 'test' };
-    const config = { name: 'test-config', root: app };
+    const app = { type:'app', percent: 1.0, open: 'open app', class: 'test' };
+    const config = { type: 'workspace',  name: 'test-config', root: app };
 
     it('should call runCmd with the app command', async () => {
       await wm.apply(config);
@@ -62,11 +62,13 @@ describe('Tile', () => {
   });
 
   describe('when the config contains two apps with horizontal split', () => {
-    const app1 = { percent: 0.5, open: 'app 1', class: 'test' };
-    const app2 = { percent: 0.5, open: 'app 2', class: 'test' };
+    const app1 = { type:'app', percent: 0.5, open: 'app 1', class: 'test' };
+    const app2 = { type:'app', percent: 0.5, open: 'app 2', class: 'test' };
     const config = {
+      type: 'workspace', 
       name: 'test-config',
       root: {
+        type: 'layout',
         layout: 'splith',
         percent: 1.0,
         children: [app1, app2],
@@ -96,11 +98,13 @@ describe('Tile', () => {
   });
 
   describe('when the config contains two apps with vertical split', () => {
-    const app1 = { percent: 0.5, open: 'app 1', class: 'test' };
-    const app2 = { percent: 0.5, open: 'app 2', class: 'test' };
+    const app1 = { type:'app', percent: 0.5, open: 'app 1', class: 'test' };
+    const app2 = { type:'app', percent: 0.5, open: 'app 2', class: 'test' };
     const config = {
+      type: 'workspace', 
       name: 'test-config',
       root: {
+        type: 'layout',
         layout: 'splitv',
         percent: 1.0,
         children: [app1, app2],
@@ -130,12 +134,14 @@ describe('Tile', () => {
   });
 
   describe('when the config contains three apps with horizontal split', () => {
-    const app1 = { percent: 0.33, open: 'app 1', class: 'test' };
-    const app2 = { percent: 0.33, open: 'app 2', class: 'test' };
-    const app3 = { percent: 0.34, open: 'app 3', class: 'test' };
+    const app1 = { type:'app', percent: 0.33, open: 'app 1', class: 'test' };
+    const app2 = { type:'app', percent: 0.33, open: 'app 2', class: 'test' };
+    const app3 = { type:'app', percent: 0.34, open: 'app 3', class: 'test' };
     const config = {
+      type: 'workspace', 
       name: 'test-config',
       root: {
+        type: 'layout',
         layout: 'splith',
         percent: 1.0,
         children: [app1, app2, app3],
@@ -173,12 +179,14 @@ describe('Tile', () => {
   });
 
   describe('when the config contains three apps with vertical split', () => {
-    const app1 = { percent: 0.33, open: 'app 1', class: 'test' };
-    const app2 = { percent: 0.33, open: 'app 2', class: 'test' };
-    const app3 = { percent: 0.34, open: 'app 3', class: 'test' };
+    const app1 = { type:'app', percent: 0.33, open: 'app 1', class: 'test' };
+    const app2 = { type:'app', percent: 0.33, open: 'app 2', class: 'test' };
+    const app3 = { type:'app', percent: 0.34, open: 'app 3', class: 'test' };
     const config = {
+      type: 'workspace', 
       name: 'test-config',
       root: {
+        type: 'layout',
         layout: 'splitv',
         percent: 1.0,
         children: [app1, app2, app3],
@@ -220,11 +228,14 @@ describe('Tile', () => {
     const app2 = { percent: 0.5, open: 'app 2', class: 'test' };
     const app3 = { percent: 0.2, open: 'app 3', class: 'test' };
     const config = {
+      type: 'workspace', 
       name: 'test-config',
       root: {
+        type: 'layout',
         layout: 'splitv',
         percent: 1.0,
         children: [{
+          type: 'layout',
           layout: 'splith',
           percent: 0.8,
           children: [app1, app2],
