@@ -37,10 +37,10 @@
       "babel-preset-react": "^6.24.1",
       "babel-register": "^6.24.1",
       "react": "^16.2.0",
-      "workflow-core": "0.0.3"
+      "workflow-core": "0.0.4"
     },
     "dependencies": {
-      "workflow-react": "0.0.4"
+      "workflow-react": "0.0.5"
     }
   }
   

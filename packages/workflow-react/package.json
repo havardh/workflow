@@ -1,6 +1,6 @@
 {
   "name": "workflow-react",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "index.js",
   "files": [
@@ -29,6 +29,6 @@
     "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-reconciler": "^0.7.0",
-    "workflow-core": "0.0.3"
+    "workflow-core": "0.0.4"
   }
 }
