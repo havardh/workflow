@@ -6,6 +6,10 @@
     "repository": "https://github.com/havardh/workflow",
     "author": "Håvard Wormdal Høiby",
     "license": "MIT",
+    "files": [
+      "dist",
+      "index.js"
+    ],
     "babel": {
       "presets": [
         "flow",
@@ -13,6 +17,7 @@
         [
           "env",
           {
+            "modules": false,
             "targets": {
               "node": "current"
             }
@@ -36,10 +41,10 @@
       "babel-preset-flow": "^6.23.0",
       "babel-preset-react": "^6.24.1",
       "babel-register": "^6.24.1",
-      "react": "^16.2.0",
       "workflow-core": "0.0.4"
     },
     "dependencies": {
+      "react": "^16.2.0",
       "workflow-react": "0.0.5"
     }
   }
