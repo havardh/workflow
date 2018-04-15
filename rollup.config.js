@@ -36,6 +36,9 @@ const bundles = [{
 }, {
   name: "workflow-wm-wmctrl",
   external: ["python-shell", "shelljs"]
+}, {
+  name: "workflow-app-iterm",
+  external: ["react", "workflow-react"]
 }];
 
 function createConfig(bundle) {
