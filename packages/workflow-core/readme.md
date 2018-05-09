@@ -113,3 +113,27 @@ yarn run test  # Run tests
 yarn run flow  # Run type checker
 yarn run eslint . # Run lint
 ```
+
+## Documentation
+
+```
+
+const config = {
+
+  resolvers: [
+    {
+      resolve: function(path) {
+        // Returns the absolute path of a flow found with the `path` argument.
+        // Throws an error if the flow is not found or is a directory.
+      },
+      alternatives: function(path) {
+        // Returns a list of possible flows filtered by the path argument.
+        // Throws an error if the path or dirname(path) is not a directory.
+        // Returns an empty list if no files are found.
+      }
+    }
+  ]
+
+};
+
+```

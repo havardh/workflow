@@ -108,8 +108,6 @@
     "rollup": "^0.57.1",
     "rollup-plugin-alias": "^1.4.0",
     "rollup-plugin-babel": "^3.0.3",
-    "rollup-plugin-flow": "^1.1.1",
-    "workflow-core": "link:./packages/workflow-core/",
-    "workflow-react": "link:./packages/workflow-react/"
+    "rollup-plugin-flow": "^1.1.1"
   }
 }

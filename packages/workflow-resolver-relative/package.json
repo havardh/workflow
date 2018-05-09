@@ -1,0 +1,7 @@
+{
+  "name": "workflow-resolver-relative",
+  "version": "0.0.1",
+  "description": "Workflow resolver for relative paths",
+  "license": "MIT",
+  "main": "index.js"
+}

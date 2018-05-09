@@ -1,0 +1,21 @@
+.browser {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.browser div.address {
+  height: 30px;
+  width: 100%;
+  flex: 0 1 auto;
+}
+
+.browser div.address input {
+  margin: 5px;
+  width: 90%;
+  height: 20px;
+}
+
+.browser iframe {
+  flex: 1 1 auto;
+}

@@ -1,0 +1,91 @@
+.content {
+  width: 80%;
+  margin: auto;
+  background-color: #FFF;
+  border: 1 solid ;
+}
+
+.hidden {
+  display: hidden;
+}
+
+.inline-code {
+  font-family: monospace;
+  background-color: #F8F8F8;
+}
+
+.paragraphWrapper {
+  width: 100%;
+}
+
+.paragraph {
+  width: 50%;
+  min-width: 500px;
+  margin: 40px auto;
+}
+
+.codeWrapper {
+  width: 100%;
+}
+
+.code {
+  white-space: pre;
+  padding: 20px;
+  width: 70%;
+  margin: 40px auto !important;
+  font-family: monospace;
+  background-color: #F8F8F8;
+}
+
+.subTitleWrapper {
+  width: 100%;
+}
+
+.subTitle {
+  width: 60%;
+  margin: 40px auto 20px auto;
+}
+
+.subSubTitleWrapper {
+  width: 100%;
+}
+
+.subSubTitle {
+  width: 60%;
+  margin: 20px auto 10px auto;
+}
+
+.workflowWrapper {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.workflowCommand {
+  white-space: pre;
+  padding: 20px;
+  flex: 0 1 100%;
+  width: 100%;
+  margin: auto;
+  font-family: monospace;
+  background-color: #F8F8F8;
+}
+
+.workflowEditor {
+  box-sizing: border-box;
+  width: 50%;
+  padding-top: 40%;
+  position: relative;
+  border: 2px solid #F8F8F8;
+}
+
+.workflowPreview {
+  box-sizing: border-box;
+  width: 50%;
+  padding-top: 40%;
+  position: relative;
+  font-size: 0.8em;
+  border: 2px solid #F8F8F8;
+}

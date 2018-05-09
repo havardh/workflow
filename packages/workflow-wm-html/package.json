@@ -1,0 +1,36 @@
+{
+  "name": "workflow-wm-html",
+  "version": "0.0.1",
+  "description": "osx window manager adapter for workflow",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/havardh/workflow.git"
+  },
+  "keywords": [
+    "wm",
+    "workflow",
+    "workflow-wm",
+    "osx"
+  ],
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/havardh/workflow/issues"
+  },
+  "homepage": "https://github.com/havardh/workflow/tree/master/packages/workflow-wm-osx#readme",
+  "dependencies": {
+    "ace-code-editor": "^1.2.3",
+    "css-loader": "^0.28.11",
+    "react": "^16.2.0",
+    "style-loader": "^0.21.0",
+    "workflow-core": "0.0.4",
+    "workflow-react": "0.0.5",
+    "xterm": "^3.3.0",
+    "xterm-webfont": "^1.0.1"
+  }
+}

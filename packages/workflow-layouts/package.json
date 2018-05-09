@@ -1,0 +1,7 @@
+{
+  "name": "workflow-layouts",
+  "version": "0.0.1",
+  "description": "Workflow layout collection",
+  "main": "index.js",
+  "license": "MIT"
+}

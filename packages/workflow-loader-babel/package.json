@@ -1,0 +1,12 @@
+{
+  "name": "workflow-loader-babel",
+  "version": "0.0.1",
+  "description": "Workflow babel loader",
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/register": "^7.0.0-beta.46",
+    "require-context": "^1.1.0"
+  }
+}

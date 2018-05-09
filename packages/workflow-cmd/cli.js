@@ -6,9 +6,10 @@ const spawn = require("child_process").spawn;
 
 
 const dev = process.env.WORKFLOW_DEV_MODE;
+const homedir = process.env.WORKFLOW_HOME;
 const baseFolder = dev
   ? `${__dirname}/../workflow-template`
-  : `${os.homedir()}/.workflow`;
+  : (homedir || `${os.homedir()}/.workflow`);
 
 if (dev) {
   console.log("Running in dev mode");

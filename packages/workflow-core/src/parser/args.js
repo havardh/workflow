@@ -1,8 +1,5 @@
-// @flow
 /* eslint-disable no-console */
-import { InvalidArgument, InvalidConfig } from '../error/index';
-
-export type Args = string | Array<string>
+import { InvalidArgument, InvalidConfig } from './error';
 
 function validateArguments(config, args) {
   if (typeof config === 'object' && config !== null && config.length) {
@@ -34,10 +31,7 @@ function validateArguments(config, args) {
   }
 }
 
-export default function parseArgs(
-  config?: Args,
-  args: Array<string>,
-): {[string]: string} { // eslint-disable-line no-shadow
+export default function parseArgs(config, args) { // eslint-disable-line no-shadow
   validateArguments(config, args);
 
   if (typeof config === 'object' && config.length && config.length === args.length) {

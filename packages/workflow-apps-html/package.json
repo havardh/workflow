@@ -1,0 +1,13 @@
+{
+  "name": "workflow-apps-html",
+  "version": "0.0.1",
+  "description": "Workflow apps collection for html",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.3.2",
+    "uuid": "^3.2.1",
+    "xterm": "^3.3.0",
+    "xterm-webfont": "^1.0.1"
+  }
+}

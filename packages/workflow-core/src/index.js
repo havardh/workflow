@@ -1,7 +1,15 @@
-import run, {runWith} from "./run";
-import Apps from "./apps/index";
-import { disableCache } from './util/requireCompiled';
+import run, { runWithConfig } from "./run";
+
+export function init(config) {
+  return {
+    run: async (flow, args = [], context = {}) => {
+      await runWithConfig(flow, args, context, config);
+    },
+
+    cli: async (context) => {
+      await run(context, config);
+    }
+  };
+}
 
 export default run;
-
-export { runWith, Apps, disableCache };

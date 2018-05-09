@@ -2,12 +2,13 @@
 /* eslint-env node */
 /* eslint-disable global-require, import/no-unresolved */
 
-function cli(context) {
+function cli(context, config) {
     context.workflowFolder = __dirname;
   try {
     // $FlowTodo
-    const run = require('./dist/index').default;
-    run(context);
+    const init = require('./dist/index').init;
+
+    init(config).cli(context);
   } catch (error) {
     if (error.code === 'MODULE_NOT_FOUND') {
       require('babel-register')({
@@ -23,17 +24,13 @@ function cli(context) {
         plugins: ["transform-object-rest-spread", "transform-class-properties"]
       });
 
-      const run = require('./src/index').default;
+      const init = require('./src/index').init;
 
-      run(context);
+      init(config).cli(context);
     } else {
       throw error;
     }
   }
-}
-
-if (require.main === module) {
-  cli({ userFolder: __dirname });
 }
 
 module.exports = { cli };

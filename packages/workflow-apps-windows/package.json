@@ -1,0 +1,7 @@
+{
+  "name": "workflow-apps-windows",
+  "version": "0.0.1",
+  "description": "Workflow apps collection for windows",
+  "main": "index.js",
+  "license": "MIT"
+}
