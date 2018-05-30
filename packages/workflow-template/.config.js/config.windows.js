@@ -2,7 +2,9 @@ import {join} from "path";
 import WorkflowResolverRelative from "workflow-resolver-relative";
 import WorkflowResolverAbsolute from "workflow-resolver-absolute";
 import WorkflowLoaderBabel from "workflow-loader-babel";
+import WorkflowParserArguments from "workflow-parser-arguments";
 import WorkflowTransformerApplyArgumentsToFields from "workflow-transformer-apply-arguments-to-fields";
+import WorkflowLayout from "workflow-layout";
 import WorkflowWmWindows from "workflow-wm-windows";
 
 const config = {
@@ -26,5 +28,6 @@ export default {
   ],
   loader: new WorkflowLoaderBabel({config}),
   transformers: [new WorkflowTransformerApplyArgumentsToFields()],
+  layout: new WorkflowLayout(),
   wm: new WorkflowWmWindows()
 };

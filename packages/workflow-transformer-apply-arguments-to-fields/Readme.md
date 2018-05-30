@@ -24,5 +24,13 @@ export default {
 This example contains a
 
 ```
+export default render(
+  <Workspace name="File example" args=["file"]>
+    <Atom file={({file}) => file} />
+  </Workspace>
+);
+```
 
+```
+workflow AtomFile.js ./index.js
 ```

@@ -1,35 +1,23 @@
 #!/usr/bin/env node
 /* eslint-env node */
 /* eslint-disable no-console */
-const os = require("os");
 const spawn = require("child_process").spawn;
-
-
-const dev = process.env.WORKFLOW_DEV_MODE;
-const homedir = process.env.WORKFLOW_HOME;
-const baseFolder = dev
-  ? `${__dirname}/../workflow-template`
-  : (homedir || `${os.homedir()}/.workflow`);
+const {join} = require("path");
+const {dev, baseFolder} = require("shared/env");
 
 if (dev) {
   console.log("Running in dev mode");
   console.log(`From: ${baseFolder}`);
 }
 
-function cli(context) {
-  context.commandFolder = process.cwd(); // eslint-disable-line no-param-reassign
-
+function cli() {
   const [node, cmd, ...args] = process.argv; // eslint-disable-line no-unused-vars
 
   var env = Object.create(process.env);
   env.NODE_PATH = `${baseFolder}/node_modules`;
-  spawn(`${baseFolder}/cli.js`, args, { stdio: "inherit", env: env });
+  spawn(join(__dirname, "index.js"), args, { stdio: "inherit", env: env });
 }
 
 if (require.main === module) {
   cli({});
 }
-
-module.exports = {
-  cli
-};

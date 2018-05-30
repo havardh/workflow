@@ -3,9 +3,50 @@
 import * as osascript from "osascript";
 import shell from 'shelljs';
 
-import Tile from 'shared/tile';
+import findAllApps from 'shared/tree';
 
-function setPositionScript(app, position) {
+
+export default class Osx {
+
+  async screen() {
+    const result = shell.exec(
+      `system_profiler SPDisplaysDataType | grep Resolution | awk '{ printf "{\\"width\\": %s, \\"height\\": %s}", $2, $4 }'`,
+      { silent: true}
+    );
+
+    const {width, height} = JSON.parse(result.stdout);
+
+    return { left: 0, top: 0, width, height };
+  }
+
+  async apply(layout) {
+    const apps = findAllApps(layout);
+
+    const scripts = [];
+    for (let app of apps) {
+      scripts.push(createScript(mapPosition(app)));
+    }
+
+    await runScripts(scripts);
+  }
+
+}
+
+function mapPosition(app) {
+  const {position} = app;
+
+  return {
+    ...app,
+    position: {
+      x: position.left,
+      y: position.top,
+      width: position.width,
+      height: position.height
+    }
+  }
+}
+
+function createScript(app) {
   // Executed in jxa context
   function setPosition(window, position) {
     window.bounds = position;
@@ -16,67 +57,34 @@ function setPositionScript(app, position) {
   return `
     (function () {
       const app = ${JSON.stringify(app)};
-      const position = ${JSON.stringify(position)};
 
       ${open.toString()}
       ${setPosition.toString()}
       ${run.toString()}
 
       const window = open(app);
-      setPosition(window, position);
+      setPosition(window, app.position);
       run(window, app);
     }());
   `;
 }
 
-export default class Osx extends Tile {
+async function runScripts(scripts) {
+  return new Promise((resolve, reject) => {
+    const script = scripts.join(`
+      delay(0.5);
+    `);
 
-  constructor() {
-    super();
-    this.scripts = [];
-  }
+    osascript.eval(script, function(err, result) {
+      if (err) {
+        console.error("Failed to execute osascript:");
+        console.error(script);
+        console.error();
 
-  async getDesktopRect() {
-    const result = shell.exec(
-      `system_profiler SPDisplaysDataType | grep Resolution | awk '{ printf "{\\"width\\": %s, \\"height\\": %s}", $2, $4 }'`,
-      { silent: true}
-    );
-
-    const {width, height} = JSON.parse(result.stdout);
-
-    return { x: 0, y: 0, width, height };
-  }
-
-  async setPosition({app, position}) {
-    const script = setPositionScript(app, position);
-
-    this.scripts.push(script);
-
-    return Promise.resolve();
-  }
-
-  async postApply() {
-    return new Promise((resolve, reject) => {
-      const script = this.scripts.join(`
-        delay(0.5);
-      `);
-
-      osascript.eval(script, function(err, result) {
-        if (err) {
-          console.error("Failed to execute osascript:");
-          console.error(script);
-          console.error();
-
-          reject(err);
-          return;
-        }
-        resolve(result);
-      });
-    })
-  }
-
-  async runCmd() { // eslint-disable-line class-methods-use-this
-    // app is opened in setPosition method
-    return Promise.resolve({});
-  }
+        reject(err);
+        return;
+      }
+      resolve(result);
+    });
+  })
 }

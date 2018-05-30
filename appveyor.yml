@@ -31,7 +31,8 @@ test_script:
   # run tests and run build
   - yarn run eslint
   - yarn run flow
-  - appveyor-retry yarn jest -- --forceExit
+  - yarn test unit
+  - appveyor-retry yarn test integration --runInBand
 
 on_failure:
   - ps: New-Item -ItemType Directory -Force -Path .\test\integration\__image_snapshots__\__diff_output__

@@ -140,11 +140,16 @@ function ace({file, position}) {
   div.textContent = "Loading text editor...";
 
   setTimeout(() => {
-    div.textContent = file.content;
+    div.textContent = readFile(file).content;
     const editor = window.ace.edit(id);
     editor.setTheme("ace/theme/tomorrow");
-    const JavaScriptMode = window.ace.require("ace/mode/javascript").Mode;
-    editor.session.setMode(new JavaScriptMode());
+    if (file.endsWith(".js")) {
+      const JavaScriptMode = window.ace.require("ace/mode/javascript").Mode;
+      editor.session.setMode(new JavaScriptMode());
+    } else if (file.endsWith(".html")) {
+      const Mode = window.ace.require("ace/mode/html").Mode;
+      editor.session.setMode(new Mode());
+    }
     editor.getSession().on('change', function() {
       file.content = editor.getSession().getValue();
       if (file.listeners) {
@@ -171,9 +176,10 @@ const fileSystem = {
     user: {
       dev: {
         app: {
-          "index.html": {content:`<html>
+          "index.html": {content:`<!DOCTYPE html>
+<html>
   <head></head>
-  </body>
+  <body>
     <h1> Hello, World! </h1>
   </body>
 </html>`}
@@ -223,7 +229,7 @@ export const Ace = {
   type: "app",
   params: ["file"],
   open: ({app, position}) => {
-    const file = readFile(app.file);
+    const file = app.file;
 
     return div({
       className: "editor",

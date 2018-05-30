@@ -1,6 +1,7 @@
 /* eslint-env node */
 const {execSync} = require("child_process");
 const {which} = require("./shell");
+const os = require("os");
 
 const platform = process.platform;
 
@@ -34,5 +35,11 @@ const wm = (() => {
   return "unknown";
 })();
 
+const dev = (process.env.WORKFLOW_DEV_MODE === "true");
+const homedir = process.env.WORKFLOW_HOME;
 
-module.exports = { platform, wm };
+const baseFolder = dev
+  ? `${__dirname}/../workflow-template`
+  : (homedir || `${os.homedir()}/.workflow`);
+
+module.exports = { platform, wm, dev, homedir, baseFolder };

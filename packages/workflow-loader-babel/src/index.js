@@ -10,7 +10,7 @@ export default class WorkflowLoaderBabel {
 
   async load(path) {
     if (!this.registered) {
-      //require("@babel/register")(this.config);
+      require("babel-register")(this.config);
       this.registered = true;
     }
     return require(path);

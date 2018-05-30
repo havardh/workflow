@@ -18,7 +18,7 @@ class WorkflowLive extends React.Component<Props> {
       const {name, args} = this.props;
 
       // $FlowSuppress
-      const code = require(`raw-loader!../flows/${name}`);
+      const code = require(`!raw-loader!../flows/${name}`);
       // $FlowSuppress
       const flow = require(`../flows/${name}`).default;
 

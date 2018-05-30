@@ -18,7 +18,8 @@ install:
 script:
 - yarn eslint
 - yarn flow
-- travis_retry yarn test
+- yarn test unit
+- travis_retry yarn integration --runInBand
 after_script:
 - "./scripts/travis-update-snapshot"
 env:

@@ -1,6 +1,6 @@
 /* eslint-env node, jest */
 import {join} from "path";
-import WorkflowResolverAbsolute from "../src/index";
+import WorkflowResolverAbsolute from "../../src/index";
 
 describe("WorkflowResolverRelative", () => {
   const resolver = new WorkflowResolverAbsolute();

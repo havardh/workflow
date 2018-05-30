@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WorkflowResolverRelative resolve should throw error when path does not exist 1`] = `[Error: Could not find file /home/havard/dev/workflow/packages/workflow-resolver-absolute/test/unit/not_found]`;
+
+exports[`WorkflowResolverRelative resolve should throw error when path is directory 1`] = `[Error: Path '/home/havard/dev/workflow/packages/workflow-resolver-absolute/test/unit' is a directory]`;

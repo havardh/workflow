@@ -24,7 +24,7 @@ class WorkflowEditor extends React.Component<Props> {
   update() {
     const editor = window.ace.edit(this.id);
     editor.setTheme("ace/theme/tomorrow");
-    const JavaScriptMode = window.ace.require("ace/mode/javascript").Mode;
+    const JavaScriptMode = window.ace.require("ace/mode/jsx").Mode;
     editor.session.setMode(new JavaScriptMode());
   }
 

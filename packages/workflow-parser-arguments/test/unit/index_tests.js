@@ -1,6 +1,6 @@
 // @flow
 /* eslint-env jest */
-import parseArgs from '../../../src/parser/args';
+import {parseArgs} from '../../index';
 
 describe('parseArgs(args, args)', () => {
   describe('when config args is undefined', () => {

@@ -1,11 +1,11 @@
 import PythonShell from 'python-shell';
 import shell from 'shelljs';
 
-import Tile from 'shared/tile';
+import { findAllApps } from "shared/tree";
 
-export default class Wmctrl extends Tile {
+export default class Wmctrl {
 
-  async getDesktopRect() { // eslint-disable-line class-methods-use-this
+  async screen() { // eslint-disable-line class-methods-use-this
     /* eslint-disable no-useless-escape */
     const result = shell.exec('xrandr | grep \'\*\' | awk \'{print $1}\'', { silent: true });
 
@@ -22,19 +22,28 @@ export default class Wmctrl extends Tile {
     });
   }
 
-  async setPosition({ app, position }) {  // eslint-disable-line class-methods-use-this
+  async apply(layout) {
+    const apps = findAllApps(layout);
+
+    for (let app of apps) {
+      const pid = await this.runCmd(app);
+      await this.setPosition({...app, pid});
+    }
+  }
+
+  async setPosition({pid, position}) {  // eslint-disable-line class-methods-use-this
     let windowId;
     while (!windowId) {
-      const result = shell.exec(`wmctrl -l -p | grep ${app.pid} | awk '{ print $1 }'`,
+      const result = shell.exec(`wmctrl -l -p | grep ${pid} | awk '{ print $1 }'`,
         { silent: true },
       );
 
       windowId = result.stdout.replace('\n', '');
     }
 
-    const { x, y, width, height } = position;
+    const { left, top, width, height } = position;
     shell.exec(
-      `wmctrl -i -r ${windowId} -e 0,${x},${y},${width},${height}`,
+      `wmctrl -i -r ${windowId} -e 0,${left},${top},${width},${height}`,
       { silent: true },
     );
 

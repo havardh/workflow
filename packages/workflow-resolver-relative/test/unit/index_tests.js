@@ -1,6 +1,6 @@
 /* eslint-env node, jest */
 import {dirname, join} from "path";
-import WorkflowResolverRelative from "../src/index";
+import WorkflowResolverRelative from "../../src/index";
 
 const path = dirname(__dirname);
 
@@ -8,9 +8,9 @@ describe("WorkflowResolverRelative", () => {
 
   describe("without filter", () => {
     const resolver = new WorkflowResolverRelative({path});
-    
+
     describe("alternatives", () => {
-    
+
       it("should suggest all files in the root folder", async () => {
         const files = await resolver.alternatives("");
 
@@ -30,19 +30,19 @@ describe("WorkflowResolverRelative", () => {
       });
 
       it("should suggest all files in a relative folder from the root with the relative prefix", async () => {
-        const files = await resolver.alternatives("test");
+        const files = await resolver.alternatives("unit");
 
         expect(files).toEqual([
-          "test/__snapshots__",
-          "test/index_tests.js"
+          "unit/__snapshots__",
+          "unit/index_tests.js"
         ]);
       });
 
       it.only("should suggest files in a relative folder with a given prefix", async () => {
-        const files = await resolver.alternatives("test/index");
+        const files = await resolver.alternatives("unit/index");
 
         expect(files).toEqual([
-          "test/index_tests.js"
+          "unit/index_tests.js"
         ]);
       });
 
@@ -66,9 +66,9 @@ describe("WorkflowResolverRelative", () => {
       });
 
       it("should resolve file in folder relative to root to absolute path", async () => {
-        const absolutePath = await resolver.resolve("test/index_tests.js");
+        const absolutePath = await resolver.resolve("unit/index_tests.js");
 
-        expect(absolutePath).toEqual(join(path, "test", "index_tests.js"));
+        expect(absolutePath).toEqual(join(path, "unit", "index_tests.js"));
       });
 
       it("should throw error when resolving a directory", async () => {

@@ -1,15 +1,15 @@
 /* eslint-env node */
 import { createClient } from 'i3';
-import { file } from 'tmp-promise';
-import { outputFile } from 'fs-extra';
+import transform from "./transform";
+import write from "./write";
 
 export default class I3 {
 
   constructor() {
     this.client = createClient();
     setTimeout(() => {
-      this.client._stream.destroy(); // eslint-disable-line no-underscore-dangle
-    }, 10000);
+      this.client._stream.destroy();
+    }, 4000);
   }
 
   async apply(config) {
@@ -19,8 +19,29 @@ export default class I3 {
 
     await this.createLayout(config.root);
 
-    this.findApps(config.root)
-      .forEach(app => this.open(app));
+
+    (config.root.length ? config.root : [config.root])
+      .forEach(root => this.findApps(root)
+      .forEach(app => this.open(app)));
+  }
+
+  async screen() {
+    const workspaces = await (new Promise((resolve, reject) => {
+      this.client.workspaces((err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      });
+    }));
+
+    return workspaces
+      .filter(({visible}) => visible)
+      .map(({rect}) => {
+        const { x, y, width, height} = rect;
+        return {left: x, top: y, width, height };
+      })[0];
   }
 
   createWorkspace(config) {
@@ -32,31 +53,11 @@ export default class I3 {
   }
 
   async createLayout(node) {
-    const layout = this.genLayout(node);
-    const layoutJson = JSON.stringify(layout, null, '  ');
 
-    const tmpobj = await file({ prefix: 'workflow-', postfix: '.json' });
+    const layout = transform(node);
+    const path = await write(layout);
 
-    await outputFile(tmpobj.path, layoutJson);
-
-    this.client.command(`append_layout ${tmpobj.path}`);
-  }
-
-  genLayout(node) {
-    const { percent } = node;
-    if (node.type === "layout") {
-      const { layout } = node;
-      const children = node.children.map(this.genLayout.bind(this));
-
-      return { layout, percent, nodes: children };
-    }
-    return {
-      percent,
-      swallows: [{
-        // $FlowTodo
-        class: `^${node.xClass}$`,
-      }],
-    };
+    this.client.command(`append_layout ${path}`);
   }
 
   findApps(root) {

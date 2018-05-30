@@ -1,22 +1,32 @@
 /* eslint-disable class-methods-use-this */
-import * as WinApi from "./win_api"
-import Tile from 'shared/tile';
 import { spawn, exec } from "child_process";
 import {difference} from "lodash";
 
-class Windows extends Tile {
+import * as WinApi from "./win_api"
+import findAllApps from "shared/tree";
 
-  async getDesktopRect() {
+class Windows {
+
+  async screen() {
     return new Promise((resolve) => {
       resolve(WinApi.getDesktopRect());
     });
   }
 
-  async setPosition({ app, position }) {
-    return new Promise((resolve) => {
-      const { x, y, width, height } = position;
+  async apply(layout) {
+    const apps = findAllApps(layout);
 
-      WinApi.setPosition(app.pid, x, y, width, height);
+    for (let app of apps) {
+      const pid = await this.runCmd(app);
+      await this.setPosition({...app, pid});
+    }
+  }
+
+  async setPosition({ pid, position }) {
+    return new Promise((resolve) => {
+      const { left, top, width, height } = position;
+
+      WinApi.setPosition(pid, left, top, width, height);
       resolve();
     });
   }

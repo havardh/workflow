@@ -1,14 +1,15 @@
 /* eslint-disable class-methods-use-this */
 import PythonShell from 'python-shell';
-import Tile from 'shared/tile';
+
+import findAllApps from 'shared/tree';
 
 const defaultOptions = {
   pythonPath: 'C:\\Windows\\py.exe',
 };
 
-class Windows extends Tile {
+class Windows {
 
-  async getDesktopRect() {
+  async screen() {
     return new Promise((resolve, reject) => {
       PythonShell.run('wms/windows/python/get_desktop_rect.py', defaultOptions, (err, res) => {
         if (err) {
@@ -19,12 +20,21 @@ class Windows extends Tile {
     });
   }
 
-  async setPosition({ app, position }) {
+  async apply(layout) {
+    const apps = findAllApps(layout);
+
+    for (let app of apps) {
+      const pid = await this.runCmd(app);
+      await this.setPosition({...app, pid});
+    }
+  }
+
+  async setPosition({ pid, position }) {
     return new Promise((resolve, reject) => {
-      const { x, y, width, height } = position;
+      const { top, left, width, height } = position;
       const options = {
         ...defaultOptions,
-        args: [app.pid, x, y, width, height],
+        args: [pid, left, top, width, height],
       };
 
       PythonShell.run('wms/windows/python/set_position.py', options, (err, res) => {

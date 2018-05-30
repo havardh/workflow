@@ -39,6 +39,21 @@ const bundles = [{
 }, {
   name: "workflow-app-iterm",
   external: ["react", "workflow-react"]
+}, {
+  name: "workflow-resolver-relative",
+  external: ["fs", "util", "path"]
+}, {
+  name: "workflow-loader-babel",
+  external: ["require-context", "@babel/core", "@babel/register"]
+}, {
+  name: "workflow-transformer-apply-arguments-to-fields",
+  external: ["lodash.mapvalues"]
+}, {
+  name: "workflow-apps-linux",
+  external: []
+}, {
+  name: "workflow-apps-windows",
+  external: []
 }];
 
 function createConfig(bundle) {

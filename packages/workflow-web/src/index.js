@@ -214,35 +214,25 @@ import WorkflowResolverAbsolute from "workflow-resolver-absolute";
 import WorkflowLoaderBabel from "workflow-loader-babel";
 import WorkflowTranformAnalytics from "workflow-transform-analytics";
 import WorkflowWmOsx from "workflow-wm-osx";
-import WorkflowAppsOsx from "workflow-apps-osx";
-import * as UserDefaultApps from "./apps/defaults";
 
 /*  */
 export default {
 
-  /* Workflow re-exports a list of default apps.
-   * This property is used to inject the desired apps.
-   */
-  defaults: {
-    /* User overrides for the platform default apps */
-    ...UserDefaultApps,
-    /* Platform default apps for osx */
-    ...WorkflowAppsOsx.defaults
-  },
-
   /* Resolves lets workflow know where to look for flow files. */
   resolvers: [
-    /* Resolves flows relative to the workflow home folder */
-    new WorkflowResolverRelative({path: resolve("flows")}),
     /* Resolves flows with an absolute path */
     new WorkflowResolverAbsolute()
+    /* Resolves flows relative to the workflow home folder */
+    new WorkflowResolverRelative({path: resolve("flows")}),
   ],
 
   /* Loads the flow specified as the first command line argument */
   loader: new WorkflowLoaderBabel(),
 
   /*  */
-  transforms: [new WorkflowTranformAnalytics()],
+  transforms: [
+    new WorkflowTranformerApplyArgumentsToFields()
+  ],
   wm: new WorkflowWmOsx();
 };
 `}

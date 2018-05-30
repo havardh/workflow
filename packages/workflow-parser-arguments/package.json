@@ -1,0 +1,7 @@
+{
+  "name": "workflow-parser-arguments",
+  "version": "0.0.1",
+  "description": "Workflow arguments parser",
+  "license": "MIT",
+  "main": "index.js"
+}
