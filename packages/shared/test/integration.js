@@ -18,8 +18,6 @@ if (!wmPackage) {
 
 const Wm = require(wmPackage);
 
-console.log(Wm);
-
 const configInlineFlow = {
   resolvers: [{resolve: flow => flow}],
   loader: {load: flow => ({default: flow})},

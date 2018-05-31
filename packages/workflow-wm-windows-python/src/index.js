@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import PythonShell from 'python-shell';
 
-import findAllApps from 'shared/tree';
+import {findAllApps} from 'shared/tree';
 
 const defaultOptions = {
   pythonPath: 'C:\\Windows\\py.exe',

@@ -1,23 +1,7 @@
-import run, { runWithConfig } from "./run";
-
 import {resolve, alternatives} from "./resolver";
 import {load} from "./loader";
 import {transform} from "./transformer";
 import {apply, screen} from "./wm";
-
-export function init(config) {
-  return {
-    run: async (flow, args = [], context = {}) => {
-      await runWithConfig(flow, args, context, config);
-    },
-
-    cli: async (context) => {
-      await run(context, config);
-    }
-  };
-}
-
-export default run;
 
 export function workflow({ resolvers, loader, argumentParser, transformers, layout, wm }) {
   return {

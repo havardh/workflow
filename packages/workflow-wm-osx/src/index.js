@@ -3,7 +3,7 @@
 import * as osascript from "osascript";
 import shell from 'shelljs';
 
-import findAllApps from 'shared/tree';
+import {findAllApps} from 'shared/tree';
 
 
 export default class Osx {
