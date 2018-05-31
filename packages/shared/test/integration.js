@@ -6,6 +6,20 @@ import WorkflowLayout from "workflow-layout";
 import {platform} from "shared/env";
 import take from 'shared/screenshot';
 
+const wmPackage = {
+  "win32": "workflow-wm-windows",
+  "linux": "workflow-wm-i3",
+  "darwin": "workflow-wm-osx"
+}[platform];
+
+if (!wmPackage) {
+  throw new Error(`Could not find wm package for platform '${platform}'`)
+}
+
+const Wm = require(wmPackage);
+
+console.log(Wm);
+
 const configInlineFlow = {
   resolvers: [{resolve: flow => flow}],
   loader: {load: flow => ({default: flow})},

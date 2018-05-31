@@ -2,10 +2,10 @@
 import {join} from "path";
 import WorkflowResolverAbsolute from "../../src/index";
 
-describe("WorkflowResolverRelative", () => {
+describe("WorkflowResolverAbsolute", () => {
   const resolver = new WorkflowResolverAbsolute();
 
-  describe("absolute", () => {
+  describe("alternatives", () => {
 
     it("should suggest file when path is a file", async () => {
       const path = __filename;
@@ -18,10 +18,7 @@ describe("WorkflowResolverRelative", () => {
       const path = __dirname;
       const file = await resolver.alternatives(path);
 
-      expect(file).toEqual(([
-        join(__dirname, "__snapshots__"),
-        __filename
-      ]));
+      expect(file).toEqual(([__filename]));
     });
 
     it("should filter out non-matching files when path is non-complete", async () => {
@@ -47,13 +44,23 @@ describe("WorkflowResolverRelative", () => {
     });
 
     it("should throw error when path does not exist", async () => {
-      await expect(resolver.resolve(join(__dirname, "not_found")))
-        .rejects.toMatchSnapshot();
+      const path = join(__dirname, "not_found");
+      try {
+        await resolver.resolve(path);
+        fail("Should throw error when path does not exist"); // eslint-disable-line no-undef
+      } catch (e) {
+        expect(e.message).toEqual(`Could not find file ${path}`);
+      }
     });
 
     it("should throw error when path is directory", async () => {
-      await expect(resolver.resolve(__dirname))
-        .rejects.toMatchSnapshot();
+      const path = __dirname;
+      try {
+        await resolver.resolve(path);
+        fail("Should throw error when path is a directory"); // eslint-disable-line no-undef
+      } catch (e) {
+        expect(e.message).toEqual(`Path '${path}' is a directory`);
+      }
     });
   });
 
