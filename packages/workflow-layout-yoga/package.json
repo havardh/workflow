@@ -33,6 +33,6 @@
   "dependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "yoga-layout": "^1.9.3"
+    "yoga-layout": "github:naminho/yoga-layout-windows"
   }
 }
