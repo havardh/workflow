@@ -8,7 +8,9 @@ export function findAllApps(root) {
     if (node.type === "app") {
       apps.push(node);
     } else {
-      nodes.push(...node.children);
+      if (node.children) {
+        nodes.push(...node.children);
+      }
     }
   }
 
