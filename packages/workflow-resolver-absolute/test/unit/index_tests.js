@@ -1,5 +1,5 @@
 /* eslint-env node, jest */
-import {join} from "path";
+import {resolve, join} from "path";
 import WorkflowResolverAbsolute from "../../src/index";
 
 describe("WorkflowResolverAbsolute", () => {
@@ -8,17 +8,17 @@ describe("WorkflowResolverAbsolute", () => {
   describe("alternatives", () => {
 
     it("should suggest file when path is a file", async () => {
-      const path = __filename;
+      const path = resolve(__filename);
       const file = await resolver.alternatives(path);
 
       expect(file).toEqual(([path]));
     });
 
     it("should suggest files when path is directory", async () => {
-      const path = __dirname;
+      const path = resolve(__dirname);
       const file = await resolver.alternatives(path);
 
-      expect(file).toEqual(([__filename]));
+      expect(file).toEqual(([resolve(__filename)]));
     });
 
     it("should filter out non-matching files when path is non-complete", async () => {
@@ -38,9 +38,9 @@ describe("WorkflowResolverAbsolute", () => {
 
   describe("resolve", () => {
     it("should resolve to absulute path when found", async () => {
-      const absolutePath = await resolver.resolve(__filename);
+      const absolutePath = await resolver.resolve(resolve(__filename));
 
-      expect(absolutePath).toEqual(__filename);
+      expect(absolutePath).toEqual(resolve(__filename));
     });
 
     it("should throw error when path does not exist", async () => {
@@ -54,7 +54,7 @@ describe("WorkflowResolverAbsolute", () => {
     });
 
     it("should throw error when path is directory", async () => {
-      const path = __dirname;
+      const path = resolve(__dirname);
       try {
         await resolver.resolve(path);
         fail("Should throw error when path is a directory"); // eslint-disable-line no-undef

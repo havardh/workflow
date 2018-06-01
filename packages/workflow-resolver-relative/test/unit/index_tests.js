@@ -38,11 +38,11 @@ describe("WorkflowResolverRelative", () => {
         ]);
       });
 
-      it.only("should suggest files in a relative folder with a given prefix", async () => {
+      it("should suggest files in a relative folder with a given prefix", async () => {
         const files = await resolver.alternatives("unit/index");
 
         expect(files).toEqual([
-          "unit/index_tests.js"
+          join("unit","index_tests.js")
         ]);
       });
 
