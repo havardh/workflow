@@ -73,4 +73,4 @@ class Windows {
   }
 }
 
-export default Windows;
+module.exports = Windows;

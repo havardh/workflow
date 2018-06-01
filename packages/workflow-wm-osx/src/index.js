@@ -6,7 +6,7 @@ import shell from 'shelljs';
 import {findAllApps} from 'shared/tree';
 
 
-export default class Osx {
+class Osx {
 
   async screen() {
     const result = shell.exec(
@@ -88,3 +88,5 @@ async function runScripts(scripts) {
     });
   })
 }
+
+module.exports = Osx;

@@ -3,7 +3,7 @@ import shell from 'shelljs';
 
 import { findAllApps } from "shared/tree";
 
-export default class Wmctrl {
+class Wmctrl {
 
   async screen() { // eslint-disable-line class-methods-use-this
     /* eslint-disable no-useless-escape */
@@ -73,3 +73,5 @@ export default class Wmctrl {
   }
 
 }
+
+module.exports = Windows;

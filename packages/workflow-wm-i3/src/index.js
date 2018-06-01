@@ -3,7 +3,9 @@ import { createClient } from 'i3';
 import transform from "./transform";
 import write from "./write";
 
-export default class I3 {
+import {findAllApps} from "shared/tree";
+
+class I3 {
 
   constructor() {
     this.client = createClient();
@@ -13,6 +15,7 @@ export default class I3 {
   }
 
   async apply(config) {
+    const apps = findAllApps(config);
     this.createWorkspace(config);
 
     this.clearWorkspace();
@@ -77,5 +80,6 @@ export default class I3 {
   open(app) {
     this.client.command(`exec ${app.open(app)}`);
   }
-
 }
+
+module.exports = I3;
