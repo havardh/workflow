@@ -1,3 +1,4 @@
+/* eslint-env node */
 import PythonShell from 'python-shell';
 import shell from 'shelljs';
 
@@ -74,4 +75,4 @@ class Wmctrl {
 
 }
 
-module.exports = Windows;
+module.exports = Wmctrl;

@@ -1,3 +1,4 @@
+/* eslint-env node */
 /* eslint-disable class-methods-use-this */
 import { spawn, exec } from "child_process";
 import {difference} from "lodash";

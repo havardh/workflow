@@ -1,3 +1,4 @@
+/* eslint-env node */
 /* eslint-disable class-methods-use-this */
 import PythonShell from 'python-shell';
 

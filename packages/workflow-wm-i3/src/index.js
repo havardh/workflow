@@ -3,8 +3,6 @@ import { createClient } from 'i3';
 import transform from "./transform";
 import write from "./write";
 
-import {findAllApps} from "shared/tree";
-
 class I3 {
 
   constructor() {
@@ -15,7 +13,6 @@ class I3 {
   }
 
   async apply(config) {
-    const apps = findAllApps(config);
     this.createWorkspace(config);
 
     this.clearWorkspace();
