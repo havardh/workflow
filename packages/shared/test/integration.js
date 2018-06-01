@@ -42,11 +42,7 @@ const configAbsoluteResolveFlow = {
   }}),
   transformers: [],
   layout: new WorkflowLayout(),
-  wm: new (require({
-    "win32": "workflow-wm-windows",
-    "linux": "workflow-wm-i3",
-    "darwin": "workflow-wm-osx"
-  }[platform]))()
+  wm: new Wm()
 };
 
 function requireWorkflow(flow) {
