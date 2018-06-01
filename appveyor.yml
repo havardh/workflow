@@ -18,7 +18,7 @@ install:
   - ps: Install-Product node $env:nodejs_version x64
   - set PATH=%APPDATA%\yarn;%PATH%
   - yarn
-  - rollup -c
+  - ./node_modules/.bin/rollup -c
   - ps: ./scripts/windows-ci-desktop-layout.ps1
 
 # Disable automatic builds

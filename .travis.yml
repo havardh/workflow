@@ -15,7 +15,7 @@ install:
 - "./scripts/macos-ci-desktop-layout"
 - yarn config set workspaces-experimental true
 - yarn
-- rollup -c
+- ./node_modules/.bin/rollup -c
 script:
 - yarn eslint
 - yarn flow
