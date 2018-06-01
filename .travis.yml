@@ -15,11 +15,12 @@ install:
 - "./scripts/macos-ci-desktop-layout"
 - yarn config set workspaces-experimental true
 - yarn
+- rollup -c
 script:
 - yarn eslint
 - yarn flow
 - yarn test unit
-- travis_retry yarn integration --runInBand
+- travis_retry yarn test integration --runInBand
 after_script:
 - "./scripts/travis-update-snapshot"
 env:

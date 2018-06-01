@@ -12,6 +12,7 @@ jobs:
           - v1-dependencies-
       - run: yarn config set workspaces-experimental true
       - run: yarn install
+      - run: rollup -c
       - save_cache:
           paths:
             - node_modules
