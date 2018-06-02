@@ -1,6 +1,8 @@
 /* eslint-env node */
 /* eslint-disable class-methods-use-this */
-import { spawn, exec } from "child_process";
+
+import { exec } from "child_process";
+import spawn from "cross-spawn";
 import {difference} from "lodash";
 
 const WinApi = require("./win_api");
@@ -58,10 +60,10 @@ class Windows {
       );
   }
 
-  async runWithStart({program, args}) {
-    const before = await this.getPids(program);
+  async runWithStart({program, args, processName}) {
+    const before = await this.getPids(processName || program);
     exec("start " + program + " " + (args || []).join(" "));
-    const after = await this.getPids(program);
+    const after = await this.getPids(processName || program);
 
     const [pid] = difference(after, before);
     return pid;
@@ -69,13 +71,16 @@ class Windows {
 
   async runCmd(app) { // eslint-disable-line class-methods-use-this
     return new Promise(async (resolve) => {
-      const {program, start, args} = app.open;
+      const {fn, start, processName} = app.open;
+
+      const [program, ...args] = fn(app).split(' ');
 
       if (start) {
-        resolve(await(this.runWithStart({program, args})));
+        resolve(await(this.runWithStart({program, args, processName})));
       } else {
         const options = { detached: true, cwd: app.cwd, stdio: "inherit" };
         const process = spawn(program, args || [], options);
+
         resolve(process.pid);
       }
     });

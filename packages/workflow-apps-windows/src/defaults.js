@@ -1,5 +1,5 @@
-import { PowerShell, IExplorer, Notepad } from './apps';
+import { PowerShell, Edge, Notepad } from './apps';
 
 export const Terminal = PowerShell;
-export const Browser = IExplorer;
+export const Browser = Edge;
 export const TextEditor = Notepad;

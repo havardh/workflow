@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* eslint-env node */
 /* eslint-disable no-console */
-const spawn = require("child_process").spawn;
+const spawn = require("cross-spawn");
 const {join} = require("path");
 const {dev, baseFolder} = require("shared/env");
 
