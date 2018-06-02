@@ -11,7 +11,7 @@ export default class WorkflowResolverAbsolute {
       } else {
         const files = await promisify(fs.readdir)(path);
 
-        return files.map(file => `${path}/${file}`);
+        return files.map(file => join(path, file));
       }
 
 
