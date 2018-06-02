@@ -2,14 +2,20 @@ export const Notepad = {
   type: "app",
   params: ["file"],
   name: "Notepad",
-  open: ({ file }) => `notepad.exe ${file || ""}`,
+  open: {
+    fn: ({ file }) => `notepad.exe ${file || ""}`
+  },
 };
 
-export const IExplorer = {
+export const Edge = {
   type: "app",
   params: ["url"],
-  name: "IExplorer",
-  open: ({ url }) => `"C:\\Program Files\\Internet Explorer\\iexplore.exe" ${url}`,
+  name: "Edge",
+  open: {
+    fn: ({ url }) => `microsoft-edge:${url}`,
+    processName: "MicrosoftEdgeCP.exe",
+    start: true
+  },
 };
 
 export const PowerShell = {
@@ -17,8 +23,7 @@ export const PowerShell = {
   params: ["file"],
   name: "PowerShell",
   open: {
-    program: "powershell.exe",
-    start: true,
-    args: []
+    fn: () => "powershell.exe",
+    start: true
   },
 };
