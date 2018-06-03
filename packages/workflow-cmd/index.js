@@ -9,11 +9,11 @@ const config = require(`${baseFolder}/config`).default;
 
 const workflow = require("workflow-core").workflow(config);
 
-const [node, path] = process.argv; // eslint-disable-line no-unused-vars
+const [node, tool, path] = process.argv; // eslint-disable-line no-unused-vars
 
 async function exec() {
   const absolutePath = await workflow.resolve(path);
-  let flow = await workflow.load(absolutePath);
+  let flow = (await workflow.load(absolutePath)).default;
   const args = await workflow.parseArguments(flow, process.argv);
   flow = await workflow.transform(flow, {args});
   const screen = await workflow.screen();
