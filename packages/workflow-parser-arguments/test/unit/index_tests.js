@@ -1,6 +1,12 @@
 // @flow
 /* eslint-env jest */
-import {parseArgs} from '../../index';
+import WorkflowParserArguments from '../../index';
+
+const parser = new WorkflowParserArguments();
+
+function parseArgs(config, args) {
+  return parser.parse({args: config}, ["node", "cli.js", ...args]);
+}
 
 describe('parseArgs(args, args)', () => {
   describe('when config args is undefined', () => {
