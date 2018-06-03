@@ -39,8 +39,8 @@ function div({className, position, children}) {
 
   if (position) {
     el.style.position = "absolute";
-    el.style.top = position.y;
-    el.style.left = position.x;
+    el.style.top = position.top;
+    el.style.left = position.left;
     el.style.width = position.width;
     el.style.height = position.height;
   }
