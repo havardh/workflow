@@ -2,6 +2,7 @@ import {TextEditor, Terminal} from "workflow-apps-defaults";
 
 export default {
   name: 'workflow-dev-core',
+  type: 'workspace',
   root: {
     type: "layout",
     layout: 'splitv',

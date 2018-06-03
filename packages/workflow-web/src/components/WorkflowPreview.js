@@ -2,8 +2,10 @@
 /* eslint-env browser */
 import React from "react";
 import uuidv4 from "uuid/v4";
-import {init} from "workflow-core";
+import {workflow} from "workflow-core";
+import WorkflowParserArguments from "workflow-parser-arguments";
 import WorkflowTransformerApplyArgumentsToFields from "workflow-transformer-apply-arguments-to-fields";
+import WorkflowLayout from "workflow-layout";
 import WorkflowWmHtml from "workflow-wm-html";
 
 function dispatch(elem: Element, event) {
@@ -30,10 +32,10 @@ class WorkflowPreview extends React.Component<Props> {
   componentDidMount() {
     const container = document.getElementById(this.id);
     if (container) {
-      this.workflow = init({
-        resolvers: [{resolve: async (flow) => flow, alternatives: async () => ([])}],
-        loader: {load: async(flow) => ({default: flow})},
+      this.workflow = workflow({
         transformers: [new WorkflowTransformerApplyArgumentsToFields()],
+        argumentParser: new WorkflowParserArguments(),
+        layout: new WorkflowLayout(),
         wm: new WorkflowWmHtml({container})
       });
     } else {
@@ -49,6 +51,18 @@ class WorkflowPreview extends React.Component<Props> {
     this.update();
   }
 
+  async run(flow, argv) {
+    const {workflow} = this;
+
+    const args = await workflow.parseArguments(flow, ["node", "cli", ...argv]);
+    flow = await workflow.transform(flow, {args});
+
+    const screen = await workflow.screen();
+    flow = await workflow.layout(flow, {screen});
+
+    await workflow.apply(flow);
+  }
+
   update() {
     const container = document.getElementById(this.id);
     if (container) {
@@ -59,10 +73,10 @@ class WorkflowPreview extends React.Component<Props> {
         // $FlowSuppress
         dispatch(container.firstChild, event);
         // $FlowSuppress
-        container.removeChild(container.firstChild);  
+        container.removeChild(container.firstChild);
       }
 
-      this.workflow.run(flow, args || []);
+      this.run(flow, args || []);
     } else {
       throw new Error(`Could not find container element with id ${this.id}`);
     }

@@ -1,11 +1,10 @@
 /* eslint-env browser */
 /* eslint-disable no-console */
-import Tile from 'shared/tile';
+import {findAllApps} from 'shared/tree';
 
-export default class Html extends Tile {
+export default class Html {
 
   constructor({container}) {
-    super();
     this.scripts = [];
     if (typeof element === "string") {
       this.container = document.getElementById(container);
@@ -14,25 +13,21 @@ export default class Html extends Tile {
     }
   }
 
-  async getDesktopRect() {
+  async screen() {
     return {
-      x: 0,
-      y: 0,
+      left: 0,
+      top: 0,
       width: this.container.clientWidth,
       height: this.container.clientHeight
     };
   }
 
-  async setPosition({app, position}) {
-    this.container.appendChild(app.open({app, position}));
-    return Promise.resolve();
-  }
+  async apply(layout) {
+    const apps = findAllApps(layout);
 
-  async postApply() {
-  }
-
-  async runCmd() { // eslint-disable-line class-methods-use-this
-    // app is opened in setPosition method
-    return Promise.resolve({});
+    for (let app of apps) {
+      const {position} = app;
+      this.container.appendChild(app.open({app, position}));
+    }
   }
 }

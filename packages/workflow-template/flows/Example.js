@@ -3,6 +3,7 @@ import {Browser, TextEditor} from "workflow-apps-defaults";
 
 export default {
   name: 'workflow-example',
+  type: 'workspace',
   root: {
     type: "layout",
     layout: 'splith',
