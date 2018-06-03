@@ -32,7 +32,7 @@ test_script:
   - yarn run eslint
   - yarn run flow
   - yarn test unit
-  - appveyor-retry yarn test integration --runInBand
+  - appveyor-retry yarn test integration --runInBand --forceExit
 
 on_failure:
   - ps: New-Item -ItemType Directory -Force -Path .\test\integration\__image_snapshots__\__diff_output__
