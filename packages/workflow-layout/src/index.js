@@ -38,8 +38,8 @@ function calculateLayout(layout, {position, screen}) {
       let startTop = top;
       return {...layout, position, children: layout.children.map(child => {
         const currentStartTop = startTop;
-        startTop += width * child.percent;
-        const position = { left, top: currentStartTop, width: width * child.percent, height};
+        startTop += height * child.percent;
+        const position = { left, top: currentStartTop, height: height * child.percent, width};
         return calculate(child, {position, screen});
       })};
     }
@@ -47,9 +47,9 @@ function calculateLayout(layout, {position, screen}) {
       let startLeft = left;
       return {...layout, position, children: layout.children.map(child => {
         const currentStartLeft = startLeft;
-        startLeft += height * child.percent;
+        startLeft += width * child.percent;
 
-        const position = { left: currentStartLeft, top, width, height: child.percent * height};
+        const position = { left: currentStartLeft, top, height, width: child.percent * width};
         return calculate(child, {position, screen})
       })}
     }

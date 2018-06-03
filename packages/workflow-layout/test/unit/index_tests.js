@@ -67,8 +67,8 @@ it("splitv should split screen vertically", () => {
           .percent(1.0)
           .position(0, 0, 1024, 768)
           .children(
-            app().percent(0.5).position(0, 0, 512, 768).build(),
-            app().percent(0.5).position(0, 512, 512, 768).build(),
+            app().percent(0.5).position(0, 0, 1024, 384).build(),
+            app().percent(0.5).position(0, 384, 1024, 384).build(),
           )
           .build()
       )
@@ -97,8 +97,8 @@ it("splith should split screen horizontally", () => {
           .percent(1.0)
           .position(0, 0, 1024, 768)
           .children(
-            app().percent(0.5).position(0, 0, 1024, 384).build(),
-            app().percent(0.5).position(384, 0, 1024, 384).build(),
+            app().percent(0.5).position(0, 0, 512, 768).build(),
+            app().percent(0.5).position(512, 0, 512, 768).build(),
           )
           .build()
       )
@@ -163,14 +163,14 @@ it("relative should be relative to parent", () => {
       .child(
         splitv().position(0, 0, 1024, 768)
           .children(
-            fill().percent(0.5).position(0, 0, 512, 768).children(
+            fill().percent(0.5).position(0, 0, 1024, 384).children(
               float().position(100, 100, 200, 200).children(
                 app().position(100, 100, 200, 200).build()
               ).build()
             ).build(),
-            fill().percent(0.5).position(0, 512, 512, 768).children(
-              float().position(100, 612, 200, 200).children(
-                app().position(100, 612, 200, 200).build(),
+            fill().percent(0.5).position(0, 384, 1024, 384).children(
+              float().position(100, 484, 200, 200).children(
+                app().position(100, 484, 200, 200).build(),
               ).build()
             ).build()
         ).build()
@@ -236,12 +236,12 @@ it("absolute should be relative to screen", () => {
       .child(
         splitv().position(0, 0, 1024, 768)
           .children(
-            fill().percent(0.5).position(0, 0, 512, 768).children(
+            fill().percent(0.5).position(0, 0, 1024, 384).children(
               float().position(100, 100, 200, 200).children(
                 app().position(100, 100, 200, 200).build()
               ).build()
             ).build(),
-            fill().percent(0.5).position(0, 512, 512, 768).children(
+            fill().percent(0.5).position(0, 384, 1024, 384).children(
               float().position(100, 100, 200, 200).children(
                 app().position(100, 100, 200, 200).build()
               ).build()
