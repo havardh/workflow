@@ -43,6 +43,12 @@ const bundles = [{
   name: "workflow-resolver-relative",
   external: ["fs", "util", "path"]
 }, {
+  name: "workflow-resolver-absolute",
+  external: []
+}, {
+  name: "workflow-parser-arguments",
+  external: []
+}, {
   name: "workflow-loader-babel",
   external: ["require-context", "@babel/core", "@babel/register"]
 }, {
