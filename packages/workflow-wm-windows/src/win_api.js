@@ -48,7 +48,7 @@ if (platform !== "win32") {
       const width = right - left
       const height = bottom - top
 
-      return {x: left, y: top, width, height};
+      return {left, top, width, height};
   }
 
   function setPosition(pid, x, y, width, height) {
