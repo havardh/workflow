@@ -3,14 +3,18 @@
 import { spawn, exec } from "child_process";
 import {difference} from "lodash";
 
-import * as WinApi from "./win_api"
+import WinApi from "./win_api"
 import {findAllApps} from "shared/tree";
 
 class Windows {
 
+  constructor() {
+    this.winApi = new WinApi();
+  }
+
   async screen() {
     return new Promise((resolve) => {
-      resolve(WinApi.getDesktopRect());
+      resolve(this.winApi.getDesktopRect());
     });
   }
 
@@ -23,11 +27,15 @@ class Windows {
     }
   }
 
+  async minimizeAll() {
+    return this.winApi.minimizeAll();
+  }
+
   async setPosition({ pid, position }) {
     return new Promise((resolve) => {
       const { left, top, width, height } = position;
 
-      WinApi.setPosition(pid, left, top, width, height);
+      this.winApi.setPosition(pid, left, top, width, height);
       resolve();
     });
   }

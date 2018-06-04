@@ -1,17 +1,12 @@
 /* eslint-env node, jest */
-import { toMatchImageSnapshot } from 'jest-image-snapshot';
-expect.extend({ toMatchImageSnapshot });
-
 import React from 'react';
 import render, { Workspace, Apps,  } from 'workflow-react';
 const { Terminal } = Apps.defaults;
 
-import {describeFlow, testFlow, applyAndCapture} from "shared/test/integration";
-
 import { Flex } from "../../src/components";
 
-describeFlow('Integration tests', () => {
-  testFlow(`yoga with flex node`, async () => {
+export default {
+  "yoga with flex node": async (applyAndCapture) => {
     const flow = render(
       <Workspace name={'workflow-yoga-test'}>
         <Flex style={{
@@ -32,5 +27,5 @@ describeFlow('Integration tests', () => {
     );
 
     expect(await applyAndCapture(flow)).toMatchImageSnapshot();
-  });
-});
+  }
+};

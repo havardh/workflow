@@ -18,12 +18,14 @@ if (!wmPackage) {
 
 const Wm = require(wmPackage);
 
+const wm = new Wm();
+
 const configInlineFlow = {
   resolvers: [{resolve: flow => flow}],
   loader: {load: flow => ({default: flow})},
   transformers: [],
   layout: new WorkflowLayout(),
-  wm: new Wm()
+  wm
 };
 
 const configAbsoluteResolveFlow = {
@@ -42,7 +44,7 @@ const configAbsoluteResolveFlow = {
   }}),
   transformers: [],
   layout: new WorkflowLayout(),
-  wm: new Wm()
+  wm
 };
 
 function requireWorkflow(flow) {
@@ -57,7 +59,7 @@ async function seconds(secs) {
   return new Promise(resolve => setTimeout(resolve, secs * 1000));
 }
 
-export async function applyAndCapture(argument) {
+async function applyAndCapture(argument) {
   let workflow = requireWorkflow(argument);
 
   const path = await workflow.resolve(argument);
@@ -68,14 +70,24 @@ export async function applyAndCapture(argument) {
 
   await seconds(4);
 
+  workflow = null;
+
   return take();
 }
 
-export function describeFlow(name, fn) {
+async function clearWorkspace() {
+  if (wm.minimizeAll) {
+    wm.minimizeAll();
+  }
+  await seconds(1);
+}
+
+function describeFlow(name, fn) {
   describe(name, () => {
 
     let originalTimeout;
     beforeAll(() => {
+      jest.resetModules();
       originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
       jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     });
@@ -89,6 +101,23 @@ export function describeFlow(name, fn) {
   })
 }
 
-export function testFlow(name, fn) {
-  test(`${platform}:${name}}`, fn)
+function testFlow(name, fn) {
+  test(`${platform}:${name}}`, async () => {
+    await clearWorkspace();
+    await fn(applyAndCapture);
+  });
+}
+
+function registerTestCases(name, test_file) {
+  describeFlow(name, () => {
+    for (let [name, test] of Object.entries(test_file.default)) {
+      testFlow(name, test);
+    }
+  });
+}
+
+export function registerIntegrationTests(tests) {
+  for (let [name, test_file] of Object.entries(tests)) {
+    registerTestCases(name, test_file);
+  }
 }
