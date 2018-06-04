@@ -18,7 +18,7 @@ class I3 {
       .forEach(root => this.findApps(root)
       .forEach(app => this.open(client, app)));
 
-    client._stream.destory();
+    client._stream.destroy()
   }
 
   async screen() {
@@ -30,7 +30,7 @@ class I3 {
         } else {
           resolve(res);
         }
-        client._stream.destory();
+        client._stream.destroy()
       });
     }));
 
