@@ -19,7 +19,7 @@ const LPDWORD = ref.refType(ffi.types.ulong);
 const IntPtr = ref.refType(ffi.types.int32);
 
 class WinApi {
-  constructor() { 
+  constructor() {
     this.user32 = new ffi.Library('user32', {
        'GetDesktopWindow': ['int32', []],
        'GetWindowRect': ['bool', ['int32', RectPtr]],
@@ -47,7 +47,7 @@ class WinApi {
   minimizeAll() {
     var callback = ffi.Callback('bool',  ['int32', IntPtr], (hwnd) => {
       if (this.user32.IsWindowVisible(hwnd) && this.user32.IsWindowEnabled(hwnd)) {
-        this.user32.ShowWindow(hwnd, SW_MINIMIZE);        
+        this.user32.ShowWindow(hwnd, SW_MINIMIZE);
       }
       return true;
     });

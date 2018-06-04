@@ -3,7 +3,7 @@
 import { spawn, exec } from "child_process";
 import {difference} from "lodash";
 
-import WinApi from "./win_api"
+const WinApi = require("./win_api");
 import {findAllApps} from "shared/tree";
 
 class Windows {

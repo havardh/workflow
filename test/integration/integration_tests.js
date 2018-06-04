@@ -5,6 +5,6 @@ expect.extend({ toMatchImageSnapshot });
 import {registerIntegrationTests} from "shared/test/integration";
 
 registerIntegrationTests({
-  "Root": require("./integration_test_cases"),
-  "WorkflowLayoutYoga": require("../../packages/workflow-layout-yoga/test/integration/yoga_layout_tests")
+  "Root": require("./test_cases"),
+  "WorkflowLayoutYoga": require("../../packages/workflow-layout-yoga/test/integration/test_cases")
 });

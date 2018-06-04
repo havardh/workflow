@@ -79,7 +79,7 @@ async function clearWorkspace() {
   if (wm.minimizeAll) {
     wm.minimizeAll();
   }
-  await seconds(1);
+  await seconds(4);
 }
 
 function describeFlow(name, fn) {
