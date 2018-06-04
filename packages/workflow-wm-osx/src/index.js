@@ -32,20 +32,23 @@ class Osx {
 
   async minimizeAll() {
     const script = `
-    tell application "System Events"
-    set theResults to get buttons of (windows of (application processes whose visible is true)) whose description is "minimize button" -- a list of visible applications, containing a list of windows, containing a list of (one) buttons
-
-    repeat with anApp in theResults
-        if contents of anApp is not in {} then -- windows are open
-            repeat with eachWindow in (items of anApp)
-                click first item of eachWindow -- only the one minimize button
-            end repeat
-        end if
-    end repeat
-    end tell`;
+    (function () {
+      const se = Application("System Events");
+      const processes = se.processes.whose({visible: true});
+      for (let i=0; i<processes.length; i++) {
+        const windows = processes[i].windows;
+        for (let j=0; j<windows.length; j++) {
+          const buttons = windows[j].buttons.whose({description: "minimize button"});
+          for (let k=0; k<buttons.length; k++) {
+            buttons[k].click();
+          }
+        }
+      }
+    }());
+    `;
 
     return new Promise((resolve, reject) => {
-      osascript.eval(script, { type: 'AppleScript' }, function(err, result) {
+      osascript.eval(script, function(err, result) {
         if (err) {
           console.error("Failed to execute osascript:");
           console.log(err);
