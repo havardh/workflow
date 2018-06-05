@@ -1,24 +1,15 @@
-import React, { Component } from 'react';
+/* eslint-env node */
 import { mapValues } from 'lodash';
-import { Apps } from "workflow-core";
 
-import { App } from '../components';
+import {createAppComponent} from "../createComponent";
 
-export function createComponent({ open, xClass, name }) {
-  return class extends Component {
-    static displayName = `app-${xClass || name}`;
+export const defaults = mapValues(require("workflow-apps-defaults"), createAppComponent);
 
-    render() {
-      const props = {open, xClass, name};
-
-      return (
-        <App {...props} {...this.props} />
-      );
-    }
-  };
+export let linux, osx, windows, html;
+if (process.browser) {
+  html = mapValues(require("workflow-apps-html"), createAppComponent);
+} else {
+  linux = mapValues(require("workflow-apps-linux"), createAppComponent);
+  osx = mapValues(require("workflow-apps-osx"), createAppComponent);
+  windows = mapValues(require("workflow-apps-windows"), createAppComponent);
 }
-
-export const defaults = mapValues(Apps.defaults, createComponent);
-export const linux = mapValues(Apps.linux, createComponent);
-export const osx = mapValues(Apps.osx, createComponent);
-export const windows = mapValues(Apps.windows, createComponent);
