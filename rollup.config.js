@@ -6,13 +6,13 @@ const bundles = [{
   name: "workflow-core",
   external: [
     "lodash",
-    "os",
-    "fs",
+    //"os",
+    //"fs",
     "child_process",
     "shelljs",
     "python-shell",
-    "babel-core",
-    "crypto",
+    //"babel-core",
+    //"crypto",
     "workflow-wm-i3",
     "workflow-wm-osx",
     "workflow-wm-windows",
@@ -39,6 +39,27 @@ const bundles = [{
 }, {
   name: "workflow-app-iterm",
   external: ["react", "workflow-react"]
+}, {
+  name: "workflow-resolver-relative",
+  external: ["fs", "util", "path"]
+}, {
+  name: "workflow-resolver-absolute",
+  external: []
+}, {
+  name: "workflow-parser-arguments",
+  external: []
+}, {
+  name: "workflow-loader-babel",
+  external: ["require-context", "@babel/core", "@babel/register"]
+}, {
+  name: "workflow-transformer-apply-arguments-to-fields",
+  external: ["lodash.mapvalues"]
+}, {
+  name: "workflow-apps-linux",
+  external: []
+}, {
+  name: "workflow-apps-windows",
+  external: []
 }];
 
 function createConfig(bundle) {
