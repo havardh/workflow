@@ -37,12 +37,12 @@
     "react": "^16.2.0",
     "workflow-core": "0.0.4",
     "workflow-react": "0.0.5",
-    "workflow-transformer-apply-arguments-to-fields": "0.0.1"
-  },
-  "optionalDependencies": {
-    "workflow-wm-i3": "0.0.1",
-    "workflow-wm-wmctrl": "0.0.1",
-    "workflow-wm-windows": "0.0.1",
-    "workflow-wm-osx": "0.0.1"
+    "workflow-wm-osx": "0.0.1",
+    "workflow-layout": "0.0.1",
+    "workflow-transformer-apply-arguments-to-fields": "0.0.1",
+    "workflow-resolver-relative": "0.0.1",
+    "workflow-resolver-absolute": "0.0.1",
+    "workflow-loader-babel": "0.0.1",
+    "workflow-parser-arguments": "0.0.1"
   }
 }
