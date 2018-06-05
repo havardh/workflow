@@ -3,40 +3,12 @@
 import * as osascript from "osascript";
 import shell from 'shelljs';
 
-import Tile from 'shared/tile';
+import {findAllApps} from 'shared/tree';
 
-function setPositionScript(app, position) {
-  // Executed in jxa context
-  function setPosition(window, position) {
-    window.bounds = position;
-  }
 
-  const {open, run} = app.open;
+class Osx {
 
-  return `
-    (function () {
-      const app = ${JSON.stringify(app)};
-      const position = ${JSON.stringify(position)};
-
-      ${open.toString()}
-      ${setPosition.toString()}
-      ${run.toString()}
-
-      const window = open(app);
-      setPosition(window, position);
-      run(window, app);
-    }());
-  `;
-}
-
-export default class Osx extends Tile {
-
-  constructor() {
-    super();
-    this.scripts = [];
-  }
-
-  async getDesktopRect() {
+  async screen() {
     const result = shell.exec(
       `system_profiler SPDisplaysDataType | grep Resolution | awk '{ printf "{\\"width\\": %s, \\"height\\": %s}", $2, $4 }'`,
       { silent: true}
@@ -44,26 +16,42 @@ export default class Osx extends Tile {
 
     const {width, height} = JSON.parse(result.stdout);
 
-    return { x: 0, y: 0, width, height };
+    return { left: 0, top: 0, width, height };
   }
 
-  async setPosition({app, position}) {
-    const script = setPositionScript(app, position);
+  async apply(layout) {
+    const apps = findAllApps(layout);
 
-    this.scripts.push(script);
+    const scripts = [];
+    for (let app of apps) {
+      scripts.push(createScript(mapPosition(app)));
+    }
 
-    return Promise.resolve();
+    await runScripts(scripts);
   }
 
-  async postApply() {
+  async minimizeAll() {
+    const script = `
+    (function () {
+      const se = Application("System Events");
+      const processes = se.processes.whose({visible: true});
+      for (i=0; i<processes.length; i++) {
+        const windows = processes[i].windows;
+        for (j=0; j<windows.length; j++) {
+          const buttons = windows[j].buttons.whose({description: "minimize button"});
+          for (k=0; k<buttons.length; k++) {
+            buttons[k].click();
+          }
+        }
+      }
+    }());
+    `;
+
     return new Promise((resolve, reject) => {
-      const script = this.scripts.join(`
-        delay(0.5);
-      `);
-
       osascript.eval(script, function(err, result) {
         if (err) {
           console.error("Failed to execute osascript:");
+          console.log(err);
           console.error(script);
           console.error();
 
@@ -75,8 +63,63 @@ export default class Osx extends Tile {
     })
   }
 
-  async runCmd() { // eslint-disable-line class-methods-use-this
-    // app is opened in setPosition method
-    return Promise.resolve({});
+}
+
+function mapPosition(app) {
+  const {position} = app;
+
+  return {
+    ...app,
+    position: {
+      x: position.left,
+      y: position.top,
+      width: position.width,
+      height: position.height
+    }
   }
 }
+
+function createScript(app) {
+  // Executed in jxa context
+  function setPosition(window, position) {
+    window.bounds = position;
+  }
+
+  const {open, run} = app.open;
+
+  return `
+    (function () {
+      const app = ${JSON.stringify(app)};
+
+      ${open.toString()}
+      ${setPosition.toString()}
+      ${run.toString()}
+
+      const window = open(app);
+      setPosition(window, app.position);
+      run(window, app);
+    }());
+  `;
+}
+
+async function runScripts(scripts) {
+  return new Promise((resolve, reject) => {
+    const script = scripts.join(`
+      delay(0.5);
+    `);
+
+    osascript.eval(script, function(err, result) {
+      if (err) {
+        console.error("Failed to execute osascript:");
+        console.error(script);
+        console.error();
+
+        reject(err);
+        return;
+      }
+      resolve(result);
+    });
+  })
+}
+
+module.exports = Osx;
