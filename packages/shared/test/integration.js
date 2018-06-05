@@ -6,52 +6,40 @@ import WorkflowLayout from "workflow-layout";
 import {platform} from "shared/env";
 import take from 'shared/screenshot';
 
-const wmPackage = {
+const Wm = require({
   "win32": "workflow-wm-windows",
   "linux": "workflow-wm-i3",
   "darwin": "workflow-wm-osx"
-}[platform];
-
-if (!wmPackage) {
-  throw new Error(`Could not find wm package for platform '${platform}'`)
-}
-
-const Wm = require(wmPackage);
-
-const wm = new Wm();
-
-const configInlineFlow = {
-  resolvers: [{resolve: flow => flow}],
-  loader: {load: flow => ({default: flow})},
-  transformers: [],
-  layout: new WorkflowLayout(),
-  wm
-};
-
-const configAbsoluteResolveFlow = {
-  resolvers: [new WorkflowResolverAbsolute()],
-  loader: new WorkflowLoaderBabel({config: {
-    presets: [
-      "flow",
-      "react",
-      ["env", {
-        "targets": {
-          "node": "current"
-        }
-      }]
-    ],
-    plugins: ["transform-object-rest-spread", "transform-class-properties"]
-  }}),
-  transformers: [],
-  layout: new WorkflowLayout(),
-  wm
-};
+}[platform]);
 
 function requireWorkflow(flow) {
   if (typeof flow === "string") {
-    return require("workflow-core").workflow(configAbsoluteResolveFlow);
+    return require("workflow-core").workflow({
+      resolvers: [new WorkflowResolverAbsolute()],
+      loader: new WorkflowLoaderBabel({config: {
+        presets: [
+          "flow",
+          "react",
+          ["env", {
+            "targets": {
+              "node": "current"
+            }
+          }]
+        ],
+        plugins: ["transform-object-rest-spread", "transform-class-properties"]
+      }}),
+      transformers: [],
+      layout: new WorkflowLayout(),
+      wm: new Wm()
+    });
   } else {
-    return require("workflow-core").workflow(configInlineFlow);
+    return require("workflow-core").workflow({
+      resolvers: [{resolve: flow => flow}],
+      loader: {load: flow => ({default: flow})},
+      transformers: [],
+      layout: new WorkflowLayout(),
+      wm: new Wm()
+    });
   }
 }
 
@@ -76,10 +64,11 @@ async function applyAndCapture(argument) {
 }
 
 async function clearWorkspace() {
+  const wm = new Wm();
   if (wm.minimizeAll) {
     wm.minimizeAll();
+    await seconds(4);
   }
-  await seconds(4);
 }
 
 function describeFlow(name, fn) {
@@ -89,7 +78,7 @@ function describeFlow(name, fn) {
     beforeAll(() => {
       jest.resetModules();
       originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-      jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000;
     });
 
     fn();
