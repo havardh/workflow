@@ -1,9 +1,9 @@
 /* eslint-env node */
-import { Apps } from "workflow-core";
-const { Browser, TextEditor } = Apps.defaults
+import {Browser, TextEditor} from "workflow-apps-defaults";
 
 export default {
   name: 'workflow-example',
+  type: 'workspace',
   root: {
     type: "layout",
     layout: 'splith',

@@ -17,8 +17,8 @@ require('babel-register')({
 
 function cli(context) {
   context.userFolder = __dirname;
-
-  require('workflow-core/cli').cli(context);
+  const config = require("./config").default;
+  require('workflow-core/cli').cli(context, config);
 }
 
 if (require.main === module) {
