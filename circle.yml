@@ -2,7 +2,7 @@ version: 2
 jobs:
   build-linux:
     docker:
-      - image: havardh/workflow-i3:0.0.3
+      - image: havardh/workflow-i3:0.0.4
     working_directory: ~/workflow
     steps:
       - checkout
@@ -20,10 +20,15 @@ jobs:
           name: "JavaScript Linter"
           command: yarn eslint -- --format junit -o reports/js-lint-results.xml
       - run:
-          name: "JavaScript Test Suite"
+          name: "JavaScript Integration Test Suite"
           environment:
-            JEST_JUNIT_OUTPUT: reports/js-test-results.xml
+            JEST_JUNIT_OUTPUT: reports/js-test-integration-results.xml
           command: ./scripts/ci-i3
+      - run:
+          name: "JavaScript Unit Test Suite"
+          environment:
+            JEST_JUNIT_OUTPUT: reports/js-test-unit-results.xml
+          command: yarn test unit --ci --testResultsProcessor="jest-junit"
       - run:
           name: "JavaScript FlowType Check"
           command: yarn flow
