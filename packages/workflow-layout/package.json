@@ -1,0 +1,10 @@
+{
+  "name": "workflow-layout",
+  "version": "0.0.1",
+  "description": "Workflow layout package.",
+  "main": "src/index.js",
+  "repository": "https://github.com/havardh/workflow",
+  "author": "Håvard Wormdal Høiby",
+  "license": "MIT",
+  "files": ["src"]
+}
