@@ -20,6 +20,7 @@ export default class Workspace {
 
     return {
       ...omit(props, 'children'),
+      type: "workspace",
       root: children[0].tree(),
     };
   }
