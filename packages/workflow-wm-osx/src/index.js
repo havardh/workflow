@@ -35,11 +35,12 @@ class Osx {
     (function () {
       const se = Application("System Events");
       const processes = se.processes.whose({visible: true});
-      for (let process of processes) {
-        for (let window of process.windows) {
-          const buttons = window.buttons.whose({description: "minimize button"});
-          for (let button of buttons) {
-            button.click();
+      for (i=0; i<processes.length; i++) {
+        const windows = processes[i].windows;
+        for (j=0; j<windows.length; j++) {
+          const buttons = windows[j].buttons.whose({description: "minimize button"});
+          for (k=0; k<buttons.length; k++) {
+            buttons[k].click();
           }
         }
       }
