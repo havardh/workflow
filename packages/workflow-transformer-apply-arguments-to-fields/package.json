@@ -1,0 +1,10 @@
+{
+  "name": "workflow-transformer-apply-arguments-to-fields",
+  "version": "0.0.1",
+  "description": "Workflow transformer to support functions as app fields",
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "lodash.mapvalues": "4.6.0"
+  }
+}
