@@ -11,6 +11,8 @@ node_js:
 install:
 - sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" "INSERT INTO access
   VALUES ('kTCCServiceAccessibility','com.apple.Terminal',0,1,1,NULL,NULL);"
+- sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" "INSERT INTO access
+  VALUES ('kTCCServiceAccessibility','/usr/bin/osascript',1,1,1,NULL,NULL);"
 - travis_retry brew cask install iterm2
 - "./scripts/macos-ci-desktop-layout"
 - yarn config set workspaces-experimental true
