@@ -5,32 +5,34 @@ import write from "./write";
 
 class I3 {
 
+  constructor() {
+    this.client = createClient();
+    setTimeout(() => {
+      this.client._stream.destroy();
+    }, 4000);
+  }
+
   async apply(config) {
-    const client = createClient();
+    this.createWorkspace(config);
 
-    this.createWorkspace(client, config);
+    this.clearWorkspace();
 
-    this.clearWorkspace(client);
+    await this.createLayout(config.root);
 
-    await this.createLayout(client, config.root);
 
     (config.root.length ? config.root : [config.root])
       .forEach(root => this.findApps(root)
-      .forEach(app => this.open(client, app)));
-
-    client._stream.destroy()
+      .forEach(app => this.open(app)));
   }
 
   async screen() {
     const workspaces = await (new Promise((resolve, reject) => {
-      const client = createClient();
-      client.workspaces((err, res) => {
+      this.client.workspaces((err, res) => {
         if (err) {
           reject(err);
         } else {
           resolve(res);
         }
-        client._stream.destroy()
       });
     }));
 
@@ -42,20 +44,20 @@ class I3 {
       })[0];
   }
 
-  createWorkspace(client, config) {
-    client.command(`workspace ${config.name}`);
+  createWorkspace(config) {
+    this.client.command(`workspace ${config.name}`);
   }
 
-  clearWorkspace(client) {
-    client.command('focus parent, focus parent, focus parent, kill');
+  clearWorkspace() {
+    this.client.command('focus parent, focus parent, focus parent, kill');
   }
 
-  async createLayout(client, node) {
+  async createLayout(node) {
 
     const layout = transform(node);
     const path = await write(layout);
 
-    client.command(`append_layout ${path}`);
+    this.client.command(`append_layout ${path}`);
   }
 
   findApps(root) {
@@ -72,8 +74,8 @@ class I3 {
     return apps;
   }
 
-  open(client, app) {
-    client.command(`exec ${app.open(app)}`);
+  open(app) {
+    this.client.command(`exec ${app.open(app)}`);
   }
 }
 
