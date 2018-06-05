@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parseArgs(args, args) when config args is array when lengtht of args does not match config should throw InvalidArgument exception 1`] = `
+"multiple arguments (2) 'file1 file2' wanted,
+        got (1) 'file1.js'"
+`;
+
+exports[`parseArgs(args, args) when config args is string when the argument lenght is larger than 1 should throw exception 1`] = `"single argument 'file' wanted, got: '2'"`;
+
+exports[`parseArgs(args, args) when config args is string when the arguments length is not 1 should throw for zero arguments 1`] = `"single argument 'file' wanted, got: ''"`;
+
+exports[`parseArgs(args, args) when config is invalid type should throw InvalidConfig exception 1`] = `"expected config.args to be of type 'string' or 'array', got: object'"`;
