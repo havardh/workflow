@@ -1,0 +1,38 @@
+{
+  "name": "workflow-layout-yoga",
+  "version": "0.0.1",
+  "description": "yoga-layout for workflow",
+  "main": "index.js",
+  "repository": "https://github.com/havardh/workflow",
+  "author": "Håvard Wormdal Høiby",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "index.js"
+  ],
+  "scripts": {
+    "YogaFlex": "node cli.js YogaFlex.js",
+    "CenterExample": "node cli.js CenterExample.js"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^20.0.3",
+    "babel-polyfill": "^6.9.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "react": "^16.2.0",
+    "workflow-core": "0.0.4",
+    "workflow-loader-babel": "0.0.1",
+    "workflow-react": "0.0.5",
+    "workflow-resolver-relative": "0.0.1",
+    "workflow-layout": "0.0.1",
+    "workflow-wm-i3": "0.0.1"
+  },
+  "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "yoga-layout": "github:naminho/yoga-layout-windows"
+  }
+}
