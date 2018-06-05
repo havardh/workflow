@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/havardh/workflow/tree/master/packages/workflow-wm-windows-python#readme",
   "dependencies": {
-    "python-shell": "^0.5.0"
+    "python-shell": "^0.5.0",
+    "require-context": "^1.1.0"
   }
 }
