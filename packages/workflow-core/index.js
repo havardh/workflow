@@ -1,16 +1,12 @@
 /* eslint-env node */
 /* eslint-disable global-require */
 
-let workflowCore;
 try {
-  workflowCore = require('./dist');
+  module.exports = require('./dist');
 } catch (error) {
   if (error.code === 'MODULE_NOT_FOUND') {
-    workflowCore = require('./src/index');
+    module.exports = require('./src/index');
   } else {
     throw error;
   }
 }
-
-
-module.exports = workflowCore;
