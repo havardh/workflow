@@ -5,7 +5,6 @@ import WorkflowLoaderBabel from "workflow-loader-babel";
 import WorkflowLayout from "workflow-layout";
 import {platform} from "shared/env";
 import take from 'shared/screenshot';
-import {exec} from 'shared/shell';
 
 const Wm = require({
   "win32": "workflow-wm-windows",
@@ -69,10 +68,6 @@ async function clearWorkspace() {
   if (wm.minimizeAll) {
     wm.minimizeAll();
     await seconds(4);
-  }
-
-  if (platform === "darwin") {
-    exec("killall iTerm2", {silent: true});
   }
 }
 

@@ -31,18 +31,12 @@ class Osx {
   }
 
   async minimizeAll() {
-    /*
     const script = `
     (function () {
-      const se = Application("System Events");
-      const processes = se.processes.whose({visible: true});
-      for (i=0; i<processes.length; i++) {
-        const windows = processes[i].windows;
-        for (j=0; j<windows.length; j++) {
-          const buttons = windows[j].buttons.whose({description: "minimize button"});
-          for (k=0; k<buttons.length; k++) {
-            buttons[k].click();
-          }
+      for (var j=0; j<10; j++) {
+        const terminal = Application("iTerm");
+        for (var i=0; i<terminal.windows.length; i++) {
+          terminal.windows[i].close();
         }
       }
     }());
@@ -62,7 +56,6 @@ class Osx {
         resolve(result);
       });
     })
-    */
   }
 
 }
