@@ -6,5 +6,7 @@
   "repository": "https://github.com/havardh/workflow",
   "author": "Håvard Wormdal Høiby",
   "license": "MIT",
-  "files": ["src"]
+  "files": [
+    "src"
+  ]
 }
