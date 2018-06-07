@@ -2,6 +2,6 @@
 
 exports[`WorkflowResolverRelative with filter resolve should throw an error when file does not match pattern 1`] = `[Error: Path 'package.json' does not match pattern '/.*js$/']`;
 
-exports[`WorkflowResolverRelative without filter resolve should throw an error when the file is not found 1`] = `[Error: Could not resolve 'not_found.js']`;
+exports[`WorkflowResolverRelative without filter resolve should throw an error when the file is not found 1`] = `[Error: Could not resolve 'not_found.js' relative to /home/havard/dev/workflow/packages/workflow-resolver-relative]`;
 
 exports[`WorkflowResolverRelative without filter resolve should throw error when resolving a directory 1`] = `[Error]`;
