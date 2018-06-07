@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "description": "wmctrl window manager adapter for workflow",
   "main": "index.js",
-  "files": ["index.js", "dist"],
+  "files": [
+    "index.js",
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/havardh/workflow.git"
