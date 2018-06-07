@@ -2,68 +2,27 @@
 import babel from "rollup-plugin-babel";
 import alias from "rollup-plugin-alias";
 
-const bundles = [{
-  name: "workflow-core",
-  external: [
-    "lodash",
-    //"os",
-    //"fs",
-    "child_process",
-    "shelljs",
-    "python-shell",
-    //"babel-core",
-    //"crypto",
-    "workflow-wm-i3",
-    "workflow-wm-osx",
-    "workflow-wm-windows",
-    "workflow-wm-wmctrl"
-  ]
-}, {
-  name: "workflow-react",
-  external: ["react", "react-reconciler", "lodash", "workflow-core"]
-}, {
-  name: "workflow-wm-i3",
-  external: ["i3", "fs-extra", "tmp-promise"]
-}, {
-  name: "workflow-wm-osx",
-  external: ["osascript", "shelljs"]
-}, {
-  name: "workflow-wm-windows",
-  external: ["ffi", "ref", "ref-struct", "lodash", "child_process"]
-}, {
-  name: "workflow-wm-windows-python",
-  external: ["python-shell"]
-}, {
-  name: "workflow-wm-wmctrl",
-  external: ["python-shell", "shelljs"]
-}, {
-  name: "workflow-app-iterm",
-  external: ["react", "workflow-react"]
-}, {
-  name: "workflow-resolver-relative",
-  external: ["fs", "util", "path"]
-}, {
-  name: "workflow-resolver-absolute",
-  external: []
-}, {
-  name: "workflow-parser-arguments",
-  external: []
-}, {
-  name: "workflow-loader-babel",
-  external: ["require-context", "@babel/core", "@babel/register"]
-}, {
-  name: "workflow-transformer-apply-arguments-to-fields",
-  external: ["lodash.mapvalues"]
-}, {
-  name: "workflow-apps-linux",
-  external: []
-}, {
-  name: "workflow-apps-windows",
-  external: []
-}];
+import {readdirSync} from "fs";
+import {resolve, join} from "path";
+
+const blackList = [
+  "workflow-apps-defaults",
+  "workflow-apps-html",
+  "workflow-cmd",
+  "workflow-layout",
+  "workflow-layouts",
+  "workflow-template",
+  "workflow-web"
+];
+
+const nodeInternalDependencies = {
+  "workflow-wm-windows": ["child_process"],
+  "workflow-resolver-absolute": ["fs", "path", "util"],
+  "workflow-resolver-relative": ["fs", "path", "util"]
+};
 
 function createConfig(bundle) {
-  const {name, external} = bundle;
+  const {name, external = []} = bundle;
 
   return {
     input: `packages/${name}/src/index.js`,
@@ -78,5 +37,29 @@ function createConfig(bundle) {
     external
   };
 }
+
+const isPackage = name => name.startsWith("workflow-");
+const isNotBlackListed = name => !blackList.includes(name);
+
+const files = readdirSync(resolve("packages"));
+const packages = files
+  .filter(isPackage)
+  .filter(isNotBlackListed);
+
+const bundles = packages.map(name => {
+  const packageJson = require(join(__dirname, "packages", name, "package.json"));
+  const {dependencies} = packageJson;
+
+  let external = [];
+  if (dependencies) {
+    external = Object.keys(dependencies);
+  }
+
+  if (nodeInternalDependencies[name]) {
+    external.push(...nodeInternalDependencies[name]);
+  }
+
+  return { name, external };
+});
 
 export default bundles.map(createConfig);
