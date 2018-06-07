@@ -73,7 +73,7 @@ export default class WorkflolwResolverRelative {
       }
     } catch (e) {
       if (e.code === 'ENOENT') {
-        throw new Error(`Could not resolve '${path}'`, e);
+        throw new Error(`Could not resolve '${path}' relative to ${this.path}`, e);
       } else {
         throw e;
       }

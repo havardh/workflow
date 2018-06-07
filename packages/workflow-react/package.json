@@ -29,7 +29,6 @@
     "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-reconciler": "^0.7.0",
-    "require-context": "^1.1.0",
     "workflow-apps-defaults": "0.0.1",
     "workflow-apps-linux": "0.0.1",
     "workflow-apps-osx": "0.0.1",

@@ -6,7 +6,6 @@
   "main": "index.js",
   "dependencies": {
     "babel-core": "^6.26.0",
-    "babel-register": "^6.24.1",
-    "require-context": "^1.1.0"
+    "babel-register": "^6.24.1"
   }
 }
