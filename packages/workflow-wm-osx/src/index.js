@@ -31,6 +31,7 @@ class Osx {
   }
 
   async minimizeAll() {
+    /*
     const script = `
     (function () {
       const se = Application("System Events");
@@ -61,6 +62,7 @@ class Osx {
         resolve(result);
       });
     })
+    */
   }
 
 }
