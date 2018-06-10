@@ -1,6 +1,6 @@
 {
   "name": "workflow-layout-yoga",
-  "version": "0.0.1",
+  "version": "0.1.0-beta.0",
   "description": "yoga-layout for workflow",
   "main": "index.js",
   "repository": "https://github.com/havardh/workflow",
@@ -23,12 +23,12 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
     "react": "^16.2.0",
-    "workflow-core": "0.0.4",
-    "workflow-loader-babel": "0.0.1",
-    "workflow-react": "0.0.5",
-    "workflow-resolver-relative": "0.0.1",
-    "workflow-layout": "0.0.1",
-    "workflow-wm-i3": "0.0.1"
+    "workflow-core": "0.1.0-beta.0",
+    "workflow-loader-babel": "0.1.0-beta.0",
+    "workflow-react": "0.1.0-beta.0",
+    "workflow-resolver-relative": "0.1.0-beta.0",
+    "workflow-layout": "0.1.0-beta.0",
+    "workflow-wm-i3": "0.1.0-beta.0"
   },
   "dependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",

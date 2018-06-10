@@ -1,6 +1,6 @@
 {
   "name": "workflow-resolver-absolute",
-  "version": "0.0.1",
+  "version": "0.1.0-beta.0",
   "description": "Workflow resolver for absolute paths",
   "license": "MIT",
   "main": "index.js"

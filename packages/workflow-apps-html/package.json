@@ -1,6 +1,6 @@
 {
   "name": "workflow-apps-html",
-  "version": "0.0.1",
+  "version": "0.1.0-beta.0",
   "description": "Workflow apps collection for html",
   "main": "index.js",
   "license": "MIT",
