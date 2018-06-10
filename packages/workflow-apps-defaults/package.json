@@ -1,13 +1,13 @@
 {
   "name": "workflow-apps-defaults",
-  "version": "0.1.0-beta.0",
+  "version": "0.2.0-beta.0",
   "description": "Platform independent default apps",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "workflow-apps-linux": "0.1.0-beta.0",
-    "workflow-apps-osx": "0.1.0-beta.0",
-    "workflow-apps-windows": "0.1.0-beta.0",
-    "workflow-apps-html": "0.1.0-beta.0"
+    "workflow-apps-linux": "0.2.0-beta.0",
+    "workflow-apps-osx": "0.2.0-beta.0",
+    "workflow-apps-windows": "0.2.0-beta.0",
+    "workflow-apps-html": "0.2.0-beta.0"
   }
 }
