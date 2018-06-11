@@ -63,7 +63,7 @@ describe("WorkflowResolverRelative", () => {
       it("should throw an error when the file is not found", async () => {
         try {
           await resolver.resolve("not_found.js");
-          fail("Should throw exception when file is not found")
+          fail("Should throw exception when file is not found") // eslint-disable-line no-undef
         } catch (e) {
           expect(e.message)
             .toEqual("Could not resolve 'not_found.js' relative to " + path);
