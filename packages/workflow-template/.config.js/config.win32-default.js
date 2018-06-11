@@ -5,7 +5,7 @@ import WorkflowLoaderBabel from "workflow-loader-babel";
 import WorkflowParserArguments from "workflow-parser-arguments";
 import WorkflowTransformerApplyArgumentsToFields from "workflow-transformer-apply-arguments-to-fields";
 import WorkflowLayout from "workflow-layout";
-import WorkflowWmOsx from "workflow-wm-osx";
+import WorkflowWmWindows from "workflow-wm-windows";
 
 const config = {
   presets: [
@@ -27,7 +27,8 @@ export default {
     new WorkflowResolverRelative({path: join(__dirname, "flows")})
   ],
   loader: new WorkflowLoaderBabel({config}),
+  argumentParser: new WorkflowParserArguments(),
   transformers: [new WorkflowTransformerApplyArgumentsToFields()],
   layout: new WorkflowLayout(),
-  wm: new WorkflowWmOsx()
+  wm: new WorkflowWmWindows()
 };
