@@ -61,8 +61,13 @@ describe("WorkflowResolverRelative", () => {
       });
 
       it("should throw an error when the file is not found", async () => {
-        await expect(resolver.resolve("not_found.js"))
-          .rejects.toMatchSnapshot();
+        try {
+          await resolver.resolve("not_found.js");
+          fail("Should throw exception when file is not found")
+        } catch (e) {
+          expect(e.message)
+            .toEqual("Could not resolve 'not_found.js' relative to " + path);
+        }
       });
 
       it("should resolve file in folder relative to root to absolute path", async () => {
