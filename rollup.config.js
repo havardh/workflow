@@ -16,7 +16,7 @@ const blackList = [
 ];
 
 const nodeInternalDependencies = {
-  "workflow-wm-windows": ["child_process"],
+  "workflow-wm-windows": ["child_process", "cross-spawn"],
   "workflow-resolver-absolute": ["fs", "path", "util"],
   "workflow-resolver-relative": ["fs", "path", "util"]
 };
