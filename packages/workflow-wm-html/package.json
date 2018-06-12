@@ -28,6 +28,7 @@
     "css-loader": "^0.28.11",
     "react": "^16.2.0",
     "style-loader": "^0.21.0",
+    "uuid": "^3.2.1",
     "workflow-core": "0.0.4",
     "workflow-react": "0.0.5",
     "xterm": "^3.3.0",
