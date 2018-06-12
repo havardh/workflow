@@ -9,5 +9,9 @@
     "uuid": "^3.2.1",
     "xterm": "^3.3.0",
     "xterm-webfont": "^1.0.1"
-  }
+  },
+  "files": [
+    "dist",
+    "index.js"
+  ]
 }

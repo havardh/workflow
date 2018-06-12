@@ -3,5 +3,9 @@
   "version": "0.0.1",
   "description": "Workflow apps collection for linux",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "dist",
+    "index.js"
+  ]
 }
