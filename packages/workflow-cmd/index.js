@@ -5,7 +5,7 @@
 /* Executed with NODE_PATH = ${baseFolder}/node_modules */
 
 const {baseFolder} = require("shared/env");
-const config = require(`${baseFolder}/config`).default;
+const config = require(`${baseFolder}/config`).default || require(`${baseFolder}/config`);
 
 const workflow = require("workflow-core").workflow(config);
 
