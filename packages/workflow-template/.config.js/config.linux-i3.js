@@ -21,16 +21,14 @@ const config = {
 };
 
 module.exports = {
-   default: {
-    resolvers: [
-      new WorkflowResolverAbsolute(),
-      new WorkflowResolverRelative({path: process.cwd()}),
-      new WorkflowResolverRelative({path: join(__dirname, "flows")})
-    ],
-    loader: new WorkflowLoaderBabel({config}),
-    argumentParser: new WorkflowParserArguments(),
-    transformers: [new WorkflowTransformerApplyArgumentsToFields()],
-    layout: new WorkflowLayout(),
-    wm: new WorkflowWmI3()
-  }
+  resolvers: [
+    new WorkflowResolverAbsolute(),
+    new WorkflowResolverRelative({path: process.cwd()}),
+    new WorkflowResolverRelative({path: join(__dirname, "flows")})
+  ],
+  loader: new WorkflowLoaderBabel({config}),
+  argumentParser: new WorkflowParserArguments(),
+  transformers: [new WorkflowTransformerApplyArgumentsToFields()],
+  layout: new WorkflowLayout(),
+  wm: new WorkflowWmI3()
 };

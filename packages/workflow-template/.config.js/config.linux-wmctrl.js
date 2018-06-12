@@ -1,11 +1,11 @@
-import {join} from "path";
-import WorkflowResolverRelative from "workflow-resolver-relative";
-import WorkflowResolverAbsolute from "workflow-resolver-absolute";
-import WorkflowLoaderBabel from "workflow-loader-babel";
-import WorkflowParserArguments from "workflow-parser-arguments";
-import WorkflowTransformerApplyArgumentsToFields from "workflow-transformer-apply-arguments-to-fields";
-import WorkflowLayout from "workflow-layout";
-import WorkflowWmWmctrl from "workflow-wm-wmctrl";
+const {join} = require("path");
+const WorkflowResolverRelative = require("workflow-resolver-relative");
+const WorkflowResolverAbsolute = require("workflow-resolver-absolute");
+const WorkflowLoaderBabel = require("workflow-loader-babel");
+const WorkflowParserArguments = require("workflow-parser-arguments");
+const WorkflowTransformerApplyArgumentsToFields = require("workflow-transformer-apply-arguments-to-fields");
+const WorkflowLayout = require("workflow-layout");
+const WorkflowWmWmctrl = require("workflow-wm-wmctrl");
 
 const config = {
   presets: [
@@ -20,7 +20,7 @@ const config = {
   plugins: ["transform-object-rest-spread", "transform-class-properties"]
 };
 
-export default {
+module.exports = {
   resolvers: [
     new WorkflowResolverAbsolute(),
     new WorkflowResolverRelative({path: process.cwd()}),
