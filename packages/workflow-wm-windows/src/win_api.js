@@ -18,7 +18,7 @@ const RectPtr = ref.refType(Rect);
 const LPDWORD = ref.refType(ffi.types.ulong);
 const IntPtr = ref.refType(ffi.types.int32);
 
-class WinApi {
+export default class WinApi {
   constructor() {
     this.user32 = new ffi.Library('user32', {
        'GetDesktopWindow': ['int32', []],
@@ -81,5 +81,3 @@ class WinApi {
   }
 
 }
-
-module.exports = WinApi;
