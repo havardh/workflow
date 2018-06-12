@@ -1,13 +1,15 @@
 /* eslint-env node */
 import babel from "rollup-plugin-babel";
 import alias from "rollup-plugin-alias";
+import postcss from "rollup-plugin-postcss";
 
 import {readdirSync} from "fs";
 import {resolve, join} from "path";
 
+import flatMap from "lodash.flatmap";
+
 const blackList = [
   "workflow-apps-defaults",
-  "workflow-apps-html",
   "workflow-cmd",
   "workflow-layout",
   "workflow-layouts",
@@ -21,21 +23,26 @@ const nodeInternalDependencies = {
   "workflow-resolver-relative": ["fs", "path", "util"]
 };
 
-function createConfig(bundle) {
-  const {name, external = []} = bundle;
+const sourceRoots = {
+  "workflow-layout-yoga": ["index.js", "components.js"]
+}
 
-  return {
-    input: `packages/${name}/src/index.js`,
+function createConfig(bundle) {
+  const {name, external, roots} = bundle;
+
+  return roots.map(root => ({
+    input: `packages/${name}/src/${root}`,
     output: {
-      file: `packages/${name}/dist/index.js`,
+      file: `packages/${name}/dist/${root}`,
       format: 'cjs'
     },
     plugins: [
+      postcss({plugins: []}),
       babel({ exclude: 'node_modules/**'}),
       alias({ shared: __dirname + "/packages/shared"})
     ],
     external
-  };
+  }));
 }
 
 const isPackage = name => name.startsWith("workflow-");
@@ -59,7 +66,12 @@ const bundles = packages.map(name => {
     external.push(...nodeInternalDependencies[name]);
   }
 
-  return { name, external };
+  let roots = ["index.js"]
+  if (sourceRoots[name]) {
+    roots = sourceRoots[name];
+  }
+
+  return { name, external, roots };
 });
 
-export default bundles.map(createConfig);
+export default flatMap(bundles, createConfig);
