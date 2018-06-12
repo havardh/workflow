@@ -1,8 +1,8 @@
 /* eslint-env node */
 /* eslint-disable no-console */
-const {platform, wm} = require("shared/env");
-const {basename, extname, join} = require("path");
-const ncp = require('ncp');
+import {platform, wm}  from "shared/env";
+import {basename, extname, join}  from "path";
+import ncp  from 'ncp';
 
 class Platform {
 
@@ -24,4 +24,4 @@ class Platform {
 
 }
 
-module.exports = new Platform();
+export default new Platform();

@@ -3,10 +3,26 @@
 
 const ncp = require("ncp").ncp;
 const os = require("os");
-const npm = require("../src/npm");
 const {resolve, sep} = require("path");
-const platform = require("../src/platform");
 const existsSync = require("fs").existsSync;
+
+let npm, platform;
+try {
+  npm = require("../dist/npm");
+  platform = require("../dist/platform");
+} catch (error) {
+  if (error.code === 'MODULE_NOT_FOUND') {
+    console.warn("IF YOU ARE A USER and you see this message, then");
+    console.warn("please report an issue at https://github.com/havardh/workflow/issues")
+
+    console.warn();
+    console.warn("Postinstall script will run only on a bundled package");
+    console.warn("Run rollup in the root package create a bundle");
+    process.exit(0);
+  } else {
+    throw error;
+  }
+}
 
 const dev = process.env.WORKFLOW_DEV_MODE;
 const homedir = process.env.WORKFLOW_HOME;

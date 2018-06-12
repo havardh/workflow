@@ -10,7 +10,6 @@ import flatMap from "lodash.flatmap";
 
 const blackList = [
   "workflow-apps-defaults",
-  "workflow-cmd",
   "workflow-layout",
   "workflow-layouts",
   "workflow-template",
@@ -20,11 +19,13 @@ const blackList = [
 const nodeInternalDependencies = {
   "workflow-wm-windows": ["child_process", "cross-spawn"],
   "workflow-resolver-absolute": ["fs", "path", "util"],
-  "workflow-resolver-relative": ["fs", "path", "util"]
+  "workflow-resolver-relative": ["fs", "path", "util"],
+  "workflow-cmd": ["path", "os", "child_process"]
 };
 
 const sourceRoots = {
-  "workflow-layout-yoga": ["index.js", "components.js"]
+  "workflow-layout-yoga": ["index.js", "components.js"],
+  "workflow-cmd": ["cli.js", "index.js", "npm.js", "platform.js"]
 }
 
 function createConfig(bundle) {
@@ -39,7 +40,7 @@ function createConfig(bundle) {
     plugins: [
       postcss({plugins: []}),
       babel({ exclude: 'node_modules/**'}),
-      alias({ shared: __dirname + "/packages/shared"})
+      alias({ shared: __dirname + "/packages/shared"}),
     ],
     external
   }));

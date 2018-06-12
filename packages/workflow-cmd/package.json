@@ -9,13 +9,14 @@
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
     "prepublishOnly": "npm run build",
-    "build": "cp -r ../workflow-template ./template"
+    "build": "cp -rT ../workflow-template ./template"
   },
   "repository": "https://github.com/havardh/workflow",
   "author": "Håvard Wormdal Høiby",
   "license": "MIT",
   "dependencies": {
     "cross-spawn": "^6.0.5",
+    "shelljs": "0.8.1",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0"
   }
