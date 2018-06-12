@@ -5,7 +5,7 @@ import { exec } from "child_process";
 import spawn from "cross-spawn";
 import {difference} from "lodash";
 
-const WinApi = require("./win_api");
+import WinApi from "./win_api";
 import {findAllApps} from "shared/tree";
 
 class Windows {
