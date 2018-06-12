@@ -1,6 +1,6 @@
 {
   "name": "workflow-core",
-  "version": "0.0.4",
+  "version": "0.1.0-beta.0",
   "description": "Workflow-centric workspace manager",
   "main": "index.js",
   "files": [

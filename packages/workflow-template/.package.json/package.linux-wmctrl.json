@@ -35,14 +35,14 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
     "react": "^16.2.0",
-    "workflow-core": "0.0.4",
-    "workflow-react": "0.0.5",
-    "workflow-wm-wmctrl": "0.0.1",
-    "workflow-layout": "0.0.1",
-    "workflow-transformer-apply-arguments-to-fields": "0.0.1",
-    "workflow-resolver-relative": "0.0.1",
-    "workflow-resolver-absolute": "0.0.1",
-    "workflow-loader-babel": "0.0.1",
-    "workflow-parser-arguments": "0.0.1"
+    "workflow-core": "0.1.0-beta.0",
+    "workflow-react": "0.1.0-beta.0",
+    "workflow-wm-wmctrl": "0.1.0-beta.0",
+    "workflow-layout": "0.1.0-beta.0",
+    "workflow-transformer-apply-arguments-to-fields": "0.1.0-beta.0",
+    "workflow-resolver-relative": "0.1.0-beta.0",
+    "workflow-resolver-absolute": "0.1.0-beta.0",
+    "workflow-loader-babel": "0.1.0-beta.0",
+    "workflow-parser-arguments": "0.1.0-beta.0"
   }
 }

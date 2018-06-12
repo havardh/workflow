@@ -1,6 +1,6 @@
 {
   "name": "workflow-react",
-  "version": "0.0.5",
+  "version": "0.1.0-beta.0",
   "description": "",
   "main": "index.js",
   "files": [
@@ -29,10 +29,10 @@
     "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-reconciler": "^0.7.0",
-    "workflow-apps-defaults": "0.0.1",
-    "workflow-apps-linux": "0.0.1",
-    "workflow-apps-osx": "0.0.1",
-    "workflow-apps-windows": "0.0.1",
-    "workflow-apps-html": "0.0.1"
+    "workflow-apps-defaults": "0.1.0-beta.0",
+    "workflow-apps-linux": "0.1.0-beta.0",
+    "workflow-apps-osx": "0.1.0-beta.0",
+    "workflow-apps-windows": "0.1.0-beta.0",
+    "workflow-apps-html": "0.1.0-beta.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "workflow-parser-arguments",
-  "version": "0.0.1",
+  "version": "0.1.0-beta.0",
   "description": "Workflow arguments parser",
   "license": "MIT",
   "main": "index.js",
