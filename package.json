@@ -105,10 +105,12 @@
     "jest": "^20.0.3",
     "jest-cli": "^20.0.3",
     "jest-image-snapshot": "2.4.2",
+    "lodash.flatmap": "^4.5.0",
     "rollup": "^0.57.1",
     "rollup-plugin-alias": "^1.4.0",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-flow": "^1.1.1",
+    "rollup-plugin-postcss": "^1.6.2",
     "semver": "^5.5.0"
   }
 }
