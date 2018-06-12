@@ -1,13 +1,13 @@
-#!/usr/bin/env node
 /* eslint-env node */
 /* eslint-disable no-console */
 
 /* Executed with NODE_PATH = ${baseFolder}/node_modules */
 
-const {baseFolder} = require("shared/env");
+import {baseFolder} from "shared/env";
 const config = require(`${baseFolder}/config`).default || require(`${baseFolder}/config`);
 
-const workflow = require("workflow-core").workflow(config);
+import * as WorkflowCore from "workflow-core";
+const workflow = new WorkflowCore.workflow(config);
 
 if (process.argv.length < 3) {
   console.error("Usage: workflow <flow>")

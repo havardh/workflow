@@ -1,14 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-env node */
 
-const shell = require('shelljs');
+import shell from 'shelljs';
 
-function exec(cmd, async = true) {
+export function exec(cmd, async = true) {
   return shell.exec(cmd, { silent: true, async: async });
 }
 
-function which(cmd) {
+export function which(cmd) {
   return shell.exec(`which ${cmd}`, { silent: true, async: false });
 }
-
-module.exports = { which, exec };

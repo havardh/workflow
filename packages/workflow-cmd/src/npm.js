@@ -1,5 +1,5 @@
 /* eslint-env node */
-var spawn = require('cross-spawn');
+import spawn from 'cross-spawn';
 
 class Npm {
 
@@ -18,4 +18,4 @@ class Npm {
 
 }
 
-module.exports = new Npm();
+export default new Npm();

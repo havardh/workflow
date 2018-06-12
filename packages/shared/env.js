@@ -1,9 +1,9 @@
 /* eslint-env node */
-const {execSync} = require("child_process");
-const {which} = require("./shell");
-const os = require("os");
+import {execSync} from "child_process";
+import {which} from "./shell";
+import os from "os";
 
-const platform = process.platform;
+export const platform = process.platform;
 
 function isRunningI3() {
   try {
@@ -18,7 +18,7 @@ function isRunningWmctrl() {
   return which("wmctrl");
 }
 
-const wm = (() => {
+export const wm = (() => {
   switch (platform) {
     case "win32":
     case "darwin":
@@ -35,11 +35,9 @@ const wm = (() => {
   return "unknown";
 })();
 
-const dev = (process.env.WORKFLOW_DEV_MODE === "true");
-const homedir = process.env.WORKFLOW_HOME;
+export const dev = (process.env.WORKFLOW_DEV_MODE === "true");
+export const homedir = process.env.WORKFLOW_HOME;
 
-const baseFolder = dev
+export const baseFolder = dev
   ? `${__dirname}/../workflow-template`
   : (homedir || `${os.homedir()}/.workflow`);
-
-module.exports = { platform, wm, dev, homedir, baseFolder };
