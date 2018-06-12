@@ -53,6 +53,8 @@ function parseFlags(args) {
   for (let arg of args) {
     if (arg === "--pre") {
       flags.pre = true;
+    } else if (arg === "--prerelease") {
+      flags.prerelease = true;
     } else if (arg === "--beta") {
       flags.beta = true;
     } else if (arg === "--dry-run") {
@@ -67,7 +69,7 @@ function parseFlags(args) {
   return flags;
 }
 
-function getLevel(name, version, pre) {
+function getLevel(name, version) {
 
   const hash = git.findTag(tagName(name, version));
 
@@ -90,7 +92,11 @@ function getLevel(name, version, pre) {
     return "none";
   }
 
-  if (pre) {
+  if (flags.prerelease) {
+    return "prerelease";
+  }
+
+  if (flags.pre) {
     return "pre" + level;
   }
 
@@ -173,8 +179,10 @@ for (let name of templates) {
     }
   }
 
-  const content = JSON.stringify(json, null, 2) + "\n";
-  writeFileSync(filename, content);
+  if (!flags.dryRun) {
+    const content = JSON.stringify(json, null, 2) + "\n";
+    writeFileSync(filename, content);
+  }
 }
 
 
