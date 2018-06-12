@@ -20,7 +20,7 @@ const config = {
   plugins: ["transform-object-rest-spread", "transform-class-properties"]
 };
 
-module.exports {
+module.exports = {
   resolvers: [
     new WorkflowResolverAbsolute(),
     new WorkflowResolverRelative({path: process.cwd()}),
