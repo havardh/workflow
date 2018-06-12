@@ -2,9 +2,9 @@
 
 import React from 'react';
 import render, { Workspace, Apps } from 'workflow-react';
+import { Flex } from "../components";
 
 const { TextEditor, Browser } = Apps.defaults;
-import { Flex } from "../src/index";
 
 export default render(
   <Workspace name={'workflow-yoga-example'}>
