@@ -20,6 +20,9 @@ jobs:
           name: "JavaScript Linter"
           command: yarn eslint -- --format junit -o reports/js-lint-results.xml
       - run:
+          name: "JavaScript Prettier"
+          command: yarn check-format
+      - run:
           name: "JavaScript Integration Test Suite"
           environment:
             JEST_JUNIT_OUTPUT: reports/js-test-integration-results.xml
