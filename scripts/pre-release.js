@@ -14,6 +14,16 @@ const isPackage = name => name.startsWith("workflow-");
 const files = readdirSync(resolve("packages"));
 const packages = files.filter(isPackage).map(readPackage);
 
+function clone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
+function set(obj, key, value) {
+  const cloned = clone(obj);
+  cloned[key] = value;
+  return cloned;
+}
+
 function tagName(name, version) {
   return name + "-v" + version;
 }
@@ -61,6 +71,8 @@ function parseFlags(args) {
       flags.dryRun = true;
     } else if (arg === "--force-tags") {
       flags.forceTags = true;
+    } else if (arg === "--bump-same") {
+      flags.bumpSame = true;
     } else if (arg !== undefined) {
       console.log("Command line argument ignored: " + arg);
     }
@@ -113,23 +125,30 @@ function resolvePackageJson(name) {
 }
 
 function readPackage(name) {
-  return {name, json: require(resolvePackageJson(name))};
+  return {name, json: clone(require(resolvePackageJson(name)))};
+}
+
+function bumpVersion(name, json, level) {
+  versionLevel[name] = level;
+  const newVersion = semver.inc(json.version, level, flags.beta && "beta");
+
+  newPackages[name] = set(json, "version", newVersion);
+  newVersions[name] = newVersion;
 }
 
 // Update versions
-const versions = {};
+const newVersions = {};
+const oldVersions = {};
+const newPackages = {};
+const versionLevel = {};
 console.log("Update next version for each package")
 for (let {name, json} of packages) {
   const {version} = json;
+  oldVersions[name] = version;
 
   const level = getLevel(name, version, flags.pre);
   if (level !== "none") {
-    const newVersion = semver.inc(json.version, level, flags.beta && "beta");
-
-    json.version = newVersion;
-    versions[name] = newVersion;
-  } else {
-    versions[name] = json.version;
+    bumpVersion(name, json, level);
   }
 }
 
@@ -139,27 +158,37 @@ for (let {name, json} of packages) {
   const {dependencies, devDependencies} = json;
 
   for (let dependencyName in dependencies) {
-    if (versions[dependencyName]) {
+    if (newVersions[dependencyName]) {
       const oldVersion = dependencies[dependencyName];
-      const newVersion = versions[dependencyName];
-      dependencies[dependencyName] = versions[dependencyName];
-      if (versions[dependencyName] && !versions[name]) {
-        console.error("ERR: Dependency", dependencyName, "of", name, "was updated (" +oldVersion+" -> "+ newVersion +"), but", name, "iself is not updated.");
-        console.log("No changes has been written");
-        process.exit(1);
+      const newVersion = newVersions[dependencyName];
+      dependencies[dependencyName] = newVersions[dependencyName];
+      if (newVersions[dependencyName] && !newVersions[name]) {
+        if (flags.bumpSame) {
+          const level = versionLevel[dependencyName];
+          bumpVersion(name, json, level)
+        } else {
+          console.error("ERR: Dependency", dependencyName, "of", name, "was updated (" +oldVersion+" -> "+ newVersion +"), but", name, "iself is not updated.");
+          console.log("No changes has been written");
+          process.exit(1);
+        }
       }
     }
   }
 
   for (let dependencyName in devDependencies) {
-    if (versions[dependencyName]) {
+    if (newVersions[dependencyName]) {
       const oldVersion = devDependencies[dependencyName];
-      const newVersion = versions[dependencyName];
-      devDependencies[dependencyName] = versions[dependencyName];
-      if (!versions[name]) {
-        console.error("ERR: Dependency", dependencyName, "of", name, "was updated (" +oldVersion+" -> "+ newVersion +"), but", name, "iself is not updated.");
-        console.log("No changes has been written");
-        process.exit(1);
+      const newVersion = newVersions[dependencyName];
+      devDependencies[dependencyName] = newVersions[dependencyName];
+      if (!newVersions[name]) {
+        if (flags.bumpSame) {
+          const level = versionLevel[dependencyName];
+          bumpVersion(name, json, level)
+        } else {
+          console.error("ERR: Dependency", dependencyName, "of", name, "was updated (" +oldVersion+" -> "+ newVersion +"), but", name, "iself is not updated.");
+          console.log("No changes has been written");
+          process.exit(1);
+        }
       }
     }
   }
@@ -173,9 +202,8 @@ for (let name of templates) {
   const json = require(filename);
 
   for (let dependencyName of Object.keys(json.dependencies)) {
-    if (versions[dependencyName]) {
-
-      json.dependencies[dependencyName] = versions[dependencyName];
+    if (newVersions[dependencyName]) {
+      json.dependencies[dependencyName] = newVersions[dependencyName];
     }
   }
 
@@ -188,9 +216,9 @@ for (let name of templates) {
 
 if (flags.dryRun) {
   console.log("Dry run.")
-  for (let {name, json} of packages) {
-    const oldVersion = readPackage(name).json.version;
-    const newVersion = json.version;
+  for (let [name, version] of Object.entries(newVersions)) {
+    const newVersion = version;
+    const oldVersion = oldVersions[name];
 
     console.log(name + ":", oldVersion, "->", newVersion);
   }
@@ -201,7 +229,7 @@ if (flags.dryRun) {
 
 // Write package.json files
 console.log("Writing updated package.json");
-for (let {name, json} of packages) {
+for (let [name, json] of Object.entries(newPackages)) {
   const filename = resolvePackageJson(name);
   const content = JSON.stringify(json, null, 2) + "\n";
 
@@ -210,18 +238,18 @@ for (let {name, json} of packages) {
 
 // Create release commit
 console.log("Creating git commit");
-for (let {name} of packages) {
+for (let [name] of Object.entries(newVersions)) {
   git.add(resolvePackageJson(name));
 }
 for (let name of templates) {
   git.add(resolvePackageTemplate(name));
 }
-git.commit("chore: release new versions\n\n" + packages.map(({name, json}) => name + ": " + json.version).join("\n"))
+git.commit("chore: release new versions\n\n" + Object.entries(newVersions).map(([name, version]) => name + ": " + version).join("\n"))
 
 // Create git tags
 console.log("Creating git tag per package")
-for (let {name, json} of packages) {
-  git.tag(name, json.version);
+for (let [name, version] of Object.entries(newVersions)) {
+  git.tag(name, version);
 }
 
 // Build packages
