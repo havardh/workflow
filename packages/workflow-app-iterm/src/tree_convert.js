@@ -7,7 +7,7 @@ export default function convert(node) {
     const root = convert(node.children[0]);
 
     let prev = root;
-    for (let i=1; i<node.children.length; i++) {
+    for (let i = 1; i < node.children.length; i++) {
       const current = convert(node.children[i]);
       prev[direction] = current;
       if (prev.horizontal && prev.vertical) {

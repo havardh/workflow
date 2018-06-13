@@ -4,35 +4,32 @@
 
 const os = require('os');
 
-const defaultApps = [
-  'Terminal',
-  'Browser',
-  'TextEditor',
-];
+const defaultApps = ['Terminal', 'Browser', 'TextEditor'];
 
 let defaults = {};
 
 // $FlowSuppress
 if (process.browser) {
-  defaults = require("workflow-apps-html").defaults;
+  defaults = require('workflow-apps-html').defaults;
 } else {
   const platformDefaults = (() => {
     switch (process.platform) {
       case 'darwin':
-        return require("workflow-apps-osx").defaults;
+        return require('workflow-apps-osx').defaults;
       case 'win32':
-        return require("workflow-apps-windows").defaults;
+        return require('workflow-apps-windows').defaults;
       case 'linux':
-        return require("workflow-apps-linux").defaults;
+        return require('workflow-apps-linux').defaults;
       default:
         console.log(`Platform '${process.platform}' not supported`);
-        console.log('Look for an issue for your platform here: https://github.com/havardh/workflow/issues');
+        console.log(
+          'Look for an issue for your platform here: https://github.com/havardh/workflow/issues'
+        );
         process.exit(0);
         break;
     }
     throw new Error('not reachable');
   })();
-
 
   const userDefaults = (() => {
     try {
@@ -47,8 +44,7 @@ if (process.browser) {
     }
   })();
 
-
-  defaultApps.forEach((app) => {
+  defaultApps.forEach(app => {
     defaults[app] = userDefaults[app] || platformDefaults[app];
   });
 }
@@ -56,5 +52,5 @@ if (process.browser) {
 module.exports = {
   Browser: defaults.Browser,
   TextEditor: defaults.TextEditor,
-  Terminal: defaults.Terminal
-}
+  Terminal: defaults.Terminal,
+};

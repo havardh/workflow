@@ -1,12 +1,11 @@
 /* eslint-env browser */
 /* eslint-disable no-console */
-import {findAllApps} from 'shared/tree';
+import { findAllApps } from 'shared/tree';
 
 export default class Html {
-
-  constructor({container}) {
+  constructor({ container }) {
     this.scripts = [];
-    if (typeof element === "string") {
+    if (typeof element === 'string') {
       this.container = document.getElementById(container);
     } else {
       this.container = container;
@@ -18,7 +17,7 @@ export default class Html {
       left: 0,
       top: 0,
       width: this.container.clientWidth,
-      height: this.container.clientHeight
+      height: this.container.clientHeight,
     };
   }
 
@@ -26,8 +25,8 @@ export default class Html {
     const apps = findAllApps(layout);
 
     for (let app of apps) {
-      const {position} = app;
-      this.container.appendChild(app.open({app, position}));
+      const { position } = app;
+      this.container.appendChild(app.open({ app, position }));
     }
   }
 }

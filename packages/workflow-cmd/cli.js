@@ -2,11 +2,11 @@
 /* eslint-env node */
 /* eslint-disable global-require */
 
-const {existsSync} = require("fs");
-const {join} = require("path");
+const { existsSync } = require('fs');
+const { join } = require('path');
 
-if (existsSync(join(__dirname, "dist"))) {
-  require("./dist/cli");
+if (existsSync(join(__dirname, 'dist'))) {
+  require('./dist/cli');
 } else {
-  require("./src/cli");
+  require('./src/cli');
 }

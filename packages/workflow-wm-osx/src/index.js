@@ -1,20 +1,18 @@
 /* eslint-env node */
 /* eslint-disable no-console */
-import * as osascript from "osascript";
+import * as osascript from 'osascript';
 import shell from 'shelljs';
 
-import {findAllApps} from 'shared/tree';
-
+import { findAllApps } from 'shared/tree';
 
 class Osx {
-
   async screen() {
     const result = shell.exec(
       `system_profiler SPDisplaysDataType | grep Resolution | awk '{ printf "{\\"width\\": %s, \\"height\\": %s}", $2, $4 }'`,
-      { silent: true}
+      { silent: true }
     );
 
-    const {width, height} = JSON.parse(result.stdout);
+    const { width, height } = JSON.parse(result.stdout);
 
     return { left: 0, top: 0, width, height };
   }
@@ -45,7 +43,7 @@ class Osx {
     return new Promise((resolve, reject) => {
       osascript.eval(script, function(err, result) {
         if (err) {
-          console.error("Failed to execute osascript:");
+          console.error('Failed to execute osascript:');
           console.log(err);
           console.error(script);
           console.error();
@@ -55,13 +53,12 @@ class Osx {
         }
         resolve(result);
       });
-    })
+    });
   }
-
 }
 
 function mapPosition(app) {
-  const {position} = app;
+  const { position } = app;
 
   return {
     ...app,
@@ -69,9 +66,9 @@ function mapPosition(app) {
       x: position.left,
       y: position.top,
       width: position.width,
-      height: position.height
-    }
-  }
+      height: position.height,
+    },
+  };
 }
 
 function createScript(app) {
@@ -80,7 +77,7 @@ function createScript(app) {
     window.bounds = position;
   }
 
-  const {open, run} = app.open;
+  const { open, run } = app.open;
 
   return `
     (function () {
@@ -105,7 +102,7 @@ async function runScripts(scripts) {
 
     osascript.eval(script, function(err, result) {
       if (err) {
-        console.error("Failed to execute osascript:");
+        console.error('Failed to execute osascript:');
         console.error(script);
         console.error();
 
@@ -114,7 +111,7 @@ async function runScripts(scripts) {
       }
       resolve(result);
     });
-  })
+  });
 }
 
 module.exports = Osx;

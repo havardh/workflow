@@ -1,10 +1,9 @@
 /* eslint-env node */
 import { createClient } from 'i3';
-import transform from "./transform";
-import write from "./write";
+import transform from './transform';
+import write from './write';
 
 class I3 {
-
   constructor() {
     this.client = createClient();
     setTimeout(() => {
@@ -19,14 +18,13 @@ class I3 {
 
     await this.createLayout(config.root);
 
-
-    (config.root.length ? config.root : [config.root])
-      .forEach(root => this.findApps(root)
-      .forEach(app => this.open(app)));
+    (config.root.length ? config.root : [config.root]).forEach(root =>
+      this.findApps(root).forEach(app => this.open(app))
+    );
   }
 
   async screen() {
-    const workspaces = await (new Promise((resolve, reject) => {
+    const workspaces = await new Promise((resolve, reject) => {
       this.client.workspaces((err, res) => {
         if (err) {
           reject(err);
@@ -34,14 +32,12 @@ class I3 {
           resolve(res);
         }
       });
-    }));
+    });
 
-    return workspaces
-      .filter(({visible}) => visible)
-      .map(({rect}) => {
-        const { x, y, width, height} = rect;
-        return {left: x, top: y, width, height };
-      })[0];
+    return workspaces.filter(({ visible }) => visible).map(({ rect }) => {
+      const { x, y, width, height } = rect;
+      return { left: x, top: y, width, height };
+    })[0];
   }
 
   createWorkspace(config) {
@@ -53,7 +49,6 @@ class I3 {
   }
 
   async createLayout(node) {
-
     const layout = transform(node);
     const path = await write(layout);
 
@@ -63,11 +58,9 @@ class I3 {
   findApps(root) {
     const apps = [];
 
-    if (root.type == "layout") {
-      root.children
-        .forEach(node => this.findApps(node)
-          .forEach(app => apps.push(app)));
-    } else if (root.type === "app") {
+    if (root.type == 'layout') {
+      root.children.forEach(node => this.findApps(node).forEach(app => apps.push(app)));
+    } else if (root.type === 'app') {
       return [root];
     }
 

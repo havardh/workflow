@@ -15,7 +15,6 @@ export async function resolve(resolvers, path) {
   throw new Error(`Could not resolve ${path}`);
 }
 
-
 export async function alternatives(resolvers, path) {
   const all = [];
 

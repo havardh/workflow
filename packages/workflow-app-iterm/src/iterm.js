@@ -1,11 +1,11 @@
 /* @flow */
 /* global Application */
-import * as React from "react";
-import {App} from "workflow-react";
+import * as React from 'react';
+import { App } from 'workflow-react';
 
 function open() {
   // $FlowTodo
-  const iTerm = Application("iTerm");
+  const iTerm = Application('iTerm');
   if (iTerm.running()) {
     const window = iTerm.createWindowWithDefaultProfile();
     window.select();
@@ -17,7 +17,6 @@ function run(window, app) {
   const pane = window.currentSession();
 
   function openSplit(pane, node) {
-
     if (node.horizontal && node.vertical) {
       if (node.first === 'horizontal') {
         openNode(pane.splitHorizontallyWithDefaultProfile(), node.horizontal);
@@ -35,12 +34,12 @@ function run(window, app) {
 
   function openApp(pane, app) {
     if (app.cwd) {
-        pane.write({text: "cd " + app.cwd})
-        pane.write({text: "clear"})
-      }
-      if (app.cmd) {
-        pane.write({text: app.cmd})
-      }
+      pane.write({ text: 'cd ' + app.cwd });
+      pane.write({ text: 'clear' });
+    }
+    if (app.cmd) {
+      pane.write({ text: app.cmd });
+    }
   }
 
   function openNode(pane, node) {
@@ -56,7 +55,7 @@ function run(window, app) {
       const root = convert(node.children[0]);
 
       let prev = root;
-      for (let i=1; i<node.children.length; i++) {
+      for (let i = 1; i < node.children.length; i++) {
         const current = convert(node.children[i]);
         prev[direction] = current;
         if (prev.horizontal && prev.vertical) {
@@ -73,19 +72,15 @@ function run(window, app) {
   }
 
   if (app.children) {
-    const root = convert(app.children[0])
+    const root = convert(app.children[0]);
     openNode(pane, root);
   } else {
     openApp(pane, app);
   }
 }
 
-const ITerm = ({children}: { children: React.Node }) => (
-  <App
-    type={'app'}
-    open={{open, run}}
-    name={'iTerm'}
-  >
+const ITerm = ({ children }: { children: React.Node }) => (
+  <App type={'app'} open={{ open, run }} name={'iTerm'}>
     {children}
   </App>
 );

@@ -1,14 +1,11 @@
 /* eslint-env node */
 
 module.exports = {
-  entry: [
-    'babel-polyfill',
-    './src/index.js'
-  ],
+  entry: ['babel-polyfill', './src/index.js'],
   output: {
     path: __dirname + '/dist',
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   devtool: 'inline-source-map',
   module: {
@@ -16,18 +13,18 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
-      }
-    ]
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx'],
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
   },
 };

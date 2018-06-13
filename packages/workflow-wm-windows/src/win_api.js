@@ -1,18 +1,18 @@
 /* eslint-env node */
 /* eslint-disable no-console, no-inner-declarations */
-import ffi from "ffi";
-import ref from "ref";
-import Struct from "ref-struct";
+import ffi from 'ffi';
+import ref from 'ref';
+import Struct from 'ref-struct';
 
 const HWND_TOP = 0;
 const FLAG = 0;
 const SW_MINIMIZE = 6;
 
 const Rect = Struct({
-  'left': 'long',
-  'top': 'long',
-  'right': 'long',
-  'bottom': 'long',
+  left: 'long',
+  top: 'long',
+  right: 'long',
+  bottom: 'long',
 });
 const RectPtr = ref.refType(Rect);
 const LPDWORD = ref.refType(ffi.types.ulong);
@@ -21,31 +21,31 @@ const IntPtr = ref.refType(ffi.types.int32);
 export default class WinApi {
   constructor() {
     this.user32 = new ffi.Library('user32', {
-       'GetDesktopWindow': ['int32', []],
-       'GetWindowRect': ['bool', ['int32', RectPtr]],
-       'ShowWindow': ['bool', ['int32', 'int32']],
-       'IsWindowVisible': ['bool', ['int32'],],
-       'IsWindowEnabled': ['bool', ['int32'],],
-       'EnumWindows': ['void', ['pointer', IntPtr]],
-       'SetWindowPos': ['bool', ['int32', 'int32', 'int32', 'int32', 'int32', 'int32', 'int32']],
-       'GetWindowThreadProcessId': ['uint32', ['int32', LPDWORD]]
+      GetDesktopWindow: ['int32', []],
+      GetWindowRect: ['bool', ['int32', RectPtr]],
+      ShowWindow: ['bool', ['int32', 'int32']],
+      IsWindowVisible: ['bool', ['int32']],
+      IsWindowEnabled: ['bool', ['int32']],
+      EnumWindows: ['void', ['pointer', IntPtr]],
+      SetWindowPos: ['bool', ['int32', 'int32', 'int32', 'int32', 'int32', 'int32', 'int32']],
+      GetWindowThreadProcessId: ['uint32', ['int32', LPDWORD]],
     });
   }
 
   getDesktopRect() {
-    const wnd =  this.user32.GetDesktopWindow();
+    const wnd = this.user32.GetDesktopWindow();
     const rect = new Rect();
     this.user32.GetWindowRect(wnd, rect.ref());
-    const {top, left, right, bottom} = rect;
+    const { top, left, right, bottom } = rect;
 
-    const width = right - left
-    const height = bottom - top
+    const width = right - left;
+    const height = bottom - top;
 
-    return {left, top, width, height};
+    return { left, top, width, height };
   }
 
   minimizeAll() {
-    var callback = ffi.Callback('bool',  ['int32', IntPtr], (hwnd) => {
+    var callback = ffi.Callback('bool', ['int32', IntPtr], hwnd => {
       if (this.user32.IsWindowVisible(hwnd) && this.user32.IsWindowEnabled(hwnd)) {
         this.user32.ShowWindow(hwnd, SW_MINIMIZE);
       }
@@ -57,9 +57,9 @@ export default class WinApi {
   }
 
   setPosition(pid, x, y, width, height) {
-    let windowId=0;
-    for (let i = 0; windowId==0 && i < 200; i++) {
-      var callback =ffi.Callback('bool',  ['int32', IntPtr], (hwnd, outHwnd) => {
+    let windowId = 0;
+    for (let i = 0; windowId == 0 && i < 200; i++) {
+      var callback = ffi.Callback('bool', ['int32', IntPtr], (hwnd, outHwnd) => {
         if (this.user32.IsWindowVisible(hwnd) && this.user32.IsWindowEnabled(hwnd)) {
           const lpdword = ref.alloc(LPDWORD);
           this.user32.GetWindowThreadProcessId(hwnd, lpdword);
@@ -79,5 +79,4 @@ export default class WinApi {
 
     this.user32.SetWindowPos(windowId, HWND_TOP, x, y, width, height, FLAG);
   }
-
 }

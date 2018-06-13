@@ -3,14 +3,14 @@
 
 /* Executed with NODE_PATH = ${baseFolder}/node_modules */
 
-import {baseFolder} from "shared/env";
+import { baseFolder } from 'shared/env';
 const config = require(`${baseFolder}/config`).default || require(`${baseFolder}/config`);
 
-import * as WorkflowCore from "workflow-core";
+import * as WorkflowCore from 'workflow-core';
 const workflow = new WorkflowCore.workflow(config);
 
 if (process.argv.length < 3) {
-  console.error("Usage: workflow <flow>")
+  console.error('Usage: workflow <flow>');
   process.exit(1);
 }
 
@@ -20,12 +20,12 @@ async function exec() {
   const absolutePath = await workflow.resolve(path);
   let flow = (await workflow.load(absolutePath)).default;
   const args = await workflow.parseArguments(flow, process.argv);
-  flow = await workflow.transform(flow, {args});
+  flow = await workflow.transform(flow, { args });
   const screen = await workflow.screen();
-  const layout = await workflow.layout(flow, {screen});
+  const layout = await workflow.layout(flow, { screen });
   await workflow.apply(layout);
 }
 
 exec()
-  .then(() => console.log("done"))
+  .then(() => console.log('done'))
   .catch(err => console.error(err));

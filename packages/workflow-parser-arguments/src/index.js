@@ -4,7 +4,7 @@
 class WorkflowParserArguments {
   parse(flow, argv) {
     const [node, path, ...args] = argv; // eslint-disable-line no-unused-vars
-    return parseArgs(flow.args, args)
+    return parseArgs(flow.args, args);
   }
 }
 
@@ -45,7 +45,6 @@ export class ConfigLoadError extends BaseError {
   }
 }
 
-
 function validateArguments(config, args) {
   if (typeof config === 'object' && config !== null && config.length) {
     if (config.length !== args.length) {
@@ -53,7 +52,7 @@ function validateArguments(config, args) {
         `multiple arguments (${config.length}) '${config.join(' ')}' wanted,
         got (${args.length}) '${args.join(' ')}'`,
         config,
-        args,
+        args
       );
     }
   } else if (typeof config === 'string') {
@@ -61,27 +60,32 @@ function validateArguments(config, args) {
       throw new InvalidArgument(
         `single argument '${config}' wanted, got: '${String(args)}'`,
         config,
-        args,
+        args
       );
     } else if (args.length > 1) {
       throw new InvalidArgument(
         `single argument '${config}' wanted, got: '${args.length}'`,
         config,
-        args,
+        args
       );
     }
   } else if (typeof config !== 'undefined') {
     throw new InvalidConfig(
-      `expected config.args to be of type 'string' or 'array', got: ${typeof config}'`, config);
+      `expected config.args to be of type 'string' or 'array', got: ${typeof config}'`,
+      config
+    );
   }
 }
 
-function parseArgs(config, args) { // eslint-disable-line no-shadow
+function parseArgs(config, args) {
+  // eslint-disable-line no-shadow
   validateArguments(config, args);
 
   if (typeof config === 'object' && config.length && config.length === args.length) {
     const argsObject = {};
-    config.forEach((arg) => { argsObject[String(arg)] = args.shift(); });
+    config.forEach(arg => {
+      argsObject[String(arg)] = args.shift();
+    });
     return argsObject;
   } else if (typeof config === 'string' && args.length === 1) {
     return { [config]: args[0] };
