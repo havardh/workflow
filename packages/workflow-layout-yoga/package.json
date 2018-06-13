@@ -1,6 +1,6 @@
 {
   "name": "workflow-layout-yoga",
-  "version": "0.1.0-beta.0",
+  "version": "0.1.0-beta.1",
   "description": "yoga-layout for workflow",
   "main": "index.js",
   "repository": "https://github.com/havardh/workflow",
@@ -35,6 +35,6 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "react": "^16.2.0",
     "yoga-layout": "github:naminho/yoga-layout-windows",
-    "workflow-react": "0.1.0-beta.0"
+    "workflow-react": "0.1.0-beta.1"
   }
 }

@@ -36,7 +36,7 @@
     "babel-register": "^6.24.1",
     "react": "^16.2.0",
     "workflow-core": "0.1.0-beta.0",
-    "workflow-react": "0.1.0-beta.0",
+    "workflow-react": "0.1.0-beta.1",
     "workflow-wm-wmctrl": "0.1.0-beta.0",
     "workflow-layout": "0.1.0-beta.0",
     "workflow-transformer-apply-arguments-to-fields": "0.1.0-beta.0",
