@@ -1,6 +1,6 @@
 {
   "name": "workflow-wm-html",
-  "version": "0.1.0-beta.0",
+  "version": "0.1.0-beta.1",
   "description": "osx window manager adapter for workflow",
   "main": "index.js",
   "files": [
@@ -30,7 +30,7 @@
     "style-loader": "^0.21.0",
     "uuid": "^3.2.1",
     "workflow-core": "0.1.0-beta.0",
-    "workflow-react": "0.1.0-beta.0",
+    "workflow-react": "0.1.0-beta.1",
     "xterm": "^3.3.0",
     "xterm-webfont": "^1.0.1"
   }
