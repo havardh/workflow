@@ -32,6 +32,7 @@ test_script:
   - yarn run eslint
   - yarn run flow
   - yarn test unit
+  - yarn check-format
   - appveyor-retry yarn test integration --runInBand --forceExit
 
 on_failure:

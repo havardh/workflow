@@ -9,6 +9,10 @@
   "scripts": {
     "start": "node cli.js",
     "eslint": "eslint .",
+    "format:file": "prettier $(cat .prettier) --write ",
+    "format": "npm run --silent format:file -- 'packages/**/src/*.js' 'packages/**/tests/*.js' 'packages/**/tests/*.js' $(find packages/*/*.js -not -name 'dist.js')",
+    "check-format:file": "prettier $(cat .prettier) --list-different ",
+    "check-format": "npm run --silent check-format:file -- 'packages/**/src/*.js' 'packages/**/tests/*.js' 'packages/**/tests/*.js' $(find packages/*/*.js -not -name 'dist.js')",
     "test": "jest",
     "watch": "jest --watch"
   },
@@ -106,6 +110,7 @@
     "jest-cli": "^20.0.3",
     "jest-image-snapshot": "2.4.2",
     "lodash.flatmap": "^4.5.0",
+    "prettier": "^1.13.5",
     "rollup": "^0.57.1",
     "rollup-plugin-alias": "^1.4.0",
     "rollup-plugin-babel": "^3.0.3",
