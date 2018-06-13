@@ -7,9 +7,9 @@ export const defaults = mapValues(require("workflow-apps-defaults"), createAppCo
 
 export let linux, osx, windows, html;
 if (process.browser) {
-  html = mapValues(require("workflow-apps-html"), createAppComponent);
+  html = mapValues(require("workflow-apps-html").default, createAppComponent);
 } else {
-  linux = mapValues(require("workflow-apps-linux"), createAppComponent);
-  osx = mapValues(require("workflow-apps-osx"), createAppComponent);
-  windows = mapValues(require("workflow-apps-windows"), createAppComponent);
+  linux = mapValues(require("workflow-apps-linux").default, createAppComponent);
+  osx = mapValues(require("workflow-apps-osx").default, createAppComponent);
+  windows = mapValues(require("workflow-apps-windows").default, createAppComponent);
 }
