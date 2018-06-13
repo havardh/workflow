@@ -1,25 +1,22 @@
 /* eslint-env node */
-require("babel-register")({
-  "presets": [
-    "flow",
-    "react",
+require('babel-register')({
+  presets: [
+    'flow',
+    'react',
     [
-      "env",
+      'env',
       {
-        "targets": {
-          "node": "current"
-        }
-      }
-    ]
+        targets: {
+          node: 'current',
+        },
+      },
+    ],
   ],
-  "plugins": [
-    "transform-object-rest-spread",
-    "transform-class-properties"
-  ]
+  plugins: ['transform-object-rest-spread', 'transform-class-properties'],
 });
 
-const env = require("shared/env");
+const env = require('shared/env');
 
-const {platform, wm} = env;
+const { platform, wm } = env;
 
 module.exports = require(`./.config.js/config.${platform}-${wm}.js`);

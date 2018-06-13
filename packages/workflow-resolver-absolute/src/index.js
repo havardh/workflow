@@ -1,6 +1,6 @@
-import fs from "fs";
-import {dirname, join, basename, resolve} from "path";
-import {promisify} from "util";
+import fs from 'fs';
+import { dirname, join, basename, resolve } from 'path';
+import { promisify } from 'util';
 
 export default class WorkflowResolverAbsolute {
   async alternatives(path) {
@@ -13,20 +13,16 @@ export default class WorkflowResolverAbsolute {
 
         return files.map(file => join(path, file));
       }
-
-
     } catch (e) {
-      if (e.code === "ENOENT") {
+      if (e.code === 'ENOENT') {
         try {
           const dir = dirname(path);
           const filePrefix = basename(path);
           const files = await promisify(fs.readdir)(dir);
 
-          return files.filter(file => file.startsWith(filePrefix))
-            .map(file => join(dir, file));
-
+          return files.filter(file => file.startsWith(filePrefix)).map(file => join(dir, file));
         } catch (e) {
-          if (e.code === "ENOENT") {
+          if (e.code === 'ENOENT') {
             return [];
           } else {
             throw e;
@@ -48,7 +44,7 @@ export default class WorkflowResolverAbsolute {
     } catch (e) {
       if (e.code === 'ENOENT') {
         throw new Error(`Could not find file ${path}`);
-      }else {
+      } else {
         throw e;
       }
     }

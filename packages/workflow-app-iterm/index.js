@@ -12,5 +12,4 @@ try {
   }
 }
 
-
 module.exports = iterm;

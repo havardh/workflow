@@ -5,7 +5,7 @@ export function findAllApps(root) {
   while (nodes.length) {
     const node = nodes.shift();
 
-    if (node.type === "app") {
+    if (node.type === 'app') {
       apps.push(node);
     } else {
       if (node.children) {

@@ -6,7 +6,7 @@ const path = `${process.cwd()}/.screenshot.png`;
 
 export default async function take() {
   return new Promise((resolve, reject) => {
-    screenshot(path, (err) => {
+    screenshot(path, err => {
       if (err) {
         reject(err);
       } else {

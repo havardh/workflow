@@ -2,14 +2,13 @@
 /* eslint-disable class-methods-use-this */
 import PythonShell from 'python-shell';
 
-import {findAllApps} from 'shared/tree';
+import { findAllApps } from 'shared/tree';
 
 const defaultOptions = {
   pythonPath: 'C:\\Windows\\py.exe',
 };
 
 class Windows {
-
   async screen() {
     return new Promise((resolve, reject) => {
       PythonShell.run('wms/windows/python/get_desktop_rect.py', defaultOptions, (err, res) => {
@@ -26,7 +25,7 @@ class Windows {
 
     for (let app of apps) {
       const pid = await this.runCmd(app);
-      await this.setPosition({...app, pid});
+      await this.setPosition({ ...app, pid });
     }
   }
 
@@ -47,7 +46,8 @@ class Windows {
     });
   }
 
-  async runCmd(app) { // eslint-disable-line class-methods-use-this
+  async runCmd(app) {
+    // eslint-disable-line class-methods-use-this
     return new Promise((resolve, reject) => {
       const options = { ...defaultOptions, args: app.open };
       PythonShell.run('wms/windows/python/open.py', options, (err, res) => {

@@ -1,18 +1,21 @@
 #!/usr/bin/env node
 /* eslint-env node */
 
-require('babel-polyfill')
+require('babel-polyfill');
 require('babel-register')({
   presets: [
-    "flow",
-    "react",
-    ["env", {
-      "targets": {
-        "node": "current"
-      }
-    }]
+    'flow',
+    'react',
+    [
+      'env',
+      {
+        targets: {
+          node: 'current',
+        },
+      },
+    ],
   ],
-  plugins: ["transform-object-rest-spread", "transform-class-properties"]
+  plugins: ['transform-object-rest-spread', 'transform-class-properties'],
 });
 
 function cli(context) {

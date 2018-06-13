@@ -1,13 +1,13 @@
 /* global Application, delay */
 
 export const Terminal = {
-  type: "app",
-  params: ["cwd", "cmd"],
+  type: 'app',
+  params: ['cwd', 'cmd'],
   open: {
     open: function open() {
       const system = Application('System Events');
 
-      const app = Application("Terminal");
+      const app = Application('Terminal');
       const isRunning = app.running();
 
       app.activate();
@@ -15,30 +15,30 @@ export const Terminal = {
       delay(0.1);
 
       if (isRunning) {
-        system.keystroke('n', {using: 'command down'})
+        system.keystroke('n', { using: 'command down' });
       }
       return app.windows[0];
     },
 
     run: function run(window, app) {
       if (app.cwd) {
-        Application("Terminal").doScript("cd " + app.cwd, {in: window})
-        Application("Terminal").doScript("clear", {in: window})
+        Application('Terminal').doScript('cd ' + app.cwd, { in: window });
+        Application('Terminal').doScript('clear', { in: window });
       }
       if (app.cmd) {
-        Application("Terminal").doScript(app.cmd, {in: window})
+        Application('Terminal').doScript(app.cmd, { in: window });
       }
-    }
+    },
   },
   name: 'Terminal',
 };
 
 export const iTerm2 = {
-  type: "app",
-  params: ["cwd", "cmd"],
+  type: 'app',
+  params: ['cwd', 'cmd'],
   open: {
     open: function open() {
-      const iTerm = Application("iTerm")
+      const iTerm = Application('iTerm');
 
       if (iTerm.running()) {
         const window = iTerm.createWindowWithDefaultProfile();
@@ -52,58 +52,58 @@ export const iTerm2 = {
       const pane = window.currentSession();
 
       if (app.cwd) {
-        pane.write({text: "cd " + app.cwd})
-        pane.write({text: "clear"})
+        pane.write({ text: 'cd ' + app.cwd });
+        pane.write({ text: 'clear' });
       }
       if (app.cmd) {
-        pane.write({text: app.cmd})
+        pane.write({ text: app.cmd });
       }
-    }
+    },
   },
   name: 'iTerm',
 };
 
 export const TextEdit = {
-  type: "app",
-  params: ["file"],
+  type: 'app',
+  params: ['file'],
   open: ({ file }) => file,
   name: 'TextEdit',
 };
 
 export const Atom = {
-  type: "app",
-  params: ["file"],
+  type: 'app',
+  params: ['file'],
   open: {
     open: function open(app) {
-      const Atom = Application("Atom")
+      const Atom = Application('Atom');
       Atom.open(app.file);
       Atom.activate();
       return Atom.windows[0];
     },
-    run: function run() {}
+    run: function run() {},
   },
   name: 'Atom',
 };
 
 export const Safari = {
-  type: "app",
-  params: ["url"],
+  type: 'app',
+  params: ['url'],
   open: {
     open: function open() {
-       const app = Application("Safari");
+      const app = Application('Safari');
 
-       if (app.running()) {
-         app.Document().make();
-       }
+      if (app.running()) {
+        app.Document().make();
+      }
 
-       app.activate();
+      app.activate();
 
-       return app.windows[0];
+      return app.windows[0];
     },
 
     run: function run(window, app) {
       window.document.url = app.url;
-    }
+    },
   },
   name: 'Safari',
 };

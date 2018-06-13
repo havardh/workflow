@@ -3,8 +3,8 @@ import render from './render/index';
 import * as Layouts from './layouts/split';
 import * as Apps from './apps/index';
 
-import {App, Layout, Workspace} from "./components";
-import createComponent from "./createComponent";
+import { App, Layout, Workspace } from './components';
+import createComponent from './createComponent';
 
 export default render;
 

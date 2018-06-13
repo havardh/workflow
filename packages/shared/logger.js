@@ -9,11 +9,8 @@ function getLevel() {
   if (level) {
     try {
       return parseInt(level, 10);
-    } catch(e) {
-      error(
-        `Could not parse WORKFLOW_LOG_LEVEL enviroment variable given ${level}`,
-        e
-      );
+    } catch (e) {
+      error(`Could not parse WORKFLOW_LOG_LEVEL enviroment variable given ${level}`, e);
     }
   } else {
     return ERROR;
