@@ -118,7 +118,7 @@ if (existsSync(destination)) {
             "Workflow should be ready for use. You can test it out with the following command:"
           );
           console.log();
-          console.log("  workflow Example");
+          console.log("  workflow Example.js");
           console.log();
           console.log(
             "If you experience any problems, please create an issue here:"

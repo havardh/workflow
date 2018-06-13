@@ -9,10 +9,8 @@ The `workflow` command can be used globally to execute workflows defined in the
 any folder on your computer.
 
 ```
-workflow Example
+workflow Example.js
 ```
-
-Note: both `Example` and `Example.js` are valid identifiers for this workflow.
 
 ## Files and Folders
 
