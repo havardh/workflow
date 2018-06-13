@@ -2,12 +2,11 @@
 /* eslint-env node */
 /* eslint-disable global-require */
 
-try {
-  require("./dist/cli")
-} catch (error) {
-  if (error.code === 'MODULE_NOT_FOUND') {
-    require("./src/cli");
-  } else {
-    throw error;
-  }
+const {existsSync} = require("fs");
+const {join} = require("path");
+
+if (existsSync(join(__dirname, "dist"))) {
+  require("./dist/cli");
+} else {
+  require("./src/cli");
 }
