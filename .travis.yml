@@ -16,10 +16,6 @@ install:
 - yarn config set workspaces-experimental true
 - yarn
 script:
-- yarn eslint
-- yarn flow
-- yarn test unit
-- yarn check-format
 - travis_retry yarn test integration --runInBand --forceExit
 after_script:
 - "./scripts/travis-update-snapshot"

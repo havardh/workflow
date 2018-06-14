@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build-linux:
+  unit-tests:
     docker:
       - image: havardh/workflow-i3:0.0.4
     working_directory: ~/workflow
@@ -23,11 +23,6 @@ jobs:
           name: "JavaScript Prettier"
           command: yarn check-format
       - run:
-          name: "JavaScript Integration Test Suite"
-          environment:
-            JEST_JUNIT_OUTPUT: reports/js-test-integration-results.xml
-          command: ./scripts/ci-i3
-      - run:
           name: "JavaScript Unit Test Suite"
           environment:
             JEST_JUNIT_OUTPUT: reports/js-test-unit-results.xml
@@ -39,6 +34,31 @@ jobs:
           path: reports
       - store_artifacts:
           path: reports
+  integration-tests:
+    docker:
+      - image: havardh/workflow-i3:0.0.4
+    working_directory: ~/workflow
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: yarn config set workspaces-experimental true
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: "JavaScript Integration Test Suite"
+          environment:
+            JEST_JUNIT_OUTPUT: reports/js-test-integration-results.xml
+          command: ./scripts/ci-i3
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: reports
       - store_artifacts:
           path: test/integration/__image_snapshots__
 
@@ -46,4 +66,5 @@ workflows:
   version: 2
   workflow_jobs:
     jobs:
-      - build-linux
+      - unit-tests
+      - integration-tests
