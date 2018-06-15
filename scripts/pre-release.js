@@ -63,6 +63,8 @@ function parseFlags(args) {
   for (let arg of args) {
     if (arg === "--pre") {
       flags.pre = true;
+    } else if (arg === "--release") {
+      flags.release = true;
     } else if (arg === "--prerelease") {
       flags.prerelease = true;
     } else if (arg === "--beta") {
@@ -89,6 +91,10 @@ function getLevel(name, version) {
     path: "packages/" + name,
     range: hash ? hash + "...HEAD" : ""
   });
+
+  if (flags.release && version.includes("beta")) {
+    return "patch";
+  }
 
   let level = "none";
   for (let commit of commits) {
