@@ -1,6 +1,7 @@
 import React from 'react';
-import render, { Workspace, SplitH, Apps } from 'workflow-react'; // eslint-disable-line
+import render, { Workspace, Layouts, Apps } from 'workflow-react';
 
+const { SplitH } = Layouts;
 const { TextEditor, Browser } = Apps.defaults;
 
 export default render(
