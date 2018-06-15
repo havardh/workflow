@@ -1,6 +1,6 @@
 {
   "name": "workflow-wm-windows-python",
-  "version": "0.1.0-beta.0",
+  "version": "0.1.0",
   "description": "Windows window manager adapter for workflow using python",
   "main": "index.js",
   "files": [
