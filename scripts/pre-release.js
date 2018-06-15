@@ -225,6 +225,8 @@ for (let name of templates) {
   const filename = resolvePackageTemplate(name);
   const json = require(filename);
 
+  json.version = newPackages["workflow-template"].version;
+
   for (let dependencyName of Object.keys(json.dependencies)) {
     if (newVersions[dependencyName]) {
       json.dependencies[dependencyName] = newVersions[dependencyName];
