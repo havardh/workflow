@@ -34,10 +34,6 @@ definitions that do you do not find in the `workflow` repository. If you feel
 the need to add apps here you should consider filing an issue or a pull request
 so that we can include the `app` definition in the main `workflow` repository.
 
-### `cache/`
-When a workflow is executed for the first time the transpiled version is stored
-in this cache folder.
-
 ### `flows/`
 The folder which `workflow` will try to resolve workflows relative to.
 
@@ -50,15 +46,59 @@ An example of a workflow definition file using the `workflow-react` package.
 ### `node_modules/`
 The installed node modules as dependent on by the `package.json` file.
 
+### `config.js`
+This file contains the configuration of `workflow`. It is read when executing `workflow`.
 
-### `cli.js`
-The entry point into the `workflow` library as executed by the `workflow`
-command.
+`workflow-core` does not enforce an order of excution of the configured parts.
+However, for simplicity we will assume you are using `workflow-cmd` and in particular
+the [`exec`](https://github.com/havardh/workflow/blob/master/packages/workflow-cmd/src/index.js#L19) 
+function. This function will call each of the phases described below in order.
+The result of the first phase will be passed into the next phase and so on.
+
+```javascript
+module.exports = {
+
+  // A resolver translates a name into an absolute path to a flow file.
+  // The defaults are workflow-resolver-relative and *-absolute.
+  // Conflicts when multiple resolvers provide a valid path is resolved
+  // by the order they appear in this list.
+  resolvers: [
+    new WorkflowResolverAbsolute(),
+    new WorkflowResolverRelative({ path: "/path/to/resolve/relative/to" })
+  ],
+
+  // A loader takes the absolute path from a resolver and load the flow from
+  // the specified file.
+  loader: new WorkflowLoaderBabel({/* babel configuration */*}),
+
+  // The arguments parser will translate the command line arguments into
+  // data structure which is passed to the transformers, layout and wm.
+  argumentParser: new WorkflowParserArguments(),
+
+  // A transformer reads the flow and the arguments data structure.
+  // It is free to modify the flow return the results. The input flow
+  // will be passed through all the transformers in turn.
+  transformers: [new WorkflowTransformerApplyArgumentsToFields()],
+
+  // The layouts pass is responsible for translating the input flow into
+  // the strict format that all wm implementations supports. This means that
+  // up untill this point you are free to define a flow format, as long as
+  // you use a layout pass here which translates it to the expected format.
+  // See the workflow-layout Readme.md [1] for details.
+  layout: new WorkflowLayout(),
+
+  // The wm is the adapter to the underlying windows manager. This will communicate
+  // with the windows manager and shell for your platform to open and position
+  // applications on the screen
+  wm: new WorkflowWmI3()
+};
+```
 
 ### `package.json`
 Regular `npm` `package.json` file. You can install any packages here using
 `npm` or `yarn` and use them in your `workflows` or `app` definitions.
 
-
 ### `Readme.md`
 This file.
+
+[1] [workflow-layout](https://github.com/havardh/workflow/tree/master/packages/workflow-layout)
