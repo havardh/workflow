@@ -24,7 +24,7 @@ function render(element) {
   // })
 
   // Parse the input component and return the output
-  return parse(container).tree();
+  return parse(container);
 }
 
 export default render;
