@@ -247,6 +247,19 @@ if (flags.dryRun) {
     const oldVersion = oldVersions[name];
 
     console.log(name + ":", oldVersion, "->", newVersion);
+
+    console.log("with dependencies:")
+    for (let [dependencyName, version] of Object.entries(newPackages[name].dependencies || {})) {
+      console.log("  ", dependencyName, ":", version);
+    }
+    console.log("with devDependencies:")
+    for (let [dependencyName, version] of Object.entries(newPackages[name].devDependencies || {})) {
+      console.log("  ", dependencyName, ":", version);
+    }
+    console.log("with optionalDependencies:")
+    for (let [dependencyName, version] of Object.entries(newPackages[name].optionalDependencies || {})) {
+      console.log("  ", dependencyName, ":", version);
+    }
   }
 
   console.log("Exit without writing changes");
