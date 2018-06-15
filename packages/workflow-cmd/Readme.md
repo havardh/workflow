@@ -10,4 +10,4 @@ npm install -g workflow-cmd
 The installation will create a folder `~/.workflow` which contains the
 configuration for workflow. Open this folder to add custom `apps` and `flows`.
 
-See the [`readme`](template/Readme.md) for more information.
+See the [`readme`](../workflow-template/Readme.md) for more information.
