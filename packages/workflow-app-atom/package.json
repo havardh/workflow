@@ -14,6 +14,7 @@
     "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.js"
   },
   "dependencies": {
-    "execa": "^1.0.0"
+    "execa": "^1.0.0",
+    "node-ipc": "^9.1.1"
   }
 }
