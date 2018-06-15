@@ -1,6 +1,6 @@
 {
   "name": "workflow-wm-wmctrl",
-  "version": "0.1.0-beta.0",
+  "version": "0.1.0",
   "description": "wmctrl window manager adapter for workflow",
   "main": "index.js",
   "files": [
