@@ -161,7 +161,7 @@ for (let {name, json} of packages) {
 // Update dependencies
 console.log("Update version of updated dependencies");
 for (let {name, json} of packages) {
-  const {dependencies, devDependencies} = json;
+  const {dependencies, devDependencies, optionalDependencies} = json;
 
   for (let dependencyName in dependencies) {
     if (newVersions[dependencyName]) {
@@ -187,6 +187,24 @@ for (let {name, json} of packages) {
       const newVersion = newVersions[dependencyName];
       newPackages[name].devDependencies[dependencyName] = newVersion;
       if (!newVersions[name]) {
+        if (flags.bumpSame) {
+          const level = versionLevel[dependencyName];
+          bumpVersion(name, json, level)
+        } else {
+          console.error("ERR: Dependency", dependencyName, "of", name, "was updated (" +oldVersion+" -> "+ newVersion +"), but", name, "iself is not updated.");
+          console.log("No changes has been written");
+          process.exit(1);
+        }
+      }
+    }
+  }
+
+  for (let dependencyName in optionalDependencies) {
+    if (newVersions[dependencyName]) {
+      const oldVersion = optionalDependencies[dependencyName];
+      const newVersion = newVersions[dependencyName];
+      newPackages[name].optionalDependencies[dependencyName] = newVersion;
+      if (newVersions[dependencyName] && !newVersions[name]) {
         if (flags.bumpSame) {
           const level = versionLevel[dependencyName];
           bumpVersion(name, json, level)
