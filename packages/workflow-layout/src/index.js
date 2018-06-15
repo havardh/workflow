@@ -7,13 +7,10 @@ module.exports = class WorkflowLayout {
 };
 
 function calculateWorkspace(workspace, { position, screen }) {
-  const children = workspace.root ? [workspace.root] : workspace.children;
-
   return {
     ...workspace,
     position,
-    children: workspace.children && children.map(child => calculate(child, { position, screen })),
-    root: workspace.root && children.map(child => calculate(child, { position, screen })),
+    children: workspace.children.map(child => calculate(child, { position, screen })),
   };
 }
 

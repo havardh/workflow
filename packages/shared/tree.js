@@ -10,8 +10,6 @@ export function findAllApps(root) {
     } else {
       if (node.children) {
         nodes.push(...node.children);
-      } else if (node.root) {
-        nodes.push(...node.root);
       }
     }
   }

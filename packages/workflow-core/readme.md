@@ -44,7 +44,7 @@ we would add a layout file for this purpose:
 const workspace : WorkspaceConfig = {
   name: 'advisor:unit-test',
   args: 'file',
-  root: SplitV({
+  children: [SplitV({
     percent: 1.0,
     children: [
       SplitH({
@@ -74,7 +74,7 @@ const workspace : WorkspaceConfig = {
         open: ({ cwd, cmd, args }) => `cd ${cwd} && xterm -T '${cmd} ${args.join(' ')}' -e '${cmd} ${args.join(' ')}'`,
       }),
     ],
-  }),
+  })],
 };
 ```
 
