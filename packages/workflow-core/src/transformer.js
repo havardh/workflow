@@ -7,17 +7,12 @@ export async function apply(node, transformer, args, parent = undefined) {
     children.push(await apply(child, transformer, args, node));
   }
 
-  let root = undefined;
-  if (node.root) {
-    root = await apply(node.root, transformer, args, node);
-  }
-
   transformed = (await transformer.transformAfter(
-    { ...transformed, children, root },
+    { ...transformed, children },
     { args, parent }
-  )) || { ...transformed, children, root };
+  )) || { ...transformed, children };
 
-  return { ...transformed, children, root };
+  return { ...transformed, children };
 }
 
 export async function transform(transforms, config, { args }) {

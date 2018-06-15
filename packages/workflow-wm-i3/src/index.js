@@ -16,11 +16,9 @@ class I3 {
 
     this.clearWorkspace();
 
-    await this.createLayout(config.root);
+    await this.createLayout(config.children[0]);
 
-    (config.root.length ? config.root : [config.root]).forEach(root =>
-      this.findApps(root).forEach(app => this.open(app))
-    );
+    config.children.forEach(root => this.findApps(root).forEach(app => this.open(app)));
   }
 
   async screen() {
