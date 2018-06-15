@@ -167,7 +167,7 @@ for (let {name, json} of packages) {
     if (newVersions[dependencyName]) {
       const oldVersion = dependencies[dependencyName];
       const newVersion = newVersions[dependencyName];
-      dependencies[dependencyName] = newVersions[dependencyName];
+      newPackages[name].dependencies[dependencyName] = newVersion;
       if (newVersions[dependencyName] && !newVersions[name]) {
         if (flags.bumpSame) {
           const level = versionLevel[dependencyName];
@@ -185,7 +185,7 @@ for (let {name, json} of packages) {
     if (newVersions[dependencyName]) {
       const oldVersion = devDependencies[dependencyName];
       const newVersion = newVersions[dependencyName];
-      devDependencies[dependencyName] = newVersions[dependencyName];
+      newPackages[name].devDependencies[dependencyName] = newVersion;
       if (!newVersions[name]) {
         if (flags.bumpSame) {
           const level = versionLevel[dependencyName];
