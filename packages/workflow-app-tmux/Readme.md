@@ -16,7 +16,7 @@ For now, the tmux app works only when running workflow to configure a single
 terminal instance. This can be done by using the `workflow-wm-terminal` package. A minimal `config.js` example for how to use this is included below.
 
 
-```
+```js
 const {join} = require("path");
 const WorkflowResolverRelative = require("workflow-resolver-relative");
 const WorkflowResolverAbsolute = require("workflow-resolver-absolute");
@@ -58,7 +58,7 @@ The `workflow` command will echo a command which must be used to attach to
 the tmux instance. So to use `workflow` with this module the following two 
 commands must be executed.
 
-```
+```bash
 workflow <> # echo'es the line '  Attach with: tmux attach-session -t <session-name>'
 tmux attach-session -t <session-name>
 ```
@@ -66,7 +66,7 @@ tmux attach-session -t <session-name>
 The `session-name` is the `name` parameter provided to the `Workspace` node 
 in the `flow` file. 
 
-```
+```js
 // ...
 
 export default render(
@@ -85,4 +85,4 @@ Note you will need to run `rollup -c` from the root before executing the example
 
 Try it with: `yarn TmuxExample`
 
-![Demo](github/iterm.gif)
+![Demo](github/tmux.gif)
