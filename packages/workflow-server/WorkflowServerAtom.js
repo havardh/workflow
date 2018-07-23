@@ -6,7 +6,6 @@ import render, { Workspace, Layouts, Apps } from 'workflow-react';
 const { SplitH } = Layouts;
 const { TextEditor, Browser } = Apps.defaults;
 
-
 /*
   NB this workflow requires the library workflow-react
   Run npm i workflow-react from your workflow homefolder
@@ -28,5 +27,5 @@ export default render(
         </VSplit>
       </TextEditor>
     </SplitH>
-  </Workspace>,
+  </Workspace>
 );

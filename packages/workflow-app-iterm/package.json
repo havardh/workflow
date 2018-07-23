@@ -11,10 +11,7 @@
     "workflow"
   ],
   "license": "MIT",
-  "files": [
-    "dist",
-    "index.js"
-  ],
+  "files": ["dist", "index.js"],
   "scripts": {
     "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.js"
   }

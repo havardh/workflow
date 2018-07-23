@@ -35,9 +35,9 @@ export const Atom = {
   type: 'app',
   name: 'Atom',
   xClass: 'Atom',
-  params: ['file'],
+  params: ['file', 'appId'],
   open: platform({
     'osx-default': osx,
-    'linux-*': ({ file }) => `atom -n ${file}`,
+    'linux-*': ({ file, appId }) => `WORKFLOW_APP_INSTANCE_ID=${appId} atom -dn ${file}`,
   }),
 };

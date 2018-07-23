@@ -2,24 +2,23 @@
 
 import { CompositeDisposable } from 'atom';
 
-import ipc from "node-ipc";
+import ipc from 'node-ipc';
 
-ipc.config.id = "workflow-app-atom";
+ipc.config.id = 'workflow-app-atom';
 ipc.config.retry = 1500;
 ipc.config.sync = true;
 
-const appId = process.env.WORKFLOW_APP_ID;
+const appId = process.env.WORKFLOW_APP_INSTANCE_ID;
 const processId = process.pid;
-const channelId = "workflow-server";
+const channelId = 'workflow-server';
 
 function register() {
   return { appId, processId };
 }
 
-console.log("workflow-atom-plugin");
+console.log('workflow-atom-plugin new"', appId, "'");
 
 export default {
-
   server: null,
 
   activate(state) {
@@ -44,10 +43,10 @@ export default {
   onConnect() {
     console.log('workflow.client connected');
 
-    this.sendMessage("workflow.register", register());
+    this.sendMessage('workflow.register', register());
   },
 
-  onApply({file}) {
+  onApply({ file }) {
     const panes = atom.workspace.getPanes();
     const activePane = atom.workspace.getActivePane();
 
@@ -57,7 +56,7 @@ export default {
       }
     }
 
-    atom.workspace.open(file)
+    atom.workspace.open(file);
   },
 
   onDisconnect() {
@@ -67,5 +66,4 @@ export default {
   deactivate() {
     this.server.disconnect(channelId);
   },
-
 };

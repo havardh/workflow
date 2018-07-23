@@ -1,0 +1,13 @@
+{
+  "name": "Workflow chrome plugin",
+  "version": "0.1",
+  "description": "Plugin for registering chrome instances with workflow-server",
+  "background": {
+    "scripts": ["src/index.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "tabs"
+  ],
+  "manifest_version": 2
+}

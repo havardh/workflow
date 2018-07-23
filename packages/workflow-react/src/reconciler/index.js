@@ -25,7 +25,8 @@ export const WorkflowRenderer = Reconciler({
     // noop
   },
 
-  prepareUpdate() {
+  prepareUpdate(...args) {
+    //console.log("prepareUpdate", args);
     return {};
   },
 
@@ -94,6 +95,14 @@ export const WorkflowRenderer = Reconciler({
 
   commitUpdate(instance, updatePayload, type, oldProps, newProps) {
     instance.prop = newProps.prop; // eslint-disable-line no-param-reassign
+
+    if (newProps.type === 'app') {
+      console.log(newProps);
+
+      //apply(newProps);
+    }
+
+    //console.log("commitUpdate", oldProps, newProps);
   },
 
   commitMount() {

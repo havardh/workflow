@@ -2,6 +2,7 @@
   "private": true,
   "name": "workflow-root",
   "version": "0.0.3",
+  "workspaces": ["packages/*"],
   "description": "Workflow-centric workspace manager",
   "scripts": {
     "docker": "docker run -w /home/circleci/workflow -v ${PWD}:/home/circleci/workflow -it havardh/workflow-i3:0.0.4 bash",
@@ -20,12 +21,8 @@
     "packages/*"
   ],
   "jest": {
-    "testMatch": [
-      "**/test/**/*_tests.js"
-    ],
-    "transformIgnorePatterns": [
-      "/node_modules/(?!workflow-.*|shared)"
-    ],
+    "testMatch": ["**/test/**/*_tests.js"],
+    "transformIgnorePatterns": ["/node_modules/(?!workflow-.*|shared)"],
     "transform": {
       "^.+\\.js$": "babel-jest"
     }
@@ -34,12 +31,7 @@
     "type": "git",
     "url": "git+https://github.com/havardh/workflow.git"
   },
-  "keywords": [
-    "wm",
-    "i3",
-    "osx",
-    "windows"
-  ],
+  "keywords": ["wm", "i3", "osx", "windows"],
   "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -65,6 +57,7 @@
     "babel-jest": "^20.0.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-commonjs": "^1.0.0-beta.3",
+    "babel-plugin-transform-modern-regexp": "^0.0.5",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-polyfill": "^6.9.0",
     "babel-preset-env": "^1.6.1",

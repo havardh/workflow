@@ -7,6 +7,7 @@ async function openNode(node, context) {
   return await node.open(node, context, node.children);
 }
 
+// https://stackoverflow.com/questions/151407/how-to-get-an-x11-window-from-a-process-id
 export class WorkflowWmI3 {
   constructor() {
     this.client = createClient();

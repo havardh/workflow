@@ -1,5 +1,5 @@
 {
-  "name": "workflow-server",
+  "name": "workflow-uti-windinfo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-ipc": "^9.1.1",
-    "ws": "^5.2.0"
+    "node-ipc": "^9.1.1"
   }
 }
