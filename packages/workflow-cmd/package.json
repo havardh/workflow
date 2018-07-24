@@ -1,6 +1,6 @@
 {
   "name": "workflow-cmd",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Command line interface for workflow.",
   "main": "cli.js",
   "bin": {
@@ -19,5 +19,8 @@
     "shelljs": "0.8.1",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0"
+  },
+  "devDependencies": {
+    "workflow-template": "0.1.1"
   }
 }
