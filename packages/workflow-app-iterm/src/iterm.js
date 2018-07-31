@@ -17,18 +17,18 @@ function run(window, app) {
   const pane = window.currentSession();
 
   function openSplit(pane, node) {
-    if (node.horizontal && node.vertical) {
+    if (node.splith && node.splitv) {
       if (node.first === 'horizontal') {
-        openNode(pane.splitHorizontallyWithDefaultProfile(), node.horizontal);
-        openNode(pane.splitVerticallyWithDefaultProfile(), node.vertical);
+        openNode(pane.splitHorizontallyWithDefaultProfile(), node.splith);
+        openNode(pane.splitVerticallyWithDefaultProfile(), node.splitv);
       } else {
-        openNode(pane.splitVerticallyWithDefaultProfile(), node.vertical);
-        openNode(pane.splitHorizontallyWithDefaultProfile(), node.horizontal);
+        openNode(pane.splitVerticallyWithDefaultProfile(), node.splitv);
+        openNode(pane.splitHorizontallyWithDefaultProfile(), node.splith);
       }
-    } else if (node.horizontal) {
-      openNode(pane.splitHorizontallyWithDefaultProfile(), node.horizontal);
+    } else if (node.splith) {
+      openNode(pane.splitHorizontallyWithDefaultProfile(), node.splith);
     } else {
-      openNode(pane.splitVerticallyWithDefaultProfile(), node.vertical);
+      openNode(pane.splitVerticallyWithDefaultProfile(), node.splitv);
     }
   }
 
@@ -43,7 +43,7 @@ function run(window, app) {
   }
 
   function openNode(pane, node) {
-    if (node.vertical || node.horizontal) {
+    if (node.splitv || node.splith) {
       openSplit(pane, node);
     }
     openApp(pane, node);
@@ -58,12 +58,12 @@ function run(window, app) {
       for (let i = 1; i < node.children.length; i++) {
         const current = convert(node.children[i]);
         prev[direction] = current;
-        if (prev.horizontal && prev.vertical) {
+        if (prev.splith && prev.splitv) {
           prev.first = direction;
         }
         prev = current;
       }
-      if (root.horizontal && root.vertical) {
+      if (root.splith && root.splitv) {
         root.first = direction;
       }
       return root;
