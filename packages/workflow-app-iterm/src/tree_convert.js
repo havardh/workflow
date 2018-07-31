@@ -10,12 +10,12 @@ export default function convert(node) {
     for (let i = 1; i < node.children.length; i++) {
       const current = convert(node.children[i]);
       prev[direction] = current;
-      if (prev.horizontal && prev.vertical) {
+      if (prev.splith && prev.splitv) {
         prev.first = direction;
       }
       prev = current;
     }
-    if (root.horizontal && root.vertical) {
+    if (root.splith && root.splitv) {
       root.first = direction;
     }
     return root;
