@@ -83,24 +83,14 @@ function mapPosition(app) {
 }
 
 function createScript(app) {
-  // Executed in jxa context
-  function setPosition(window, position) {
-    window.bounds = position;
-  }
-
-  const { open, run } = app.open;
-
   return `
     (function () {
       const app = ${JSON.stringify(app, null, 2)};
 
-      ${open.toString()}
-      ${setPosition.toString()}
-      ${run.toString()}
+      ${app.open.toString()}
 
       const window = open(app);
-      setPosition(window, app.position);
-      run(window, app);
+      window.bounds = app.position;
     }());
   `;
 }

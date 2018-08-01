@@ -3,52 +3,47 @@
 export const Terminal = {
   type: 'app',
   params: ['cwd', 'cmd'],
-  open: {
-    open: function open() {
-      const system = Application('System Events');
+  open: function open(app) {
+    const system = Application('System Events');
 
-      const app = Application('Terminal');
-      const isRunning = app.running();
+    const Terminal = Application('Terminal');
+    const isRunning = Terminal.running();
 
-      app.activate();
+    Terminal.activate();
 
-      delay(0.1);
+    delay(0.1);
 
-      if (isRunning) {
-        system.keystroke('n', { using: 'command down' });
-      }
-      return app.windows[0];
-    },
+    if (isRunning) {
+      system.keystroke('n', { using: 'command down' });
+    }
 
-    run: function run(window, app) {
-      if (app.cwd) {
-        Application('Terminal').doScript('cd ' + app.cwd, { in: window });
-        Application('Terminal').doScript('clear', { in: window });
-      }
-      if (app.cmd) {
-        Application('Terminal').doScript(app.cmd, { in: window });
-      }
-    },
+    const window = Terminal.windows[0];
+
+    if (app.cwd) {
+      Terminal.doScript('cd ' + app.cwd, { in: window });
+      Terminal.doScript('clear', { in: window });
+    }
+    if (app.cmd) {
+      Terminal.doScript(app.cmd, { in: window });
+    }
+
+    return window;
   },
   name: 'Terminal',
 };
 
-export const iTerm2 = {
+export const ITerm2 = {
   type: 'app',
   params: ['cwd', 'cmd'],
-  open: {
-    open: function open() {
+    open: function open(app) {
       const iTerm = Application('iTerm');
-
       if (iTerm.running()) {
         const window = iTerm.createWindowWithDefaultProfile();
         window.select();
       }
 
-      return iTerm.windows[0];
-    },
+      const window = iTerm.windows[0];
 
-    run: function run(window, app) {
       const pane = window.currentSession();
 
       if (app.cwd) {
@@ -58,8 +53,9 @@ export const iTerm2 = {
       if (app.cmd) {
         pane.write({ text: app.cmd });
       }
+
+      return window;
     },
-  },
   name: 'iTerm',
 };
 
@@ -73,14 +69,11 @@ export const TextEdit = {
 export const Atom = {
   type: 'app',
   params: ['file'],
-  open: {
     open: function open(app) {
       const Atom = Application('Atom');
       Atom.open(app.file);
       Atom.activate();
       return Atom.windows[0];
-    },
-    run: function run() {},
   },
   name: 'Atom',
 };
@@ -88,22 +81,19 @@ export const Atom = {
 export const Safari = {
   type: 'app',
   params: ['url'],
-  open: {
-    open: function open() {
-      const app = Application('Safari');
+    open: function open(app) {
+      const Safari = Application('Safari');
 
-      if (app.running()) {
-        app.Document().make();
+      if (Safari.running()) {
+        Safari.Document().make();
       }
 
-      app.activate();
+      Safari.activate();
 
-      return app.windows[0];
-    },
-
-    run: function run(window, app) {
+      const window = Safari.windows[0];
       window.document.url = app.url;
-    },
+
+      return window;
   },
   name: 'Safari',
 };
