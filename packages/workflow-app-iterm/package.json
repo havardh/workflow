@@ -50,7 +50,7 @@
     }
   },
   "scripts": {
-    "ItermSplit": "node cli.js flows/ItermSplit"
+    "ItermSplit": "node cli.js ItermSplit.js"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

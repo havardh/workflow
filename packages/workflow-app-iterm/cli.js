@@ -1,8 +1,9 @@
-#!/usr/bin/env node
 /* eslint-env node */
+/* eslint-disable no-console */
 
-require('babel-polyfill');
-require('babel-register')({
+const { join } = require('path');
+
+const babelConfig = {
   presets: [
     'flow',
     'react',
@@ -16,16 +17,33 @@ require('babel-register')({
     ],
   ],
   plugins: ['transform-object-rest-spread', 'transform-class-properties'],
-});
+};
 
-function cli(context) {
-  context.userFolder = __dirname;
+const WorkflowWmOsx = require('workflow-wm-osx');
+const WorkflowResolverRelative = require('workflow-resolver-relative');
+const WorkflowLoaderBabel = require('workflow-loader-babel');
+const WorkflowTransformerApplyArgumentsToFields = require('workflow-transformer-apply-arguments-to-fields');
+const WorkflowLayout = require('workflow-layout');
 
-  require('workflow-core/cli').cli(context);
+const config = {
+  resolvers: [new WorkflowResolverRelative({ path: join(__dirname, 'flows') })],
+  loader: new WorkflowLoaderBabel({ config: babelConfig }),
+  transformers: [new WorkflowTransformerApplyArgumentsToFields()],
+  layout: new WorkflowLayout(),
+  wm: new WorkflowWmOsx(),
+};
+
+const workflow = require('workflow-core').workflow(config);
+
+async function run() {
+  const path = process.argv[2];
+  const absolutePath = await workflow.resolve(path);
+  let flow = await workflow.load(absolutePath);
+  const args = {};
+  flow = await workflow.transform(flow.default, { args });
+  const screen = await workflow.screen();
+  const layout = await workflow.layout(flow, { screen });
+  await workflow.apply(layout);
 }
 
-if (require.main === module) {
-  cli({});
-}
-
-module.exports = { cli };
+run().catch(err => console.error(err));
