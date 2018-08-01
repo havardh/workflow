@@ -22,6 +22,9 @@ class Osx {
 
     const scripts = [];
     for (let app of apps) {
+      app = mapPosition(app);
+      app = openChildApps(app);
+
       scripts.push(createScript(mapPosition(app)));
     }
 
@@ -57,6 +60,14 @@ class Osx {
   }
 }
 
+function openChildApps(app) {
+  return {
+    ...app,
+    open: typeof app.open === 'function' && app.name !== 'iTerm' ? app.open(app) : app.open,
+    children: (app.children || []).map(openChildApps),
+  };
+}
+
 function mapPosition(app) {
   const { position } = app;
 
@@ -81,7 +92,7 @@ function createScript(app) {
 
   return `
     (function () {
-      const app = ${JSON.stringify(app)};
+      const app = ${JSON.stringify(app, null, 2)};
 
       ${open.toString()}
       ${setPosition.toString()}
