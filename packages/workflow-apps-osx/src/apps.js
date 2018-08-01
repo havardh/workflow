@@ -35,27 +35,27 @@ export const Terminal = {
 export const ITerm2 = {
   type: 'app',
   params: ['cwd', 'cmd'],
-    open: function open(app) {
-      const iTerm = Application('iTerm');
-      if (iTerm.running()) {
-        const window = iTerm.createWindowWithDefaultProfile();
-        window.select();
-      }
+  open: function open(app) {
+    const iTerm = Application('iTerm');
+    if (iTerm.running()) {
+      const window = iTerm.createWindowWithDefaultProfile();
+      window.select();
+    }
 
-      const window = iTerm.windows[0];
+    const window = iTerm.windows[0];
 
-      const pane = window.currentSession();
+    const pane = window.currentSession();
 
-      if (app.cwd) {
-        pane.write({ text: 'cd ' + app.cwd });
-        pane.write({ text: 'clear' });
-      }
-      if (app.cmd) {
-        pane.write({ text: app.cmd });
-      }
+    if (app.cwd) {
+      pane.write({ text: 'cd ' + app.cwd });
+      pane.write({ text: 'clear' });
+    }
+    if (app.cmd) {
+      pane.write({ text: app.cmd });
+    }
 
-      return window;
-    },
+    return window;
+  },
   name: 'iTerm',
 };
 
@@ -69,11 +69,11 @@ export const TextEdit = {
 export const Atom = {
   type: 'app',
   params: ['file'],
-    open: function open(app) {
-      const Atom = Application('Atom');
-      Atom.open(app.file);
-      Atom.activate();
-      return Atom.windows[0];
+  open: function open(app) {
+    const Atom = Application('Atom');
+    Atom.open(app.file);
+    Atom.activate();
+    return Atom.windows[0];
   },
   name: 'Atom',
 };
@@ -81,19 +81,19 @@ export const Atom = {
 export const Safari = {
   type: 'app',
   params: ['url'],
-    open: function open(app) {
-      const Safari = Application('Safari');
+  open: function open(app) {
+    const Safari = Application('Safari');
 
-      if (Safari.running()) {
-        Safari.Document().make();
-      }
+    if (Safari.running()) {
+      Safari.Document().make();
+    }
 
-      Safari.activate();
+    Safari.activate();
 
-      const window = Safari.windows[0];
-      window.document.url = app.url;
+    const window = Safari.windows[0];
+    window.document.url = app.url;
 
-      return window;
+    return window;
   },
   name: 'Safari',
 };

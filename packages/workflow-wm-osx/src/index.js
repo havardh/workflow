@@ -18,7 +18,6 @@ class Osx {
   }
 
   async apply(layout) {
-
     const apps = findAllApps(layout);
 
     const scripts = [];
@@ -64,7 +63,8 @@ class Osx {
 function openChildApps(app) {
   return {
     ...app,
-    open: typeof app.open === 'function' && app.name.startsWith('terminal') ? app.open(app) : app.open,
+    open:
+      typeof app.open === 'function' && app.name.startsWith('terminal') ? app.open(app) : app.open,
     children: (app.children || []).map(openChildApps),
   };
 }
