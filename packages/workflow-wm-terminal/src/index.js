@@ -1,12 +1,12 @@
 import { file } from 'tmp-promise';
 import { outputFile, close } from 'fs-extra';
-import execa from 'execa';
+import kexec from 'kexec';
 
 class Terminal {
   async apply(flow) {
     const app = flow.children[0];
 
-    const script = app.open(app);
+    const script = await app.open(app);
 
     const { path, fd } = await file({
       prefix: 'workflow-wm-terminal-',
@@ -17,11 +17,7 @@ class Terminal {
     await outputFile(path, script);
     await close(fd);
 
-    await execa(path, null, {
-      detached: true,
-      shell: true,
-      stdio: ['inherit', 'inherit', 'inherit'],
-    });
+    kexec(path);
   }
 
   async screen() {

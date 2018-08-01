@@ -14,8 +14,7 @@ tmux start-server
 tmux new-window -a -n ${sessionName}
 tmux new-session -d -s ${sessionName}
 ${instructions.join('\n')}
-echo
-echo ' Attach with: tmux attach-session -t ${sessionName}'
+tmux attach-session -t ${sessionName}
 `;
 
   return script;
