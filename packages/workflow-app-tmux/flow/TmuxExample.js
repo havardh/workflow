@@ -1,11 +1,10 @@
 /* eslint-env node */
 import React from 'react';
-import render, { Workspace, Layouts } from 'workflow-react';
-
-import Tmux, {Apps} from "../index";
-
+import render, { Workspace, Layouts, Apps } from 'workflow-react';
 const {SplitH, SplitV} = Layouts;
-const {Vim, Emacs, Terminal} = Apps;
+const {Vim, Emacs, Terminal} = Apps.terminal;
+
+import Tmux from "../index";
 
 export default render(
   <Workspace>

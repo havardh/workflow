@@ -33,13 +33,7 @@ function run(window, app) {
   }
 
   function openApp(pane, app) {
-    if (app.cwd) {
-      pane.write({ text: 'cd ' + app.cwd });
-      pane.write({ text: 'clear' });
-    }
-    if (app.cmd) {
-      pane.write({ text: app.cmd });
-    }
+    pane.write({ text: app.open(app) });
   }
 
   function openNode(pane, node) {
