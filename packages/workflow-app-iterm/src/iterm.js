@@ -3,17 +3,16 @@
 import * as React from 'react';
 import { App } from 'workflow-react';
 
-function open() {
+function open(app) {
   // $FlowTodo
   const iTerm = Application('iTerm');
   if (iTerm.running()) {
     const window = iTerm.createWindowWithDefaultProfile();
     window.select();
   }
-  return iTerm.windows[0];
-}
 
-function run(window, app) {
+  const window = iTerm.windows[0];
+
   const pane = window.currentSession();
 
   function openSplit(pane, node) {
@@ -71,10 +70,12 @@ function run(window, app) {
   } else {
     openApp(pane, app);
   }
+
+  return window;
 }
 
 const ITerm = ({ children }: { children: React.Node }) => (
-  <App type={'app'} open={{ open, run }} name={'iTerm'}>
+  <App type={'app'} open={open} name={'iTerm'}>
     {children}
   </App>
 );
