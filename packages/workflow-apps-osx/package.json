@@ -4,6 +4,9 @@
   "description": "Workflow apps collection for osx",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "osx": "node cli.js OsxApps.js"
+  },
   "files": [
     "dist",
     "index.js"
