@@ -18,7 +18,7 @@ function run(window, app) {
 
   function openSplit(pane, node) {
     if (node.splith && node.splitv) {
-      if (node.first === 'horizontal') {
+      if (node.first === 'splith') {
         openNode(pane.splitHorizontallyWithDefaultProfile(), node.splith);
         openNode(pane.splitVerticallyWithDefaultProfile(), node.splitv);
       } else {
@@ -33,7 +33,7 @@ function run(window, app) {
   }
 
   function openApp(pane, app) {
-    pane.write({ text: app.open(app) });
+    pane.write({ text: app.open });
   }
 
   function openNode(pane, node) {
