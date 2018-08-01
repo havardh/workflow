@@ -33,6 +33,7 @@
     "workflow-apps-linux": "0.1.0",
     "workflow-apps-osx": "0.1.0",
     "workflow-apps-windows": "0.1.0",
-    "workflow-apps-html": "0.1.0"
+    "workflow-apps-html": "0.1.0",
+    "workflow-apps-terminal": "0.0.1"
   }
 }

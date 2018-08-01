@@ -94,7 +94,7 @@ function serializeSplit(node) {
 }
 
 function serializeApp(node) {
-  return [`tmux send-keys "${node.open}" C-m`];
+  return [`tmux send-keys "${node.open(node)}" C-m`];
 }
 
 const Tmux = ({ sessionName, children }: { sessionName: string, children: React.Node }) => (
