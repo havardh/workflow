@@ -19,8 +19,5 @@
     "shelljs": "0.8.1",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0"
-  },
-  "devDependencies": {
-    "workflow-template": "0.1.1"
   }
 }

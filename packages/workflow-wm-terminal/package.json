@@ -26,6 +26,7 @@
   "dependencies": {
     "fs-extra": "^3.0.1",
     "i3": "^0.2.1",
+    "kexec": "^3.0.0",
     "tmp-promise": "^1.0.3"
   }
 }
