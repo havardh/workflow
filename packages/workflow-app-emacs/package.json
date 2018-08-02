@@ -1,0 +1,48 @@
+{
+  "name": "workflow-app-emacs",
+  "version": "0.0.1",
+  "description": "Workflow emacs terminal app",
+  "scripts": {
+    "emacs": "node cli.js emacs.js"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/havardh/workflow.git"
+  },
+  "keywords": [
+    "wm",
+    "workflow",
+    "workflow-wm",
+    "emacs"
+  ],
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/havardh/workflow/issues"
+  },
+  "homepage": "https://github.com/havardh/workflow/tree/master/packages/workflow-app-emacs#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.9.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "workflow-core": "0.1.1",
+    "workflow-wm-terminal": "0.1.0"
+  },
+  "dependencies": {
+    "execa": "^0.10.0",
+    "fs-extra": "^7.0.0",
+    "react": "^16.2.0",
+    "tmp-promise": "^1.0.5",
+    "workflow-react": "0.1.1"
+  }
+}
