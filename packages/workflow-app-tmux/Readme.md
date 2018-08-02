@@ -4,10 +4,12 @@
 Workflow tmux app for workflow with layout management within the tmux
 instance.
 
-The `SplitV` and `SplitH` components from the layout module can be used
+The `SplitV` and `SplitH` components exported by `workflow-react` can be used
 to create arbitrary tile layouts. They can contain a number of Apps or nested
-layout components. The apps included are `Emacs`, `Vim`, `Less`, and `Terminal`.
-Look at the [apps](src/apps.js) file to see how to define new ones.
+layout components. The apps are `Emacs`, `Vim`, `Less`, and `Terminal` found in
+the `workflow-apps-terminal` package.
+Look at the [apps](../workflow-apps-terminal/src/apps.js) file to see how to 
+define new ones.
 Checkout the [flow/](flow) folder for examples.
 
 ## How to use
@@ -63,15 +65,15 @@ workflow <> # echo'es the line '  Attach with: tmux attach-session -t <session-n
 tmux attach-session -t <session-name>
 ```
 
-The `session-name` is the `name` parameter provided to the `Workspace` node 
+The `session-name` is the `sessionName` parameter provided to the `Tmux` node 
 in the `flow` file. 
 
 ```js
 // ...
 
 export default render(
-  <Workspace name={"session-name"}>
-    <Tmux>...</Tmux>
+  <Workspace>
+    <Tmux sessionName={"session-name"}>...</Tmux>
   </Workspace>
 );
 
