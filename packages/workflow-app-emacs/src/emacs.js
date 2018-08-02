@@ -5,7 +5,7 @@ import { outputFile, close } from 'fs-extra';
 
 import { App } from 'workflow-react';
 
-async function open({ sessionName, children }) {
+async function open({ children }) {
   const tree = convert(children[0]);
 
   const instructions = serialize(tree);
@@ -54,12 +54,6 @@ function serialize(node) {
   return serialized;
 }
 
-function countid() {
-  countid.id = countid.id || 0;
-
-  return countid.id++;
-}
-
 function serializeSplit(node) {
   const serialized = [];
 
@@ -98,7 +92,7 @@ function serializeApp(node) {
   return [node.open(node)];
 }
 
-const Emacs = ({ sessionName, children }: { sessionName: string, children: React.Node }) => (
+const Emacs = ({ children }: { children: React.Node }) => (
   <App type={'app'} open={open} name={'emacs'}>
     {children}
   </App>

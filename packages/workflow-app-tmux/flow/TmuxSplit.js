@@ -1,6 +1,6 @@
 /* eslint-env node */
 import React from 'react';
-import render, { App, Workspace, Layouts, Apps } from 'workflow-react';
+import render, { Workspace, Layouts, Apps } from 'workflow-react';
 const {SplitV, SplitH} = Layouts;
 const {Vim, Less} = Apps.terminal;
 
