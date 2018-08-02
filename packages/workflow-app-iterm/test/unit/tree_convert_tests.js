@@ -4,7 +4,7 @@ import convert from '../../src/tree_convert';
 
 describe('tree_convert(tree)', () => {
   it('should unwrap single item layouts', () => {
-    const input = { layout: 'horizontal', children: [{ id: "app1"}] };
+    const input = { layout: 'splith', children: [{ id: "app1"}] };
     const expected = { id: "app1" };
 
     const actual = convert(input);
@@ -13,12 +13,12 @@ describe('tree_convert(tree)', () => {
   });
 
   it('should link items in multi item layouts', () => {
-    const input = { layout: 'horizontal', children: [
+    const input = { layout: 'splith', children: [
       { id: "app1" },
       { id: "app2" },
       { id: "app3" }
     ] };
-    const expected = { id: "app1", horizontal: { id: "app2", horizontal: { id: "app3" } } };
+    const expected = { id: "app1", splith: { id: "app2", splith: { id: "app3" } } };
 
     const actual = convert(input);
 
@@ -26,9 +26,9 @@ describe('tree_convert(tree)', () => {
   });
 
   it("should link multi level layouts", () => {
-    const input = { layout: 'horizontal', children: [
+    const input = { layout: 'splith', children: [
       {
-        layout: 'vertical',
+        layout: 'splitv',
         children: [
           { id: "app1" },
           { id: "app2" },
@@ -36,7 +36,7 @@ describe('tree_convert(tree)', () => {
       },
       { id: "app3" }
     ] };
-    const expected = { first: "horizontal", id: "app1", vertical: { id: "app2"}, horizontal: { id: "app3" } };
+    const expected = { first: "splith", id: "app1", splitv: { id: "app2"}, splith: { id: "app3" } };
 
     const actual = convert(input);
 
@@ -44,10 +44,10 @@ describe('tree_convert(tree)', () => {
   });
 
   it("should convert complex", () => {
-    const input = { layout: "horizontal", children: [
-        { layout: "vertical", children: [
+    const input = { layout: "splith", children: [
+        { layout: "splitv", children: [
             { id: 1 },
-            { layout: "horizontal", children: [
+            { layout: "splith", children: [
                 { id: 3 },
                 { id: 5 },
                 { id: 6 }
@@ -62,19 +62,19 @@ describe('tree_convert(tree)', () => {
 
     const expected = {
       id: 1,
-      first: 'horizontal',
-      vertical: {
+      first: 'splith',
+      splitv: {
         id: 3,
-        first: 'vertical',
-        vertical: { id: 4 },
-        horizontal: {
+        first: 'splitv',
+        splitv: { id: 4 },
+        splith: {
           id: 5,
-          horizontal: {
+          splith: {
             id: 6
           }
         }
       },
-      horizontal: {
+      splith: {
         id: 2
       }
     };
