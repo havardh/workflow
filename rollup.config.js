@@ -46,7 +46,7 @@ function createConfig(bundle) {
   }));
 }
 
-const isPackage = name => name.startsWith("workflow-");
+const isPackage = name => name.startsWith("workflow-") || name === "create-workflow-home";
 const isNotBlackListed = name => !blackList.includes(name);
 
 const files = readdirSync(resolve("packages"));
