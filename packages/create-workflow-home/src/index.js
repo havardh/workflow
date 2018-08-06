@@ -1,8 +1,8 @@
 /* eslint-env node */
 import fs from 'fs-extra';
 import path from 'path';
-import set from "lodash.set";
-import get from "lodash.get";
+import set from 'lodash.set';
+import get from 'lodash.get';
 
 import { platform, wm } from 'shared/env';
 
