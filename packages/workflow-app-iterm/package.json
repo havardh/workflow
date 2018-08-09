@@ -50,7 +50,7 @@
     }
   },
   "scripts": {
-    "ItermSplit": "node cli.js ItermSplit.js"
+    "example": "node cli.js Example.js"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

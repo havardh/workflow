@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Workflow emacs terminal app",
   "scripts": {
-    "emacs": "node cli.js emacs.js"
+    "example": "node cli.js Example.js"
   },
   "main": "index.js",
   "files": [
