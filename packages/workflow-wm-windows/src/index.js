@@ -1,88 +1,68 @@
 /* eslint-env node */
 /* eslint-disable class-methods-use-this */
 
-import { exec } from 'child_process';
-import spawn from 'cross-spawn';
-import { difference } from 'lodash';
+import difference from "lodash.difference";
 
-import WinApi from './win_api';
-import { findAllApps } from 'shared/tree';
+import exec from "./powershell";
+import * as winApi from "./win_api";
+import { findAllApps } from "shared/tree";
+
+const timeout = n => new Promise(resolve => setTimeout(resolve, n));
 
 class Windows {
-  constructor() {
-    this.winApi = new WinApi();
-  }
-
   async screen() {
     return new Promise(resolve => {
-      resolve(this.winApi.getDesktopRect());
+      resolve(winApi.getDesktopRect());
     });
   }
 
   async apply(layout) {
     const apps = findAllApps(layout);
 
+    const { startOnPositionByWindowClass, startOnPositionByReturnedPid } = this;
+
+    const context = {
+      platform: "win32",
+      wm: "default",
+      startOnPositionByWindowClass,
+      startOnPositionByReturnedPid
+    };
+
     for (let app of apps) {
-      const pid = await this.runCmd(app);
-      await this.setPosition({ ...app, pid });
+      await app.open(app, context, app.children);
+    }
+  }
+
+  async startOnPositionByReturnedPid({ cmd, args, position }) {
+    const pid = await exec(
+      `Start-Process ${cmd} -PassThru "${args.join(" ")}"`
+    );
+
+    const { left, top, width, height } = position;
+    winApi.setPosition(pid, left, top, width, height);
+  }
+
+  async startOnPositionByWindowClass({ cmd, args, className, position }) {
+    const before = winApi.getListOfWindows(className);
+
+    const pid = await exec(
+      `Start-Process ${cmd} -PassThru "${args.join(" ")}"`
+    );
+
+    await timeout(1000);
+
+    const after = winApi.getListOfWindows(className);
+
+    const windowIds = difference(after, before);
+
+    const { left, top, width, height } = position;
+    for (let windowId of windowIds) {
+      winApi.setPositionByWindowId(windowId, left, top, width, height);
     }
   }
 
   async minimizeAll() {
-    return this.winApi.minimizeAll();
-  }
-
-  async setPosition({ pid, position }) {
-    return new Promise(resolve => {
-      const { left, top, width, height } = position;
-
-      this.winApi.setPosition(pid, left, top, width, height);
-      resolve();
-    });
-  }
-
-  async getPids(program) {
-    return new Promise((resolve, reject) => {
-      exec(`tasklist /FI "IMAGENAME eq ${program}"`, (err, stdout) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(stdout);
-        }
-      });
-    }).then(stdout =>
-      stdout
-        .split('\n')
-        .filter(line => line.startsWith(program))
-        .map(line => line.split(/[ ]+/)[1])
-    );
-  }
-
-  async runWithStart({ program, args, processName }) {
-    const before = await this.getPids(processName || program);
-    exec('start ' + program + ' ' + (args || []).join(' '));
-    const after = await this.getPids(processName || program);
-
-    const [pid] = difference(after, before);
-    return pid;
-  }
-
-  async runCmd(app) {
-    // eslint-disable-line class-methods-use-this
-    return new Promise(async resolve => {
-      const { fn, start, processName } = app.open;
-
-      const [program, ...args] = fn(app).split(' ');
-
-      if (start) {
-        resolve(await this.runWithStart({ program, args, processName }));
-      } else {
-        const options = { detached: true, cwd: app.cwd, stdio: 'inherit' };
-        const process = spawn(program, args || [], options);
-
-        resolve(process.pid);
-      }
-    });
+    return winApi.minimizeAll();
   }
 }
 

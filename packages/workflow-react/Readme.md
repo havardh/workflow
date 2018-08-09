@@ -244,7 +244,7 @@ Usage
 workflow <name of flow file>
 ```
 
-#### `Apps`
+#### `Apps` (deprecated)
 
 The `Apps` module defines four different collections of `App` `Components`
 applications. These applications are defined in `workflow-core` and reexported
@@ -255,8 +255,6 @@ The four collections are a default collection which can be use for platform
 independent flows and one collection for each supported platform.
 
  - `defaults` {Terminal, Browser, TextEditor}
- - `linux` {Atom, Code, Emacs, XTerm, Chrome, Chromium, Firefox, Gedit}
- - `osx` {Atom, iTerm, Terminal, Safari}
  - `windows` {Notepad, IExplorer, PowerShell}
 
 Example
@@ -264,8 +262,6 @@ Example
 import {Apps} from "workflow-react";
 
 const {Terminal, Browser, TextEditor} = Apps.defaults;
-const {XTerm, Chrome, Atom} = Apps.linux;
-const {iTerm, Safari, Atom} = Apps.osx;
 const {PowerShell, IExplorer, Notepad} = Apps.windows;
 ```
 

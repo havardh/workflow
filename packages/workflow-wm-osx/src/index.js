@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 import * as osascript from 'osascript';
 import shell from 'shelljs';
+import { run } from '@jxa/run';
 
 import { findAllApps } from 'shared/tree';
 
@@ -23,12 +24,14 @@ class Osx {
     const scripts = [];
     for (let app of apps) {
       app = mapPosition(app);
-      app = openChildApps(app);
+      //app = openChildApps(app);
 
-      scripts.push(createScript(app));
+      await app.open(app, { platform: 'osx', wm: 'default', run }, app.children);
+
+      //scripts.push(createScript(app));
     }
 
-    await runScripts(scripts);
+    //await runScripts(scripts);
   }
 
   async minimizeAll() {
@@ -64,7 +67,9 @@ function openChildApps(app) {
   return {
     ...app,
     open:
-      typeof app.open === 'function' && app.name.startsWith('terminal') ? app.open(app) : app.open,
+      typeof app.open === 'function' && app.name && app.name.startsWith('terminal')
+        ? app.open(app)
+        : app.open,
     children: (app.children || []).map(openChildApps),
   };
 }

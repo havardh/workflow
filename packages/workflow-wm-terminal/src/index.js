@@ -6,7 +6,7 @@ class Terminal {
   async apply(flow) {
     const app = flow.children[0];
 
-    const script = await app.open(app);
+    const script = await app.open(app, { platform: 'osx', wm: 'terminal' }, app.children);
 
     const { path, fd } = await file({
       prefix: 'workflow-wm-terminal-',

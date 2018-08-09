@@ -1,0 +1,30 @@
+{
+  "name": "workflow-app-osxterminal",
+  "version": "0.0.1",
+  "main": "index.js",
+  "description": "Workflow app for the builtin osx Terminal application",
+  "license": "MIT",
+  "scripts": {
+    "example": "node cli.js Example.js"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.9.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "react": "^16.2.0",
+    "workflow-core": "0.1.1",
+    "workflow-react": "0.1.1",
+    "workflow-wm-terminal": "0.1.0",
+    "workflow-layout": "0.1.1",
+    "workflow-transformer-apply-arguments-to-fields": "0.1.0",
+    "workflow-resolver-relative": "0.1.0",
+    "workflow-resolver-absolute": "0.1.0",
+    "workflow-loader-babel": "0.1.0",
+    "workflow-parser-arguments": "0.1.0"
+  }
+}

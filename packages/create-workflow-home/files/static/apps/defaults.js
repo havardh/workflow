@@ -1,13 +1,7 @@
 /*
-  import {
-  Chrome,
-  Vim,
-  ITerm2
-  } from "workflow-apps-osx";
-
   export default {
-  Terminal: ITerm2,
-  TextEditor: Vim,
-  Browser: Chrome,
+    Terminal: require("workflow-app-osxterminal"),
+    TextEditor: require("workflow-app-vim"),
+    Browser: require("workflow-app-chrome"),
   };
 */

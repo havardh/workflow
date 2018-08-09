@@ -3,6 +3,10 @@ import { createClient } from 'i3';
 import transform from './transform';
 import write from './write';
 
+async function openNode(node, context) {
+  return await node.open(node, context, node.children);
+}
+
 class I3 {
   constructor() {
     this.client = createClient();
@@ -65,8 +69,10 @@ class I3 {
     return apps;
   }
 
-  open(app) {
-    this.client.command(`exec ${app.open(app)}`);
+  async open(app) {
+    const context = { platform: 'linux', wm: 'i3' };
+    const open = await openNode(app, context);
+    this.client.command(`exec ${open}`);
   }
 }
 
