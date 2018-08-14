@@ -1,11 +1,11 @@
 /* eslint-env node */
 /* eslint-disable class-methods-use-this */
 
-import difference from "lodash.difference";
+import difference from 'lodash.difference';
 
-import exec from "./powershell";
-import * as winApi from "./win_api";
-import { findAllApps } from "shared/tree";
+import exec from './powershell';
+import * as winApi from './win_api';
+import { findAllApps } from 'shared/tree';
 
 const timeout = n => new Promise(resolve => setTimeout(resolve, n));
 
@@ -22,10 +22,10 @@ class Windows {
     const { startOnPositionByWindowClass, startOnPositionByReturnedPid } = this;
 
     const context = {
-      platform: "win32",
-      wm: "default",
+      platform: 'win32',
+      wm: 'default',
       startOnPositionByWindowClass,
-      startOnPositionByReturnedPid
+      startOnPositionByReturnedPid,
     };
 
     for (let app of apps) {
@@ -34,9 +34,7 @@ class Windows {
   }
 
   async startOnPositionByReturnedPid({ cmd, args, position }) {
-    const pid = await exec(
-      `Start-Process ${cmd} -PassThru "${args.join(" ")}"`
-    );
+    const pid = await exec(`Start-Process ${cmd} -PassThru "${args.join(' ')}"`);
 
     const { left, top, width, height } = position;
     winApi.setPosition(pid, left, top, width, height);
@@ -45,9 +43,7 @@ class Windows {
   async startOnPositionByWindowClass({ cmd, args, className, position }) {
     const before = winApi.getListOfWindows(className);
 
-    const pid = await exec(
-      `Start-Process ${cmd} -PassThru "${args.join(" ")}"`
-    );
+    const pid = await exec(`Start-Process ${cmd} -PassThru "${args.join(' ')}"`);
 
     await timeout(1000);
 
