@@ -1,21 +1,21 @@
-import { platform } from "shared/apps";
+import { platform } from 'shared/apps';
 
 const chrome = {
-  type: "app",
-  name: "Chrome",
-  xClass: "Google-chrome",
-  params: ["url"],
+  type: 'app',
+  name: 'Chrome',
+  xClass: 'Google-chrome',
+  params: ['url'],
   open: platform({
-    "win32-default": windows,
-    "osx-default": osx,
-    "linux-*": ({ url }) => `google-chrome-stable --new-window ${url}`
-  })
+    'win32-default': windows,
+    'osx-default': osx,
+    'linux-*': ({ url }) => `google-chrome-stable --new-window ${url}`,
+  }),
 };
 
 async function osx({ url, position }, { run }) {
   run(
     (url, position) => {
-      const chrome = Application("Google Chrome");
+      const chrome = Application('Google Chrome');
 
       chrome.activate();
 
@@ -30,10 +30,10 @@ async function osx({ url, position }, { run }) {
 
 async function windows({ url, position }, { startOnPositionByWindowClass }) {
   await startOnPositionByWindowClass({
-    cmd: "chrome.exe",
-    args: ["--new-window", url],
-    className: "Chrome_WidgetWin_1",
-    position
+    cmd: 'chrome.exe',
+    args: ['--new-window', url],
+    className: 'Chrome_WidgetWin_1',
+    position,
   });
 }
 
