@@ -10,9 +10,9 @@
     "start": "node cli.js",
     "eslint": "eslint .",
     "format:file": "prettier $(cat .prettier) --write ",
-    "format": "npm run --silent format:file -- 'packages/**/src/*.js' 'packages/**/tests/*.js' 'packages/**/tests/*.js' $(find packages/*/*.js -not -name 'dist.js')",
+    "format": "npm run --silent format:file -- 'packages/**/src/*.[jt]s' 'packages/**/tests/*.[jt]s' 'packages/**/tests/*.[jt]s' $(find packages/*/*.[jt]s -not -name 'dist.js')",
     "check-format:file": "prettier $(cat .prettier) --list-different ",
-    "check-format": "npm run --silent check-format:file -- 'packages/**/src/*.js' 'packages/**/tests/*.js' 'packages/**/tests/*.js' $(find packages/*/*.js -not -name 'dist.js')",
+    "check-format": "npm run --silent check-format:file -- 'packages/**/src/*.[jt]s' 'packages/**/tests/*.[jt]s' 'packages/**/tests/*.[jt]s' $(find packages/*/*.[jt]s -not -name 'dist.js')",
     "test": "jest",
     "watch": "jest --watch"
   },
@@ -109,6 +109,7 @@
     "jest": "^20.0.3",
     "jest-cli": "^20.0.3",
     "jest-image-snapshot": "2.4.2",
+    "lodash": "^4.17.10",
     "lodash.flatmap": "^4.5.0",
     "prettier": "^1.13.5",
     "rollup": "^0.57.1",
@@ -116,6 +117,8 @@
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-flow": "^1.1.1",
     "rollup-plugin-postcss": "^1.6.2",
+    "rollup-plugin-typescript": "^0.8.1",
+    "rollup-plugin-typescript2": "^0.16.1",
     "semver": "^5.5.0"
   }
 }

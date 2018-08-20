@@ -1,6 +1,6 @@
 # Workflow
 
-A declarative virtual windows manager with an optional React frontend.
+A declarative virtual windows manager with an optional React frontend and experimental Angular frontend.
 
 ## What does it do?
 
