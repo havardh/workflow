@@ -1,6 +1,7 @@
 /* eslint-env node */
 import babel from "rollup-plugin-babel";
 import alias from "rollup-plugin-alias";
+import typescript from "rollup-plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 
 import {readdirSync} from "fs";
@@ -26,7 +27,7 @@ const nodeInternalDependencies = {
 const sourceRoots = {
   "workflow-layout-yoga": ["index.js", "components.js"],
   "workflow-cmd": ["cli.js", "index.js", "npm.js", "platform.js"]
-}
+};
 
 function createConfig(bundle) {
   const {name, external, roots} = bundle;
@@ -39,6 +40,7 @@ function createConfig(bundle) {
     },
     plugins: [
       postcss({plugins: []}),
+      typescript(),
       babel({ exclude: 'node_modules/**'}),
       alias({ shared: __dirname + "/packages/shared"}),
     ],
