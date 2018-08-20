@@ -30,7 +30,6 @@
     "react": "^16.2.0",
     "react-reconciler": "^0.12.0",
     "workflow-apps-defaults": "0.1.0",
-    "workflow-apps-html": "0.1.0",
-    "workflow-apps-terminal": "0.0.1"
+    "workflow-apps-html": "0.1.0"
   }
 }

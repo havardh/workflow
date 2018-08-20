@@ -1,10 +1,11 @@
 /* eslint-env node */
-import React from 'react';
-import render, { Workspace, Layouts, Apps } from 'workflow-react';
-const {SplitV, SplitH} = Layouts;
-const {Vim, Less} = Apps.terminal;
+import React from "react";
+import render, { Workspace, Layouts, Apps } from "workflow-react";
+const { SplitV, SplitH } = Layouts;
 
-import Tmux from "../index";
+const Tmux = requireComponent("workflow-app-tmux");
+const Vim = requireComponent("workflow-app-vim");
+const Less = requireComponent("workflow-app-less");
 
 export default render(
   <Workspace>
@@ -23,4 +24,3 @@ export default render(
     </Tmux>
   </Workspace>
 );
-
