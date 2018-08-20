@@ -1,4 +1,3 @@
-
 # tmux app for workflow
 
 Workflow tmux app for workflow with layout management within the tmux
@@ -6,10 +5,10 @@ instance.
 
 The `SplitV` and `SplitH` components exported by `workflow-react` can be used
 to create arbitrary tile layouts. They can contain a number of Apps or nested
-layout components. The apps are `Emacs`, `Vim`, `Less`, and `Terminal` found in
-the `workflow-apps-terminal` package.
-Look at the [apps](../workflow-apps-terminal/src/apps.js) file to see how to 
-define new ones.
+layout components. The Apps used inside a `Tmux` application must support
+the `terminal` wm. Some that do are: [`emacs`](../workflow-app-emacs), 
+[`Vim`](../workflow-app-vim), [`Less`](../workflow-app-less), and 
+[`Terminal`](workflow-app-terminal).
 Checkout the [flow/](flow) folder for examples.
 
 ## How to use
