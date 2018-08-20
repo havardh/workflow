@@ -1,0 +1,15 @@
+{
+  "name": "workflow-loader-typescript",
+  "version": "0.1.0",
+  "description": "Workflow typescript loader",
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.1"
+  },
+  "files": [
+    "dist",
+    "index.js"
+  ]
+}
