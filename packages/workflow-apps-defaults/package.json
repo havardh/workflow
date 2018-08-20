@@ -28,12 +28,13 @@
     "workflow-parser-arguments": "0.1.0"
   },
   "dependencies": {
-    "workflow-apps-windows": "0.1.0",
     "workflow-apps-html": "0.1.0",
     "workflow-app-iterm": "0.1.1",
     "workflow-app-safari": "0.0.1",
     "workflow-app-atom": "0.0.1",
     "workflow-app-chrome": "0.0.1",
-    "workflow-app-xterm": "0.0.1"
+    "workflow-app-xterm": "0.0.1",
+    "workflow-app-notepad": "0.0.1",
+    "workflow-app-powershell": "0.0.1"
   }
 }

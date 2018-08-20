@@ -255,14 +255,12 @@ The four collections are a default collection which can be use for platform
 independent flows and one collection for each supported platform.
 
  - `defaults` {Terminal, Browser, TextEditor}
- - `windows` {Notepad, IExplorer, PowerShell}
 
 Example
 ```
 import {Apps} from "workflow-react";
 
 const {Terminal, Browser, TextEditor} = Apps.defaults;
-const {PowerShell, IExplorer, Notepad} = Apps.windows;
 ```
 
 For now apps are divided into these three categories, Terminals, Browsers, and
