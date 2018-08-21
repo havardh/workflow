@@ -1,9 +1,9 @@
-import { convert } from "shared/layout";
+import { convert } from 'shared/layout';
 
 export function convertToElisp(children) {
   const tree = convert(children[0]);
 
-  const instructions = "(progn " + serialize(tree).join(" ") + ")";
+  const instructions = '(progn ' + serialize(tree).join(' ') + ')';
 
   return instructions;
 }

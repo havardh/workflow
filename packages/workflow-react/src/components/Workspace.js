@@ -1,7 +1,6 @@
 export default class Workspace {
-
   constructor(props) {
-    this.props = {...props, type: "workspace"};
+    this.props = { ...props, type: 'workspace' };
     this.children = [];
   }
 
@@ -9,4 +8,3 @@ export default class Workspace {
     this.children.push(child);
   }
 }
-

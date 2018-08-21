@@ -1,3 +1,1 @@
-export default async function open() {
-
-}
+export default async function open() {}

@@ -1,7 +1,6 @@
 export default class App {
-
   constructor(props) {
-    this.props = {...props, type: "app"};
+    this.props = { ...props, type: 'app' };
     this.children = [];
   }
 

@@ -1,5 +1,4 @@
 export default class Root {
-
   constructor() {
     this.children = [];
   }
@@ -19,5 +18,4 @@ export default class Root {
   render() {
     this.renderChildren();
   }
-
 }
