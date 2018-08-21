@@ -13,12 +13,14 @@ const ITerm = {
     let root;
     if (cmd) {
       root = { open: `cd ${cwd}; clear; ${cmd}` };
-    } else {
+    } else if (children && children.length) {
       const openedTree = await openApps(children[0], {
         platform: 'osx',
         wm: 'terminal',
       });
       root = convert(openedTree);
+    } else {
+      root = {};
     }
 
     run(
@@ -62,7 +64,9 @@ const ITerm = {
         }
 
         function openApp(pane, app) {
-          pane.write({ text: app.open });
+          if (app.open) {
+            pane.write({ text: app.open });
+          }
         }
       },
       root,
