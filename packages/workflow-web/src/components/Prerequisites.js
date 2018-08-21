@@ -1,18 +1,14 @@
 // @flow
-import React from "react";
+import React from 'react';
 
 type Props = {
-  prerequisites: Array<string>
-}
+  prerequisites: Array<string>,
+};
 
-const Prerequisites = ({prerequisites}: Props) => (
+const Prerequisites = ({ prerequisites }: Props) => (
   <div className="prerequisites">
     <span>Prerequisites</span>
-    <ul>
-      {prerequisites.map(prerequisite => (
-        <li key={prerequisite}>{prerequisite}</li>
-      ))}
-    </ul>
+    <ul>{prerequisites.map(prerequisite => <li key={prerequisite}>{prerequisite}</li>)}</ul>
   </div>
 );
 

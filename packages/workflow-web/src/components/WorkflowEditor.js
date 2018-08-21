@@ -1,7 +1,7 @@
 // @flow
 /* eslint-env browser */
-import React from "react";
-import uuidv4 from "uuid/v4";
+import React from 'react';
+import uuidv4 from 'uuid/v4';
 
 type Props = { code: string };
 
@@ -23,22 +23,18 @@ class WorkflowEditor extends React.Component<Props> {
 
   update() {
     const editor = window.ace.edit(this.id);
-    editor.setTheme("ace/theme/tomorrow");
-    const JavaScriptMode = window.ace.require("ace/mode/jsx").Mode;
+    editor.setTheme('ace/theme/tomorrow');
+    const JavaScriptMode = window.ace.require('ace/mode/jsx').Mode;
     editor.session.setMode(new JavaScriptMode());
   }
 
   render() {
-    const {code} = this.props;
+    const { code } = this.props;
 
     return (
-      <div
-        id={this.id}
-        className="workflowEditor"
-      >
+      <div id={this.id} className="workflowEditor">
         {code}
       </div>
-
     );
   }
 }

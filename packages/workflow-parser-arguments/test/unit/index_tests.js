@@ -5,7 +5,7 @@ import WorkflowParserArguments from '../../index';
 const parser = new WorkflowParserArguments();
 
 function parseArgs(config, args) {
-  return parser.parse({args: config}, ["node", "cli.js", ...args]);
+  return parser.parse({ args: config }, ['node', 'cli.js', ...args]);
 }
 
 describe('parseArgs(args, args)', () => {
@@ -50,10 +50,7 @@ describe('parseArgs(args, args)', () => {
           file2: 'file2.js',
         };
 
-        const actual = parseArgs(
-          ['file1', 'file2'],
-          ['file1.js', 'file2.js'],
-        );
+        const actual = parseArgs(['file1', 'file2'], ['file1.js', 'file2.js']);
 
         expect(actual).toEqual(expected);
       });

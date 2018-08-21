@@ -1,3 +1,3 @@
-import { render } from "../index";
+import { render } from '../index';
 
 export default render();

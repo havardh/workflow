@@ -1,11 +1,13 @@
 // @flow
-import * as React from "react";
+import * as React from 'react';
 
 type Props = { children: React.Node };
 
-const Code = ({children}: Props) => (
+const Code = ({ children }: Props) => (
   <div className="codeWrapper">
-    <pre className="code"><code className="language-jsx">{children}</code></pre>
+    <pre className="code">
+      <code className="language-jsx">{children}</code>
+    </pre>
   </div>
 );
 

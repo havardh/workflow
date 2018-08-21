@@ -1,9 +1,9 @@
-import P from "./plugins/index";
+import P from './plugins/index';
 
 export const File = {
-  type: "app",
-  name: "File",
-  open: ({file}) => `(find-file "${file}")`
-}
+  type: 'app',
+  name: 'File',
+  open: ({ file }) => `(find-file "${file}")`,
+};
 
 export const Plugins = P;

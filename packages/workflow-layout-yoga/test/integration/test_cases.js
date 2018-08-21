@@ -1,19 +1,19 @@
 /* eslint-env node, jest */
-import React from "react";
-import render, { Workspace, Apps, requireComponent } from "workflow-react";
-const { Terminal } = requireComponent("workflow-apps-defaults");
+import React from 'react';
+import render, { Workspace, Apps, requireComponent } from 'workflow-react';
+const { Terminal } = requireComponent('workflow-apps-defaults');
 
-import { Flex } from "../../src/components";
+import { Flex } from '../../src/components';
 
 export default {
-  "yoga with flex node": async applyAndCapture => {
+  'yoga with flex node': async applyAndCapture => {
     const flow = render(
-      <Workspace name={"workflow-yoga-test"}>
+      <Workspace name={'workflow-yoga-test'}>
         <Flex
           style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center"
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
           }}
         >
           <Terminal style={{ width: 300, height: 300 }} cwd={process.cwd()} />
@@ -23,5 +23,5 @@ export default {
     );
 
     expect(await applyAndCapture(flow)).toMatchImageSnapshot();
-  }
+  },
 };

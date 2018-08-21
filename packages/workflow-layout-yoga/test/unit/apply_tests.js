@@ -1,83 +1,83 @@
 /* eslint-env jest */
-import yoga from "yoga-layout";
-import apply from "../../src/apply";
+import yoga from 'yoga-layout';
+import apply from '../../src/apply';
 
-it("should apply alignment rules to node", () => {
+it('should apply alignment rules to node', () => {
   const node = { setAlignContent: jest.fn() };
 
-  apply(node, "alignContent", "center");
+  apply(node, 'alignContent', 'center');
 
   expect(node.setAlignContent).toBeCalledWith(yoga.ALIGN_CENTER);
 });
 
-it("should apply point rules to node", () => {
+it('should apply point rules to node', () => {
   const node = { setFlexBasis: jest.fn() };
 
-  apply(node, "flexBasis", 100);
+  apply(node, 'flexBasis', 100);
 
   expect(node.setFlexBasis).toBeCalledWith(100);
 });
 
-it("should apply display rules to node", () => {
+it('should apply display rules to node', () => {
   const node = { setDisplay: jest.fn() };
 
-  apply(node, "display", "none");
+  apply(node, 'display', 'none');
 
   expect(node.setDisplay).toBeCalledWith(yoga.DISPLAY_NONE);
 });
 
-it("should apply direction rules to node", () => {
+it('should apply direction rules to node', () => {
   const node = { setDirection: jest.fn() };
 
-  apply(node, "direction", "ltr");
+  apply(node, 'direction', 'ltr');
 
   expect(node.setDirection, yoga.DIRECTION_LTR);
 });
 
-it("should apply flex direction rules to node", () => {
+it('should apply flex direction rules to node', () => {
   const node = { setFlexDirection: jest.fn() };
 
-  apply(node, "flexDirection", "row-reverse");
+  apply(node, 'flexDirection', 'row-reverse');
 
   expect(node.setFlexDirection, yoga.FLEX_DIRECTION_ROW_REVERSE);
 });
 
-it("should apply justify rules to node", () => {
+it('should apply justify rules to node', () => {
   const node = { setJustifyContent: jest.fn() };
 
-  apply(node, "justifyContent", "space-evenly");
+  apply(node, 'justifyContent', 'space-evenly');
 
   expect(node.setFlexDirection, yoga.JUSTIFY_SPACE_EVENLY);
 });
 
-it("should apply wrap rules to node", () => {
+it('should apply wrap rules to node', () => {
   const node = { setFlexWrap: jest.fn() };
 
-  apply(node, "flexWrap", "nowrap");
+  apply(node, 'flexWrap', 'nowrap');
 
   expect(node.setFlexWrap).toBeCalledWith(yoga.WRAP_NO_WRAP);
 });
 
-it("should apply overflow rules to node", () => {
+it('should apply overflow rules to node', () => {
   const node = { setOverflow: jest.fn() };
 
-  apply(node, "overflow", "hidden");
+  apply(node, 'overflow', 'hidden');
 
   expect(node.setOverflow, yoga.OVERFLOW_HIDDEN);
 });
 
-it("should apply position rules to node", () => {
+it('should apply position rules to node', () => {
   const node = { setPositionType: jest.fn() };
 
-  apply(node, "position", "absolute");
+  apply(node, 'position', 'absolute');
 
   expect(node.setPositionType, yoga.POSITION_TYPE_ABSOLUTE);
-})
+});
 
-it("should apply border rules to node with edge", () => {
+it('should apply border rules to node with edge', () => {
   const node = { setBorder: jest.fn() };
 
-  apply(node, "borderTopWidth", 200);
+  apply(node, 'borderTopWidth', 200);
 
   expect(node.setBorder, yoga.EDGE_TOP, 200);
 });
@@ -85,15 +85,15 @@ it("should apply border rules to node with edge", () => {
 it("should apply margin rules to node with value 'auto'", () => {
   const node = { setMarginAuto: jest.fn() };
 
-  apply(node, "margin", "auto");
+  apply(node, 'margin', 'auto');
 
-  expect(node.setMarginAuto).toBeCalledWith(yoga.EDGE_ALL, "auto");
+  expect(node.setMarginAuto).toBeCalledWith(yoga.EDGE_ALL, 'auto');
 });
 
-it("should apply margin rules to node with percentage values", () => {
+it('should apply margin rules to node with percentage values', () => {
   const node = { setMarginPercent: jest.fn() };
 
-  apply(node, "marginTop", "10%");
+  apply(node, 'marginTop', '10%');
 
   expect(node.setMarginPercent).toBeCalledWith(yoga.EDGE_TOP, 10);
 });

@@ -1,12 +1,12 @@
 /* eslint-env node */
-import { resolve } from "path";
-import React from "react";
-import render, { Workspace, requireComponent } from "workflow-react";
+import { resolve } from 'path';
+import React from 'react';
+import render, { Workspace, requireComponent } from 'workflow-react';
 
-const Notepad = requireComponent("workflow-app-notepad");
+const Notepad = requireComponent('workflow-app-notepad');
 
 export default render(
-  <Workspace name={"workflow-app-example"}>
+  <Workspace name={'workflow-app-example'}>
     <Notepad file={__filename} />
   </Workspace>
 );

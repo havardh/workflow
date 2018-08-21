@@ -5,7 +5,6 @@ const emptyObject = {};
 import { createElement, getHostContextNode } from '../utils/createElement';
 
 const WorkflowRenderer = Reconciler({
-
   createInstance(type, props) {
     return createElement(type, props);
   },
