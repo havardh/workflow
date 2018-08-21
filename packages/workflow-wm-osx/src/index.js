@@ -21,17 +21,11 @@ class Osx {
   async apply(layout) {
     const apps = findAllApps(layout);
 
-    const scripts = [];
     for (let app of apps) {
       app = mapPosition(app);
-      //app = openChildApps(app);
 
       await app.open(app, { platform: 'osx', wm: 'default', run }, app.children);
-
-      //scripts.push(createScript(app));
     }
-
-    //await runScripts(scripts);
   }
 
   async minimizeAll() {
@@ -63,17 +57,6 @@ class Osx {
   }
 }
 
-function openChildApps(app) {
-  return {
-    ...app,
-    open:
-      typeof app.open === 'function' && app.name && app.name.startsWith('terminal')
-        ? app.open(app)
-        : app.open,
-    children: (app.children || []).map(openChildApps),
-  };
-}
-
 function mapPosition(app) {
   const { position } = app;
 
@@ -86,39 +69,6 @@ function mapPosition(app) {
       height: position.height,
     },
   };
-}
-
-function createScript(app) {
-  return `
-    (function () {
-      const app = ${JSON.stringify(app, null, 2)};
-
-      ${app.open.toString()}
-
-      const window = open(app);
-      window.bounds = app.position;
-    }());
-  `;
-}
-
-async function runScripts(scripts) {
-  return new Promise((resolve, reject) => {
-    const script = scripts.join(`
-      delay(0.5);
-    `);
-
-    osascript.eval(script, function(err, result) {
-      if (err) {
-        console.error('Failed to execute osascript:');
-        console.error(script);
-        console.error();
-
-        reject(err);
-        return;
-      }
-      resolve(result);
-    });
-  });
 }
 
 module.exports = Osx;

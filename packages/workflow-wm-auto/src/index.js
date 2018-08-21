@@ -1,3 +1,4 @@
+/* eslint-env node */
 import { platform, wm } from 'shared/env';
 
 if (platform === 'osx' && wm === 'default') {

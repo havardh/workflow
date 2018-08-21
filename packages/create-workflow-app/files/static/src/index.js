@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const emacs = {
   type: 'app',
   name: 'Emacs',

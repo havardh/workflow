@@ -1,11 +1,8 @@
 /* @flow */
-import { file as tmpFile } from 'tmp-promise';
-import { outputFile, close } from 'fs-extra';
-
 import { convertToElisp } from './convert';
 
 function escape(string) {
-  return string.replace(/\"/g, '\\"');
+  return string.replace(/"/g, '\\"');
 }
 
 async function open({ file, flags }, context, children) {

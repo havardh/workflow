@@ -2,7 +2,7 @@ const less = {
   type: 'app',
   name: 'Less',
   params: ['file', 'follow'],
-  open: ({ file, follow }, context, children) => {
+  open: ({ file, follow }, context) => {
     if (context.wm !== 'terminal') {
       throw new Error('Context not supported');
     }

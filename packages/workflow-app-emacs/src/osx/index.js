@@ -3,9 +3,11 @@
 
 import { convertToElisp } from '../common/convert';
 
+/*
 function escape(string) {
   return string.replace(/\"/g, '\\"');
 }
+*/
 
 function createOpenCode(file, children) {
   if (file && children && children.length) {
