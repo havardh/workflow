@@ -15,6 +15,7 @@ install:
 - "./scripts/macos-ci-desktop-layout"
 - yarn config set workspaces-experimental true
 - yarn
+- yarn build
 script:
 - travis_retry yarn test integration --runInBand --forceExit
 after_script:

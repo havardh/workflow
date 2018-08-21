@@ -18,6 +18,7 @@ install:
   - ps: Install-Product node $env:nodejs_version x64
   - set PATH=%APPDATA%\yarn;%PATH%
   - yarn
+  - yarn build
   - ps: ./scripts/windows-ci-desktop-layout.ps1
 
 # Disable automatic builds
