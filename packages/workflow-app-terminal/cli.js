@@ -1,4 +1,5 @@
 /* eslint-env node */
+/* eslint-disable no-console */
 const { join } = require('path');
 const WorkflowResolverRelative = require('workflow-resolver-relative');
 const WorkflowResolverAbsolute = require('workflow-resolver-absolute');

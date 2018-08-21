@@ -43,7 +43,7 @@ class Windows {
   async startOnPositionByWindowClass({ cmd, args, className, position }) {
     const before = winApi.getListOfWindows(className);
 
-    const pid = await exec(`Start-Process ${cmd} -PassThru "${args.join(' ')}"`);
+    await exec(`Start-Process ${cmd} -PassThru "${args.join(' ')}"`);
 
     await timeout(1000);
 

@@ -1,4 +1,5 @@
 /* eslint-env node */
+/* eslint-disable no-console */
 const { join } = require('path');
 const WorkflowResolverRelative = require('workflow-resolver-relative');
 const WorkflowResolverAbsolute = require('workflow-resolver-absolute');
@@ -38,7 +39,7 @@ async function run() {
   const screen = await workflow.screen();
   const layout = await workflow.layout(flow, { screen });
 
-  await workflow.apply(flow);
+  await workflow.apply(layout);
 }
 
 run().catch(err => console.error(err));

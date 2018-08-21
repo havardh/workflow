@@ -36,14 +36,6 @@ async function promptPackageDetails() {
   return promisify(prompt.get)(schema);
 }
 
-function validateNotExistingPackageJson() {
-  const pkgPath = resolveTarget('package.json');
-
-  if (fs.existsSync(pkgPath)) {
-    throw new Error('Upgrade existing folder is not supported');
-  }
-}
-
 function renderTemplates({ packageName, description }) {
   const variables = readVariables();
   const templates = findTemplates();

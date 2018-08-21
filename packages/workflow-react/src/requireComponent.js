@@ -1,3 +1,4 @@
+/* eslint-env node */
 import createComponent from './createComponent';
 
 function createComponentRecursive(module) {
@@ -6,7 +7,9 @@ function createComponentRecursive(module) {
   } else {
     return Object.assign(
       {},
-      ...Object.keys(module).map(k => ({ [k]: createComponentRecursive(module[k]) }))
+      ...Object.keys(module).map(k => ({
+        [k]: createComponentRecursive(module[k]),
+      }))
     );
   }
 }

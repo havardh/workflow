@@ -1,8 +1,9 @@
+/* global Application */
 const safari = {
   type: 'app',
   name: 'Safari',
   params: ['url'],
-  open: async ({ url, position }, { platform, run }, children) => {
+  open: async ({ url, position }, { platform, run }) => {
     if (platform !== 'osx') {
       throw new Error('Platform is not supported');
     }

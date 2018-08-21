@@ -4,8 +4,6 @@ import ffi from 'ffi';
 import ref from 'ref';
 import Struct from 'ref-struct';
 
-const timeout = n => new Promise(resolve => setTimeout(resolve, n));
-
 const HWND_TOP = 0;
 const FLAG = 0;
 const SW_MINIMIZE = 6;
@@ -60,7 +58,7 @@ export function minimizeAll() {
 export function getListOfWindows(className) {
   let ids = [];
 
-  var callback = ffi.Callback('bool', ['int32', IntPtr], (hwnd, outHwnd) => {
+  var callback = ffi.Callback('bool', ['int32', IntPtr], hwnd => {
     if (user32.IsWindowVisible(hwnd) && user32.IsWindowEnabled(hwnd)) {
       let buffer, name;
       buffer = new Buffer(256);

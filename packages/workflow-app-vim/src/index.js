@@ -3,8 +3,8 @@ const vim = {
   name: 'vim',
   xClass: 'Vim',
   params: ['file'],
-  open: ({ file }, context, children) => {
-    if (context.wm !== 'terminal') {
+  open: ({ file }, { wm }) => {
+    if (wm !== 'terminal') {
       throw new Error('Context is not supported');
     }
 

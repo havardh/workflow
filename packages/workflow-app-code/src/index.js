@@ -1,3 +1,5 @@
+/* eslint-env node */
+/* global Application */
 import execa from 'execa';
 
 import { platform } from 'shared/apps';
@@ -15,7 +17,7 @@ const code = {
   }),
 };
 
-async function windows({ file, position }, { winApi }, children) {
+async function windows({ file, position }, { winApi }) {
   const { pid } = execa.shell('code', ['-n', file]);
 
   await timeout(2000);
@@ -24,7 +26,7 @@ async function windows({ file, position }, { winApi }, children) {
   winApi.setPosition(pid, left, top, width, height);
 }
 
-async function osx({ file, position }, { run }, children) {
+async function osx({ file, position }, { run }) {
   await execa('code', ['-n', file]);
 
   await timeout(2000);

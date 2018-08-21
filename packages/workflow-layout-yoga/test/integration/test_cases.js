@@ -1,6 +1,6 @@
 /* eslint-env node, jest */
 import React from 'react';
-import render, { Workspace, Apps, requireComponent } from 'workflow-react';
+import render, { Workspace, requireComponent } from 'workflow-react';
 const { Terminal } = requireComponent('workflow-apps-defaults');
 
 import { Flex } from '../../src/components';

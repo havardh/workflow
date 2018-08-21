@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+/* eslint-env node */
 import React from 'react';
 import render, { Workspace, Layouts, requireComponent } from 'workflow-react';
 

@@ -1,3 +1,4 @@
+/* global Application */
 import { platform } from 'shared/apps';
 
 const chrome = {

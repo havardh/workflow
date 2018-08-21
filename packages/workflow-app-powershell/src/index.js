@@ -2,7 +2,7 @@ const PowerShell = {
   type: 'app',
   name: 'PowerShell',
   params: ['cwd', 'cmd'],
-  open: async ({ cwd, cmd, position }, { platform, startOnPositionByReturnedPid }, children) => {
+  open: async ({ cmd, position }, { platform, startOnPositionByReturnedPid }) => {
     if (platform !== 'win32') {
       throw new Error('Unsupported platform ' + platform);
     }

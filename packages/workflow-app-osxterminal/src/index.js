@@ -1,9 +1,11 @@
+/* global Application, delay */
+
 const Terminal = {
   type: 'app',
   name: 'Terminal',
   params: ['cwd', 'cmd'],
   open: async function open({ cwd, cmd, position }, { run, platform, wm }) {
-    if (platform !== 'osx' || vm === 'terminal') {
+    if (platform !== 'osx' || wm === 'terminal') {
       throw new Error('Platform is not supported');
     }
 

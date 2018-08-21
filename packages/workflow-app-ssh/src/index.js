@@ -2,7 +2,7 @@ const Ssh = {
   type: 'app',
   name: 'Ssh',
   open: async function({ user, host }, context, children) {
-    const { platform, wm } = context;
+    const { wm } = context;
     if (wm !== 'terminal') {
       throw new Error('Context not supported');
     }
