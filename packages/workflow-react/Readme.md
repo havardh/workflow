@@ -6,10 +6,10 @@ a 50-50 split between a text editor and a browser.
 
 ```
 import React from 'react';
-import render, { Workspace, Layouts, Apps } from 'workflow-react';
+import render, { Workspace, Layouts } from 'workflow-react';
 
 const { SplitH } = Layouts;
-const { TextEditor, Browser } = Apps.defaults;
+const { TextEditor, Browser } = requireComponent("workflow-apps-defaults");
 
 export default render(
   <Workspace name={'workflow-react-example'}>
@@ -27,8 +27,9 @@ The `workflow-react` package exports four distinct concepts.
 
  - The `render` function
  - Low level `Components` (`Workspace`, `Layout`, `App`)
- - High level `Components` (`Layouts`, `Apps`)
+ - High level `Components` (`Layouts`)
  - The `createComponent` `Component` factory function
+ - The `requireComponent` utililty function
 
 ### The `render` function
 
@@ -73,9 +74,9 @@ Definition
 Example
 ```
 import React from 'react';
-import render, { Workspace, Apps } from 'workflow-react';
+import render, { Workspace, requireComponent } from 'workflow-react';
 
-const { TextEditor } = Apps.defaults;
+const { TextEditor } = requireComponent("workflow-apps-defaults");
 
 export default render(
   <Workspace
@@ -118,9 +119,9 @@ Definition
 Example
 ```
 import React from 'react';
-import render, { Workspace, Layout, Apps } from 'workflow-react';
+import render, { Workspace, Layout, requireComponent } from 'workflow-react';
 
-const { TextEditor, Terminal } = Apps.defaults;
+const { TextEditor, Terminal } = requireComponent("workflow-apps-defaults");
 
 export default render(
   <Workspace name={'editor'}>
@@ -221,10 +222,10 @@ Definition
 Example
 ```
 import React from 'react';
-import render, { Workspace, Layouts, Apps } from 'workflow-react';
+import render, { Workspace, Layouts, requireComponent } from 'workflow-react';
 
 const { SplitH, SplitV } = Layouts;
-const { TextEditor, Terminal } = Apps.defaults;
+const { TextEditor, Terminal } = requireComponent("workflow-apps-defaults");
 
 export default render(
   <Workspace name={'editor'}>
@@ -233,7 +234,7 @@ export default render(
       <SplitH percent={0.5} >
         <Terminal percent={0.5} />
         <Terminal percent={0.5} />
-      </Layout>      
+      </Layout>
     </Layout>
   </Workspace>,
 );
@@ -246,37 +247,19 @@ workflow <name of flow file>
 
 #### `Apps` (deprecated)
 
-The `Apps` module defines four different collections of `App` `Components`
-applications. These applications are defined in `workflow-core` and reexported
-with an `Component` wrapper from `workflow-react` To generate the wrapper the
-`createComponent` factory method is applied.
+The old `Apps` module in the `workflow-react` module is replaced with the
+`requireComponent` utility function and using it to require apps directly
+as React components. Furthermore the platform specific collections are 
+remove, while the `workflow-apps-defaults` collections remains.
 
-The four collections are a default collection which can be use for platform
-independent flows and one collection for each supported platform.
+The default collection which can be use for platform independent flows, can
+be required as follows:
 
- - `defaults` {Terminal, Browser, TextEditor}
-
-Example
 ```
-import {Apps} from "workflow-react";
+import {requireComponent} from "workflow-react";
 
-const {Terminal, Browser, TextEditor} = Apps.defaults;
+const {Terminal, Browser, TextEditor} = requireComponent("workflow-apps-defaults");
 ```
-
-For now apps are divided into these three categories, Terminals, Browsers, and
-Text Editors. For each of these categories the parameters for each application
-are somewhat standardized as follows:
-
-##### Terminal
- - `cwd` - the current working directory of the launched terminal
- - `cmd` - the command to execute in `cwd`
- - `args` - the list of arguments to pass to the command
-
-##### Browser
- - `url` - the url to open in the browser (should start with protocol to work on osx)
-
-##### Text Editor
- - `file` - the name of the file to open in the editor
 
 ## The `createComponent` function
 
@@ -308,4 +291,19 @@ export default render(
     <Intellij percent={0.5} file={({file}) => file} />
   </Workspace>,
 );
+```
+
+## The `requireComponent` function
+
+The `requireComponent` function will let you require a package containing a 
+app or layout definition as a react component. The function uses `createComponent`
+internally to convert the definition to a component. It can both require a single
+definition and a collection of definitions.
+
+```
+import {requireComponent} from "workflow-react";
+
+const Emacs = requireComponent("workflow-app-emacs");
+
+const {Terminal, Browser} = requireComponent("workflow-apps-defaults");
 ```
