@@ -3,7 +3,7 @@
 Workflow iTerm app for workflow with layout management within the iTerm2
 instance.
 
-The `Vertical` and `Horizontal` components from the layout module can be used
+The `SplitV` and `SplitH` components from the layout module can be used
 to create arbitrary tile layouts. They can contain a number of Apps or nested
 layout components. The with of each split is not possible to specify, it will
 be the size of the contained area divide by the number of children. 
@@ -12,26 +12,28 @@ be the size of the contained area divide by the number of children.
 
 ```
 import React from 'react';
-import render, { Workspace } from 'workflow-react';
+import render, { Workspace, Layouts, requireComponent } from 'workflow-react';
 
-import ITerm, {Layouts, Apps} from "workflow-app-iterm"
+import ITerm from "workflow-app-iterm";
 
-const {Horizontal, Vertical} = Layouts;
-const {Vim, Cmd, Emacs} = Apps;
+const {SplitV, SplitH} = Layouts;
+const Vim = requireComponent("workflow-app-vim");
+const Terminal = requireComponent("workflow-app-terminal");
+const Emacs = requireComponent("workflow-app-emacs");;
 
 export default render(
   <Workspace name={'workflow-iterm-split'}>
     <ITerm>
-      <Horizontal>
-        <Vertical>
+      <SplitH>
+        <SplitV>
           <Vim file={__filename} />
-          <Cmd cwd={"~"} cmd={"ls"} />
-        </Vertical>
-        <Vertical>
+          <Terminal cwd={"~"} cmd={"ls"} />
+        </SplitV>
+        <SplitV>
           <Emacs file={"~/dev/workflow/Readme.md"} />
-          <Cmd cwd={"~"} cmd={"ls"} />
-        </Vertical>
-      </Horizontal>
+          <Terminal cwd={"~"} cmd={"ls"} />
+        </SplitV>
+      </SplitH>
     </ITerm>
   </Workspace>,
 );

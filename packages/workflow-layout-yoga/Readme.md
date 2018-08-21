@@ -10,9 +10,9 @@ integration with the `workflow-react` package.
 
 ```
 import React from 'react';
-import render, { Workspace, Apps } from 'workflow-react';
+import render, { Workspace, requireComponent } from 'workflow-react';
 
-const { Browser } = Apps.defaults;
+const { Browser } = requireComponent("workflow-apps-defaults");
 import { Flex } from "workflow-layout-yoga/components";
 
 export default render(

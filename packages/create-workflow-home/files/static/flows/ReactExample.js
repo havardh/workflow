@@ -1,11 +1,10 @@
 /* eslint-env node */
 
-import React from 'react';
-import render, { Workspace, Layouts, Apps } from 'workflow-react';
+import React from "react";
+import render, { Workspace, Layouts, requireComponent } from "workflow-react";
 
 const { SplitH } = Layouts;
-const { TextEditor, Browser } = Apps.defaults;
-
+const { TextEditor, Browser } = requireComponent("workflow-apps-defaults");
 
 /*
   NB this workflow requires the library workflow-react
@@ -15,13 +14,15 @@ const { TextEditor, Browser } = Apps.defaults;
 // Docs: https://github.com/havardh/workflow/blob/master/packages/workflow-react/Readme.md
 
 export default render(
-    <Workspace name={'workflow-react-example'}>
+  <Workspace name={"workflow-react-example"}>
     <SplitH percent={1}>
-    <TextEditor percent={0.2} file={__filename} />
-    <Browser
-  percent={0.8}
-  url={'https://github.com/havardh/workflow/tree/master/packages/workflow-cmd'}
-    />
+      <TextEditor percent={0.2} file={__filename} />
+      <Browser
+        percent={0.8}
+        url={
+          "https://github.com/havardh/workflow/tree/master/packages/workflow-cmd"
+        }
+      />
     </SplitH>
-    </Workspace>,
+  </Workspace>
 );
