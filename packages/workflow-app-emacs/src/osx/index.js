@@ -1,6 +1,6 @@
 /* global Application, delay */
 
-import { convertToElisp } from "../common/convert";
+import { convertToElisp } from '../common/convert';
 
 /*
 function escape(string) {
@@ -10,7 +10,7 @@ function escape(string) {
 
 function createOpenCode(file, children) {
   if (file && children && children.length) {
-    throw new Error("Emacs does not support both file and children");
+    throw new Error('Emacs does not support both file and children');
   } else if (file && !children) {
     return `(find-file "${file}")`;
   } else {
@@ -27,8 +27,8 @@ function jxaOpen({ x, y, width, height }, code) {
         ${code}
       )
     `
-    .split("\n")
-    .join(" ");
+    .split('\n')
+    .join(' ');
 
   const openCodeWhenNotRunning = `
       (progn
@@ -37,10 +37,10 @@ function jxaOpen({ x, y, width, height }, code) {
         ${code}
       )
     `
-    .split("\n")
-    .join(" ");
+    .split('\n')
+    .join(' ');
 
-  const Emacs = Application("Emacs");
+  const Emacs = Application('Emacs');
   if (Emacs.running()) {
     Emacs.activate();
     delay(0.05);
@@ -54,8 +54,8 @@ function jxaOpen({ x, y, width, height }, code) {
   }
 
   function execute(code) {
-    const SE = Application("System Events");
-    SE.keystroke(":", { using: "option down" });
+    const SE = Application('System Events');
+    SE.keystroke(':', { using: 'option down' });
     SE.keystroke(code);
     SE.keyCode(36);
   }

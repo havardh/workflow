@@ -1,13 +1,13 @@
 /* global Application */
-import { convert } from "shared/layout";
-import { openApps } from "shared/tree";
+import { convert } from 'shared/layout';
+import { openApps } from 'shared/tree';
 
 const ITerm = {
-  type: "app",
-  name: "iTerm2",
+  type: 'app',
+  name: 'iTerm2',
   open: async ({ cwd, cmd, position }, { platform, run }, children) => {
-    if (platform !== "osx") {
-      throw new Error("Unsupported platform");
+    if (platform !== 'osx') {
+      throw new Error('Unsupported platform');
     }
 
     let root;
@@ -15,8 +15,8 @@ const ITerm = {
       root = { open: `cd ${cwd}; clear; ${cmd}` };
     } else {
       const openedTree = await openApps(children[0], {
-        platform: "osx",
-        wm: "terminal"
+        platform: 'osx',
+        wm: 'terminal',
       });
       root = convert(openedTree);
     }
@@ -29,7 +29,7 @@ const ITerm = {
         openNode(pane, root);
 
         function newWindow() {
-          const iTerm = Application("iTerm");
+          const iTerm = Application('iTerm');
           if (iTerm.running()) {
             const window = iTerm.createWindowWithDefaultProfile();
             window.select();
@@ -47,7 +47,7 @@ const ITerm = {
 
         function openSplit(pane, node) {
           if (node.splith && node.splitv) {
-            if (node.first === "splith") {
+            if (node.first === 'splith') {
               openNode(pane.splitHorizontallyWithDefaultProfile(), node.splith);
               openNode(pane.splitVerticallyWithDefaultProfile(), node.splitv);
             } else {
@@ -68,7 +68,7 @@ const ITerm = {
       root,
       position
     );
-  }
+  },
 };
 
 export default ITerm;
