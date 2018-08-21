@@ -46,6 +46,7 @@ jobs:
           - v1-dependencies-
       - run: yarn config set workspaces-experimental true
       - run: yarn install
+      - run: yarn build
       - save_cache:
           paths:
             - node_modules
