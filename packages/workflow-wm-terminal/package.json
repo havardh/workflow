@@ -25,7 +25,9 @@
   "homepage": "https://github.com/havardh/workflow/tree/master/packages/workflow-wm-terminal#readme",
   "dependencies": {
     "fs-extra": "^3.0.1",
-    "kexec": "3.0.0",
     "tmp-promise": "^1.0.3"
+  },
+  "optionalDependencies": {
+    "kexec": "3.0.0"
   }
 }
