@@ -1,4 +1,5 @@
-import {TextEditor, Terminal} from "workflow-apps-defaults";
+import {defaults} from "workflow-apps-html";
+const {TextEditor, Terminal} = defaults;
 
 export default {
   name: 'workflow-dev-core',

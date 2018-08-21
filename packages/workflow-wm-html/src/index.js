@@ -26,7 +26,16 @@ export default class Html {
 
     for (let app of apps) {
       const { position } = app;
-      this.container.appendChild(app.open({ app, position }));
+      this.container.appendChild(
+        app.open(
+          { app, position },
+          {
+            platform: 'browser',
+            wm: 'html',
+          },
+          app.children
+        )
+      );
     }
   }
 }

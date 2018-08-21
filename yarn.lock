@@ -8094,15 +8094,6 @@ react-reconciler@^0.12.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-reconciler@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.7.0.tgz#9614894103e5f138deeeb5eabaf3ee80eb1d026d"
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.0"
-
 react@^16.2.0:
   version "16.3.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.3.1.tgz#4a2da433d471251c69b6033ada30e2ed1202cfd8"
@@ -10549,49 +10540,6 @@ worker-farm@^1.3.1, worker-farm@^1.5.2:
   resolved "https://registry.yarnpkg.com/worker-farm/-/worker-farm-1.6.0.tgz#aecc405976fab5a95526180846f0dba288f3a4a0"
   dependencies:
     errno "~0.1.7"
-
-workflow-apps-linux@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/workflow-apps-linux/-/workflow-apps-linux-0.1.0.tgz#0146bf808aef94bbc7e676ff3465089554ea9c4c"
-
-workflow-apps-osx@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/workflow-apps-osx/-/workflow-apps-osx-0.1.0.tgz#5cc871bc7940d8ab6f0fc8b8051d9bf2514e0795"
-
-workflow-apps-windows@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/workflow-apps-windows/-/workflow-apps-windows-0.1.0.tgz#5656b837292c46dffcdc8e6776d3cf29d43d0e95"
-
-workflow-core@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/workflow-core/-/workflow-core-0.1.0.tgz#1f370e343839fe5e444c749b875121ae260ac1e1"
-
-workflow-react@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/workflow-react/-/workflow-react-0.1.0.tgz#73fd3e5a6c10feca54c733b49388a06b06eeac5d"
-  dependencies:
-    lodash "^4.17.5"
-    react "^16.2.0"
-    react-reconciler "^0.7.0"
-    workflow-apps-defaults "0.1.0"
-    workflow-apps-html "0.1.0"
-    workflow-apps-linux "0.1.0"
-    workflow-apps-osx "0.1.0"
-    workflow-apps-windows "0.1.0"
-
-workflow-wm-html@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/workflow-wm-html/-/workflow-wm-html-0.1.0.tgz#90571ddbad1c9aa5092015e5997e0a106e38f00a"
-  dependencies:
-    ace-code-editor "^1.2.3"
-    css-loader "^0.28.11"
-    react "^16.2.0"
-    style-loader "^0.21.0"
-    uuid "^3.2.1"
-    workflow-core "0.1.0"
-    workflow-react "0.1.0"
-    xterm "^3.3.0"
-    xterm-webfont "^1.0.1"
 
 wrap-ansi@^2.0.0:
   version "2.1.0"
