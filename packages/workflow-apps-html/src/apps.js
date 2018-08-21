@@ -231,7 +231,10 @@ function readFile(path) {
 export const Ace = {
   type: 'app',
   params: ['file'],
-  open: ({ app, position }) => {
+  open: ({ app, position }, { wm }) => {
+    if (wm !== 'html') {
+      throw new Error('Windows manager is not supported');
+    }
     const file = app.file;
 
     return div({
@@ -246,7 +249,10 @@ export const Ace = {
 export const XTermJS = {
   type: 'app',
   params: ['cwd', 'cmd'],
-  open: ({ app, position }) => {
+  open: ({ app, position }, { wm }) => {
+    if (wm !== 'html') {
+      throw new Error('Windows manager is not supported');
+    }
     const { cwd, cmd } = app;
     return div({
       className: 'xterm',
@@ -260,8 +266,16 @@ export const XTermJS = {
 export const Browser = {
   type: 'app',
   params: ['url'],
-  open: ({ app, position }) => {
+  open: ({ app, position }, { wm }) => {
+    if (wm !== 'html') {
+      throw new Error('Windows manager is not supported');
+    }
+
     const { url } = app;
+
+    if (!url) {
+      return div({ className: 'browser', position });
+    }
 
     const address = div({
       className: 'address',
