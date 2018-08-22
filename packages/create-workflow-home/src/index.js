@@ -3,14 +3,23 @@ import fs from 'fs-extra';
 import path from 'path';
 import set from 'lodash.set';
 import get from 'lodash.get';
+import parse from './args';
 
 import { platform, wm } from 'shared/env';
 
+const { targetFolder } = parse(process.argv);
+
 Promise.resolve()
+  .then(ensureTargetExists)
   .then(createPackageJson)
   .then(createConfigJs)
   .then(copyStaticFiles)
+  .then(() => console.log('Initialized:', resolveTargetFolder()))
   .catch(err => console.error(err)); // eslint-disable-line no-console
+
+function ensureTargetExists() {
+  fs.mkdirpSync(path.resolve(resolveTargetFolder()));
+}
 
 function createPackageJson() {
   const pkgPath = resolveTarget('package.json');
@@ -73,7 +82,15 @@ function resolveSource(...args) {
 
 function resolveTarget(...args) {
   if (args) {
-    return path.resolve(...args);
+    return path.join(resolveTargetFolder(), ...args);
+  } else {
+    return resolveTargetFolder();
+  }
+}
+
+function resolveTargetFolder() {
+  if (targetFolder) {
+    return path.resolve(targetFolder);
   } else {
     return path.resolve();
   }
