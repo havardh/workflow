@@ -1,4 +1,4 @@
-/* global Application */
+/* global Application, delay */
 import { convert } from 'shared/layout';
 import { openApps } from 'shared/tree';
 
