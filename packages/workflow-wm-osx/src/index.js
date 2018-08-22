@@ -31,10 +31,19 @@ class Osx {
   async minimizeAll() {
     const script = `
     (function () {
-      for (var j=0; j<10; j++) {
-        const terminal = Application("iTerm");
-        for (var i=0; i<terminal.windows.length; i++) {
-          terminal.windows[i].close();
+      const applications = [ "Safari", "iTerm" ];
+      for (let appName of applications) {
+        const app = Application(appName);
+        for (let i=0; i<app.windows.length; i++) {
+          app.windows[i].close();
+        }
+      }
+      delay(1);
+
+      for (let appName of applications) {
+        const app = Application(appName);
+        for (let i=0; i<app.windows.length; i++) {
+          app.windows[i].close();
         }
       }
     }());
