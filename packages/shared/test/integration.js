@@ -61,7 +61,7 @@ async function applyAndCapture(argument) {
   const layout = await workflow.layout(flow, { screen });
   await workflow.apply(layout);
 
-  await seconds(4);
+  await seconds(5);
 
   workflow = null;
 
