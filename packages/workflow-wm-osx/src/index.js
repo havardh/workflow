@@ -43,17 +43,17 @@ class Osx {
   async minimizeAll() {
     const script = `
     (function () {
-      const applications = [ "Safari", "iTerm" ];
-      for (let appName of applications) {
-        const app = Application(appName);
+      const applications = [ "Atom", "Safari", "iTerm" ];
+      for (let i = 0; i<applications.length; i++) {
+        const app = Application(applications[i]);
         for (let i=0; i<app.windows.length; i++) {
           app.windows[i].close();
         }
       }
       delay(1);
 
-      for (let appName of applications) {
-        const app = Application(appName);
+      for (let i = 0; i<applications.length; i++) {
+        const app = Application(applications[i]);
         for (let i=0; i<app.windows.length; i++) {
           app.windows[i].close();
         }
