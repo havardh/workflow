@@ -24,7 +24,7 @@ const ITerm = {
     }
 
     run(
-      (root, position) => {
+      function (root, position) {
         delay(1);
         const window = newWindow();
         window.bounds = position;
