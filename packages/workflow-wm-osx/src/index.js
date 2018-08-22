@@ -11,7 +11,7 @@ async function wrapperRun(code, ...args) {
     await run(code, ...args);
   } catch (error) {
     console.error('Could not execute jxa:');
-    console.log(code);
+    console.log(code.toString());
     console.log();
     console.error(error);
     throw error;
