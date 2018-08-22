@@ -2,9 +2,10 @@
 /* eslint-disable no-console */
 
 /* Executed with NODE_PATH = ${baseFolder}/node_modules */
-
+import { resolve } from 'path';
 import { baseFolder } from 'shared/env';
-const config = require(`${baseFolder}/config`).default || require(`${baseFolder}/config`);
+const config =
+  require(resolve(`${baseFolder}/config`)).default || require(resolve(`${baseFolder}/config`));
 
 import * as WorkflowCore from 'workflow-core';
 const workflow = new WorkflowCore.workflow(config);

@@ -6,7 +6,7 @@ const { existsSync } = require('fs');
 const { join } = require('path');
 
 if (existsSync(join(__dirname, 'dist'))) {
-  require('./dist/cli');
+  module.exports = require('./dist/cli');
 } else {
-  require('./src/cli');
+  module.exports = require('./src/cli');
 }

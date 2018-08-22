@@ -37,7 +37,8 @@ export const wm = (() => {
 
 export const dev = process.env.WORKFLOW_DEV_MODE === 'true';
 export const homedir = process.env.WORKFLOW_HOME;
+export const devhomedir = process.env.WORKFLOW_DEV_HOME;
 
 export const baseFolder = dev
-  ? `${__dirname}/../../workflow-template`
+  ? devhomedir || `${__dirname}/../../workflow-template`
   : homedir || `${os.homedir()}/.workflow`;
