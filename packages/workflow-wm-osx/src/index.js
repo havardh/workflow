@@ -44,17 +44,17 @@ class Osx {
     const script = `
     (function () {
       const applications = [ "Atom", "Safari", "iTerm" ];
-      for (let i = 0; i<applications.length; i++) {
+      for (var i = 0; i<applications.length; i++) {
         const app = Application(applications[i]);
-        for (let i=0; i<app.windows.length; i++) {
+        for (var i=0; i<app.windows.length; i++) {
           app.windows[i].close();
         }
       }
       delay(1);
 
-      for (let i = 0; i<applications.length; i++) {
+      for (var i = 0; i<applications.length; i++) {
         const app = Application(applications[i]);
-        for (let i=0; i<app.windows.length; i++) {
+        for (var i=0; i<app.windows.length; i++) {
           app.windows[i].close();
         }
       }
