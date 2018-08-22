@@ -20,7 +20,7 @@ const ITerm = {
       });
       root = convert(openedTree);
     } else {
-      root = {};
+      root = { open: `cd ${cwd}; clear` };
     }
 
     run(
