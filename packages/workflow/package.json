@@ -1,0 +1,43 @@
+{
+  "name": "workflow",
+  "version": "1.0.0",
+  "description": "Workflow-centric workspace manager",
+  "bin": "cli.js",
+  "files": [
+    "dist",
+    "cli.js",
+    "index.js"
+  ],
+  "scripts": {
+    "example": "node cli.js Example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/havardh/workflow.git"
+  },
+  "keywords": [
+    "wm",
+    "workflow",
+    "cli",
+    "i3",
+    "osx",
+    "windows"
+  ],
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/havardh/workflow/issues"
+  },
+  "homepage": "https://github.com/havardh/workflow#readme",
+  "dependencies": {
+    "cross-spawn": "^6.0.5",
+    "execa": "^0.11.0",
+    "prompt": "^1.0.0",
+    "workflow-cmd": "^0.1.1",
+    "workflow-core": "^0.1.1"
+  },
+  "devDependencies": {
+    "react": "^16.4.2",
+    "workflow-react": "^0.1.1"
+  }
+}
