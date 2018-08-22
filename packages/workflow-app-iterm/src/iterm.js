@@ -25,6 +25,7 @@ const ITerm = {
 
     run(
       (root, position) => {
+        delay(1);
         const window = newWindow();
         window.bounds = position;
         const pane = window.currentSession();
@@ -32,8 +33,10 @@ const ITerm = {
 
         function newWindow() {
           const iTerm = Application('iTerm');
+          delay(1);
           if (iTerm.running()) {
             const window = iTerm.createWindowWithDefaultProfile();
+            delay(1);
             window.select();
           }
 
