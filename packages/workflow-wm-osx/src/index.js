@@ -6,6 +6,18 @@ import { run } from '@jxa/run';
 
 import { findAllApps } from 'shared/tree';
 
+async function wrapperRun(code, ...args) {
+  try {
+    await run(code, ...args);
+  } catch (error) {
+    console.error('Could not execute jxa:');
+    console.log(code);
+    console.log();
+    console.error(error);
+    throw error;
+  }
+}
+
 class Osx {
   async screen() {
     const result = shell.exec(
@@ -24,7 +36,7 @@ class Osx {
     for (let app of apps) {
       app = mapPosition(app);
 
-      await app.open(app, { platform: 'osx', wm: 'default', run }, app.children);
+      await app.open(app, { platform: 'osx', wm: 'default', run: wrapperRun }, app.children);
     }
   }
 
