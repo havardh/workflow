@@ -1,4 +1,5 @@
 /* eslint-env node */
+/* eslint-disable no-console */
 import fs from 'fs-extra';
 import path from 'path';
 import set from 'lodash.set';

@@ -1,3 +1,5 @@
+/* eslint-env node */
+/* eslint-disable no-console */
 import { dev } from 'shared/env';
 
 function usage() {
@@ -26,7 +28,7 @@ export default function parse(args) {
   if (dev && command.endsWith('node')) {
     console.log('Running dev mode');
 
-    const [node, cmd, targetFolder] = args;
+    const [node, cmd, targetFolder] = args; // eslint-disable-line
 
     if (args.length === 2) {
       return {};
