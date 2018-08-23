@@ -1,3 +1,4 @@
+/* eslint-env node */
 /* eslint-disable no-unused-vars, no-console */
 
 import prompt from 'prompt';
