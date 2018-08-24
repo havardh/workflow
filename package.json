@@ -11,9 +11,9 @@
     "eslint": "eslint .",
     "build": "rollup -c",
     "format:file": "prettier $(cat .prettier) --write ",
-    "format": "npm run --silent format:file -- 'packages/**/*.[jt]s'",
+    "format": "npm run --silent format:file -- '**/*.[jt]s'",
     "check-format:file": "prettier $(cat .prettier) --list-different ",
-    "check-format": "npm run --silent check-format:file -- 'packages/**/*.[jt]s'",
+    "check-format": "npm run --silent check-format:file -- '**/*.[jt]s'",
     "test": "jest",
     "watch": "jest --watch"
   },
