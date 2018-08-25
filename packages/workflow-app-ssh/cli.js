@@ -9,29 +9,31 @@ const WorkflowTransformerApplyArgumentsToFields = require('workflow-transformer-
 const WorkflowLayout = require('workflow-layout');
 const WorkflowWm = require('workflow-wm-terminal');
 
+const babelConfig = {
+  config: {
+    presets: [
+      'flow',
+      'react',
+      [
+        'env',
+        {
+          targets: {
+            node: 'current',
+          },
+        },
+      ],
+    ],
+    plugins: ['transform-object-rest-spread', 'transform-class-properties'],
+  },
+};
+
 const config = {
   resolvers: [
     new WorkflowResolverAbsolute(),
     new WorkflowResolverRelative({ path: process.cwd() }),
     new WorkflowResolverRelative({ path: join(__dirname, 'flows') }),
   ],
-  loader: new WorkflowLoaderBabel({
-    config: {
-      presets: [
-        'flow',
-        'react',
-        [
-          'env',
-          {
-            targets: {
-              node: 'current',
-            },
-          },
-        ],
-      ],
-      plugins: ['transform-object-rest-spread', 'transform-class-properties'],
-    },
-  }),
+  loaders: [{ loader: new WorkflowLoaderBabel(babelConfig), test: '*.js' }],
   argumentParser: new WorkflowParserArguments(),
   transformers: [new WorkflowTransformerApplyArgumentsToFields()],
   layout: new WorkflowLayout(),
