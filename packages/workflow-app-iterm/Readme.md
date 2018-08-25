@@ -12,11 +12,11 @@ be the size of the contained area divide by the number of children.
 
 ```
 import React from 'react';
-import render, { Workspace, Layouts, requireComponent } from 'workflow-react';
+import render, { Workspace, requireComponent } from 'workflow-react';
 
 import ITerm from "workflow-app-iterm";
 
-const {SplitV, SplitH} = Layouts;
+const { SplitV, SplitH } = requireComponent("workflow-layout-tiled");
 const Vim = requireComponent("workflow-app-vim");
 const Terminal = requireComponent("workflow-app-terminal");
 const Emacs = requireComponent("workflow-app-emacs");;
