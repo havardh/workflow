@@ -7,7 +7,7 @@ const WorkflowLoaderBabel = require('workflow-loader-babel');
 const WorkflowParserArguments = require('workflow-parser-arguments');
 const WorkflowTransformerApplyArgumentsToFields = require('workflow-transformer-apply-arguments-to-fields');
 const WorkflowLayout = require('workflow-layout');
-const WorkflowWm = require('workflow-wm-osx');
+const WorkflowWm = require('workflow-wm-auto');
 
 const babelConfig = {
   config: {
