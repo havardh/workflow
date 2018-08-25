@@ -23,7 +23,7 @@ const config = {
     new WorkflowResolverRelative({ path: process.cwd() }),
     new WorkflowResolverRelative({ path: join(__dirname, 'flows') }),
   ],
-  loaders: [{ loaders: new WorkflowLoaderTypescript(), test: /\.ts$/ }],
+  loaders: [{ loader: new WorkflowLoaderTypescript(typescriptConfig), test: /\.ts$/ }],
   argumentParser: new WorkflowParserArguments(),
   transformers: [new WorkflowTransformerApplyArgumentsToFields()],
   layout: new WorkflowLayout(),
