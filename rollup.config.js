@@ -12,6 +12,7 @@ import flatMap from 'lodash.flatmap';
 const blackList = [
   'workflow-apps-defaults',
   'workflow-layout',
+  'workflow-layout-tiled',
   'workflow-layouts',
   'workflow-template',
   'workflow-web',
