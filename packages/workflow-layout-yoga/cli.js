@@ -30,7 +30,7 @@ const WorkflowWmI3 = require('workflow-wm-i3');
 
 const config = {
   resolvers: [new WorkflowResolverRelative({ path: join(__dirname, 'flows') })],
-  loaders: [{ loader: new WorkflowLoaderBabel(babelConfig), test: /\.js$/ }],
+  loaders: [{ loader: new WorkflowLoaderBabel(babelConfig) }],
   transformers: [new WorkflowTransformerApplyArgumentsToFields()],
   layout: new WorkflowLayout(),
   wm: new WorkflowWmI3(),

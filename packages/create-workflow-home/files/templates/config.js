@@ -30,7 +30,7 @@ module.exports = {
     new WorkflowResolverRelative({ path: process.cwd() }),
     new WorkflowResolverRelative({ path: join(__dirname, 'flows') }),
   ],
-  loaders: [{ loader: new WorkflowLoaderBabel({ config }), test: /\.js$/ }],
+  loaders: [{ loader: new WorkflowLoaderBabel({ config }) }],
   argumentParser: new WorkflowParserArguments(),
   transformers: [new WorkflowTransformerApplyArgumentsToFields()],
   layout: new WorkflowLayout(),

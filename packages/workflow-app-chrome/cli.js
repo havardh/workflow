@@ -32,7 +32,7 @@ const config = {
     new WorkflowResolverRelative({ path: process.cwd() }),
     new WorkflowResolverRelative({ path: join(__dirname, 'flows') }),
   ],
-  loaders: [{ loader: new WorkflowLoaderBabel(babelConfig), test: /\.js$/ }],
+  loaders: [{ loader: new WorkflowLoaderBabel(babelConfig) }],
   argumentParser: new WorkflowParserArguments(),
   transformers: [new WorkflowTransformerApplyArgumentsToFields()],
   layout: new WorkflowLayout(),
