@@ -3,7 +3,7 @@
 Workflow iTerm app for workflow with layout management within the iTerm2
 instance.
 
-The `SplitV` and `SplitH` components from the layout module can be used
+The `SplitV` and `SplitH` layouts from the `workflow-layout-tiled` module can be used
 to create arbitrary tile layouts. They can contain a number of Apps or nested
 layout components. The with of each split is not possible to specify, it will
 be the size of the contained area divide by the number of children. 
