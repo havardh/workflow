@@ -1,8 +1,9 @@
 import { NgModule, Component } from '@angular/core';
-import { render, WorkflowPlatform, requireComponent, Workspace, SplitH } from 'workflow-angular';
+import { render, WorkflowPlatform, requireComponent, Workspace } from 'workflow-angular';
 
 const { Terminal } = requireComponent('workflow-apps-defaults');
 const Emacs = requireComponent('workflow-app-emacs');
+const { SplitH } = requireComponent('workflow-layout-tiled');
 
 @Component({
   selector: 'app',
