@@ -32,7 +32,7 @@ function requireWorkflow(flow) {
   if (typeof flow === 'string') {
     return require('workflow-core').workflow({
       resolvers: [new WorkflowResolverAbsolute()],
-      loaders: [{ loader: new WorkflowLoaderBabel({ config }), test: '*.js' }],
+      loaders: [{ loader: new WorkflowLoaderBabel({ config }), test: /\.js$/ }],
       transformers: [],
       layout: new WorkflowLayout(),
       wm: new Wm(),
