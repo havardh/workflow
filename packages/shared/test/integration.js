@@ -40,7 +40,7 @@ function requireWorkflow(flow) {
   } else {
     return require('workflow-core').workflow({
       resolvers: [{ resolve: flow => flow }],
-      loaders: [{ loader: { load: flow => ({ default: flow }) }, test: '*' }],
+      loaders: [{ loader: { load: flow => ({ default: flow }) }, test: /.*/ }],
       transformers: [],
       layout: new WorkflowLayout(),
       wm: new Wm(),
