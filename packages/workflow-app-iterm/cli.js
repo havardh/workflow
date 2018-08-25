@@ -29,7 +29,7 @@ const WorkflowLayout = require('workflow-layout');
 
 const config = {
   resolvers: [new WorkflowResolverRelative({ path: join(__dirname, 'flows') })],
-  loaders: [{ loader: new WorkflowLoaderBabel(babelConfig), test: '*.js' }],
+  loaders: [{ loader: new WorkflowLoaderBabel(babelConfig), test: /\.js$/ }],
   transformers: [new WorkflowTransformerApplyArgumentsToFields()],
   layout: new WorkflowLayout(),
   wm: new WorkflowWmOsx(),
