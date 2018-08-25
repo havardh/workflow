@@ -1,8 +1,8 @@
 /* eslint-env node */
 import React from 'react';
-import render, { Workspace, Layouts, requireComponent } from 'workflow-react';
-const { SplitV, SplitH } = Layouts;
+import render, { Workspace, requireComponent } from 'workflow-react';
 
+const { SplitV, SplitH } = requireComponent('workflow-layout-tiled');
 const Tmux = requireComponent('workflow-app-tmux');
 const Vim = requireComponent('workflow-app-vim');
 const Less = requireComponent('workflow-app-less');

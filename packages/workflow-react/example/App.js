@@ -1,7 +1,7 @@
 import React from 'react';
-import render, { Workspace, Layouts, requireComponent } from 'workflow-react';
+import render, { Workspace, requireComponent } from 'workflow-react';
 
-const { SplitH } = Layouts;
+const { SplitH } = requireComponent('workflow-layout-tiled');
 const { TextEditor, Browser } = requireComponent('workflow-apps-defaults');
 
 export default render(

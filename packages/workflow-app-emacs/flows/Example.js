@@ -1,10 +1,10 @@
 /* eslint-env node */
 import React from 'react';
-import render, { Workspace, Layouts, requireComponent } from 'workflow-react';
+import render, { Workspace, requireComponent } from 'workflow-react';
 
 const Emacs = requireComponent('workflow-app-emacs');
+const { SplitV, SplitH } = requireComponent('workflow-layout-tiled');
 
-const { SplitV, SplitH } = Layouts;
 const { File } = Emacs;
 const { Status } = Emacs.Plugins.Magit;
 

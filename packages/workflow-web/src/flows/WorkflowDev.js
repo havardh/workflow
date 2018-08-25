@@ -1,11 +1,11 @@
 import React from 'react';
-import render, { Workspace, Layouts, createComponent } from 'workflow-react';
-
+import render, { Workspace, createComponent } from 'workflow-react';
 import { defaults } from 'workflow-apps-html';
+import * as Tiles from 'workflow-layout-tiled';
+
 const Terminal = createComponent(defaults.Browser);
 const TextEditor = createComponent(defaults.TextEditor);
-
-const { SplitV } = Layouts;
+const SplitV = createComponent(Tiles.SplitV);
 
 export default render(
   <Workspace name={'workflow-dev'}>

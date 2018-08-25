@@ -6,9 +6,9 @@ a 50-50 split between a text editor and a browser.
 
 ```
 import React from 'react';
-import render, { Workspace, Layouts } from 'workflow-react';
+import render, { Workspace } from 'workflow-react';
 
-const { SplitH } = Layouts;
+const { SplitH } = requireComponent("workflow-layout-tiled");
 const { TextEditor, Browser } = requireComponent("workflow-apps-defaults");
 
 export default render(
@@ -201,30 +201,27 @@ Usage
 workflow <name of flow file> /path/to/file
 ```
 
-### High level `Components`
+### High level `Components` (deprecated)
 
 For ease of use `workflow-react` exposes a few predefined `Layouts` and `Apps`.
 These are direct re-exports of the definitions found in `workflow-core`. These
 are implemented using the low level `Layout` and `App` `Components`.
 
-#### `Layouts`
+#### `Layouts` (deprecated)
 
-The `Layouts` module contains two `Components`, `<SplitH/>` and `<SplitV/>`.
-These are shorthand for the `<Layout/>` component described above.
+The old `Layouts` module is replaced with `requireComponent` and `workflow-layout-tiled`;
 
-Definition
+To require the SplitV and SplitH components use the following syntax:
 ```
-<SplitH percent={}><children></SplitH>
-
-<SplitV percent={}><children></SplitV>
+const { SplitV, SplitH } = requireComponent("workflow-layout-tiled");
 ```
 
 Example
 ```
 import React from 'react';
-import render, { Workspace, Layouts, requireComponent } from 'workflow-react';
+import render, { Workspace, requireComponent } from 'workflow-react';
 
-const { SplitH, SplitV } = Layouts;
+const { SplitV, SplitH } = requireComponent("workflow-layout-tiled");
 const { TextEditor, Terminal } = requireComponent("workflow-apps-defaults");
 
 export default render(

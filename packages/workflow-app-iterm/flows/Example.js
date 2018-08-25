@@ -1,13 +1,13 @@
 /* eslint-env node */
 import React from 'react';
-import render, { Workspace, Layouts, requireComponent } from 'workflow-react';
+import render, { Workspace, requireComponent } from 'workflow-react';
 
 const ITerm = requireComponent('workflow-app-iterm');
 const Terminal = requireComponent('workflow-app-terminal');
 const Emacs = requireComponent('workflow-app-emacs');
 const Vim = requireComponent('workflow-app-vim');
 
-const { SplitH, SplitV } = Layouts;
+const { SplitV, SplitH } = requireComponent('workflow-layout-tiled');
 
 export default render(
   <Workspace name={'workflow-iterm-split'}>

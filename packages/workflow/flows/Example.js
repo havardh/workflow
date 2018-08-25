@@ -1,10 +1,10 @@
 /* eslint-env node */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import render, { Workspace, Layouts, Apps } from 'workflow-react';
+import render, { Workspace, Apps, requireComponent } from 'workflow-react';
 
-const { SplitH } = Layouts;
-const { Terminal } = Apps.defaults;
+const { SplitH } = requireComponent('workflow-layout-tiled');
+const { Terminal } = requireComponent('workflow-apps-defaults');
 
 export default render(
   <Workspace name={'term:split'}>
