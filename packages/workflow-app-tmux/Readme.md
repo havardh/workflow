@@ -3,7 +3,7 @@
 Workflow tmux app for workflow with layout management within the tmux
 instance.
 
-The `SplitV` and `SplitH` components exported by `workflow-react` can be used
+The `SplitV` and `SplitH` layouts exported by `workflow-layout-tiled` can be used
 to create arbitrary tile layouts. They can contain a number of Apps or nested
 layout components. The Apps used inside a `Tmux` application must support
 the `terminal` wm. Some that do are: [`emacs`](../workflow-app-emacs), 
