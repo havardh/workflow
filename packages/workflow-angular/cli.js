@@ -9,19 +9,21 @@ const WorkflowTransformerApplyArgumentsToFields = require('workflow-transformer-
 const WorkflowLayout = require('workflow-layout');
 const WorkflowWm = require('workflow-wm-i3');
 
+const typescriptConfig = {
+  config: {
+    compilerOptions: {
+      experimentalDecorators: true,
+    },
+  },
+};
+
 const config = {
   resolvers: [
     new WorkflowResolverAbsolute(),
     new WorkflowResolverRelative({ path: process.cwd() }),
     new WorkflowResolverRelative({ path: join(__dirname, 'flows') }),
   ],
-  loader: new WorkflowLoaderTypescript({
-    config: {
-      compilerOptions: {
-        experimentalDecorators: true,
-      },
-    },
-  }),
+  loaders: [{ loaders: new WorkflowLoaderTypescript(), test: '*.ts' }],
   argumentParser: new WorkflowParserArguments(),
   transformers: [new WorkflowTransformerApplyArgumentsToFields()],
   layout: new WorkflowLayout(),

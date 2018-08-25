@@ -12,27 +12,27 @@ const Wm = require({
   darwin: 'workflow-wm-osx',
 }[platform]);
 
+const config = {
+  presets: [
+    'flow',
+    'react',
+    [
+      'env',
+      {
+        targets: {
+          node: 'current',
+        },
+      },
+    ],
+  ],
+  plugins: ['transform-object-rest-spread', 'transform-class-properties'],
+};
+
 function requireWorkflow(flow) {
   if (typeof flow === 'string') {
     return require('workflow-core').workflow({
       resolvers: [new WorkflowResolverAbsolute()],
-      loader: new WorkflowLoaderBabel({
-        config: {
-          presets: [
-            'flow',
-            'react',
-            [
-              'env',
-              {
-                targets: {
-                  node: 'current',
-                },
-              },
-            ],
-          ],
-          plugins: ['transform-object-rest-spread', 'transform-class-properties'],
-        },
-      }),
+      loaders: [{ loader: new WorkflowLoaderBabel({ config }), test: '*.js' }],
       transformers: [],
       layout: new WorkflowLayout(),
       wm: new Wm(),
@@ -40,7 +40,7 @@ function requireWorkflow(flow) {
   } else {
     return require('workflow-core').workflow({
       resolvers: [{ resolve: flow => flow }],
-      loader: { load: flow => ({ default: flow }) },
+      loaders: [{ loader: { load: flow => ({ default: flow }) }, test: '*' }],
       transformers: [],
       layout: new WorkflowLayout(),
       wm: new Wm(),

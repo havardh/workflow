@@ -4,19 +4,21 @@
 const { join } = require('path');
 
 const babelConfig = {
-  presets: [
-    'flow',
-    'react',
-    [
-      'env',
-      {
-        targets: {
-          node: 'current',
+  config: {
+    presets: [
+      'flow',
+      'react',
+      [
+        'env',
+        {
+          targets: {
+            node: 'current',
+          },
         },
-      },
+      ],
     ],
-  ],
-  plugins: ['transform-object-rest-spread', 'transform-class-properties'],
+    plugins: ['transform-object-rest-spread', 'transform-class-properties'],
+  },
 };
 
 const WorkflowWmOsx = require('workflow-wm-osx');
@@ -27,7 +29,7 @@ const WorkflowLayout = require('workflow-layout');
 
 const config = {
   resolvers: [new WorkflowResolverRelative({ path: join(__dirname, 'flows') })],
-  loader: new WorkflowLoaderBabel({ config: babelConfig }),
+  loaders: [{ loader: new WorkflowLoaderBabel(babelConfig), test: '*.js' }],
   transformers: [new WorkflowTransformerApplyArgumentsToFields()],
   layout: new WorkflowLayout(),
   wm: new WorkflowWmOsx(),

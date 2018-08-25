@@ -182,7 +182,7 @@ export default {
   ],
 
   /* Loads the flow specified as the first command line argument */
-  loader: new WorkflowLoaderBabel(),
+  loaders: {loader: new WorkflowLoaderBabel(), test: "*.js"},
 
   /*  */
   transforms: [
