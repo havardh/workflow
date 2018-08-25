@@ -92,6 +92,8 @@ function parseFlags(args) {
       flags.forceTags = true;
     } else if (arg === '--bump-same') {
       flags.bumpSame = true;
+    } else if (arg === '--verbose') {
+      flags.verbose = true;
     } else if (arg !== undefined) {
       console.log('Command line argument ignored: ' + arg);
     }
@@ -118,8 +120,9 @@ function getLevel(name, version) {
       level = 'patch';
     }
     if (
-      (commit && commit.split(' ')[1].startsWith('feat') && level === 'none') ||
-      level === 'patch'
+      commit &&
+      commit.split(' ')[1].startsWith('feat') &&
+      (level === 'none' || level === 'patch')
     ) {
       level = 'minor';
     }
@@ -185,7 +188,6 @@ for (let { name, json } of packages) {
     if (newVersions[dependencyName]) {
       const oldVersion = dependencies[dependencyName];
       const newVersion = newVersions[dependencyName];
-      newPackages[name].dependencies[dependencyName] = newVersion;
       if (newVersions[dependencyName] && !newVersions[name]) {
         if (flags.bumpSame) {
           const level = versionLevel[dependencyName];
@@ -204,6 +206,7 @@ for (let { name, json } of packages) {
           process.exit(1);
         }
       }
+      newPackages[name].dependencies[dependencyName] = newVersion;
     }
   }
 
@@ -211,7 +214,6 @@ for (let { name, json } of packages) {
     if (newVersions[dependencyName]) {
       const oldVersion = devDependencies[dependencyName];
       const newVersion = newVersions[dependencyName];
-      newPackages[name].devDependencies[dependencyName] = newVersion;
       if (!newVersions[name]) {
         if (flags.bumpSame) {
           const level = versionLevel[dependencyName];
@@ -230,6 +232,7 @@ for (let { name, json } of packages) {
           process.exit(1);
         }
       }
+      newPackages[name].devDependencies[dependencyName] = newVersion;
     }
   }
 
@@ -237,7 +240,6 @@ for (let { name, json } of packages) {
     if (newVersions[dependencyName]) {
       const oldVersion = optionalDependencies[dependencyName];
       const newVersion = newVersions[dependencyName];
-      newPackages[name].optionalDependencies[dependencyName] = newVersion;
       if (newVersions[dependencyName] && !newVersions[name]) {
         if (flags.bumpSame) {
           const level = versionLevel[dependencyName];
@@ -256,29 +258,8 @@ for (let { name, json } of packages) {
           process.exit(1);
         }
       }
+      newPackages[name].optionalDependencies[dependencyName] = newVersion;
     }
-  }
-}
-
-// Update dependencies in workflow-template
-const resolvePackageTemplate = name =>
-  resolve('packages', 'workflow-template', '.package.json', name);
-let templates = readdirSync(resolve('packages', 'workflow-template', '.package.json'));
-for (let name of templates) {
-  const filename = resolvePackageTemplate(name);
-  const json = require(filename);
-
-  json.version = newPackages['workflow-template'].version;
-
-  for (let dependencyName of Object.keys(json.dependencies)) {
-    if (newVersions[dependencyName]) {
-      json.dependencies[dependencyName] = newVersions[dependencyName];
-    }
-  }
-
-  if (!flags.dryRun) {
-    const content = JSON.stringify(json, null, 2) + '\n';
-    writeFileSync(filename, content);
   }
 }
 
@@ -290,19 +271,23 @@ if (flags.dryRun) {
 
     console.log(name + ':', oldVersion, '->', newVersion);
 
-    console.log('with dependencies:');
-    for (let [dependencyName, version] of Object.entries(newPackages[name].dependencies || {})) {
-      console.log('  ', dependencyName, ':', version);
-    }
-    console.log('with devDependencies:');
-    for (let [dependencyName, version] of Object.entries(newPackages[name].devDependencies || {})) {
-      console.log('  ', dependencyName, ':', version);
-    }
-    console.log('with optionalDependencies:');
-    for (let [dependencyName, version] of Object.entries(
-      newPackages[name].optionalDependencies || {}
-    )) {
-      console.log('  ', dependencyName, ':', version);
+    if (flags.verbose) {
+      console.log('with dependencies:');
+      for (let [dependencyName, version] of Object.entries(newPackages[name].dependencies || {})) {
+        console.log('  ', dependencyName, ':', version);
+      }
+      console.log('with devDependencies:');
+      for (let [dependencyName, version] of Object.entries(
+        newPackages[name].devDependencies || {}
+      )) {
+        console.log('  ', dependencyName, ':', version);
+      }
+      console.log('with optionalDependencies:');
+      for (let [dependencyName, version] of Object.entries(
+        newPackages[name].optionalDependencies || {}
+      )) {
+        console.log('  ', dependencyName, ':', version);
+      }
     }
   }
 
@@ -323,9 +308,6 @@ for (let [name, json] of Object.entries(newPackages)) {
 console.log('Creating git commit');
 for (let [name] of Object.entries(newVersions)) {
   git.add(resolvePackageJson(name));
-}
-for (let name of templates) {
-  git.add(resolvePackageTemplate(name));
 }
 git.commit(
   'chore: release new versions\n\n' +
