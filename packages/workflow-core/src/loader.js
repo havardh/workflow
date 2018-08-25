@@ -1,3 +1,9 @@
-export async function load(loader, path) {
-  return loader.load(path);
+export async function load(loaders, path) {
+  for (let { loader, test } of loaders) {
+    if (minimatch(path, test)) {
+      return loader.load(path);
+    }
+  }
+
+  throw new Error('Could not load path: ' + path);
 }
