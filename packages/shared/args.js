@@ -21,8 +21,16 @@ export function args(args) {
 }
 
 export function getArgName(arg) {
-  const sliceIndex = arg.lastIndexOf('-');
-  return arg.slice(sliceIndex + 1, arg.length);
+  let sliceIndex;
+  const isWordArg = arg[1] === '-';
+  if (isWordArg) {
+    if (arg.length === 3) throw new Error(`expected ${arg} to be a word arg`);
+    sliceIndex = 2;
+  } else {
+    if (arg.length > 2) throw new Error(`expected ${arg} to be a single char arg`);
+    sliceIndex = 1;
+  }
+  return arg.slice(sliceIndex, arg.length);
 }
 
 export function removeScriptName(args) {
