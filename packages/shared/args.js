@@ -9,7 +9,7 @@ export function args(args) {
     const arg = args[i];
     if (arg.indexOf('-') != -1) {
       const name = getArgName(arg);
-      if (args[i + 1] === undefined) throw Error('named argument should have a value');
+      if (args[i + 1] === undefined) throw Error(`named argument ${arg} is missing a value`);
       parsedArgs.named[name] = args[i + 1];
       i++;
     } else {
