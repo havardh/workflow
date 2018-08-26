@@ -43,3 +43,17 @@ describe('getArgName(arg)', () => {
     expect(getArgName('--config')).toBe('config');
   });
 });
+
+describe('removeScriptName(args)', () => {
+  it('should remove when run with node', () => {
+    const input = ['/usr/bin/node', 'script.js', 'other', 'args'];
+    const expectedOutput = ['other', 'args'];
+    expect(removeScriptName(input)).toEqual(expectedOutput);
+  });
+
+  it('should remove when run with workflow', () => {
+    const input = ['workflow', 'other', 'args'];
+    const expectedOutput = ['other', 'args'];
+    expect(removeScriptName(input)).toEqual(expectedOutput);
+  });
+});
