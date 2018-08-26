@@ -1,21 +1,29 @@
 /* eslint-env jest */
-import { args, getArgName } from '../../args';
+import { args, getArgName, removeScriptName } from '../../args';
 
 describe('args(args)', () => {
-  it('should parse the arguments correctly', () => {
+  it('should parse single character arguments correctly', () => {
+    const input = ['hello', 'world', '-c', 'config', '-f', 'filename', 'otherargs'];
+    const expectedOutput = {
+      named: { c: 'config', f:'filename' },
+      positional: ['hello', 'world', 'otherargs'],
+    };
+    expect(args(input)).toEqual(expectedOutput);
+  });
+
+  it('should parse word arguments correctly', () => {
     const input = [
       'hello',
       'world',
-      '-c',
+      '--config',
       'config',
       '--filename',
       'filename',
       'otherargs',
-      'remaining',
     ];
     const expectedOutput = {
-      named: { c: 'config', filename: 'filename' },
-      positional: ['hello', 'world', 'otherargs', 'remaining'],
+      named: { config: 'config', filename: 'filename' },
+      positional: ['hello', 'world', 'otherargs'],
     };
     expect(args(input)).toEqual(expectedOutput);
   });
