@@ -24,3 +24,11 @@ export function getArgName(arg) {
   const sliceIndex = arg.lastIndexOf('-');
   return arg.slice(sliceIndex + 1, arg.length);
 }
+
+export function removeScriptName(args) {
+  let sliceIndex = 0;
+  if (args[0].indexOf('workflow') !== -1) sliceIndex = 1;
+  else if (args[0].indexOf('node') !== -1) sliceIndex = 2;
+  else throw new Error('script run wrongly');
+  return args.slice(sliceIndex, args.length);
+}
