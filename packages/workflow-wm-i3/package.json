@@ -1,6 +1,6 @@
 {
   "name": "workflow-wm-i3",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "i3 window manager adapter for workflow",
   "main": "index.js",
   "files": [

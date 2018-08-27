@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-xterm",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "main": "index.js",
   "description": "Workflow app for xterm terminal emulator",
   "license": "MIT",
@@ -23,14 +23,14 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
     "react": "^16.2.0",
-    "workflow-core": "0.1.1",
-    "workflow-react": "0.1.1",
-    "workflow-wm-terminal": "0.1.0",
-    "workflow-layout": "0.1.1",
-    "workflow-transformer-apply-arguments-to-fields": "0.1.0",
-    "workflow-resolver-relative": "0.1.0",
-    "workflow-resolver-absolute": "0.1.0",
-    "workflow-loader-babel": "0.1.0",
-    "workflow-parser-arguments": "0.1.0"
+    "workflow-core": "1.0.0",
+    "workflow-react": "1.0.0",
+    "workflow-wm-terminal": "0.3.0",
+    "workflow-layout": "1.0.0",
+    "workflow-transformer-apply-arguments-to-fields": "1.0.0",
+    "workflow-resolver-relative": "1.0.0",
+    "workflow-resolver-absolute": "1.0.0",
+    "workflow-loader-babel": "1.0.0",
+    "workflow-parser-arguments": "1.0.0"
   }
 }

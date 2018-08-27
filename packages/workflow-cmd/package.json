@@ -1,6 +1,6 @@
 {
   "name": "workflow-cmd",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Command line interface for workflow.",
   "main": "cli.js",
   "repository": "https://github.com/havardh/workflow",
@@ -13,6 +13,6 @@
   "dependencies": {
     "cross-spawn": "^6.0.5",
     "shelljs": "^0.8.2",
-    "workflow-core": "^0.1.1"
+    "workflow-core": "1.0.0"
   }
 }

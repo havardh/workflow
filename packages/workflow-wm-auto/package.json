@@ -1,6 +1,6 @@
 {
   "name": "workflow-wm-auto",
-  "version": "0.1.1",
+  "version": "0.3.0",
   "description": "auto window manager for workflow",
   "main": "index.js",
   "files": [
@@ -23,9 +23,9 @@
   "homepage": "https://github.com/havardh/workflow/tree/master/packages/workflow-wm-auto#readme",
   "dependencies": {
     "shelljs": "^0.8.2",
-    "workflow-wm-i3": "0.1.1",
-    "workflow-wm-osx": "0.1.0",
-    "workflow-wm-windows": "0.1.0",
-    "workflow-wm-wmctrl": "0.1.0"
+    "workflow-wm-i3": "1.0.0",
+    "workflow-wm-osx": "1.0.0",
+    "workflow-wm-windows": "0.3.0",
+    "workflow-wm-wmctrl": "0.2.0"
   }
 }

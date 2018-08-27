@@ -1,6 +1,6 @@
 {
   "name": "workflow-angular",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Angular frontend for workflow",
   "main": "index.js",
   "scripts": {
