@@ -9,7 +9,8 @@ const [node, script, f1, f2, f3, f4] = process.argv; /* eslint-disable-line no-u
 const args = [f1, f2, f3, f4];
 const flags = parseFlags(args);
 
-const isPackage = name => name.startsWith('workflow-');
+const isPackage = name =>
+  name.startsWith('workflow-') || name.startsWith('create-workflow-') || name === 'workflow';
 
 const files = readdirSync(resolve('packages'));
 const packages = files.filter(isPackage).map(readPackage);
