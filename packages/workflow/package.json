@@ -1,6 +1,6 @@
 {
   "name": "workflow",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Workflow-centric workspace manager",
   "bin": "cli.js",
   "files": [
@@ -34,10 +34,10 @@
     "execa": "^0.11.0",
     "prompt": "^1.0.0",
     "shelljs": "^0.8.2",
-    "workflow-cmd": "^0.1.1"
+    "workflow-cmd": "1.0.0"
   },
   "devDependencies": {
     "react": "^16.4.2",
-    "workflow-react": "^0.1.1"
+    "workflow-react": "1.0.0"
   }
 }

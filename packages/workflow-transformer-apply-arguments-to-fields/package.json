@@ -1,6 +1,6 @@
 {
   "name": "workflow-transformer-apply-arguments-to-fields",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Workflow transformer to support functions as app fields",
   "license": "MIT",
   "main": "index.js",

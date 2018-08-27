@@ -1,6 +1,6 @@
 {
   "name": "workflow-wm-terminal",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "i3 window manager adapter for terminal",
   "main": "index.js",
   "files": [
