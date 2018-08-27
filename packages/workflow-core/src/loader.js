@@ -16,5 +16,5 @@ export async function load(loaders, path) {
     console.error(error); // eslint-disable-line no-console
   }
 
-  throw new Error("Could not load path: " + path);
+  throw new Error('Could not load path: ' + path);
 }
