@@ -28,13 +28,13 @@
     "workflow-loader-babel": "0.1.0",
     "workflow-resolver-relative": "0.1.0",
     "workflow-layout": "0.1.1",
-    "workflow-wm-i3": "0.1.1"
-  },
-  "dependencies": {
+    "workflow-wm-i3": "0.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "react": "^16.2.0",
-    "yoga-layout": "github:naminho/yoga-layout-windows",
     "workflow-react": "0.1.1"
+  },
+  "dependencies": {
+    "yoga-layout": "github:naminho/yoga-layout-windows"
   }
 }

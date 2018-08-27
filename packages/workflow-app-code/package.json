@@ -7,7 +7,7 @@
   "scripts": {
     "example": "node cli.js Example.js"
   },
-  "dependencies": {
+  "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -16,7 +16,6 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
-    "execa": "^0.10.0",
     "react": "^16.2.0",
     "workflow-core": "0.1.1",
     "workflow-layout": "0.1.1",
@@ -27,5 +26,8 @@
     "workflow-resolver-relative": "0.1.0",
     "workflow-transformer-apply-arguments-to-fields": "0.1.0",
     "workflow-wm-terminal": "0.1.0"
+  },
+  "dependencies": {
+    "execa": "^1.0.0"
   }
 }
