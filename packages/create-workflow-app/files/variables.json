@@ -1,29 +1,29 @@
 {
   "workflow": {
     "home": {
-      "version": "0.0.1"
+      "version": "1.0.0"
     },
     "wm": {
       "win32": {
         "default": {
           "name": "workflow-wm-windows",
-          "version": "0.1.0"
+          "version": "0.3.0"
         }
       },
       "darwin": {
         "default": {
           "name": "workflow-wm-osx",
-          "version": "0.1.0"
+          "version": "1.0.0"
         }
       },
       "linux": {
         "wmctrl": {
           "name": "workflow-wm-wmctrl",
-          "version": "0.1.0"
+          "version": "0.2.0"
         },
         "i3": {
           "name": "workflow-wm-i3",
-          "version": "0.1.1"
+          "version": "1.0.0"
         }
       }
     }
