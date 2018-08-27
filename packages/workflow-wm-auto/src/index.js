@@ -1,7 +1,7 @@
 /* eslint-env node */
 import { platform, wm } from 'shared/env';
 
-if (platform === 'osx' && wm === 'default') {
+if (platform === 'darwin' && wm === 'default') {
   module.exports = require('workflow-wm-osx');
 } else if (platform === 'win32' && wm === 'default') {
   module.exports = require('workflow-wm-windows');
