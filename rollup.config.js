@@ -25,7 +25,6 @@ const nodeInternalDependencies = {
 };
 
 const sourceRoots = {
-  'workflow-layout-yoga': ['index.js', 'components.js'],
   'workflow-cmd': ['cli.js', 'index.js'],
   workflow: ['cli.js'],
 };

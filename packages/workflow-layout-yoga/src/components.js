@@ -1,18 +1,6 @@
-// @Flow
-/* eslint-env node */
-import * as React from 'react';
-import { createComponent } from 'workflow-react';
+import Yoga from './yoga';
 
-// eslint-disable global-require
-export const Yoga = createComponent(require('./index').Yoga);
-
-type Props = {
-  children?: React.Node,
-  style: any,
+export const Flex = {
+  type: 'layout',
+  layout: (node, { position }) => Yoga.layout({ ...node, flex: 1 }, { position }),
 };
-
-export const Flex = ({ style, children, ...props }: Props) => (
-  <Yoga style={{ ...style, flex: 1 }} {...props}>
-    {children}
-  </Yoga>
-);

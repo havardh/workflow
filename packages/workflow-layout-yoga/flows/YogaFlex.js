@@ -2,8 +2,8 @@
 
 import React from 'react';
 import render, { Workspace, requireComponent } from 'workflow-react';
-import { Flex } from '../components';
 
+const { Flex } = requireComponent('workflow-layout-yoga');
 const { TextEditor, Browser } = requireComponent('workflow-apps-defaults');
 
 export default render(
