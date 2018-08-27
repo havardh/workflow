@@ -1,14 +1,14 @@
 # Workflow resolver for Absolute paths
 
-Workflow resolver for resolving flows at a absolute path.
+Workflow resolver for resolving flows at an absolute path.
 
-Installation
+## Installation
 
 ```
 npm install --save workflow-resolver-absolute
 ```
 
-Usage in Workflow `config.js`.
+## Usage in Workflow `config.js`.
 
 ```
 import WorkflowResolverAbsolute from "workflow-resolver-absolute";

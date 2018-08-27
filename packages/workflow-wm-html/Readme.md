@@ -1,3 +1,5 @@
-# wm adapter for osx windows manager
+# wm adapter for html
 
-This package contains the wm adapter for the osx windows manager.
+This is a Proof of Concept for running workflow in the browser. This
+package both ensures that dependencies in the main packages are kept to 
+a minimum and will serve as a basis in a possible [online demo](../workflow-web) of workflow.

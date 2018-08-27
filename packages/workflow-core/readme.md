@@ -1,139 +1,130 @@
 # workflow-core
 
-Workflow is an experimental workspace manager. Workflow aims to simplify navigating
+Workflow is an experiment in declarative virtual workspace management. Workflow aims to simplify navigating
 complex window configurations. It does so by letting the user define layouts and
 a way to easily navigate between them. Workflow is meant to be an abstraction
 layer on top of window managers like i3, awesome, and the proprietary ones found in
 OSX and Windows.
 
-## Are we crOSs yet?
-
-| OS/wm        | Status              |
-|--------------|---------------------|
-| i3           | Beta            |
-| windows      | Beta            |
-| OSX          | [In Progress](https://github.com/havardh/workflow/issues/3)   |
-| awesome      | [Up for grabs](https://github.com/havardh/workflow/issues/8)  |
-| Ubuntu/Unity | [In Progress](https://github.com/havardh/workflow/pull/24) |
-
-
-## Example
-
-Lets say you are writing code in a TTD fashion and want to see both code, tests and
-test execution at the same time:
-
-```
-|-Atom-[add.js]------|-Atom-[add_test.js]-|
-| add(a, b) {        | test_add_one() {   |
-|  return a+b;       |   n = add(1, 1);   |
-| }                  |   assert(n == 2);  |
-|                    |                    |
-|                    |                    |
-|--XTerm----------------------------------|
-| > 1 tests passed                        |
-|                                         |
-|                                         |
-|-----------------------------------------|
-```
-
-Now your layout consist of two instances of Atom one with code and one
-with tests, and a terminal running the tests. To achieve this in workflow
-we would add a layout file for this purpose:
-
-```js
-const workspace : WorkspaceConfig = {
-  name: 'advisor:unit-test',
-  args: 'file',
-  children: [SplitV({
-    percent: 1.0,
-    children: [
-      SplitH({
-        percent: 0.8,
-        children: [
-          Atom({
-            percent: 0.5,
-            folder: ({ file }) => projectRoot(file),
-            file: ({ file }) => file,
-            open: ({ file }) => `atom -n ${file}`,
-          }),
-          Atom({
-            percent: 0.5,
-            folder: ({ file }) => projectRoot(file),
-            file: ({ file }) => getTestFile(file),
-            open: ({ file }) => `atom -n ${file}`,
-          }),
-        ],
-      }),
-      XTerm({
-        percent: 0.2,
-        cwd: ({ file }) => projectRoot(file),
-        cmd: 'npm run watch:test:base --',
-        args: [
-          ({ file }) => getTestFile(file),
-        ],
-        open: ({ cwd, cmd, args }) => `cd ${cwd} && xterm -T '${cmd} ${args.join(' ')}' -e '${cmd} ${args.join(' ')}'`,
-      }),
-    ],
-  })],
-};
-```
-
-The layout file contains a lot of detail, but the main points are the `args` property at the top
-and the  three `apps` containing the definition for how to open the three various programs.
-
-Each `workspace` specifies an optional list of arguments, in this case a single argument called
-`file`. These arguments will be available to the rest of the configuration.
-
-Each 'app' has a single important property, the `open` function. This method tells
-`workflow` how to open the app. In addition to the `open` function the app can specify
-a number of application specific properties. `workflow` will use the arguments for the configuration
-and construct all the application specific properties. They will be passed to the `open` function to
-construct a single command used for opening the app.
-
-To start this layout run the `yarn start` command with the layout and the source file as an
-argument. Try the following...
-
-```
-yarn start -- jsTest add.js
-```
-
-The full example can be found [here](examles/js-test.js):
-
-## Usage
-
-```
-yarn
-yarn start -- <options>
-```
-
-### Development
-
-```shell
-yarn run test  # Run tests
-yarn run flow  # Run type checker
-yarn run eslint . # Run lint
-```
+For more documentation checkout the [Repository on github](https://www.github.com/havardh/workflow).
 
 ## Documentation
 
+The `workflow-core` module contains a single function. This function accepts
+a configuration object to builds a facade which can be used to execute
+workflow. The `workflow-cmd` module read the workflow-home `config.js` file
+and builds the facade and contains a `run` function which uses the facade
+to provide the functionality of the command `workflow`.
+
+```
+const workflow = require('workflow-core').workflow(config);
 ```
 
+### The configuration object
+
+```
 const config = {
 
   resolvers: [
     {
-      resolve: function(path) {
+      function resolve(path) {
         // Returns the absolute path of a flow found with the `path` argument.
         // Throws an error if the flow is not found or is a directory.
       },
-      alternatives: function(path) {
+      function alternatives(path) {
         // Returns a list of possible flows filtered by the path argument.
         // Throws an error if the path or dirname(path) is not a directory.
         // Returns an empty list if no files are found.
       }
     }
-  ]
+  ],
+  
+  loaders: [
+    {
+      loader: { 
+        function load(path) {
+          // Load the flow found on the path.
+          // Throws an error if the flow could not be loaded by the loader
+        } 
+      },
+      
+      function filter(path) {
+        // Optional function to determine if the loader should be used for the path.
+        // If the function returns false, the loader is skipped.
+        // If the function is not defined, the loader is always used
+      } 
+    }
+  ], 
+  
+  argumentParser: {
+    function parse(flow, argv) {
+      // parses the arguments given in argv as defined by the flow
+    }
+  },
+  
+  transformers: [
+    { 
+      function transform(flow, args) {
+        // Performs a transform to and from a valid `AFT`.
+      }
+    }
+  ],
+  
+  layout: { 
+    function layout(args, { screen }) {
+      // Performs a transformation from an `AFT` to a `CFT` which 
+      // supported by the windows manager adapter
+    }
+  }
+  
+  wm: {
+    function screen() {
+      // Returns the dimensions of the screen 
+    },
+    
+    function apply(flow) {
+      // Applies the flow by opening applications and position them
+      // on the screen.
+    }
+  }
 
 };
 
+```
+
+### The facade
+
+```
+const workflow = {
+  
+  // Call all available resolvers and return the absolute path 
+  //returned by the first resolver which provides a valid result
+  resolve(path: string): string,
+  
+  // Ask all resolvers for the valid paths the can resolve 
+  // and return the combined results
+  alternatives(path: string): Array<string>,
+  
+  // Ask all loaders to load the flow at given at the absolute path.
+  // The result of the first loader that loads the file without any 
+  // errors is returned. 
+  load(path: string): Flow,
+  
+  // Parse the command line arguments require by the Flow
+  parseArguments(flow: Flow, args: Array<string>): Args,
+  
+  // Preform any transformation on the Flow
+  transform(flow: Flow, args: Args): Flow,
+  
+  // Convert the Flow given as a `AFT` into the corresponding flow 
+  // as a `CFT`. Refer to the `workflow-layout` package for addition details.
+  layout(flow: Flow, config: {screen: Screen}): Flow,
+  
+  // Returns the screen dimensions
+  screen(): Screen,
+  
+  // Applies the Flow by opening applications and positioning then
+  // on the screen.
+  apply(flow: Flow): void
+}
 ```

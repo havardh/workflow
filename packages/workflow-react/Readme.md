@@ -26,16 +26,15 @@ export default render(
 The `workflow-react` package exports four distinct concepts.
 
  - The `render` function
- - Low level `Components` (`Workspace`, `Layout`, `App`)
- - High level `Components` (`Layouts`)
+ - `Components` - `Workspace`, `Layout`, `App`
  - The `createComponent` `Component` factory function
- - The `requireComponent` utililty function
+ - The `requireComponent` utility function
 
 ### The `render` function
 
-The render function is used to transform a React component definition into a
-workflow definition. The return value of this function should be the `default`
-export of a `flow` defined with `workflow-react`, as shown in the example above.
+The render function is used to transform a React application into a
+workflow definition. The return value of this function can be used as the `default`
+export of a `flow`, as shown in the example above.
 
 Example
 ```
@@ -50,6 +49,9 @@ export default render(...);
 `React` components with. They are analogous to the `div`, `span` etc found in
 `react-dom` and `Text`, `View` found in `react-native`.
 
+If you are reading this document and do not intent to develop your own `Layout`
+and `App` definitions, then you can skip the section covering those topics.
+
 #### `Workspace`
 
 The `Workspace` component is the top level component in a `workflow-react` flow.
@@ -57,9 +59,6 @@ It is a container which holds the flow and defines the name of the flow and the
 list of command line arguments the flow accepts. The command line arguments are
 passed to each app after the flow configuration has been translated into a
 `workflow` configuration.
-
-If you are reading this document and do not intent to develop your own `Layout`
-and `App` definitions, then you can skip the section covering those topics.
 
 Definition
 ```
@@ -90,6 +89,9 @@ export default render(
 
 Notice that the `file` property on the `TextEditor` takes a function. This
 function is passed an object containing all the named command line arguments.
+This is not a feature of `workflow-react`, but is available when the 
+[`workflow-transformer-apply-arguments-to-fields`](../workflow-transformer-apply-arguments-to-fields) 
+is used in the `workflow` configuration.
 The function passes the name of the file to the `TextEditor`.
 
 Usage
@@ -103,8 +105,8 @@ The `Layout` component is used to group `App` and other `Layout` components
 together to be able to tell `workflow` how the Applications should be placed on
 the screen.
 
-`workflow` only supports tiling layouts for now. This will change in the future
-and this will probably change this `Api`.
+`workflow` only supports tiling layouts by default and flexbox layouts when using
+the [`workflow-layout-yoga`](../workflow-layout-yoga) package.
 
 Definition
 ```
@@ -136,7 +138,7 @@ export default render(
       >
         <Terminal percent={0.5} />
         <Terminal percent={0.5} />
-      </Layout>      
+      </Layout>
     </Layout>
   </Workspace>,
 );
@@ -201,63 +203,6 @@ Usage
 workflow <name of flow file> /path/to/file
 ```
 
-### High level `Components` (deprecated)
-
-For ease of use `workflow-react` exposes a few predefined `Layouts` and `Apps`.
-These are direct re-exports of the definitions found in `workflow-core`. These
-are implemented using the low level `Layout` and `App` `Components`.
-
-#### `Layouts` (deprecated)
-
-The old `Layouts` module is replaced with `requireComponent` and `workflow-layout-tiled`;
-
-To require the SplitV and SplitH components use the following syntax:
-```
-const { SplitV, SplitH } = requireComponent("workflow-layout-tiled");
-```
-
-Example
-```
-import React from 'react';
-import render, { Workspace, requireComponent } from 'workflow-react';
-
-const { SplitV, SplitH } = requireComponent("workflow-layout-tiled");
-const { TextEditor, Terminal } = requireComponent("workflow-apps-defaults");
-
-export default render(
-  <Workspace name={'editor'}>
-    <SplitV percent={1}>
-      <TextEditor percent={0.5} />
-      <SplitH percent={0.5} >
-        <Terminal percent={0.5} />
-        <Terminal percent={0.5} />
-      </Layout>
-    </Layout>
-  </Workspace>,
-);
-```
-
-Usage
-```
-workflow <name of flow file>
-```
-
-#### `Apps` (deprecated)
-
-The old `Apps` module in the `workflow-react` module is replaced with the
-`requireComponent` utility function and using it to require apps directly
-as React components. Furthermore the platform specific collections are 
-remove, while the `workflow-apps-defaults` collections remains.
-
-The default collection which can be use for platform independent flows, can
-be required as follows:
-
-```
-import {requireComponent} from "workflow-react";
-
-const {Terminal, Browser, TextEditor} = requireComponent("workflow-apps-defaults");
-```
-
 ## The `createComponent` function
 
 The `createComponent` function is a factory function which takes an object
@@ -298,9 +243,23 @@ internally to convert the definition to a component. It can both require a singl
 definition and a collection of definitions.
 
 ```
-import {requireComponent} from "workflow-react";
+import React from "react";
+import render, {Workspace, requireComponent} from "workflow-react";
 
+const {SplitV} = requireComponent("workflow-layout-tiled");
 const Emacs = requireComponent("workflow-app-emacs");
-
 const {Terminal, Browser} = requireComponent("workflow-apps-defaults");
+
+export default render(
+  <Workspace
+    name={'intellij'}
+    args={"file"}
+  >
+    <SplitV percent={1.0}>
+      <Emacs percent={0.5} />
+      <Terminal percent={0.25} />
+      <Browser percent={0.25} />
+    </SplitV>
+  </Workspace>,
+);
 ```

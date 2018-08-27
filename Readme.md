@@ -1,6 +1,7 @@
 # Workflow
 
-A declarative virtual windows manager with an optional React frontend and experimental Angular frontend.
+An experiment in declarative windows management with an optional [React](packages/workflow-react)
+frontend and an experimental [Angular](packages/workflow-angular) frontend.
 
 ## What does it do?
 
@@ -20,7 +21,6 @@ export default render(
 );
 ```
 
-
 ... into open applications populated with arguments in the specified layout on the screen.
 
 ![](github/readme-example.png)
@@ -29,10 +29,11 @@ export default render(
 
 Workflow is a command line tool written for node.
 
-Installing it globally with `npm` will set up the `workflow` command and initialize a home directory
-at `~/.workflow`.
+Installing it globally with `npm` will set up the `workflow` command. On the first run, a home directory
+will be set up. The default location is at `~/.workflow`. This is overridable with the ``WORKFLOW_HOME`
+environment variable. 
 ```bash
-npm install --global workflow-cmd
+npm install --global workflow
 ```
 
 Running the command will by default resolve flow files relative to `~/.workflow/flows` or by
@@ -50,15 +51,23 @@ for [osx](packages/workflow-wm-osx), [windows](packages/workflow-wm-windows), an
 
 ## Devlopment
 
-The [`cli.js`](packages/workflow-cmd/cli.js) can be executed in development mode. By default,
-it will use [`workflow-template`](packages/workflow-template) the home directory. 
+The [`cli.js`](packages/workflow/src/cli.js) can be executed in development mode. By default
+it will use the standard workflow-home directory, which is overridable by `WORKFLOW_DEV_HOME`.
 Development mode is activated by setting the environment variable `WORKFLOW_DEV_MODE` to `true`.
+Note, you can set up an additional <workflow-home> for dev with the create-workflow-home package.
 
 ```bash
 yarn // setup all dependencies. 
 
-WORKFLOW_DEV_MODE=true ./packages/workflow-cmd/cli.js ./packages/workflow-template/flows/Example.js
+node ./packages/create-workflow-home/cli.js <workflow-home-dev>
+WORKFLOW_DEV_MODE=true WORKFLOW_DEV_HOME=<workflow-home-dev> node ./packages/workflow/cli.js Example.js
 ```
 
-Note: the flow is resolved with the absolute resolver in the development mode example. This is because
-the path for the relative resolver is currently not set up correctly in development mode. 
+## Contributions
+
+All contributions to `workflow` are welcome. Checkout the [Contributions](contributions) guide to get started.
+
+## Code of conduct
+
+By making a contribution to this project you agree to abide by the 
+[Code of Conduct][code-of-conduct.md].

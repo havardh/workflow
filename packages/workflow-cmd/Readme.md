@@ -1,13 +1,5 @@
 # workflow cmd
 
-This module is the entry point into workflow. It should be installed globally
-by
+This module contains the command line tool for running `workflow`. It is depend
+upon by the [`workflow`](../packages/workflow) package.
 
-```
-npm install -g workflow-cmd
-```
-
-The installation will create a folder `~/.workflow` which contains the
-configuration for workflow. Open this folder to add custom `apps` and `flows`.
-
-See the [`readme`](../workflow-template/Readme.md) for more information.
