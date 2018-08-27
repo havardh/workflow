@@ -65,7 +65,7 @@ WORKFLOW_DEV_MODE=true WORKFLOW_DEV_HOME=<workflow-home-dev> node ./packages/wor
 
 ## Contributions
 
-All contributions to `workflow` are welcome. Checkout the [Contributions](contributions) guide to get started.
+All contributions to `workflow` are welcome. Checkout the [Contributions](contributions.md) guide to get started.
 
 ## Code of conduct
 
