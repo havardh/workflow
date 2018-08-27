@@ -5273,9 +5273,17 @@ is-typedarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
 
+is-undefined@^1.0.0:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/is-undefined/-/is-undefined-1.0.9.tgz#09a661bdef7607f29021c913f5b1c179bebca9e6"
+
 is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
+
+is-win@^1.0.2:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/is-win/-/is-win-1.0.8.tgz#298e654acce43b6c2935b526c23b2651babe7d8b"
 
 is-windows@^1.0.1, is-windows@^1.0.2:
   version "1.0.2"
@@ -7798,6 +7806,14 @@ postcss@^6.0.1, postcss@^6.0.20, postcss@^6.0.21:
     source-map "^0.6.1"
     supports-color "^5.4.0"
 
+powershell@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/powershell/-/powershell-2.3.0.tgz#41e9b1b02b19b722643611861ebb24f8b39c33bd"
+  dependencies:
+    is-undefined "^1.0.0"
+    is-win "^1.0.2"
+    spawno "^1.0.0"
+
 prelude-ls@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
@@ -7850,6 +7866,10 @@ pretty-ms@^3.1.0:
 private@^0.1.6, private@^0.1.7, private@^0.1.8, private@~0.1.5:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
+
+proc-output@^1.0.0:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/proc-output/-/proc-output-1.0.6.tgz#9ffcfb3ac6a156ee32b7ebd69f024a4f6d896350"
 
 process-nextick-args@^2.0.0, process-nextick-args@~2.0.0:
   version "2.0.0"
@@ -8988,6 +9008,14 @@ shelljs@^0.8.0, shelljs@^0.8.1:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
+shelljs@^0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.8.2.tgz#345b7df7763f4c2340d584abb532c5f752ca9e35"
+  dependencies:
+    glob "^7.0.0"
+    interpret "^1.0.0"
+    rechoir "^0.6.2"
+
 shellwords@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
@@ -9180,6 +9208,12 @@ source-map@~0.2.0:
 sourcemap-codec@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/sourcemap-codec/-/sourcemap-codec-1.4.1.tgz#c8fd92d91889e902a07aee392bdd2c5863958ba2"
+
+spawno@^1.0.0:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/spawno/-/spawno-1.0.4.tgz#8df56503fc315693588e7221494d5c94f165bb57"
+  dependencies:
+    proc-output "^1.0.0"
 
 spdx-correct@^3.0.0:
   version "3.0.0"

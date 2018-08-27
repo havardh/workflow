@@ -18,6 +18,10 @@ const blackList = [
 ];
 
 const nodeInternalDependencies = {
+  'create-workflow-app': ['path', 'util', 'os', 'child_process'],
+  'create-workflow-home': ['path', 'os', 'child_process'],
+  workflow: ['path', 'util', 'os', 'child_process'],
+  'workflow-wm-auto': ['child_process', 'os'],
   'workflow-wm-windows': ['child_process', 'cross-spawn'],
   'workflow-resolver-absolute': ['fs', 'path', 'util'],
   'workflow-resolver-relative': ['fs', 'path', 'util'],
