@@ -6,6 +6,11 @@
   "repository": "https://github.com/havardh/workflow",
   "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
   "license": "MIT",
+  "files": [
+    "dist",
+    "files",
+    "index.js"
+  ],
   "dependencies": {
     "fs-extra": "^7.0.0",
     "lodash.get": "^4.4.2",
