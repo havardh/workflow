@@ -9,7 +9,7 @@ export default async function open({ file, position }, context) {
 
   await execa('atom', ['-n', file]);
 
-  await timeout(1000);
+  await timeout(2000);
 
   return run(position => {
     const Atom = Application('Atom');
