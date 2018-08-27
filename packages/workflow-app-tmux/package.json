@@ -36,13 +36,13 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
-    "workflow-core": "0.1.1"
-  },
-  "dependencies": {
-    "execa": "^0.10.0",
-    "fs-extra": "^6.0.1",
     "react": "^16.2.0",
-    "tmp-promise": "^1.0.4",
-    "workflow-react": "0.1.1"
+    "workflow-core": "0.1.1",
+    "workflow-layout": "^0.1.1",
+    "workflow-loader-babel": "^0.1.0",
+    "workflow-react": "0.1.1",
+    "workflow-resolver-relative": "^0.1.0",
+    "workflow-transformer-apply-arguments-to-fields": "^0.1.0",
+    "workflow-wm-terminal": "^0.1.0"
   }
 }

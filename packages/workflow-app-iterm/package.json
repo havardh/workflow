@@ -61,9 +61,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
-    "workflow-core": "0.1.1"
-  },
-  "dependencies": {
+    "workflow-core": "0.1.1",
     "react": "^16.2.0",
     "workflow-react": "0.1.1"
   }

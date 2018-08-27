@@ -15,7 +15,7 @@
     "wm",
     "workflow",
     "workflow-wm",
-    "i3"
+    "wmctrl"
   ],
   "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
   "license": "MIT",
