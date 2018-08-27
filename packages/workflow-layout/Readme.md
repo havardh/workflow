@@ -2,13 +2,13 @@
 
 The purpose of the layout package is to decouple the interface for
 writing layouts and implementing windows manager adapters.
-This package takes a flow defined in the for of an abstract flow tree (`AFT`) and transform it into
+This package takes a flow defined in the form of an abstract flow tree (`AFT`) and transform it into
 a concrete flow tree (CFT). The `CFT` is the common interface which is
 supported by all windows manager adapter, while an `AFT` is more expressive
 and eases writing layouts.
 
 This package is replaceable as long as the replacement produces a
-tree which adheres to the rules of the `CFT`.
+tree which adheres to the rules of the `CFT`. 
 
 
 ## Usage
@@ -39,7 +39,8 @@ respectively and are translated into `float` nodes in the `CFT`. The
 `custom` is used to implement layout abstractions. See `workflow-layout-yoga`
 for an example of using the `custom` node to support css `Flexbox` using
 Yoga. All `custom` nodes implement a function which returns a sub-tree with
-nodes adhering to the rules of the `AFT`.
+nodes adhering to the rules of the `AFT`. The `AFT` is recursively evaluated
+to generate a valid `CFT`.
 
 ```
 const workspace = {
@@ -99,7 +100,7 @@ const app = {
 ## The Concrete Flow Tree
 
 All nodes in the concrete flow tree contains the absolute position of the
-node on the screen
+node on the screen.
 
 ```
 const workspace = {

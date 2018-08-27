@@ -55,16 +55,10 @@ module.exports = {
 
 ```
 
-The `workflow` command will echo a command which must be used to attach to 
-the tmux instance. So to use `workflow` with this module the following two 
-commands must be executed.
+The `workflow` command will execute a `kexec` command which replaces the 
+node process with the `tmux` process.
 
-```bash
-workflow <> # echo'es the line '  Attach with: tmux attach-session -t <session-name>'
-tmux attach-session -t <session-name>
-```
-
-The `session-name` is the `sessionName` parameter provided to the `Tmux` node 
+The session name for the `tmux` session is set by `sessionName` parameter provided to the `Tmux` node 
 in the `flow` file. 
 
 ```js
@@ -82,7 +76,7 @@ export default render(
 
 ## Demo
 
-Note you will need to run `rollup -c` from the root before executing the example.
+Note you will need to run `yarn build` from the root before executing the example.
 
 Try it with: `yarn TmuxExample`
 

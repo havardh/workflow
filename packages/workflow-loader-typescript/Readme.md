@@ -13,7 +13,9 @@ const WorkflowLoaderTypescript = require("workflow-loader-typescript");
 module.exports = {
    ...
 
-   loader: new WorkflowLoaderTypescript({config: <typescript configuration>})
+   loaders: [{
+     loader: new WorkflowLoaderTypescript({config: <typescript configuration>})
+   }]
    ...
 }
 ```
