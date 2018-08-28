@@ -45,13 +45,50 @@ async function initWorkflowHome(path) {
         stdio: 'inherit',
       });
     } else {
-      await execa('npm', ['init', 'workflow-home', path], {
-        stdio: 'inherit',
-      });
+      const errors = {};
+
+      try {
+        await execa('npx', ['create-workflow-home', path], {
+          stdio: 'inherit',
+        });
+      } catch (error) {
+        errors.npx = error;
+
+        try {
+          await execa('yarn', ['create', 'workflow-home', path], {
+            stdio: 'inherit',
+          });
+        } catch (error) {
+          errors.yarn = error;
+
+          try {
+            await execa('npm', ['init', 'workflow-home', path], {
+              stdio: 'inherit',
+            });
+          } catch (error) {
+            errors.npm = error;
+
+            console.log();
+            console.error('Could not generate workflow-home at:', path);
+            console.error();
+            console.error('Tried all of these: ');
+            for (let [cmd, error] of Object.entries(errors)) {
+              console.error(cmd + ':');
+              console.error(error);
+              console.log();
+            }
+          }
+        }
+      }
     }
     console.log();
     console.log('Running `npm install`');
     await execa('npm', ['i'], { stdio: 'inherit', cwd: path });
+
+    console.log();
+    console.log('workflow was successfully installed. ');
+    console.log();
+    console.log('Try the example with `workflow Example.js`');
   } else {
     console.log();
     console.log('Process aborted and no workflow-home was created.');
