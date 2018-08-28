@@ -5,8 +5,7 @@
   "bin": "cli.js",
   "files": [
     "dist",
-    "cli.js",
-    "index.js"
+    "cli.js"
   ],
   "scripts": {
     "example": "node cli.js Example.js"
@@ -18,6 +17,7 @@
   "keywords": [
     "wm",
     "workflow",
+    "workflow-wm",
     "cli",
     "i3",
     "osx",
@@ -34,8 +34,7 @@
     "execa": "^0.11.0",
     "prompt": "^1.0.0",
     "shelljs": "^0.8.2",
-    "workflow-cmd": "^0.1.1",
-    "workflow-core": "^0.1.1"
+    "workflow-cmd": "^0.1.1"
   },
   "devDependencies": {
     "react": "^16.4.2",
