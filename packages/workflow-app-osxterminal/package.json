@@ -4,6 +4,13 @@
   "main": "index.js",
   "description": "Workflow app for the builtin osx Terminal application",
   "license": "MIT",
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "keywords": [
+    "workflow-wm",
+    "Terminal.App",
+    "osx",
+    "workflow"
+  ],
   "scripts": {
     "example": "node cli.js Example.js"
   },

@@ -4,6 +4,12 @@
   "description": "Workflow typescript loader",
   "license": "MIT",
   "main": "index.js",
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "keywords": [
+    "workflow-wm",
+    "typescript",
+    "workflow"
+  ],
   "dependencies": {
     "ts-node": "^7.0.1",
     "typescript": "^3.0.1"

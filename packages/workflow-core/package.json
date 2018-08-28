@@ -19,7 +19,8 @@
     "wm",
     "i3",
     "osx",
-    "windows"
+    "windows",
+    "workflow-wm"
   ],
   "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
   "license": "MIT",

@@ -8,6 +8,11 @@
   },
   "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "workflow-wm",
+    "angular",
+    "workflow"
+  ],
   "dependencies": {
     "@angular/animations": "^6.0.0",
     "@angular/common": "^6.1.3",

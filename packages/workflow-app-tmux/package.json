@@ -19,7 +19,7 @@
     "wm",
     "workflow",
     "workflow-wm",
-    "terminal"
+    "tmux"
   ],
   "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
   "license": "MIT",

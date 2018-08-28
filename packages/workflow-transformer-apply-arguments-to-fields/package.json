@@ -4,6 +4,12 @@
   "description": "Workflow transformer to support functions as app fields",
   "license": "MIT",
   "main": "index.js",
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "keywords": [
+    "workflow-wm",
+    "transformer",
+    "workflow"
+  ],
   "dependencies": {
     "lodash.mapvalues": "4.6.0"
   },

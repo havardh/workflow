@@ -4,8 +4,12 @@
   "description": "Command line interface for workflow.",
   "main": "cli.js",
   "repository": "https://github.com/havardh/workflow",
-  "author": "Håvard Wormdal Høiby",
   "license": "MIT",
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "keywords": [
+    "workflow-wm",
+    "workflow"
+  ],
   "dependencies": {
     "cross-spawn": "^6.0.5",
     "shelljs": "^0.8.2",

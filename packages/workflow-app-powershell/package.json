@@ -4,6 +4,12 @@
   "main": "index.js",
   "description": "Workflow app for PowerShell",
   "license": "MIT",
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "keywords": [
+    "workflow-wm",
+    "powershell",
+    "workflow"
+  ],
   "scripts": {
     "example": "node cli.js Example.js"
   },

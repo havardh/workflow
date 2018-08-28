@@ -4,6 +4,12 @@
   "description": "Workflow resolver for relative paths",
   "license": "MIT",
   "main": "index.js",
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "keywords": [
+    "workflow-wm",
+    "resolver",
+    "workflow"
+  ],
   "files": [
     "dist",
     "index.js"

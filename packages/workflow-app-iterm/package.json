@@ -4,7 +4,12 @@
   "description": "iTerm app wrapper for workflow.",
   "main": "index.js",
   "repository": "https://github.com/havardh/workflow",
-  "author": "Håvard Wormdal Høiby",
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "keywords": [
+    "workflow-wm",
+    "iterm",
+    "workflow"
+  ],
   "license": "MIT",
   "files": [
     "dist",

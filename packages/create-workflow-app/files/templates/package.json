@@ -4,6 +4,9 @@
   "main": "index.js",
   "description": "{{description}}",
   "license": "MIT",
+  "keywords": [
+    "workflow-wm"
+  ],
   "scripts": {
     "example": "node cli.js Example.js"
   },
