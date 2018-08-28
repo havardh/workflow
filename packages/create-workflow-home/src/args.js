@@ -25,87 +25,16 @@ export default function parse(args) {
 
   const command = args[0];
 
-  if (dev && command.endsWith('node')) {
-    console.log('Running dev mode');
+  const [node, cmd, targetFolder] = args; // eslint-disable-line
 
-    const [node, cmd, targetFolder] = args; // eslint-disable-line
-
-    if (args.length === 2) {
-      return {};
-    } else if (args.length === 3) {
-      return { targetFolder };
-    } else {
-      console.error('Invalid arguments');
-      console.log();
-      usage();
-      process.exit(1);
-    }
+  if (args.length === 2) {
+    return {};
+  } else if (args.length === 3) {
+    return { targetFolder };
+  } else {
+    console.error("Invalid arguments: '" + args.join(' ') + "'");
+    console.log();
+    usage();
+    process.exit(1);
   }
-
-  switch (command) {
-    case 'npm':
-      if (args.length !== 3 || args.length !== 4) {
-        console.error('Invalid number of arguments');
-        console.log();
-        usage();
-        process.exit(1);
-      } else if (args[1] !== 'init') {
-        console.error('Unsupported npm command:', args[1]);
-        console.log();
-        usage();
-        process.exit(1);
-      } else if (args[2] !== 'workflow-home') {
-        console.error('Unknown initializer name:', args[1]);
-        console.log();
-        usage();
-        process.exit(1);
-      } else if (args.length === 3) {
-        return {};
-      } else if (args.length === 4) {
-        return { targetFolder: args[3] };
-      }
-      break;
-    case 'yarn':
-      if (args.length !== 3 || args.length !== 4) {
-        console.error('Invalid number of arguments');
-        console.log();
-        usage();
-        process.exit(1);
-      } else if (args[1] !== 'create') {
-        console.error('Unsupported yarn command:', args[1]);
-        console.log();
-        usage();
-        process.exit(1);
-      } else if (args[2] !== 'workflow-home') {
-        console.error('Unknown initializer name:', args[1]);
-        console.log();
-        usage();
-        process.exit(1);
-      } else if (args.length === 3) {
-        return {};
-      } else if (args.length === 4) {
-        return { targetFolder: args[3] };
-      }
-      break;
-    case 'npx':
-      if (args.length !== 2 || args.length !== 3) {
-        console.error('Invalid number of arguments');
-        console.log();
-        usage();
-        process.exit(1);
-      } else if (args[2] !== 'create-workflow-home') {
-        console.error('Unknown initializer name:', args[1]);
-        console.log();
-        usage();
-        process.exit(1);
-      } else if (args.length === 3) {
-        return {};
-      } else if (args.length === 4) {
-        return { targetFolder: args[3] };
-      }
-  }
-  console.log('Invalid arguments');
-  console.log();
-  usage();
-  process.exit(1);
 }
