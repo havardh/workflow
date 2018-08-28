@@ -1,8 +1,10 @@
-# Workflow configuration folder
+# Workflow home folder
 
 This folder is your personal configuration of workflow. In it you can override
-defaults and contain your own flows. This folder has been initialized by the
-`workflow-cmd` tool in the post install hook of running `npm i -g workflow-cmd`.
+defaults and contain your own `flow` filess. This folder has been initialized by
+the `create-workflow-home` initializer. To make workflow use this folder it must
+either be located on the default path `~/.workflow` or you can set the value of
+the `WORKFLOW_HOME` environment variable to point to it.
 
 The `workflow` command can be used globally to execute workflows defined in the
 `/flows` folder. To executed the example workflow run the following command from
@@ -16,7 +18,7 @@ workflow Example.js
 
 The initial layout of the `workflow` home folder is here described. You
 are free to modify it to your liking. The only **required** file in this
-folder is the `cli.js` file which is executed by the `workflow` command.
+folder is the `config.js` file which is read by the `workflow` command.
 
 ### `apps/`
 A folder for specifying your default apps and any applications definitions that
@@ -26,7 +28,7 @@ you do not find in the `workflow` repository.
 Workflow specifies platform independent default apps to make it possible to
 write platform independent workflows. These are currently `TextEditor`,
 `Terminal` and `Browser`. Edit the contents of this file to set these defaults
-to your linking.
+to your linking. They will be exposed throw the `workflow-apps-defaults` package.
 
 #### `apps/user.js`
 This is not a special files, it is more of a convention. Here you can add `app`
@@ -35,7 +37,8 @@ the need to add apps here you should consider filing an issue or a pull request
 so that we can include the `app` definition in the main `workflow` repository.
 
 ### `flows/`
-The folder which `workflow` will try to resolve workflows relative to.
+The folder which `workflow` will try to resolve workflows relative to. The path
+to this folder is specified in the `config.js` file.
 
 #### `flows/Example.js`
 An example of a workflow definition file.
@@ -47,11 +50,13 @@ An example of a workflow definition file using the `workflow-react` package.
 The installed node modules as dependent on by the `package.json` file.
 
 ### `config.js`
-This file contains the configuration of `workflow`. It is read when executing `workflow`.
+This file contains the configuration of `workflow`. It is read when executing
+`workflow`. The default export of this file is documented in the code example
+below.
 
 `workflow-core` does not enforce an order of excution of the configured parts.
 However, for simplicity we will assume you are using `workflow-cmd` and in particular
-the [`exec`](https://github.com/havardh/workflow/blob/master/packages/workflow-cmd/src/index.js#L19) 
+the [`exec`](https://github.com/havardh/workflow/blob/220805e61bc1deaaae44cac313edf9d7b720630f/packages/workflow-cmd/src/index.js#L20)
 function. This function will call each of the phases described below in order.
 The result of the first phase will be passed into the next phase and so on.
 
@@ -68,8 +73,13 @@ module.exports = {
   ],
 
   // A loader takes the absolute path from a resolver and load the flow from
-  // the specified file.
-  loader: new WorkflowLoaderBabel({/* babel configuration */*}),
+  // the specified file. The optional filter function can be used to specify
+  // when the loader should be used. The example below shows how to only run
+  // babel on files with js or jsx extensions
+  loaders: [{
+    loader: new WorkflowLoaderBabel({/* babel configuration */*}),
+    filter: path => path.match(/\.jsx?$/)
+  }],
 
   // The arguments parser will translate the command line arguments into
   // data structure which is passed to the transformers, layout and wm.
@@ -96,7 +106,7 @@ module.exports = {
 
 ### `package.json`
 Regular `npm` `package.json` file. You can install any packages here using
-`npm` or `yarn` and use them in your `workflows` or `app` definitions.
+`npm` or `yarn` and use them in your `flow` files or `app` definitions.
 
 ### `Readme.md`
 This file.
