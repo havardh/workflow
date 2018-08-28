@@ -42,6 +42,8 @@
     "workflow-react": "1.0.0",
     "{{workflow.wm.name}}": "{{workflow.wm.version}}",
     "workflow-layout": "1.0.0",
+    "workflow-layout-tiled": "1.0.0",
+    "workflow-apps-defaults": "0.3.0",
     "workflow-transformer-apply-arguments-to-fields": "1.0.0",
     "workflow-resolver-relative": "1.0.0",
     "workflow-resolver-absolute": "1.0.0",
