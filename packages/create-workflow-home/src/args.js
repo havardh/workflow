@@ -1,7 +1,5 @@
 /* eslint-env node */
 /* eslint-disable no-console */
-import { dev } from 'shared/env';
-
 function usage() {
   console.log(`Initialize workflow-home directory
 
@@ -22,8 +20,6 @@ export default function parse(args) {
     usage();
     process.exit(1);
   }
-
-  const command = args[0];
 
   const [node, cmd, targetFolder] = args; // eslint-disable-line
 
