@@ -4,6 +4,12 @@
   "main": "index.js",
   "description": "Workflow app for unix ssh command",
   "license": "MIT",
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "keywords": [
+    "workflow-wm",
+    "ssh",
+    "workflow"
+  ],
   "scripts": {
     "example": "node cli.js Example.js"
   },

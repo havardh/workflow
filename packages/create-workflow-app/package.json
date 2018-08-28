@@ -6,6 +6,9 @@
   "repository": "https://github.com/havardh/workflow",
   "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "workflow-wm"
+  ],
   "files": [
     "dist",
     "files",

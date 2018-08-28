@@ -4,7 +4,12 @@
   "description": "Tiled layout for workflow",
   "main": "index.js",
   "repository": "https://github.com/havardh/workflow",
-  "author": "Håvard Wormdal Høiby",
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "keywords": [
+    "workflow-wm",
+    "layout",
+    "workflow"
+  ],
   "license": "MIT",
   "files": [
     "index.js",

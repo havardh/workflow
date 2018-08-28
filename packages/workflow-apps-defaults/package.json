@@ -4,6 +4,12 @@
   "description": "Platform independent default apps",
   "main": "index.js",
   "license": "MIT",
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "keywords": [
+    "workflow-wm",
+    "apps",
+    "workflow"
+  ],
   "scripts": {
     "example": "node cli.js Example.js"
   },

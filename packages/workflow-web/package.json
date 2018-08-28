@@ -3,6 +3,11 @@
   "version": "0.1.1",
   "main": "index.js",
   "license": "MIT",
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "keywords": [
+    "workflow-wm",
+    "workflow"
+  ],
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development --hot",
     "build": "webpack --config webpack.config.js --mode production"

@@ -4,6 +4,12 @@
   "description": "Workflow babel loader",
   "license": "MIT",
   "main": "index.js",
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "keywords": [
+    "workflow-wm",
+    "babel",
+    "workflow"
+  ],
   "dependencies": {
     "babel-register": "^6.24.1"
   },
