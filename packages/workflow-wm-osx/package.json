@@ -26,6 +26,6 @@
   "dependencies": {
     "@jxa/run": "^1.1.0",
     "osascript": "^1.2.0",
-    "shelljs": "^0.8.1"
+    "screen-info": "^1.0.1"
   }
 }
