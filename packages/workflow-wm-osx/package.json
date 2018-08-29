@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "osx window manager adapter for workflow",
   "main": "index.js",
+  "scripts": {
+    "example": "node cli.js Example.js"
+  },
   "files": [
     "index.js",
     "dist"
