@@ -1,8 +1,8 @@
 /* eslint-env node */
 /* eslint-disable no-console */
 import * as osascript from 'osascript';
-import shell from 'shelljs';
 import { run } from '@jxa/run';
+import screen from "screen-info"
 
 import { findAllApps } from 'shared/tree';
 
@@ -19,13 +19,8 @@ async function wrapperRun(code, ...args) {
 }
 
 class Osx {
-  async screen() {
-    const result = shell.exec(
-      `system_profiler SPDisplaysDataType | grep Resolution | awk '{ printf "{\\"width\\": %s, \\"height\\": %s}", $2, $4 }'`,
-      { silent: true }
-    );
-
-    const { width, height } = JSON.parse(result.stdout);
+  screen() {
+    const {width, height} = screen.main()
 
     return { left: 0, top: 0, width, height };
   }
