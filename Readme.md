@@ -1,5 +1,7 @@
 # Workflow
 
+[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/workflow)
+
 An experiment in declarative windows management with an optional [React](packages/workflow-react)
 frontend and an experimental [Angular](packages/workflow-angular) frontend.
 
