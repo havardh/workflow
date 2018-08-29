@@ -70,4 +70,4 @@ All contributions to `workflow` are welcome. Checkout the [Contributions](contri
 ## Code of conduct
 
 By making a contribution to this project you agree to abide by the 
-[Code of Conduct][code-of-conduct.md].
+[Code of Conduct](code-of-conduct.md).
