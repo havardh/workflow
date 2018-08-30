@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-atom",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "index.js",
   "description": "Workflow app for the Atom text editor",
   "license": "MIT",
@@ -31,7 +31,7 @@
     "workflow-resolver-absolute": "1.0.0",
     "workflow-resolver-relative": "1.0.0",
     "workflow-transformer-apply-arguments-to-fields": "1.0.0",
-    "workflow-wm-osx": "1.0.0"
+    "workflow-wm-osx": "1.0.1"
   },
   "dependencies": {
     "execa": "^1.0.0"

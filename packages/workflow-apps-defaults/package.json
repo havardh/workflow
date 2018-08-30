@@ -1,6 +1,6 @@
 {
   "name": "workflow-apps-defaults",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Platform independent default apps",
   "main": "index.js",
   "license": "MIT",
@@ -36,8 +36,8 @@
   "dependencies": {
     "workflow-apps-html": "0.2.0",
     "workflow-app-iterm": "0.3.0",
-    "workflow-app-safari": "0.2.0",
-    "workflow-app-atom": "0.2.0",
+    "workflow-app-safari": "0.2.1",
+    "workflow-app-atom": "0.2.1",
     "workflow-app-chrome": "0.2.0",
     "workflow-app-xterm": "0.2.0",
     "workflow-app-notepad": "0.2.0",
