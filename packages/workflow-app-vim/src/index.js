@@ -8,7 +8,7 @@ const vim = {
       throw new Error('Context is not supported');
     }
 
-    return `vim ${file}`;
+    return `vim ${file || ''}`;
   },
 };
 
