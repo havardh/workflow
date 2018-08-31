@@ -2,7 +2,6 @@
 /* eslint-disable no-console */
 import fs from 'fs-extra';
 import path from 'path';
-import set from 'lodash.set';
 import get from 'lodash.get';
 import parse from './args';
 
@@ -52,29 +51,53 @@ function copyStaticFiles() {
 
 function readVersions() {
   if (!readVersions.versions) {
-    const versionPath = resolveSource('versions.json');
+    const rootPkgPath = resolveRoot('package.json');
+    const rootPkgString = fs.readFileSync(rootPkgPath, 'utf8');
+    const rootPkg = JSON.parse(rootPkgString);
+    const { version, devDependencies } = rootPkg;
 
-    const versionsString = fs.readFileSync(versionPath, 'utf8');
-    const versions = JSON.parse(versionsString);
+    const workflowWmName = resolvePlatformWorkflowWm();
 
-    readVersions.versions = set(
-      versions,
-      'workflow.wm',
-      get(versions, `workflow.wm.${platform}.${wm}`)
-    );
+    console.log(devDependencies);
+
+    readVersions.versions = {
+      ...devDependencies,
+      'workflow.home.version': version,
+      'workflow.wm.name': workflowWmName,
+      'workflow.wm.version': devDependencies[workflowWmName],
+    };
   }
 
   return readVersions.versions;
 }
 
+function resolvePlatformWorkflowWm() {
+  switch (`${platform}-${wm}`) {
+    case 'linux-i3':
+      return 'workflow-wm-i3';
+    case 'darwin-default':
+      return 'workflow-wm-osx';
+    case 'windows-default':
+      return 'workflow-wm-windows';
+    case 'linux-default':
+      return 'workflow-wm-wmctrl';
+    default:
+      throw new Error(`Cannot initialize platform ${platform}-${wm}`);
+  }
+}
+
 function renderTemplate(template, path, values) {
   const templateString = fs.readFileSync(template, 'utf8');
 
-  const renderedTemplate = templateString.replace(/{{([a-z.]*)}}/g, (_, prelude) =>
+  const renderedTemplate = templateString.replace(/{{([a-z.-]*)}}/g, (_, prelude) =>
     get(values, prelude)
   );
 
   fs.writeFileSync(path, renderedTemplate);
+}
+
+function resolveRoot(...args) {
+  return path.join(__dirname, '..', ...args);
 }
 
 function resolveSource(...args) {
