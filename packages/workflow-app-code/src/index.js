@@ -12,6 +12,7 @@ const code = {
   xClass: 'Code',
   params: ['file'],
   open: platform({
+    'linux-i3': ({ file }) => `code -n ${file}`,
     'osx-default': osx,
     'win32-default': windows,
   }),
