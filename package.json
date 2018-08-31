@@ -2,14 +2,14 @@
   "private": true,
   "name": "workflow-root",
   "version": "0.0.3",
-  "workspaces": [
-    "packages/*"
-  ],
   "description": "Workflow-centric workspace manager",
   "scripts": {
+    "bootstrap": "lerna bootstrap",
     "start": "node cli.js",
     "eslint": "eslint .",
     "build": "rollup -c",
+    "prepublish": "yarn build",
+    "release": "lerna publish",
     "format:file": "prettier $(cat .prettier) --write ",
     "format": "npm run --silent format:file -- '**/*.[jt]s'",
     "check-format:file": "prettier $(cat .prettier) --list-different ",
@@ -17,6 +17,9 @@
     "test": "jest",
     "watch": "jest --watch"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "babel": {
     "presets": [
       "flow",
@@ -92,6 +95,7 @@
     "eslint-plugin-react": "^7.7.0",
     "flow-bin": "0.68.0",
     "jest-junit": "^3.4.1",
+    "lerna": "^3.2.1",
     "sinon": "^4.4.8",
     "sinon-chai": "^3.0.0"
   },

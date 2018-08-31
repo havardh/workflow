@@ -59,8 +59,9 @@ Development mode is activated by setting the environment variable `WORKFLOW_DEV_
 Note, you can set up an additional <workflow-home> for dev with the create-workflow-home package.
 
 ```bash
-yarn // setup all dependencies. 
-yarn build // run rollup to build all packages
+yarn            # setup all dependencies
+yarn bootstrap  # bootstrap lerna
+yarn build      # run rollup to build all packages
 
 node ./packages/create-workflow-home/cli.js <workflow-home-dev>
 WORKFLOW_DEV_MODE=true WORKFLOW_DEV_HOME=<workflow-home-dev> node ./packages/workflow/cli.js Example.js
