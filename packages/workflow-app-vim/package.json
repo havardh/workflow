@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-vim",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "index.js",
   "description": "Workflow app for the vim text editor",
   "license": "MIT",
