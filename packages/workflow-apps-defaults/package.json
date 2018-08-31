@@ -10,6 +10,10 @@
     "apps",
     "workflow"
   ],
+  "files": [
+    "dist",
+    "index.js"
+  ],
   "scripts": {
     "example": "node cli.js Example.js"
   },
