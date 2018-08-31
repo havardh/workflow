@@ -27,20 +27,20 @@
     "workflow-react": "1.0.0",
     "workflow-wm-auto": "0.3.2",
     "workflow-layout": "1.0.0",
-    "workflow-transformer-apply-arguments-to-fields": "1.0.0",
-    "workflow-resolver-relative": "1.0.0",
-    "workflow-resolver-absolute": "1.0.0",
     "workflow-loader-babel": "1.0.0",
-    "workflow-parser-arguments": "1.0.0"
+    "workflow-parser-arguments": "1.0.0",
+    "workflow-resolver-absolute": "1.0.0",
+    "workflow-resolver-relative": "1.0.0",
+    "workflow-transformer-apply-arguments-to-fields": "1.0.0"
   },
   "dependencies": {
-    "workflow-apps-html": "0.2.0",
-    "workflow-app-iterm": "0.3.0",
-    "workflow-app-safari": "0.2.1",
     "workflow-app-atom": "0.2.1",
     "workflow-app-chrome": "0.2.0",
-    "workflow-app-xterm": "0.2.0",
+    "workflow-app-iterm": "0.3.0",
     "workflow-app-notepad": "0.2.0",
-    "workflow-app-powershell": "0.2.0"
+    "workflow-app-powershell": "0.2.0",
+    "workflow-app-safari": "0.2.1",
+    "workflow-app-xterm": "0.2.0",
+    "workflow-apps-html": "0.2.0"
   }
 }
