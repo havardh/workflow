@@ -1,6 +1,6 @@
 {
   "name": "create-workflow-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create workflow app",
   "bin": "./index.js",
   "repository": "https://github.com/havardh/workflow",

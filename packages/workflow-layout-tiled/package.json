@@ -1,6 +1,6 @@
 {
   "name": "workflow-layout-tiled",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tiled layout for workflow",
   "main": "index.js",
   "repository": "https://github.com/havardh/workflow",
@@ -36,6 +36,6 @@
     "workflow-resolver-absolute": "1.0.0",
     "workflow-resolver-relative": "1.0.0",
     "workflow-transformer-apply-arguments-to-fields": "1.0.0",
-    "workflow-wm-auto": "0.3.0"
+    "workflow-wm-auto": "0.3.2"
   }
 }
