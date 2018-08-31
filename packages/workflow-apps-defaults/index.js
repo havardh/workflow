@@ -1,4 +1,3 @@
-// @flow
 /* eslint-env node */
 /* eslint-disable no-console */
 
@@ -8,7 +7,6 @@ const defaultApps = ['Terminal', 'Browser', 'TextEditor'];
 
 let defaults = {};
 
-// $FlowSuppress
 if (process.browser) {
   defaults = require('workflow-apps-html').defaults;
 } else {
@@ -45,8 +43,9 @@ if (process.browser) {
 
   const userDefaults = (() => {
     try {
-      // $FlowSuppress
-      return require(`${os.homedir()}/.workflow/apps/defaults`);
+      const defaultModule = require(`${os.homedir()}/.workflow/apps/defaults`);
+
+      return defaultModule.default || defaultModule;
     } catch (error) {
       if (error.code !== 'MODULE_NOT_FOUND') {
         throw error;
