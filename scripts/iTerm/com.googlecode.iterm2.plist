@@ -308,6 +308,8 @@
 				<key>Red Component</key>
 				<real>1</real>
 			</dict>
+			<key>Cursor Type</key>
+			<integer>0</integer>
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
