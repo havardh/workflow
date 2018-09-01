@@ -7,9 +7,16 @@ const PowerShell = {
       throw new Error('Unsupported platform ' + platform);
     }
 
+    let args = [];
+    if (cmd) {
+      args = ['-NoExit', '-Command', cmd];
+    } else {
+      args = ['-NoExit'];
+    }
+
     await startOnPositionByReturnedPid({
       cmd: 'PowerShell.exe',
-      args: ['-NoExit', '-Command', cmd],
+      args,
       position,
     });
   },
