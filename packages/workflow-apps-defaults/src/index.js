@@ -47,9 +47,6 @@ if (process.browser) {
       const path = join(baseFolder, 'apps', 'defaults');
       const defaultModule = require(path);
 
-      console.log(path);
-      process.exit(1);
-
       return defaultModule.default || defaultModule;
     } catch (error) {
       if (error.code !== 'MODULE_NOT_FOUND') {
