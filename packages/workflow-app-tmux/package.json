@@ -26,23 +26,5 @@
   "bugs": {
     "url": "https://github.com/havardh/workflow/issues"
   },
-  "homepage": "https://github.com/havardh/workflow/tree/master/packages/workflow-app-tmux#readme",
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-polyfill": "^6.9.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-flow": "^6.23.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-register": "^6.24.1",
-    "react": "^16.2.0",
-    "workflow-core": "1.0.0",
-    "workflow-layout": "1.0.0",
-    "workflow-loader-babel": "1.0.0",
-    "workflow-react": "1.0.0",
-    "workflow-resolver-relative": "1.0.0",
-    "workflow-transformer-apply-arguments-to-fields": "1.0.0",
-    "workflow-wm-terminal": "0.3.0"
-  }
+  "homepage": "https://github.com/havardh/workflow/tree/master/packages/workflow-app-tmux#readme"
 }
