@@ -39,9 +39,7 @@
     "workflow-transformer-apply-arguments-to-fields": "1.0.0",
     "workflow-wm-html": "0.2.0",
     "workflow-layout": "1.0.0",
-    "xterm": "^3.3.0"
-  },
-  "devDependencies": {
+    "xterm": "^3.3.0",
     "webpack-cli": "^2.1.2"
   }
 }

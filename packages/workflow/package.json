@@ -35,9 +35,5 @@
     "prompt": "^1.0.0",
     "shelljs": "^0.8.2",
     "workflow-cmd": "1.0.0"
-  },
-  "devDependencies": {
-    "react": "^16.4.2",
-    "workflow-react": "1.0.0"
   }
 }
