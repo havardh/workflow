@@ -10,10 +10,8 @@
     "build": "rollup -c",
     "prepublish": "yarn build",
     "release": "lerna publish",
-    "format:file": "prettier $(cat .prettier) --write ",
-    "format": "npm run --silent format:file -- '**/*.[jt]s'",
-    "check-format:file": "prettier $(cat .prettier) --list-different ",
-    "check-format": "npm run --silent check-format:file -- '**/*.[jt]s'",
+    "format": "prettier '**/*.[jt]s' --write",
+    "check-format": "prettier '**/*.[jt]s' --list-different",
     "test": "jest",
     "watch": "jest --watch"
   },
