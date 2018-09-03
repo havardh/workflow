@@ -17,7 +17,9 @@ const githubUrl = 'https://github.com/havardh/workflow/tree/master/packages';
 function c([value]) {
   return (
     <span>
-      &nbsp;<span className="inline-code">{value}</span>&nbsp;
+      &nbsp;
+      <span className="inline-code">{value}</span>
+      &nbsp;
     </span>
   );
 }
