@@ -48,7 +48,7 @@ async function initWorkflowHome(path) {
       const errors = {};
 
       try {
-        await execa('npx', ['create-workflow-home', path], {
+        await execa('npx', ['create-workflow-home@latest', path], {
           stdio: 'inherit',
         });
       } catch (error) {
