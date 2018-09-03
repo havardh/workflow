@@ -40,7 +40,7 @@ async function promptPackageDetails() {
 }
 
 function renderTemplates({ packageName, description }) {
-  const variables = readVariables();
+  const versions = readVersions();
   const templates = findTemplates();
 
   for (let templateName of templates) {
@@ -48,7 +48,7 @@ function renderTemplates({ packageName, description }) {
     const templatePath = resolveSource('templates', templateName);
 
     renderTemplate(templatePath, pkgPath, {
-      ...variables,
+      ...versions,
       packageName,
       description,
     });
@@ -68,32 +68,35 @@ function findTemplates() {
   return fileSync(templateBase).map(absolutePath => path.relative(templateBase, absolutePath));
 }
 
-function readVariables() {
-  if (!readVariables.variables) {
-    const variablesPath = resolveSource('variables.json');
+function readVersions() {
+  if (!readVersions.versions) {
+    const rootPkgPath = resolveRoot('package.json');
+    const rootPkgString = fs.readFileSync(rootPkgPath, 'utf8');
+    const rootPkg = JSON.parse(rootPkgString);
+    const { version, devDependencies } = rootPkg;
 
-    const variablesString = fs.readFileSync(variablesPath, 'utf8');
-    const variables = JSON.parse(variablesString);
-
-    readVariables.variables = set(
-      variables,
-      'workflow.wm',
-      get(variables, `workflow.wm.${platform}.${wm}`)
-    );
+    readVersions.versions = {
+      ...devDependencies,
+      'workflow.app.version': version,
+    };
   }
 
-  return readVariables.variables;
+  return readVersions.versions;
 }
 
 async function renderTemplate(template, targetPath, values) {
   const templateString = fs.readFileSync(template, 'utf8');
 
-  const renderedTemplate = templateString.replace(/{{([a-zA-Z.]*)}}/g, (_, prelude) =>
+  const renderedTemplate = templateString.replace(/{{([a-zA-Z.-]*)}}/g, (_, prelude) =>
     get(values, prelude)
   );
 
   await fs.mkdirp(path.dirname(targetPath));
   fs.writeFileSync(targetPath, renderedTemplate);
+}
+
+function resolveRoot(...args) {
+  return path.join(__dirname, '..', ...args);
 }
 
 function resolveSource(...args) {
