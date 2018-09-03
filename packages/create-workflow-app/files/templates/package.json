@@ -20,14 +20,16 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
     "react": "^16.2.0",
-    "workflow-core": "0.1.1",
-    "workflow-react": "0.1.1",
-    "workflow-wm-terminal": "0.1.0",
-    "workflow-layout": "0.1.1",
-    "workflow-transformer-apply-arguments-to-fields": "0.1.0",
-    "workflow-resolver-relative": "0.1.0",
-    "workflow-resolver-absolute": "0.1.0",
-    "workflow-loader-babel": "0.1.0",
-    "workflow-parser-arguments": "0.1.0"
+    "workflow-core": "{{workflow-core}}",
+    "workflow-react": "{{workflow-react}}",
+    "workflow-wm-terminal": "{{workflow-wm-terminal}}",
+    "workflow-layout": "{{workflow-layout}}",
+    "workflow-layout-tiled": "{{workflow-layout-tiled}}",
+    "workflow-apps-defaults": "{{workflow-apps-defaults}}",
+    "workflow-transformer-apply-arguments-to-fields": "{{workflow-transformer-apply-arguments-to-fields}}",
+    "workflow-resolver-relative": "{{workflow-resolver-relative}}",
+    "workflow-resolver-absolute": "{{workflow-resolver-absolute}}",
+    "workflow-loader-babel": "{{workflow-loader-babel}}",
+    "workflow-parser-arguments": "{{workflow-parser-arguments}}"
   }
 }

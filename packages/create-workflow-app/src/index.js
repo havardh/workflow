@@ -7,7 +7,10 @@ import get from 'lodash.get';
 import prompt from 'prompt';
 import { fileSync } from 'find';
 
+import parse from './args';
 import { platform, wm } from 'shared/env';
+
+const { targetFolder } = parse(process.argv);
 
 Promise.resolve()
   .then(promptPackageDetails)
@@ -16,7 +19,7 @@ Promise.resolve()
   .catch(err => console.error(err)); // eslint-disable-line no-console
 
 async function promptPackageDetails() {
-  const packageName = path.basename(path.resolve());
+  const packageName = path.basename(resolveTarget());
 
   var schema = {
     properties: {
@@ -82,14 +85,14 @@ function readVariables() {
   return readVariables.variables;
 }
 
-function renderTemplate(template, targetPath, values) {
+async function renderTemplate(template, targetPath, values) {
   const templateString = fs.readFileSync(template, 'utf8');
 
   const renderedTemplate = templateString.replace(/{{([a-zA-Z.]*)}}/g, (_, prelude) =>
     get(values, prelude)
   );
 
-  fs.mkdirp(path.dirname(targetPath));
+  await fs.mkdirp(path.dirname(targetPath));
   fs.writeFileSync(targetPath, renderedTemplate);
 }
 
@@ -99,7 +102,15 @@ function resolveSource(...args) {
 
 function resolveTarget(...args) {
   if (args) {
-    return path.resolve(...args);
+    return path.join(resolveTargetFolder(), ...args);
+  } else {
+    return resolveTargetFolder();
+  }
+}
+
+function resolveTargetFolder() {
+  if (targetFolder) {
+    return path.resolve(targetFolder);
   } else {
     return path.resolve();
   }
