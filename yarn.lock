@@ -8146,15 +8146,6 @@ react@^16.3.2:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react@^16.4.2:
-  version "16.4.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.4.2.tgz#2cd90154e3a9d9dd8da2991149fdca3c260e129f"
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.0"
-
 read-cache@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/read-cache/-/read-cache-1.0.0.tgz#e664ef31161166c9751cdbe8dbcf86b5fb58f774"
@@ -10593,117 +10584,28 @@ worker-farm@^1.3.1, worker-farm@^1.5.2:
   dependencies:
     errno "~0.1.7"
 
-<<<<<<< HEAD
-workflow-app-atom@0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/workflow-app-atom/-/workflow-app-atom-0.2.0.tgz#a111ed25b7283db7a3812b8d93ff06c1dcbba989"
-  dependencies:
-    execa "^1.0.0"
-
-workflow-app-safari@0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/workflow-app-safari/-/workflow-app-safari-0.2.0.tgz#d94881437ffb80c376fcc8b9ca65645db9603995"
-  dependencies:
-    babel-core "^6.26.0"
-    babel-plugin-transform-class-properties "^6.24.1"
-    babel-plugin-transform-object-rest-spread "^6.26.0"
-    babel-polyfill "^6.9.0"
-    babel-preset-env "^1.6.1"
-    babel-preset-flow "^6.23.0"
-    babel-preset-react "^6.24.1"
-    babel-register "^6.24.1"
-    react "^16.2.0"
-    workflow-core "1.0.0-beta"
-    workflow-layout "1.0.0-beta"
-    workflow-loader-babel "1.0.0-beta"
-    workflow-parser-arguments "1.0.0-beta"
-    workflow-react "1.0.0-beta"
-    workflow-resolver-absolute "1.0.0-beta"
-    workflow-resolver-relative "1.0.0-beta"
-    workflow-transformer-apply-arguments-to-fields "1.0.0-beta"
-    workflow-wm-osx "1.0.0-beta"
-
-workflow-apps-defaults@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/workflow-apps-defaults/-/workflow-apps-defaults-0.3.0.tgz#a97e7135dacb038aa640877d8a0292482bb6faa0"
-  dependencies:
-    workflow-app-atom "0.2.0"
-    workflow-app-chrome "0.2.0"
-    workflow-app-iterm "0.3.0"
-    workflow-app-notepad "0.2.0"
-    workflow-app-powershell "0.2.0"
-    workflow-app-safari "0.2.0"
-    workflow-app-xterm "0.2.0"
-    workflow-apps-html "0.2.0"
-
-workflow-core@1.0.0-beta:
-  version "1.0.0-beta"
-  resolved "https://registry.yarnpkg.com/workflow-core/-/workflow-core-1.0.0-beta.tgz#9d9dbad7cc9aa4373d2a8902a3c9d313d9207894"
-
-workflow-layout@1.0.0-beta:
-  version "1.0.0-beta"
-  resolved "https://registry.yarnpkg.com/workflow-layout/-/workflow-layout-1.0.0-beta.tgz#ea583bdbd533b6d6edbd98e25f1bd8db6eb7a14b"
-
-workflow-loader-babel@1.0.0-beta:
-  version "1.0.0-beta"
-  resolved "https://registry.yarnpkg.com/workflow-loader-babel/-/workflow-loader-babel-1.0.0-beta.tgz#ff0314086f6eb9e78300be5848ac151886d0fab5"
-  dependencies:
-    babel-register "^6.24.1"
-
-workflow-parser-arguments@1.0.0-beta:
-  version "1.0.0-beta"
-  resolved "https://registry.yarnpkg.com/workflow-parser-arguments/-/workflow-parser-arguments-1.0.0-beta.tgz#d430342d757c56641798076507cf3b6688a01f6e"
-
-workflow-react@1.0.0-beta:
-  version "1.0.0-beta"
-  resolved "https://registry.yarnpkg.com/workflow-react/-/workflow-react-1.0.0-beta.tgz#ce3e652efe1032913ce401befaf1da89abce6331"
+workflow-react@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/workflow-react/-/workflow-react-1.0.0.tgz#798b66354f93162ca33ebbd0c6e598a49402df19"
   dependencies:
     lodash "^4.17.5"
     react "^16.2.0"
     react-reconciler "^0.12.0"
 
-workflow-resolver-absolute@1.0.0-beta:
-  version "1.0.0-beta"
-  resolved "https://registry.yarnpkg.com/workflow-resolver-absolute/-/workflow-resolver-absolute-1.0.0-beta.tgz#58bf4430d639d93feb07ba62f890601ef3901f2a"
-
-workflow-resolver-relative@1.0.0-beta:
-  version "1.0.0-beta"
-  resolved "https://registry.yarnpkg.com/workflow-resolver-relative/-/workflow-resolver-relative-1.0.0-beta.tgz#39f0c44d4fc055278e033b2244c4bad701400029"
-
-workflow-transformer-apply-arguments-to-fields@1.0.0-beta:
-  version "1.0.0-beta"
-  resolved "https://registry.yarnpkg.com/workflow-transformer-apply-arguments-to-fields/-/workflow-transformer-apply-arguments-to-fields-1.0.0-beta.tgz#ef3e0bbd67e1e53e488bb058568de5521ffe3c7f"
+workflow-wm-html@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/workflow-wm-html/-/workflow-wm-html-0.2.0.tgz#f9c7854254c5e0f29c66a68ccb1290d8e35024e0"
   dependencies:
-    lodash.mapvalues "4.6.0"
+    ace-code-editor "^1.2.3"
+    css-loader "^0.28.11"
+    react "^16.2.0"
+    style-loader "^0.21.0"
+    uuid "^3.2.1"
+    workflow-core "1.0.0"
+    workflow-react "1.0.0"
+    xterm "^3.3.0"
+    xterm-webfont "^1.0.1"
 
-workflow-wm-auto@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/workflow-wm-auto/-/workflow-wm-auto-0.3.0.tgz#6835c23a54895e808ff208a2fdfd1f1497b8f13a"
-  dependencies:
-    shelljs "^0.8.2"
-    workflow-wm-i3 "1.0.0"
-    workflow-wm-osx "1.0.0"
-    workflow-wm-windows "0.3.0"
-    workflow-wm-wmctrl "0.2.0"
-
-workflow-wm-osx@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/workflow-wm-osx/-/workflow-wm-osx-1.0.0.tgz#6c6081f006a05041e0c957da52fe1cc367b037ea"
-  dependencies:
-    "@jxa/run" "^1.1.0"
-    osascript "^1.2.0"
-    shelljs "^0.8.1"
-
-workflow-wm-osx@1.0.0-beta:
-  version "1.0.0-beta"
-  resolved "https://registry.yarnpkg.com/workflow-wm-osx/-/workflow-wm-osx-1.0.0-beta.tgz#0dcd8e8a036de77dacebc4a48d26a0da827f718d"
-  dependencies:
-    "@jxa/run" "^1.1.0"
-    osascript "^1.2.0"
-    shelljs "^0.8.1"
-
-=======
->>>>>>> b8b46eb... fix: remove dev depenencies from packages
 wrap-ansi@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-2.1.0.tgz#d8fc3d284dd05794fe84973caecdd1cf824fdd85"
