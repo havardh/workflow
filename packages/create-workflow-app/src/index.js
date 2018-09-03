@@ -6,6 +6,7 @@ import set from 'lodash.set';
 import get from 'lodash.get';
 import prompt from 'prompt';
 import { fileSync } from 'find';
+import execa from 'execa';
 
 import parse from './args';
 import { platform, wm } from 'shared/env';
@@ -87,9 +88,13 @@ function readVersions() {
 async function renderTemplate(template, targetPath, values) {
   const templateString = fs.readFileSync(template, 'utf8');
 
-  const renderedTemplate = templateString.replace(/{{([a-zA-Z.-]*)}}/g, (_, prelude) =>
+  let renderedTemplate = templateString.replace(/{{([a-zA-Z.-]*)}}/g, (_, prelude) =>
     get(values, prelude)
   );
+
+  if ((await isWorkflowRepo()) && isPackageJson(targetPath)) {
+    renderedTemplate = filterWorkflowRepoPackageJson(renderedTemplate);
+  }
 
   await fs.mkdirp(path.dirname(targetPath));
   fs.writeFileSync(targetPath, renderedTemplate);
@@ -117,4 +122,25 @@ function resolveTargetFolder() {
   } else {
     return path.resolve();
   }
+}
+
+function isPackageJson(path) {
+  return resolveTarget('package.json') === path;
+}
+
+async function isWorkflowRepo() {
+  try {
+    const { stdout } = await execa('git', ['config', '--get', 'remote.origin.url']);
+    return stdout.trim() === 'git@github.com:havardh/workflow.git';
+  } catch (e) {
+    return false;
+  }
+}
+
+function filterWorkflowRepoPackageJson(pkgJsonString) {
+  const json = JSON.parse(pkgJsonString);
+
+  delete json.devDependencies;
+
+  return JSON.stringify(json, null, 2) + '\n';
 }
