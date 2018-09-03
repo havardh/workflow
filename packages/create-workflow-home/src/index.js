@@ -58,8 +58,6 @@ function readVersions() {
 
     const workflowWmName = resolvePlatformWorkflowWm();
 
-    console.log(devDependencies);
-
     readVersions.versions = {
       ...devDependencies,
       'workflow.home.version': version,
