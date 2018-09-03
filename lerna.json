@@ -11,5 +11,10 @@
     "**/__tests__/**",
     "**/test/**",
     "**/*.md"
-  ]
+  ],
+  "command": {
+    "publish": {
+      "message": "chore(release): publish %s"
+    }
+  }
 }
