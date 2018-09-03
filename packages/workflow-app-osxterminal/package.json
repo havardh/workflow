@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-osxterminal",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "index.js",
   "description": "Workflow app for the builtin osx Terminal application",
   "license": "MIT",
