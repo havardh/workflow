@@ -2,14 +2,12 @@
 import fs from 'fs-extra';
 import path from 'path';
 import { promisify } from 'util';
-import set from 'lodash.set';
 import get from 'lodash.get';
 import prompt from 'prompt';
 import { fileSync } from 'find';
 import execa from 'execa';
 
 import parse from './args';
-import { platform, wm } from 'shared/env';
 
 const { targetFolder } = parse(process.argv);
 
