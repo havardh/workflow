@@ -21,5 +21,18 @@
     "lodash.set": "^4.3.2",
     "prompt": "^1.0.0",
     "shelljs": "^0.8.2"
+  },
+  "devDependencies": {
+    "workflow-apps-defaults": "0.3.4",
+    "workflow-core": "1.0.0",
+    "workflow-layout": "1.0.0",
+    "workflow-layout-tiled": "1.0.2",
+    "workflow-loader-babel": "1.0.0",
+    "workflow-parser-arguments": "1.0.0",
+    "workflow-react": "1.0.1",
+    "workflow-resolver-absolute": "1.0.0",
+    "workflow-resolver-relative": "1.0.0",
+    "workflow-transformer-apply-arguments-to-fields": "1.0.0",
+    "workflow-wm-terminal": "0.3.0"
   }
 }
