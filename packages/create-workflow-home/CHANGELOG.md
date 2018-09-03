@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.5"></a>
+## [1.0.5](https://github.com/havardh/workflow/compare/create-workflow-home@1.0.4...create-workflow-home@1.0.5) (2018-09-03)
+
+
+### Bug Fixes
+
+* remove debug code ([d0cf116](https://github.com/havardh/workflow/commit/d0cf116))
+
+
+
+
+
 <a name="1.0.4"></a>
 ## 1.0.4 (2018-09-03)
 
