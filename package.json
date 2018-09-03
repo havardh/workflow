@@ -112,7 +112,7 @@
     "jest-image-snapshot": "2.4.2",
     "lodash": "^4.17.10",
     "lodash.flatmap": "^4.5.0",
-    "prettier": "^1.13.5",
+    "prettier": "^1.14.2",
     "rollup": "^0.57.1",
     "rollup-plugin-alias": "^1.4.0",
     "rollup-plugin-babel": "^3.0.3",
