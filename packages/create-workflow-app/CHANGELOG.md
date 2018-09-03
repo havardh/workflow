@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/havardh/workflow/compare/create-workflow-app@1.0.2...create-workflow-app@1.0.3) (2018-09-03)
+
+
+### Bug Fixes
+
+* add missing shebang to the index.js in create-workflow-app ([d88c87a](https://github.com/havardh/workflow/commit/d88c87a))
+
+
+
+
+
 <a name="1.0.2"></a>
 ## 1.0.2 (2018-09-03)
 
