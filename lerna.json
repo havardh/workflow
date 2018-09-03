@@ -5,5 +5,11 @@
   "useWorkspaces": true,
   "packages": [
     "packages/*"
+  ],
+  "ignoreChanges": [
+    "**/__fixtures__/**",
+    "**/__tests__/**",
+    "**/test/**",
+    "**/*.md"
   ]
 }
