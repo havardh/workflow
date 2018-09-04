@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 
+import { platform } from 'shared/apps';
+
 const Playlist = {
   type: 'app',
   name: 'Playlist',
@@ -9,22 +11,37 @@ const Playlist = {
   },
 };
 
+function getUri(children, context) {
+  if (!children || children.length === 0) {
+    return;
+  }
+  if (children.length > 1) {
+    throw new Error('Spotify support at most one child node');
+  }
+
+  const [child] = children;
+  return child.open(child, context, child.children);
+}
+
 const spotify = {
   type: 'app',
   name: 'Spotify',
   xClass: 'Spotify',
   params: ['minimized'],
-  open: ({ minimized }, context, children) => {
-    if (children.length !== 1) {
-      throw new Error('Spotify does not support more or less than one child node');
-    }
-
-    const [child] = children;
-    const uri = child.open(child, context, child.children);
-
-    return `spotify --uri='${uri}' &`;
-  },
+  open: platform({
+    'linux-i3': linux,
+  }),
 };
+
+function linux({ mimimized }, context, children) {
+  const uri = getUri(children, context);
+  if (uri) {
+    return `spotify --uri='${uri}' &`;
+  } else {
+    return 'spotify &';
+  }
+}
+
 
 export default spotify;
 
