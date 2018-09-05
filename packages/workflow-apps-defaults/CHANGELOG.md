@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.5"></a>
+## [0.3.5](https://github.com/havardh/workflow/compare/workflow-apps-defaults@0.3.4...workflow-apps-defaults@0.3.5) (2018-09-05)
+
+
+### Bug Fixes
+
+* **workflow-apps-defaults:** add missing shelljs dependency ([e878247](https://github.com/havardh/workflow/commit/e878247))
+
+
+
+
+
 <a name="0.3.4"></a>
 ## 0.3.4 (2018-09-03)
 

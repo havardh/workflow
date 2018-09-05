@@ -1,6 +1,6 @@
 {
   "name": "create-workflow-home",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Create workflow home folder",
   "bin": "./index.js",
   "repository": "https://github.com/havardh/workflow",
@@ -20,7 +20,7 @@
     "shelljs": "^0.8.2"
   },
   "devDependencies": {
-    "workflow-apps-defaults": "0.3.4",
+    "workflow-apps-defaults": "^0.3.5",
     "workflow-core": "1.0.0",
     "workflow-layout": "1.0.0",
     "workflow-layout-tiled": "1.0.2",
