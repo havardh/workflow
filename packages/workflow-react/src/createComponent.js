@@ -71,3 +71,16 @@ export function createComponent(node) {
     throw new Error(`Could not create component for node '${JSON.stringify(node)}'`);
   }
 }
+
+export function createComponentRecursive(module) {
+  if (module.type) {
+    return createComponent(module);
+  } else {
+    return Object.assign(
+      {},
+      ...Object.keys(module).map(k => ({
+        [k]: createComponentRecursive(module[k]),
+      }))
+    );
+  }
+}

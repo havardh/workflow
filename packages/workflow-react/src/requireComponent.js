@@ -1,18 +1,5 @@
 /* eslint-env node */
-import createComponent from './createComponent';
-
-function createComponentRecursive(module) {
-  if (module.type) {
-    return createComponent(module);
-  } else {
-    return Object.assign(
-      {},
-      ...Object.keys(module).map(k => ({
-        [k]: createComponentRecursive(module[k]),
-      }))
-    );
-  }
-}
+import { createComponentRecursive } from './createComponent';
 
 export default function requireComponent(path) {
   const module = require(path);
