@@ -18,6 +18,7 @@
     "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.js"
   },
   "dependencies": {
+    "default-browser": "^2.0.1",
     "shelljs": "^0.8.2",
     "workflow-app-atom": "^2.0.0",
     "workflow-app-chrome": "^2.0.0",

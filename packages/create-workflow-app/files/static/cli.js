@@ -8,6 +8,7 @@ const { WorkflowParserArguments } = require('workflow-parser-arguments');
 const {
   WorkflowTransformerApplyArgumentsToFields,
 } = require('workflow-transformer-apply-arguments-to-fields');
+const WorkflowTransformerAsync = require('workflow-transformer-async');
 const { WorkflowLayout } = require('workflow-layout');
 const { WorkflowWmTerminal } = require('workflow-wm-terminal');
 
@@ -37,7 +38,7 @@ const config = {
   ],
   loaders: [{ loader: new WorkflowLoaderBabel(babelConfig) }],
   argumentParser: new WorkflowParserArguments(),
-  transformers: [new WorkflowTransformerApplyArgumentsToFields()],
+  transformers: [new WorkflowTransformerAsync(), new WorkflowTransformerApplyArgumentsToFields()],
   layout: new WorkflowLayout(),
   wm: new WorkflowWmTerminal(),
 };
