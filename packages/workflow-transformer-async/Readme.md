@@ -16,3 +16,17 @@ export default {
   ...
 };
 ```
+
+## Usage
+
+```
+import defaultBrowser from "default-browser"
+
+export const DefaultBrowser = {
+  type: "async",
+  loader: async () => {
+    const browserName = (await defaultBrowser()).name.toLowerCase();
+    return require("workflow-app-" + browserName)
+  }
+}
+```
