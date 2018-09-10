@@ -1,0 +1,13 @@
+{
+  "name": "workflow-app-textedit",
+  "version": "1.0.0-rc.0",
+  "main": "index.js",
+  "description": "Workflow app for TextEdit",
+  "license": "MIT",
+  "keywords": [
+    "workflow-wm"
+  ],
+  "scripts": {
+    "example": "node cli.js Example.js"
+  }
+}
