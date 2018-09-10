@@ -1,5 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`argument name should throw an error if - is succeded by a word 1`] = `"expected -config to be a single char arg"`;
-
 exports[`argument name should throw an error if -- is succeded by a single character 1`] = `"expected --c to be a word arg"`;

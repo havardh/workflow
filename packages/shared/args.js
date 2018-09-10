@@ -30,7 +30,6 @@ function getArgName(arg) {
     if (arg.length === 3) throw new Error(`expected ${arg} to be a word arg`);
     sliceIndex = 2;
   } else {
-    if (arg.length > 2) throw new Error(`expected ${arg} to be a single char arg`);
     sliceIndex = 1;
   }
   return arg.slice(sliceIndex, arg.length);
