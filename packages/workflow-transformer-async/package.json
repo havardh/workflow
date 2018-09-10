@@ -1,6 +1,6 @@
 {
   "name": "workflow-transformer-async",
-  "version": "0.0.0",
+  "version": "1.0.0-rc.0",
   "description": "Workflow transformer to support async type",
   "license": "MIT",
   "main": "index.js",
