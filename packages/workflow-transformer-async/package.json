@@ -1,0 +1,20 @@
+{
+  "name": "workflow-transformer-async",
+  "version": "0.0.0",
+  "description": "Workflow transformer to support async type",
+  "license": "MIT",
+  "main": "index.js",
+  "author": "Rolf Erik Lekang <me@rolflekang.com>",
+  "scripts": {
+    "example": "node cli.js Example.js"
+  },
+  "keywords": [
+    "workflow-wm",
+    "transformer",
+    "workflow"
+  ],
+  "files": [
+    "dist",
+    "index.js"
+  ]
+}
