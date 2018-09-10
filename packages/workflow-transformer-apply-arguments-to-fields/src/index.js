@@ -10,13 +10,14 @@ function parseValue(value, args) {
 }
 
 export default class WorkflowTransformerApplyArgumentsToFields {
-  async transformBefore() {}
   async transformAfter(node, { args }) {
     switch (node.type) {
       case 'app': {
         const { open, ...rest } = node;
         return { open, ...mapValues(rest, v => parseValue(v, args)) };
       }
+      default:
+        return node;
     }
   }
 }

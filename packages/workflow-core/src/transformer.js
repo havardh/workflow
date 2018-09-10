@@ -1,5 +1,9 @@
 export async function apply(node, transformer, args, parent = undefined) {
-  let transformed = (await transformer.transformBefore(node, { args, parent })) || node;
+  let transformed = node;
+
+  if (typeof transformer.transformBefore === 'function') {
+    transformed = (await transformer.transformBefore(node, { args, parent })) || node;
+  }
 
   let children = undefined;
   for (const child of node.children || []) {
@@ -7,10 +11,12 @@ export async function apply(node, transformer, args, parent = undefined) {
     children.push(await apply(child, transformer, args, node));
   }
 
-  transformed = (await transformer.transformAfter(
-    { ...transformed, children },
-    { args, parent }
-  )) || { ...transformed, children };
+  if (typeof transformer.transformAfter === 'function') {
+    transformed = (await transformer.transformAfter(
+      { ...transformed, children },
+      { args, parent }
+    )) || { ...transformed, children };
+  }
 
   return { ...transformed, children };
 }
