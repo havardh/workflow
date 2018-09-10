@@ -17,7 +17,7 @@ if (process.browser) {
         return {
           Terminal: require('workflow-app-iterm'),
           Browser: require('workflow-app-safari'),
-          TextEditor: require('workflow-app-atom'),
+          TextEditor: require('workflow-app-textedit'),
         };
       case 'win32':
         return {
