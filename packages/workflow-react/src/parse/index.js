@@ -1,5 +1,5 @@
 import { omit } from 'lodash';
-import { Root, Workspace, App, Layout } from '../components/index';
+import { Root, Workspace, App, Layout, Async } from '../components/index';
 
 const parse = component => {
   const { children, props } = component;
@@ -8,6 +8,7 @@ const parse = component => {
     !(component instanceof Root) &&
     !(component instanceof Workspace) &&
     !(component instanceof App) &&
+    !(component instanceof Async) &&
     !(component instanceof Layout)
   ) {
     throw new Error('Component unknown: ', JSON.stringify(component));

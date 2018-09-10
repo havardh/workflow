@@ -1,6 +1,6 @@
 // @Flow
 import * as React from 'react';
-import { Workspace, App, Layout } from './components';
+import { Workspace, App, Layout, Async } from './components';
 
 export function createAppComponent(app) {
   const { xClass, name } = app;
@@ -47,13 +47,26 @@ export function createWorkspaceComponent(workspace) {
   };
 }
 
-export default function createComponent(node) {
+export function createAsyncComponent(node) {
+  const { xClass, name } = node;
+  return class extends React.Component {
+    static displayName = `async-${xClass || name}`;
+
+    render() {
+      return <Async {...node} {...this.props} />;
+    }
+  };
+}
+
+export function createComponent(node) {
   if (node.type === 'app') {
     return createAppComponent(node);
   } else if (node.type === 'layout') {
     return createLayoutComponent(node);
   } else if (node.type === 'workspace') {
     return createWorkspaceComponent(node);
+  } else if (node.type === 'async') {
+    return createAsyncComponent(node);
   } else {
     throw new Error(`Could not create component for node '${JSON.stringify(node)}'`);
   }
