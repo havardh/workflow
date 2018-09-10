@@ -2,7 +2,7 @@
 
 exports[`help should be available for the apply command 1`] = `
 "stdout -------------------------------------------------------------------------
-index.js apply <flow>
+workflow apply <flow>
 
 apply the flow
 
@@ -20,14 +20,12 @@ Options:
 
 exports[`help should have a command: help 1`] = `
 "stdout -------------------------------------------------------------------------
-index.js <flow>
-
-apply the flow
+workflow [<cmd>]
 
 Commands:
-  index.js version       Show the version
-  index.js update        Update workflow and workflow-home dependencies
-  index.js apply <flow>  apply the flow                                [default]
+  workflow version       Show the version
+  workflow update        Update workflow and workflow-home dependencies
+  workflow apply <flow>  apply the flow                                [default]
 
 Positionals:
   flow  the flow file to load                                [string] [required]
@@ -43,14 +41,12 @@ Options:
 
 exports[`help should have flag: --help 1`] = `
 "stdout -------------------------------------------------------------------------
-index.js <flow>
-
-apply the flow
+workflow [<cmd>]
 
 Commands:
-  index.js version       Show the version
-  index.js update        Update workflow and workflow-home dependencies
-  index.js apply <flow>  apply the flow                                [default]
+  workflow version       Show the version
+  workflow update        Update workflow and workflow-home dependencies
+  workflow apply <flow>  apply the flow                                [default]
 
 Positionals:
   flow  the flow file to load                                [string] [required]
@@ -66,7 +62,7 @@ Options:
 
 exports[`help should provide help for explicit flows with string argument 1`] = `
 "stdout -------------------------------------------------------------------------
-index.js apply <flow> <file>
+workflow apply <flow> <file>
 
 apply the flow
 
@@ -85,15 +81,13 @@ Options:
 
 exports[`help should provide help for flows with array argument 1`] = `
 "stdout -------------------------------------------------------------------------
-index.js <flow> <cwd> <cmd>
-
-apply the flow
+workflow [<cmd>]
 
 Commands:
-  index.js version                   Show the version
-  index.js update                    Update workflow and workflow-home
+  workflow version                   Show the version
+  workflow update                    Update workflow and workflow-home
                                      dependencies
-  index.js apply <flow> <cwd> <cmd>  apply the flow                    [default]
+  workflow apply <flow> <cwd> <cmd>  apply the flow                    [default]
 
 Positionals:
   flow  the flow file to load                                [string] [required]
@@ -111,14 +105,12 @@ Options:
 
 exports[`help should provide help for flows with object argument 1`] = `
 "stdout -------------------------------------------------------------------------
-index.js <flow>
-
-apply the flow
+workflow [<cmd>]
 
 Commands:
-  index.js version       Show the version
-  index.js update        Update workflow and workflow-home dependencies
-  index.js apply <flow>  apply the flow                                [default]
+  workflow version       Show the version
+  workflow update        Update workflow and workflow-home dependencies
+  workflow apply <flow>  apply the flow                                [default]
 
 Positionals:
   flow  the flow file to load                                [string] [required]
@@ -136,14 +128,12 @@ Options:
 
 exports[`help should provide help for flows with string argument 1`] = `
 "stdout -------------------------------------------------------------------------
-index.js <flow> <file>
-
-apply the flow
+workflow [<cmd>]
 
 Commands:
-  index.js version              Show the version
-  index.js update               Update workflow and workflow-home dependencies
-  index.js apply <flow> <file>  apply the flow                         [default]
+  workflow version              Show the version
+  workflow update               Update workflow and workflow-home dependencies
+  workflow apply <flow> <file>  apply the flow                         [default]
 
 Positionals:
   flow  the flow file to load                                [string] [required]

@@ -28,6 +28,8 @@ const isImplicitApplyWithFlow = command => !!command && !commands.includes(comma
     process.exit(1);
   }
   yargs
+    .scriptName('workflow')
+    .usage('$0 [<cmd>]')
     .command('version', 'Show the version', () => {}, version)
     .command('update', 'Update workflow and workflow-home dependencies', () => {}, update)
     .command(
