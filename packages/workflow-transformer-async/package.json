@@ -6,7 +6,8 @@
   "main": "index.js",
   "author": "Rolf Erik Lekang <me@rolflekang.com>",
   "scripts": {
-    "example": "node cli.js Example.js"
+    "example": "node cli.js Example.js",
+    "react-example": "node cli.js ReactExample.js"
   },
   "keywords": [
     "workflow-wm",
