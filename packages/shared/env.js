@@ -9,7 +9,7 @@ export const platform = process.platform;
 
 function isRunningI3() {
   try {
-    execSync("i3-msg 'exec echo 1'");
+    execSync("i3-msg 'exec echo 1'", { stdio: 'ignore' });
     return true;
   } catch (e) {
     return false;
