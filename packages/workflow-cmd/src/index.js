@@ -27,7 +27,7 @@ const isImplicitApplyWithFlow = command => !!command && !commands.includes(comma
     process.exit(1);
   }
   yargs
-    .command('version', 'Shaw the version', () => {}, version)
+    .command('version', 'Show the version', () => {}, version)
     .command(
       ['apply <flow>' + positionalArguments(flow), '* <flow>' + positionalArguments(flow)],
       'apply the flow',
