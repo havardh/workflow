@@ -10,9 +10,10 @@ Positionals:
   flow  the flow file to load                                [string] [required]
 
 Options:
-  --version     Show version number                                    [boolean]
-  --config, -c  Set the workflow-home by path to config.js              [string]
-  --help        Show help                                              [boolean]
+  --version        Show version number                                 [boolean]
+  --config, -c     Set the workflow-home by path to config.js           [string]
+  --verbose, --vv  Set output mode to verbose                          [boolean]
+  --help           Show help                                           [boolean]
  --------------------------------------------------------------------------------
 "
 `;
@@ -31,9 +32,10 @@ Positionals:
   flow  the flow file to load                                [string] [required]
 
 Options:
-  --version     Show version number                                    [boolean]
-  --config, -c  Set the workflow-home by path to config.js              [string]
-  --help        Show help                                              [boolean]
+  --version        Show version number                                 [boolean]
+  --config, -c     Set the workflow-home by path to config.js           [string]
+  --verbose, --vv  Set output mode to verbose                          [boolean]
+  --help           Show help                                           [boolean]
  --------------------------------------------------------------------------------
 "
 `;
@@ -52,9 +54,10 @@ Positionals:
   flow  the flow file to load                                [string] [required]
 
 Options:
-  --version     Show version number                                    [boolean]
-  --config, -c  Set the workflow-home by path to config.js              [string]
-  --help        Show help                                              [boolean]
+  --version        Show version number                                 [boolean]
+  --config, -c     Set the workflow-home by path to config.js           [string]
+  --verbose, --vv  Set output mode to verbose                          [boolean]
+  --help           Show help                                           [boolean]
  --------------------------------------------------------------------------------
 "
 `;
@@ -70,9 +73,10 @@ Positionals:
   file  file                                                 [string] [required]
 
 Options:
-  --version     Show version number                                    [boolean]
-  --config, -c  Set the workflow-home by path to config.js              [string]
-  --help        Show help                                              [boolean]
+  --version        Show version number                                 [boolean]
+  --config, -c     Set the workflow-home by path to config.js           [string]
+  --verbose, --vv  Set output mode to verbose                          [boolean]
+  --help           Show help                                           [boolean]
  --------------------------------------------------------------------------------
 "
 `;
@@ -93,9 +97,10 @@ Positionals:
   cmd   cmd                                                  [string] [required]
 
 Options:
-  --version     Show version number                                    [boolean]
-  --config, -c  Set the workflow-home by path to config.js              [string]
-  --help        Show help                                              [boolean]
+  --version        Show version number                                 [boolean]
+  --config, -c     Set the workflow-home by path to config.js           [string]
+  --verbose, --vv  Set output mode to verbose                          [boolean]
+  --help           Show help                                           [boolean]
  --------------------------------------------------------------------------------
 "
 `;
@@ -114,11 +119,12 @@ Positionals:
   flow  the flow file to load                                [string] [required]
 
 Options:
-  --version     Show version number                                    [boolean]
-  --config, -c  Set the workflow-home by path to config.js              [string]
-  --help        Show help                                              [boolean]
-  --cwd         the current working dir                               [required]
-  --cmd         the command to execute                                [required]
+  --version        Show version number                                 [boolean]
+  --config, -c     Set the workflow-home by path to config.js           [string]
+  --verbose, --vv  Set output mode to verbose                          [boolean]
+  --help           Show help                                           [boolean]
+  --cwd            the current working dir                            [required]
+  --cmd            the command to execute                             [required]
  --------------------------------------------------------------------------------
 "
 `;
@@ -138,9 +144,10 @@ Positionals:
   file  file                                                 [string] [required]
 
 Options:
-  --version     Show version number                                    [boolean]
-  --config, -c  Set the workflow-home by path to config.js              [string]
-  --help        Show help                                              [boolean]
+  --version        Show version number                                 [boolean]
+  --config, -c     Set the workflow-home by path to config.js           [string]
+  --verbose, --vv  Set output mode to verbose                          [boolean]
+  --help           Show help                                           [boolean]
  --------------------------------------------------------------------------------
 "
 `;

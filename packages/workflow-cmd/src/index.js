@@ -39,6 +39,11 @@ const isImplicitApplyWithFlow = command => !!command && !commands.includes(comma
       type: 'string',
       description: 'Set the workflow-home by path to config.js',
     })
+    .option('verbose', {
+      alias: 'vv',
+      type: 'boolean',
+      description: 'Set output mode to verbose',
+    })
     .help()
     .parse();
 })().catch(err => console.error(err));
