@@ -33,6 +33,12 @@ describe('argument name', () => {
     expect(c).toBe('config.js');
   });
 
+  it('should extract the argument name for alias with multiple character arg', () => {
+    const { vv } = args(['node', 'cli.js', '-vv']).named;
+
+    expect(vv).toBe(true);
+  });
+
   it('should extract the argument name for single word arg', () => {
     const { config } = args(['node', 'cli.js', '--config', 'config.js']).named;
     expect(config).toBe('config.js');
@@ -41,10 +47,6 @@ describe('argument name', () => {
   it('should extract the argument name for multi word arg', () => {
     const namedArguments = args(['node', 'cli.js', '--some-long-name', 'some-long-value']).named;
     expect(namedArguments['some-long-name']).toBe('some-long-value');
-  });
-
-  it('should throw an error if - is succeded by a word', () => {
-    expect(() => args(['node', 'cli.js', '-config'])).toThrowErrorMatchingSnapshot();
   });
 
   it('should throw an error if -- is succeded by a single character', () => {
