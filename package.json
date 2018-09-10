@@ -4,6 +4,7 @@
   "version": "0.0.3",
   "description": "Workflow-centric workspace manager",
   "scripts": {
+    "docker": "docker run -w /home/circleci/workflow -v ${PWD}:/home/circleci/workflow -it havardh/workflow-i3:0.0.4 bash",
     "bootstrap": "lerna bootstrap",
     "start": "node cli.js",
     "eslint": "eslint .",
