@@ -1,10 +1,15 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
-  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
   "parser": "babel-eslint",
   "globals": {
-    Promise: true
-  }
+    "Promise": true
+  },
+  "overrides": [
+    {
+      "files": ["*_tests.js"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }
