@@ -18,19 +18,19 @@ async function run(command) {
 
 describe('help', () => {
   it('should have flag: --help', async () => {
-    const output = await run('workflow --help');
+    const output = await run(`workflow  --config ${config} --help`);
 
     expect(output).toMatchSnapshot();
   });
 
   it('should have a command: help', async () => {
-    const output = await run('workflow help');
+    const output = await run(`workflow  --config ${config} help`);
 
     expect(output).toMatchSnapshot();
   });
 
   it('should be available for the apply command', async () => {
-    const output = await run('workflow apply --help');
+    const output = await run(`workflow --config ${config} apply --help`);
 
     expect(output).toMatchSnapshot();
   });
