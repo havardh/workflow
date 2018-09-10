@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`help should be available for the apply command 1`] = `
+"stdout -------------------------------------------------------------------------
+index.js apply <flow>
+
+apply the flow
+
+Positionals:
+  flow  the flow file to load                                [string] [required]
+
+Options:
+  --version     Show version number                                    [boolean]
+  --config, -c  Set the workflow-home by path to config.js              [string]
+  --help        Show help                                              [boolean]
+ --------------------------------------------------------------------------------
+"
+`;
+
+exports[`help should have a command: help 1`] = `
+"stdout -------------------------------------------------------------------------
+index.js <flow>
+
+apply the flow
+
+Commands:
+  index.js apply <flow>  apply the flow                                [default]
+
+Positionals:
+  flow  the flow file to load                                [string] [required]
+
+Options:
+  --version     Show version number                                    [boolean]
+  --config, -c  Set the workflow-home by path to config.js              [string]
+  --help        Show help                                              [boolean]
+ --------------------------------------------------------------------------------
+"
+`;
+
+exports[`help should have flag: --help 1`] = `
+"stdout -------------------------------------------------------------------------
+index.js <flow>
+
+apply the flow
+
+Commands:
+  index.js apply <flow>  apply the flow                                [default]
+
+Positionals:
+  flow  the flow file to load                                [string] [required]
+
+Options:
+  --version     Show version number                                    [boolean]
+  --config, -c  Set the workflow-home by path to config.js              [string]
+  --help        Show help                                              [boolean]
+ --------------------------------------------------------------------------------
+"
+`;
+
+exports[`help should provide help for explicit flows with string argument 1`] = `
+"stdout -------------------------------------------------------------------------
+index.js apply <flow> <file>
+
+apply the flow
+
+Positionals:
+  flow  the flow file to load                                [string] [required]
+  file  file                                                 [string] [required]
+
+Options:
+  --version     Show version number                                    [boolean]
+  --config, -c  Set the workflow-home by path to config.js              [string]
+  --help        Show help                                              [boolean]
+ --------------------------------------------------------------------------------
+"
+`;
+
+exports[`help should provide help for flows with array argument 1`] = `
+"stdout -------------------------------------------------------------------------
+index.js <flow> <cwd> <cmd>
+
+apply the flow
+
+Commands:
+  index.js apply <flow> <cwd> <cmd>  apply the flow                    [default]
+
+Positionals:
+  flow  the flow file to load                                [string] [required]
+  cwd   cwd                                                  [string] [required]
+  cmd   cmd                                                  [string] [required]
+
+Options:
+  --version     Show version number                                    [boolean]
+  --config, -c  Set the workflow-home by path to config.js              [string]
+  --help        Show help                                              [boolean]
+ --------------------------------------------------------------------------------
+"
+`;
+
+exports[`help should provide help for flows with object argument 1`] = `
+"stdout -------------------------------------------------------------------------
+index.js <flow>
+
+apply the flow
+
+Commands:
+  index.js apply <flow>  apply the flow                                [default]
+
+Positionals:
+  flow  the flow file to load                                [string] [required]
+
+Options:
+  --version     Show version number                                    [boolean]
+  --config, -c  Set the workflow-home by path to config.js              [string]
+  --help        Show help                                              [boolean]
+  --cwd         the current working dir                               [required]
+  --cmd         the command to execute                                [required]
+ --------------------------------------------------------------------------------
+"
+`;
+
+exports[`help should provide help for flows with string argument 1`] = `
+"stdout -------------------------------------------------------------------------
+index.js <flow> <file>
+
+apply the flow
+
+Commands:
+  index.js apply <flow> <file>  apply the flow                         [default]
+
+Positionals:
+  flow  the flow file to load                                [string] [required]
+  file  file                                                 [string] [required]
+
+Options:
+  --version     Show version number                                    [boolean]
+  --config, -c  Set the workflow-home by path to config.js              [string]
+  --help        Show help                                              [boolean]
+ --------------------------------------------------------------------------------
+"
+`;
+
+exports[`should render a flow 1`] = `
+"stdout -------------------------------------------------------------------------
+{
+  \\"type\\": \\"workflow\\",
+  \\"children\\": []
+}
+ --------------------------------------------------------------------------------
+"
+`;

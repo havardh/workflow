@@ -1,32 +1,88 @@
 /* eslint-env node */
 /* eslint-disable no-console */
+import yargs from 'yargs';
 
-/* Executed with NODE_PATH = ${baseFolder}/node_modules */
-import { resolve } from 'path';
-import { baseFolder } from 'shared/env';
-const config =
-  require(resolve(`${baseFolder}/config`)).default || require(resolve(`${baseFolder}/config`));
+import args from 'shared/args';
 
-import * as WorkflowCore from 'workflow-core';
-const workflow = new WorkflowCore.workflow(config);
+import { resolveFlow, apply } from './commands/apply';
 
-if (process.argv.length < 3) {
-  console.error('Usage: workflow <flow>');
-  process.exit(1);
+const [command, path] = args(process.argv).positional;
+
+const commands = ['help', 'apply'];
+
+const isApplyWithFlow = (command, path) => command === 'apply' && path;
+const isImplicitApplyWithFlow = command => !!command && !commands.includes(command);
+
+(async function exec() {
+  let flow;
+  try {
+    if (isApplyWithFlow(command, path)) {
+      flow = await resolveFlow(path);
+    } else if (isImplicitApplyWithFlow(command)) {
+      flow = await resolveFlow(command);
+    }
+  } catch (e) {
+    console.error(e);
+    process.exit(1);
+  }
+  yargs
+    .command(
+      ['apply <flow>' + positionalArguments(flow), '* <flow>' + positionalArguments(flow)],
+      'apply the flow',
+      yargs => buildFlowArgs(yargs, flow),
+      async args => apply(flow, args)
+    )
+    .option('config', {
+      alias: 'c',
+      type: 'string',
+      description: 'Set the workflow-home by path to config.js',
+    })
+    .help()
+    .parse();
+})().catch(err => console.error(err));
+
+function positionalArguments(flow) {
+  let args = '';
+  if (flow) {
+    if (typeof flow.args === 'string') {
+      args += ' <' + flow.args + '>';
+    } else if (Array.isArray(flow.args)) {
+      for (let arg of flow.args) {
+        args += ' <' + arg + '>';
+      }
+    }
+  }
+  return args;
 }
 
-const [node, tool, path] = process.argv; // eslint-disable-line no-unused-vars
+function buildFlowArgs(yargs, flow) {
+  yargs.positional('flow', {
+    type: 'string',
+    describe: 'the flow file to load',
+  });
+  yargs.require('flow');
+  if (!flow) {
+    return;
+  }
 
-async function exec() {
-  const absolutePath = await workflow.resolve(path);
-  let flow = (await workflow.load(absolutePath)).default;
-  const args = await workflow.parseArguments(flow, process.argv);
-  flow = await workflow.transform(flow, { args });
-  const screen = await workflow.screen();
-  const layout = await workflow.layout(flow, { screen });
-  await workflow.apply(layout);
+  if (typeof flow.args === 'string') {
+    yargs.positional(flow.args, {
+      type: 'string',
+      describe: flow.args,
+    });
+    yargs.require(flow.args);
+  } else if (Array.isArray(flow.args)) {
+    for (let arg of flow.args) {
+      yargs.positional(arg, { type: 'string', describe: arg });
+      yargs.require(arg);
+    }
+  } else if (flow.args !== null && typeof flow.args === 'object') {
+    for (let [key, value] of Object.entries(flow.args)) {
+      yargs.option(key, { description: value });
+      yargs.demandOption(key);
+    }
+  } else if (flow.args) {
+    console.error('Misconfigured flow, unknown args property: ' + JSON.stringify(flow));
+    process.exit(1);
+  }
 }
-
-exec()
-  .then(() => console.log('done'))
-  .catch(err => console.error(err));
