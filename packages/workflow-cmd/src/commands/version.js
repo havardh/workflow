@@ -1,4 +1,5 @@
 /* eslint-env node */
+/* eslint-disable no-console */
 import { baseFolder, configPath } from 'shared/env';
 import readPkgUp from 'read-pkg-up';
 
