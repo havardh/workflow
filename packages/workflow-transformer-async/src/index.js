@@ -1,8 +1,9 @@
 export default class WorkflowTransformerAsync {
   async transformBefore(node) {
-    switch (node.type) {
+    const { type, loader, ...rest } = node;
+    switch (type) {
       case 'async':
-        return await node.loader();
+        return { ...rest, ...(await loader()) };
       default:
         return node;
     }
