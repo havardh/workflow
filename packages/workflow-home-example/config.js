@@ -7,6 +7,7 @@ const { WorkflowLoaderTypescript } = require('workflow-loader-typescript');
 const {
   WorkflowTransformerApplyArgumentsToFields,
 } = require('workflow-transformer-apply-arguments-to-fields');
+const { WorkflowTransformAsync } = require('workflow-transformer-async');
 const { WorkflowLayout } = require('workflow-layout');
 const { WorkflowWmAuto } = require('workflow-wm-auto');
 
@@ -26,7 +27,7 @@ module.exports = {
         filter: path => path.match(/.*\.ts/),
       },
     ],
-    transformers: [new WorkflowTransformerApplyArgumentsToFields()],
+    transformers: [new WorkflowTransformerAsync(), new WorkflowTransformerApplyArgumentsToFields()],
     layout: new WorkflowLayout(),
     wm: new WorkflowWmAuto(),
   },

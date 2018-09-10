@@ -1,10 +1,10 @@
 /* eslint-env node */
 import React from 'react';
-import render, { Workspace, Async, requireComponent } from 'workflow-react';
+import { render, Workspace, Async, requireComponent } from 'workflow-react';
 import { Terminal } from 'workflow-apps-defaults';
 const { SplitV } = requireComponent('workflow-layout-tiled');
 
-export default render(
+export const flow = render(
   <Workspace name={'workflow-apps-defaults'}>
     <SplitV percent={1.0}>
       <Async

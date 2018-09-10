@@ -1,4 +1,4 @@
-export default class WorkflowTransformerAsync {
+export class WorkflowTransformerAsync {
   async transformBefore(node) {
     const { type, loader, ...rest } = node;
     switch (type) {

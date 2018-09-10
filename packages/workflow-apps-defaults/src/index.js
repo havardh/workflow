@@ -1,69 +1,110 @@
 /* eslint-env node */
 /* eslint-disable no-console */
-
 import { baseFolder } from 'shared/env';
 import { join } from 'path';
+import defaultBrowser from 'default-browser';
 
-const defaultApps = ['Terminal', 'Browser', 'TextEditor'];
+function getUserDefaults() {
+  try {
+    const path = join(baseFolder, 'apps', 'defaults');
+    const { defaults } = require(path);
 
-let defaults = {};
-
-if (process.browser) {
-  defaults = require('workflow-apps-html').defaults;
-} else {
-  const platformDefaults = (() => {
-    switch (process.platform) {
-      case 'darwin':
-        return {
-          Terminal: require('workflow-app-iterm').ITerm,
-          Browser: require('workflow-app-safari').Safari,
-          TextEditor: require('workflow-app-textedit').TextEdit,
-        };
-      case 'win32':
-        return {
-          Terminal: require('workflow-app-powershell').PowerShell,
-          Browser: require('workflow-app-chrome').Chrome,
-          TextEditor: require('workflow-app-notepad').Notepad,
-        };
-      case 'linux':
-        return {
-          Terminal: require('workflow-app-xterm').XTerm,
-          Browser: require('workflow-app-chrome').Chrome,
-          TextEditor: require('workflow-app-atom').Atom,
-        };
-      default:
-        console.log(`Platform '${process.platform}' not supported`);
-        console.log(
-          'Look for an issue for your platform here: https://github.com/havardh/workflow/issues'
-        );
-        process.exit(0);
-        break;
+    return defaults || {};
+  } catch (error) {
+    if (error.code !== 'MODULE_NOT_FOUND') {
+      throw error;
+    } else {
+      return {};
     }
-    throw new Error('not reachable');
-  })();
-
-  const userDefaults = (() => {
-    try {
-      const path = join(baseFolder, 'apps', 'defaults');
-      const { defaults } = require(path);
-
-      return defaults || {};
-    } catch (error) {
-      if (error.code !== 'MODULE_NOT_FOUND') {
-        throw error;
-      } else {
-        return {};
-      }
-    }
-  })();
-
-  defaultApps.forEach(app => {
-    defaults[app] = userDefaults[app] || platformDefaults[app];
-  });
+  }
 }
 
-module.exports = {
-  Browser: defaults.Browser,
-  TextEditor: defaults.TextEditor,
-  Terminal: defaults.Terminal,
+function throwUnknownPlatform() {
+  console.log(`Platform '${process.platform}' not supported`);
+  console.log(
+    'Look for an issue for your platform here: https://github.com/havardh/workflow/issues'
+  );
+  process.exit(0);
+}
+
+async function requireBrowser(browserName, fallback) {
+  try {
+    return require(`workflow-app-${browserName}`);
+  } catch (error) {
+    console.log(`Cannot find ${browserName}, falling back to ${fallback}`);
+    return require(`workflow-app-${fallback}`);
+  }
+}
+
+async function getDefaultBrowser(platform) {
+  // $FlowSuppress
+  if (process.browser) {
+    return require('workflow-apps-html').defaults.Browser;
+  }
+  const browser = getUserDefaults().Browser;
+  if (browser) {
+    return browser;
+  }
+  switch (platform) {
+    case 'darwin':
+      return requireBrowser((await defaultBrowser()).name.toLowerCase(), 'safari');
+
+    case 'linux':
+      return requireBrowser((await defaultBrowser()).name.toLowerCase(), 'chrome');
+
+    case 'win32':
+      return require('workflow-app-chrome');
+
+    default:
+      return throwUnknownPlatform();
+  }
+}
+
+function getDefaultTerminal(platform) {
+  // $FlowSuppress
+  if (process.browser) {
+    return require('workflow-apps-html').defaults.Terminal;
+  }
+  const terminal = getUserDefaults().Terminal;
+  if (terminal) {
+    return terminal;
+  }
+  switch (platform) {
+    case 'darwin':
+      return require('workflow-app-iterm');
+    case 'win32':
+      return require('workflow-app-powershell');
+    case 'linux':
+      return require('workflow-app-xterm');
+    default:
+      return throwUnknownPlatform();
+  }
+}
+
+function getDefaultTextEditor(platform) {
+  // $FlowSuppress
+  if (process.browser) {
+    return require('workflow-apps-html').defaults.TextEditor;
+  }
+  const editor = getUserDefaults().TextEditor;
+  if (editor) {
+    return editor;
+  }
+  switch (platform) {
+    case 'darwin':
+      return require('workflow-app-textedit');
+    case 'win32':
+      return require('workflow-app-notepad');
+    case 'linux':
+      return require('workflow-app-atom');
+    default:
+      return throwUnknownPlatform();
+  }
+}
+
+export const Browser = {
+  type: 'async',
+  loader: () => getDefaultBrowser(process.platform),
 };
+export const TextEditor = getDefaultTextEditor(process.platform);
+export const Terminal = getDefaultTerminal(process.platform);
