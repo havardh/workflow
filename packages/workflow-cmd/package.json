@@ -12,6 +12,7 @@
   ],
   "dependencies": {
     "cross-spawn": "^6.0.5",
+    "read-pkg-up": "^4.0.0",
     "shelljs": "^0.8.2",
     "workflow-core": "1.0.0",
     "yargs": "^12.0.2"
