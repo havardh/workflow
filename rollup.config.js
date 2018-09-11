@@ -16,11 +16,11 @@ const nodeInternalDependencies = {
   'create-workflow-home': ['path', 'os', 'child_process'],
   'workflow-apps-defaults': ['child_process', 'os', 'path'],
   workflow: ['path', 'util', 'os', 'child_process'],
-  'workflow-wm-auto': ['child_process', 'os'],
+  'workflow-wm-auto': ['child_process', 'os', 'path'],
   'workflow-wm-windows': ['child_process', 'cross-spawn'],
   'workflow-resolver-absolute': ['fs', 'path', 'util'],
   'workflow-resolver-relative': ['fs', 'path', 'util'],
-  'workflow-cmd': ['path', 'os', 'child_process'],
+  'workflow-cmd': ['path', 'os', 'fs', 'util', 'child_process'],
 };
 
 const sourceRoots = {
