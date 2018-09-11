@@ -29,17 +29,13 @@ export default async function update(args) {
 
 async function noUncommitChanges(folder) {
   if (which('git').code === 1) {
-    console.log('`git` command was not found.');
-    console.log(
-      `Install git and add a repository to  ${folder} or re-run this command with \`--force\``
-    );
-    process.exit(1);
+    console.log('`git` command was not found. Disabling uncommited changes check.');
+    return true;
   }
 
   if (!fs.existsSync(join(folder, '.git'))) {
-    console.log(`${join(folder, '.git')} was not found.`);
-    console.log(`Add a repository to  ${folder} or re-run this command with \`--force\``);
-    process.exit(1);
+    console.log(`Could not find a git repo in ${folder}. Disabling uncommited changes check.`);
+    return true;
   }
 
   try {
