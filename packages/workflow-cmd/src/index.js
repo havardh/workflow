@@ -17,10 +17,11 @@ const isImplicitApplyWithFlow = command => !!command && !commands.includes(comma
 (async function exec() {
   let flow;
   try {
+    const args = { [command]: true };
     if (isApplyWithFlow(command, path)) {
-      flow = await resolveFlow(path);
+      flow = await resolveFlow(path, { args });
     } else if (isImplicitApplyWithFlow(command)) {
-      flow = await resolveFlow(command);
+      flow = await resolveFlow(command, { args });
     }
   } catch (e) {
     console.error(e);
@@ -32,7 +33,7 @@ const isImplicitApplyWithFlow = command => !!command && !commands.includes(comma
       ['apply <flow>' + positionalArguments(flow), '* <flow>' + positionalArguments(flow)],
       'apply the flow',
       yargs => buildFlowArgs(yargs, flow),
-      async args => apply(flow, args)
+      async args => apply(flow, { args })
     )
     .option('config', {
       alias: 'c',
