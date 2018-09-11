@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/havardh/workflow/compare/workflow-cmd@1.2.1...workflow-cmd@1.3.0) (2018-09-11)
+
+
+### Bug Fixes
+
+* **workflow-cmd:** add missing dependency execa ([8ca4b00](https://github.com/havardh/workflow/commit/8ca4b00))
+* **workflow-cmd:** re add out from npm i and workflow version ([d28e337](https://github.com/havardh/workflow/commit/d28e337))
+* **workflow-cmd:** spelling mistake in workflow version --help ([9c12e47](https://github.com/havardh/workflow/commit/9c12e47))
+* **workflow-cmd/update:** be more nice to non git users ([f954d8f](https://github.com/havardh/workflow/commit/f954d8f))
+
+
+### Features
+
+* **workflow-cmd:** implement workflow update ([fe722d1](https://github.com/havardh/workflow/commit/fe722d1))
+* **workflow-cmd/update:** add safeguards and prompt ([545efc7](https://github.com/havardh/workflow/commit/545efc7))
+
+
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/havardh/workflow/compare/workflow-cmd@1.2.0...workflow-cmd@1.2.1) (2018-09-11)
 

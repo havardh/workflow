@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.6"></a>
+## [0.3.6](https://github.com/havardh/workflow/compare/workflow-apps-defaults@0.3.5...workflow-apps-defaults@0.3.6) (2018-09-11)
+
+
+### Bug Fixes
+
+* Set textedit as default editor on macos ([a4a251f](https://github.com/havardh/workflow/commit/a4a251f)), closes [#136](https://github.com/havardh/workflow/issues/136)
+* **workflow-apps-defaults:** set version of workflow-app-textedit ([1d03473](https://github.com/havardh/workflow/commit/1d03473))
+
+
+
+
+
 <a name="0.3.5"></a>
 ## [0.3.5](https://github.com/havardh/workflow/compare/workflow-apps-defaults@0.3.4...workflow-apps-defaults@0.3.5) (2018-09-05)
 
