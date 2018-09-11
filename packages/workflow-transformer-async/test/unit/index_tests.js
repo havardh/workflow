@@ -10,7 +10,7 @@ test('WorkflowTransformerAsync should transform to the value that loader resolve
 
   const transformed = await transformer.transformBefore({
     type: 'async',
-    loader: async () => ({ type: 'app', name: 'Iterm', open }),
+    loader: async props => ({ ...props, type: 'app', name: 'Iterm', open }),
     percent: 0.5,
   });
 
