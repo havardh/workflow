@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/havardh/workflow/compare/workflow-cmd@1.1.1...workflow-cmd@1.2.0) (2018-09-11)
+
+
+### Bug Fixes
+
+* **workflow-cmd:** add eslint suppress for console ([55f5acf](https://github.com/havardh/workflow/commit/55f5acf))
+* **workflow-cmd:** add missing dependency ([ab3a4c9](https://github.com/havardh/workflow/commit/ab3a4c9))
+
+
+### Features
+
+* **workflow-cmd:** add --verbose,-vv flag for verbose output ([f16f3cf](https://github.com/havardh/workflow/commit/f16f3cf))
+* **workflow-cmd:** add simple version command ([d9dc4e4](https://github.com/havardh/workflow/commit/d9dc4e4))
+* **workflow-cmd:** add verbose output of version command ([8a27750](https://github.com/havardh/workflow/commit/8a27750))
+
+
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/havardh/workflow/compare/workflow-cmd@1.1.0...workflow-cmd@1.1.1) (2018-09-10)
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/havardh/workflow/compare/shared@0.1.0...shared@0.1.1) (2018-09-11)
+
+
+### Bug Fixes
+
+* **shared/args:** allow multiple character aliases ([44f13c1](https://github.com/havardh/workflow/commit/44f13c1))
+
+
+
+
+
 <a name="0.1.0"></a>
 # 0.1.0 (2018-09-10)
 
