@@ -9,7 +9,13 @@ import { resolve, join } from 'path';
 
 import flatMap from 'lodash.flatmap';
 
-const blackList = ['workflow-layout', 'workflow-layouts', 'workflow-template', 'workflow-web'];
+const blackList = [
+  'workflow-layout',
+  'workflow-layouts',
+  'workflow-template',
+  'workflow-web',
+  'workflow-home-example',
+];
 
 const nodeInternalDependencies = {
   'create-workflow-app': ['path', 'util', 'os', 'child_process'],
