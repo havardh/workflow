@@ -9,10 +9,11 @@ import version from './commands/version';
 
 const [command, path] = args(process.argv).positional;
 
-const commands = ['version', 'help', 'apply'];
+const commands = ['clipboard', 'version', 'help', 'apply'];
 
 const isApplyWithFlow = (command, path) => command === 'apply' && path;
 const isImplicitApplyWithFlow = command => !!command && !commands.includes(command);
+const isClipboard = command => command === 'clipboard';
 
 (async function exec() {
   let flow;
@@ -20,6 +21,8 @@ const isImplicitApplyWithFlow = command => !!command && !commands.includes(comma
     const args = { [command]: true };
     if (isApplyWithFlow(command, path)) {
       flow = await resolveFlow(path, { args });
+    } else if (isClipboard(command)) {
+      flow = await resolveFlow(undefined, { args });
     } else if (isImplicitApplyWithFlow(command)) {
       flow = await resolveFlow(command, { args });
     }
@@ -32,6 +35,19 @@ const isImplicitApplyWithFlow = command => !!command && !commands.includes(comma
     .command(
       ['apply <flow>' + positionalArguments(flow), '* <flow>' + positionalArguments(flow)],
       'apply the flow',
+      yargs => {
+        yargs.positional('flow', {
+          type: 'string',
+          describe: 'the flow file to load',
+        });
+        yargs.require('flow');
+        buildFlowArgs(yargs, flow);
+      },
+      async args => apply(flow, { args })
+    )
+    .command(
+      'clipboard' + positionalArguments(flow),
+      'apply the flow from the clipboard',
       yargs => buildFlowArgs(yargs, flow),
       async args => apply(flow, { args })
     )
@@ -64,11 +80,6 @@ function positionalArguments(flow) {
 }
 
 function buildFlowArgs(yargs, flow) {
-  yargs.positional('flow', {
-    type: 'string',
-    describe: 'the flow file to load',
-  });
-  yargs.require('flow');
   if (!flow) {
     return;
   }
