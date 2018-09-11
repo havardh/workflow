@@ -92,7 +92,7 @@ async function updateWorkflowHome(args) {
   });
 
   if (hasUpdates(updates)) {
-    await printUpdates(updates);
+    console.log(await buildUpdatesMessage(updates));
 
     if (!args.force) {
       prompt.message = '';
@@ -146,29 +146,30 @@ function hasUpdates(updates) {
   return Object.entries(updates).length !== 0;
 }
 
-async function printUpdates(updates) {
+async function buildUpdatesMessage(updates) {
   const { pkg } = await readPkgUp({ cwd: baseFolder });
-  console.log();
-  console.log('The following packages will be updated');
+  let message = 'The following packages will be updated\n\n';
 
   if (pkg.dependencies) {
-    printDependencies(pkg.dependencies, updates);
+    message += buildDependenciesMessage(pkg.dependencies, updates);
   }
 
   if (pkg.optionalDepenencies) {
-    printDependencies(pkg.optionalDependencies, updates);
+    message += buildDependenciesMessage(pkg.optionalDependencies, updates);
   }
 
   if (pkg.devDepenencies) {
-    printDependencies(pkg.devDependencies, updates);
+    message += buildDependenciesMessage(pkg.devDependencies, updates);
   }
-  console.log();
+  return message + '\n';
 }
 
-function printDependencies(dependencies, updates) {
+function buildDependenciesMessage(dependencies, updates) {
+  let message = '';
   for (let [name, version] of Object.entries(dependencies)) {
     if (updates[name]) {
-      console.log(`  - ${name}  ${version} → ${updates[name]}`);
+      message += `  - ${name}  ${version} → ${updates[name]}` + '\n';
     }
   }
+  return message;
 }
