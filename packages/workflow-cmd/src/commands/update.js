@@ -70,9 +70,9 @@ async function updateWorkflowCommand() {
     const { stdout: latest } = await execa('npm', ['show', 'workflow', 'version']);
 
     if (version.toString() !== latest.toString()) {
-      await execa('npm', ['install', '--global', 'workflow']);
+      await execa('npm', ['install', '--global', 'workflow'], { stdio: 'inherit' });
       console.log(' $ workflow version');
-      await execa('workflow', ['version']);
+      await execa('workflow', ['version'], { stdio: 'inherit' });
       console.log();
     } else {
       console.log('workflow is up to date at', version.trim());
