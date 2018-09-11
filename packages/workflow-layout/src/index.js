@@ -95,6 +95,8 @@ function calculate(node, { position, screen }) {
     case 'app':
       return calculateApp(node, { position, screen });
     default:
-      throw new Error(`Unrecognized node type: '${JSON.stringify(node)}'`);
+      throw new Error(
+        `Unrecognized node type: '${node.type}' in '${JSON.stringify(node, null, 2)}'`
+      );
   }
 }
