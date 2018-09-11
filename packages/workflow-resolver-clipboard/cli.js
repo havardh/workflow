@@ -37,10 +37,8 @@ const WorkflowLayout = require('workflow-layout');
 const config = {
   resolvers: [new WorkflowResolverClipboard()],
   loaders: [
-    {
-      loader: new WorkflowLoaderBabel(babelConfig),
-      loader: new WorkflowLoaderTypescript(typescriptConfig),
-    },
+    { loader: new WorkflowLoaderBabel(babelConfig) },
+    { loader: new WorkflowLoaderTypescript(typescriptConfig) },
   ],
   transformers: [new WorkflowTransformerApplyArgumentsToFields()],
   layout: new WorkflowLayout(),
