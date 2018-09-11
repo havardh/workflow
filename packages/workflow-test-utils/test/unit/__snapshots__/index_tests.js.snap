@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testNode(unknown) should throw error 1`] = `"Unknown node type unknown"`;
