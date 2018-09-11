@@ -1,0 +1,20 @@
+{
+  "name": "workflow-resolver-clipboard",
+  "version": "1.0.0",
+  "description": "Workflow resolver for relative paths",
+  "license": "MIT",
+  "main": "index.js",
+  "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
+  "keywords": [
+    "workflow-wm",
+    "resolver",
+    "workflow"
+  ],
+  "files": [
+    "dist",
+    "index.js"
+  ],
+  "dependencies": {
+    "clipboardy": "^1.2.3"
+  }
+}
