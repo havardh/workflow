@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/havardh/workflow/compare/workflow-cmd@1.2.0...workflow-cmd@1.2.1) (2018-09-11)
+
+
+### Bug Fixes
+
+* update readme to force new version ([e6fd9a2](https://github.com/havardh/workflow/commit/e6fd9a2))
+
+
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/havardh/workflow/compare/workflow-cmd@1.1.1...workflow-cmd@1.2.0) (2018-09-11)
 

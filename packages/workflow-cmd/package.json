@@ -1,6 +1,6 @@
 {
   "name": "workflow-cmd",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Command line interface for workflow.",
   "main": "cli.js",
   "repository": "https://github.com/havardh/workflow",
