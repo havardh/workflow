@@ -21,11 +21,12 @@ export default {
         },
         {
           type: 'async',
-          loader: async () => ({
+          cwd: __dirname,
+          cmd: 'pwd',
+          percent: 0.5,
+          loader: async props => ({
             ...Terminal,
-            cwd: __dirname,
-            cmd: 'pwd',
-            percent: 0.5,
+            ...props,
           }),
         },
       ],

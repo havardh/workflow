@@ -3,7 +3,7 @@ export default class WorkflowTransformerAsync {
     const { type, loader, ...rest } = node;
     switch (type) {
       case 'async':
-        return { ...rest, ...(await loader()) };
+        return await loader(rest);
       default:
         return node;
     }
