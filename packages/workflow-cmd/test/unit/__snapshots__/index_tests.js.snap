@@ -25,7 +25,8 @@ index.js <flow>
 apply the flow
 
 Commands:
-  index.js version       Shaw the version
+  index.js version       Show the version
+  index.js update        Update workflow and workflow-home dependencies
   index.js apply <flow>  apply the flow                                [default]
 
 Positionals:
@@ -47,7 +48,8 @@ index.js <flow>
 apply the flow
 
 Commands:
-  index.js version       Shaw the version
+  index.js version       Show the version
+  index.js update        Update workflow and workflow-home dependencies
   index.js apply <flow>  apply the flow                                [default]
 
 Positionals:
@@ -88,7 +90,9 @@ index.js <flow> <cwd> <cmd>
 apply the flow
 
 Commands:
-  index.js version                   Shaw the version
+  index.js version                   Show the version
+  index.js update                    Update workflow and workflow-home
+                                     dependencies
   index.js apply <flow> <cwd> <cmd>  apply the flow                    [default]
 
 Positionals:
@@ -112,7 +116,8 @@ index.js <flow>
 apply the flow
 
 Commands:
-  index.js version       Shaw the version
+  index.js version       Show the version
+  index.js update        Update workflow and workflow-home dependencies
   index.js apply <flow>  apply the flow                                [default]
 
 Positionals:
@@ -136,7 +141,8 @@ index.js <flow> <file>
 apply the flow
 
 Commands:
-  index.js version              Shaw the version
+  index.js version              Show the version
+  index.js update               Update workflow and workflow-home dependencies
   index.js apply <flow> <file>  apply the flow                         [default]
 
 Positionals:
