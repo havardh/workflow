@@ -11,6 +11,7 @@
     "workflow"
   ],
   "dependencies": {
+    "require-from-string": "^2.0.2",
     "ts-node": "^7.0.1",
     "typescript": "^3.0.1"
   },

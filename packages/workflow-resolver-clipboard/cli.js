@@ -19,15 +19,29 @@ const babelConfig = {
   },
 };
 
+const typescriptConfig = {
+  config: {
+    compilerOptions: {
+      experimentalDecorators: true,
+    },
+  },
+};
+
 const WorkflowWmAuto = require('workflow-wm-auto');
 const WorkflowResolverClipboard = require('workflow-resolver-clipboard');
 const WorkflowLoaderBabel = require('workflow-loader-babel');
+const WorkflowLoaderTypescript = require('workflow-loader-typescript');
 const WorkflowTransformerApplyArgumentsToFields = require('workflow-transformer-apply-arguments-to-fields');
 const WorkflowLayout = require('workflow-layout');
 
 const config = {
   resolvers: [new WorkflowResolverClipboard()],
-  loaders: [{ loader: new WorkflowLoaderBabel(babelConfig) }],
+  loaders: [
+    {
+      loader: new WorkflowLoaderBabel(babelConfig),
+      loader: new WorkflowLoaderTypescript(typescriptConfig),
+    },
+  ],
   transformers: [new WorkflowTransformerApplyArgumentsToFields()],
   layout: new WorkflowLayout(),
   wm: new WorkflowWmAuto(),
