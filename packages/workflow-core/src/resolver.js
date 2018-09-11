@@ -1,9 +1,9 @@
 /* eslint-env node */
-export async function resolve(resolvers, path) {
+export async function resolve(resolvers, path, { args }) {
   const errors = [];
   for (let resolver of resolvers) {
     try {
-      return await resolver.resolve(path);
+      return await resolver.resolve(path, { args });
     } catch (e) {
       errors.push(e);
     }
@@ -15,11 +15,11 @@ export async function resolve(resolvers, path) {
   throw new Error(`Could not resolve ${path}`);
 }
 
-export async function alternatives(resolvers, path) {
+export async function alternatives(resolvers, path, { args }) {
   const all = [];
 
   for (let resolver of resolvers) {
-    all.push(resolver.alternatives(path));
+    all.push(resolver.alternatives(path, { args }));
   }
 
   return all;
