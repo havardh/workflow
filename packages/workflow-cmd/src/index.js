@@ -6,10 +6,11 @@ import args from 'shared/args';
 
 import { resolveFlow, apply } from './commands/apply';
 import version from './commands/version';
+import update from './commands/update';
 
 const [command, path] = args(process.argv).positional;
 
-const commands = ['version', 'help', 'apply'];
+const commands = ['update', 'version', 'help', 'apply'];
 
 const isApplyWithFlow = (command, path) => command === 'apply' && path;
 const isImplicitApplyWithFlow = command => !!command && !commands.includes(command);
@@ -28,6 +29,7 @@ const isImplicitApplyWithFlow = command => !!command && !commands.includes(comma
   }
   yargs
     .command('version', 'Show the version', () => {}, version)
+    .command('update', 'Update workflow and workflow-home dependencies', () => {}, update)
     .command(
       ['apply <flow>' + positionalArguments(flow), '* <flow>' + positionalArguments(flow)],
       'apply the flow',
