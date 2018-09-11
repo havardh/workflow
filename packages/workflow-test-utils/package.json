@@ -1,0 +1,8 @@
+{
+  "name": "workflow-test-utils",
+  "version": "1.0.0-rc.0",
+  "description": "Test utils for apps, layouts, transformers and other workflow plugins.",
+  "main": "index.js",
+  "author": "Rolf Erik Lekang <me@rolflekang.com>",
+  "license": "MIT"
+}
