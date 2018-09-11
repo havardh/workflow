@@ -12,9 +12,7 @@ const safari = {
       (file, position) => {
         const Textedit = Application('TextEdit');
 
-        if (Textedit.running()) {
-          Textedit.Document().make();
-        }
+        Textedit.Document().make();
 
         Textedit.activate();
 
