@@ -26,7 +26,7 @@ export default render(
 The `workflow-react` package exports four distinct concepts.
 
  - The `render` function
- - `Components` - `Workspace`, `Layout`, `App`
+ - `Components` - `Workspace`, `Layout`, `App`, `Async`
  - The `createComponent` `Component` factory function
  - The `requireComponent` utility function
 
@@ -201,6 +201,37 @@ export default render(
 Usage
 ```
 workflow <name of flow file> /path/to/file
+```
+
+### Async
+
+The `Async` component is used to load a node as asynchronous. This means that
+the internals of the node can be loaded async. Using the `Async` requires that
+the [`workflow-transformer-async`](../workflow-transformer-async) is used. 
+
+Definition
+```
+<Async
+  loader={async function which returns a node}
+/>
+```
+
+Example
+```
+import React from 'react';
+import render, { Workspace, App } from 'workflow-react';
+
+async function defaultApp() {
+  // returns a default app node async
+}
+
+export default render(
+  <Workspace name={'editor'} >
+    <Async
+      loader={async (props) => ({ ...await defaultApp(), ...props})}
+    >
+  </Workspace>,
+);
 ```
 
 ## The `createComponent` function
