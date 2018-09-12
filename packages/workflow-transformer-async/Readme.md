@@ -8,6 +8,9 @@ npm install workflow-transformer-async
 
 Add the plugin to your `~/.workflow/config.js` file.
 
+**Note:** The `WorkflowTransformerAsync` plugin must be the first transformer
+in the list of `transformers` for the rest of the transformers to work properly.
+
 ```
 import WorkflowTranformerAsync from "workflow-transformer-async";
 
