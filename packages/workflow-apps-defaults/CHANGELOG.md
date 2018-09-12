@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.7"></a>
+## [0.3.7](https://github.com/havardh/workflow/compare/workflow-apps-defaults@0.3.6...workflow-apps-defaults@0.3.7) (2018-09-12)
+
+**Note:** Version bump only for package workflow-apps-defaults
+
+
+
+
+
 <a name="0.3.6"></a>
 ## [0.3.6](https://github.com/havardh/workflow/compare/workflow-apps-defaults@0.3.5...workflow-apps-defaults@0.3.6) (2018-09-11)
 
