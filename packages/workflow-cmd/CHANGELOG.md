@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/havardh/workflow/compare/workflow-cmd@1.3.0...workflow-cmd@1.3.1) (2018-09-12)
+
+**Note:** Version bump only for package workflow-cmd
+
+
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/havardh/workflow/compare/workflow-cmd@1.2.1...workflow-cmd@1.3.0) (2018-09-11)
 

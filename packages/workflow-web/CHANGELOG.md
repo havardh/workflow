@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.3"></a>
+## [0.2.3](https://github.com/havardh/workflow/compare/workflow.web@0.2.2...workflow.web@0.2.3) (2018-09-12)
+
+
+### Bug Fixes
+
+* **workflow.web:** make package private ([fa3899c](https://github.com/havardh/workflow/commit/fa3899c))
+
+
+
+
+
 <a name="0.2.2"></a>
 ## 0.2.2 (2018-09-03)
 
