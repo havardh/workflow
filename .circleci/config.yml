@@ -10,7 +10,7 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
       - run: yarn config set workspaces-experimental true
-      - run: yarn
+      - run: yarn || yarn || yarn
       - run: yarn bootstrap
       - save_cache:
           paths:
@@ -44,7 +44,7 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
       - run: yarn config set workspaces-experimental true
-      - run: yarn
+      - run: yarn || yarn || yarn
       - run: yarn bootstrap
       - save_cache:
           paths:
