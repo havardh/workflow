@@ -12,10 +12,12 @@ jobs:
       - run: yarn config set workspaces-experimental true
       - run: yarn || yarn || yarn
       - run: yarn bootstrap
+      - run: yarn build
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
+      - run: yarn build
       - run:
           name: "JavaScript Linter"
           command: yarn eslint -- --format junit -o reports/js-lint-results.xml
