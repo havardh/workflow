@@ -2,6 +2,7 @@
 import { createClient } from 'i3';
 import { transform } from './transform';
 import { write } from './write';
+import execa from 'execa';
 
 async function openNode(node, context) {
   return await node.open(node, context, node.children);
@@ -17,13 +18,15 @@ export class WorkflowWmI3 {
   }
 
   async apply(config) {
-    this.createWorkspace(config);
+    this.createOrGoToWorkspace(config);
 
     this.clearWorkspace();
 
-    await this.createLayout(config.children[0]);
+    await this.applyLayout(config.children[0]);
 
     config.children.forEach(root => this.findApps(root).forEach(app => this.open(app)));
+
+    return config;
   }
 
   async screen() {
@@ -43,19 +46,16 @@ export class WorkflowWmI3 {
     })[0];
   }
 
-  createWorkspace(config) {
-    this.client.command(`workspace ${config.name}`);
+  createOrGoToWorkspace(config) {
+    this.client.command(`workspace --no-auto-back-and-forth ${config.name}`);
   }
 
-  clearWorkspace() {
-    this.client.command('focus parent, focus parent, focus parent, kill');
-  }
-
-  async createLayout(node) {
+  async applyLayout(node) {
     const layout = transform(node);
     const path = await write(layout);
 
-    this.client.command(`append_layout ${path}`);
+    await execa('../scripts/i3-apply-layout', [path]);
+    // this.client.command(`append_layout ${path}`);
   }
 
   findApps(root) {

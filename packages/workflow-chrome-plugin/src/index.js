@@ -7,7 +7,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeObject) => {
 
       const { redirect, appId } = JSON.parse(decodeURIComponent(data));
 
-      console.log('creating socket');
+      console.log('creating socket', { redirect, appId });
       const socket = new WebSocket('ws://localhost:8080');
 
       socket.addEventListener('open', function(event) {
@@ -21,7 +21,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeObject) => {
         );
       });
 
-      console.log('redirect to', redirect);
       chrome.tabs.update(tabId, { url: redirect });
 
       socket.addEventListener('message', function(event) {
@@ -33,9 +32,3 @@ chrome.tabs.onUpdated.addListener((tabId, changeObject) => {
     }
   }
 });
-
-/*
-
-
-
-*/

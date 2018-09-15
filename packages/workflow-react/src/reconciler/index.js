@@ -4,9 +4,12 @@ const emptyObject = {};
 
 import { createElement, getHostContextNode } from '../utils/createElement';
 
+let id = 0;
 export const WorkflowRenderer = Reconciler({
   createInstance(type, props) {
-    return createElement(type, props);
+    const nodeId = id++;
+
+    return createElement(type, { nodeId, ...props });
   },
 
   createTextInstance(text) {
@@ -98,8 +101,6 @@ export const WorkflowRenderer = Reconciler({
 
     if (newProps.type === 'app') {
       console.log(newProps);
-
-      //apply(newProps);
     }
 
     //console.log("commitUpdate", oldProps, newProps);

@@ -1,7 +1,7 @@
 /* global Application */
 import { platform } from 'shared/apps';
 
-const buildUrl = (appId, url) =>
+const buildUrl = ({ url, appId }) =>
   `http://localhost:9876/register?data=${encodeURIComponent(
     JSON.stringify({ redirect: url, appId })
   )}`;
@@ -19,7 +19,7 @@ export const Chrome = {
 };
 
 function linux({ url, appId }) {
-  return `google-chrome-stable --new-window ${buildUrl(url, appId)}`;
+  return `google-chrome-stable --new-window ${buildUrl({ url, appId })}`;
 }
 
 async function osx({ url, appId, position }, { run }) {
@@ -33,7 +33,7 @@ async function osx({ url, appId, position }, { run }) {
       window.tabs[0].url = url;
       window.bounds = position;
     },
-    buildUrl(url, appId),
+    buildUrl({ url, appId }),
     position
   );
 }
@@ -41,7 +41,7 @@ async function osx({ url, appId, position }, { run }) {
 async function windows({ url, appId, position }, { startOnPositionByWindowClass }) {
   await startOnPositionByWindowClass({
     cmd: 'chrome.exe',
-    args: ['--new-window', buildUrl(url, appId)],
+    args: ['--new-window', buildUrl({ url, appId })],
     className: 'Chrome_WidgetWin_1',
     position,
   });

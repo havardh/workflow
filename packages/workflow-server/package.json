@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "index.js": "node ../workflow/cli.js --server true ./flows/Example.js ${PWD}/index.js",
+    "package.json": "node ../workflow/cli.js --server true ./flows/Example.js ${PWD}/package.json"
   },
   "author": "",
   "license": "ISC",

@@ -8,21 +8,22 @@ import { resolveFlow, apply } from './commands/apply';
 import { version } from './commands/version';
 import { update } from './commands/update';
 
-const [command, path] = args(process.argv).positional;
+const { positional } = args(process.argv);
 
 const commands = ['update', 'version', 'help', 'apply'];
 
-const isApplyWithFlow = (command, path) => command === 'apply' && path;
-const isImplicitApplyWithFlow = command => !!command && !commands.includes(command);
+const isApplyWithFlow = ([command, path]) => command === 'apply' && path;
+const isImplicitApplyWithFlow = ([command]) => !!command && !commands.includes(command);
 
 (async function exec() {
-  let flow;
+  let flow, path;
   try {
-    if (isApplyWithFlow(command, path)) {
-      flow = await resolveFlow(path);
-    } else if (isImplicitApplyWithFlow(command)) {
-      flow = await resolveFlow(command);
+    if (isApplyWithFlow(positional)) {
+      path = positional[1];
+    } else if (isImplicitApplyWithFlow(positional)) {
+      path = positional[0];
     }
+    flow = await resolveFlow(path);
   } catch (e) {
     console.error(e);
     process.exit(1);
@@ -50,12 +51,17 @@ const isImplicitApplyWithFlow = command => !!command && !commands.includes(comma
       ['apply <flow>' + positionalArguments(flow), '* <flow>' + positionalArguments(flow)],
       'apply the flow',
       yargs => buildFlowArgs(yargs, flow),
-      async args => apply(flow, args)
+      async args => apply(path, args)
     )
     .option('config', {
       alias: 'c',
       type: 'string',
       description: 'Set the workflow-home by path to config.js',
+    })
+    .option('server', {
+      alias: 's',
+      type: 'boolean',
+      description: 'Run workflow in server mode',
     })
     .option('verbose', {
       alias: 'vv',

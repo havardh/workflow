@@ -5,7 +5,8 @@ import { CompositeDisposable } from 'atom';
 import ipc from 'node-ipc';
 
 ipc.config.id = 'workflow-app-atom';
-ipc.config.retry = 1500;
+ipc.config.retry = 5000;
+ipc.config.maxRetries = 10;
 ipc.config.sync = true;
 
 const appId = process.env.WORKFLOW_APP_INSTANCE_ID;
@@ -15,8 +16,6 @@ const channelId = 'workflow-server';
 function register() {
   return { appId, processId };
 }
-
-console.log('workflow-atom-plugin new"', appId, "'");
 
 export default {
   server: null,

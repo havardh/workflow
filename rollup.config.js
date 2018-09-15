@@ -33,9 +33,10 @@ const nodeInternalDependencies = {
 const sourceRoots = {
   'workflow-cmd': ['cli.js', 'index.js'],
   'create-workflow-home': ['cli.js', 'index.js'],
+  'workflow-server': ['client.js', 'cli.js'],
   workflow: ['cli.js'],
   'workflow-layout-yoga': ['index.js', 'components.js'],
-  'workflow-cmd': ['cli.js', 'index.js', 'npm.js', 'platform.js'],
+  'workflow-cmd': ['cli.js', 'index.js'],
 };
 
 function createConfig(bundle) {

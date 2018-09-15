@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Get IDs of windows to remap.
+ids=(${(f)"$(xdotool search --onlyvisible '')"})
+
+# Find and remove IDs of i3 windows (root window, i3bar, etc).
+ids_ignore=(${(f)"$(xdotool search --onlyvisible --class '(i3-frame|i3bar)')"})
+ids_ignore=($ids_ignore ${(f)"$(xdotool search --onlyvisible --class '^$')"})
+ids_ignore=($ids_ignore ${(f)"$(xdotool search --onlyvisible --class '^NetworkManager Applet$')"})
+
+for id in ${ids_ignore[@]}
+do
+    ids=("${(@)ids:#$id}")
+done
+
+for id in ${ids[@]}
+do
+    xdotool windowfocus $id
+    i3-msg 'mark layout-applied'
+done
+
+# Apply the layout.
+i3-msg "append_layout $1"
+
+# Unmap and remap all remaining visible windows so that they're picked up by
+# i3.
+for id in ${ids[@]}
+do
+    xdotool windowunmap $id
+    xdotool windowmap $id
+done

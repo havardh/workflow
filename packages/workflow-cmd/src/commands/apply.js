@@ -4,6 +4,7 @@
 /* Executed with NODE_PATH = ${baseFolder}/node_modules */
 import { resolve } from 'path';
 import { configPath } from 'shared/env';
+import * as server from 'workflow-server/client';
 
 const { config } = require(resolve(configPath));
 
@@ -16,9 +17,14 @@ export async function resolveFlow(path) {
   return flow;
 }
 
-export async function apply(flow, args) {
-  flow = await workflow.transform(flow, { args });
-  const screen = await workflow.screen();
-  const layout = await workflow.layout(flow, { screen });
-  await workflow.apply(layout);
+export async function apply(path, args) {
+  if (args.server) {
+    server.apply(path, args);
+  } else {
+    let flow = resolveFlow(path);
+    flow = await workflow.transform(flow, { args });
+    const screen = await workflow.screen();
+    const layout = await workflow.layout(flow, { screen });
+    await workflow.apply(layout);
+  }
 }

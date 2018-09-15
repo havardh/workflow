@@ -1,6 +1,7 @@
 export class App {
   constructor(props) {
-    this.props = { ...props, type: 'app' };
+    const { nodeId } = props;
+    this.props = { ...props, appId: nodeId, type: 'app' };
     this.children = [];
   }
 
