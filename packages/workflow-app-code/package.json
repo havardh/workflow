@@ -11,7 +11,7 @@
     "workflow"
   ],
   "scripts": {
-    "example": "node cli.js Example.js"
+    "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.js"
   },
   "dependencies": {
     "execa": "^1.0.0"

@@ -11,7 +11,7 @@
     "workflow"
   ],
   "scripts": {
-    "example": "node cli.js Example.js"
+    "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.js --terminal"
   },
   "dependencies": {
     "workflow-apps-defaults": "^0.3.7"

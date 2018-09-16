@@ -17,8 +17,8 @@
     "index.js"
   ],
   "scripts": {
-    "YogaFlex": "node cli.js YogaFlex.js",
-    "CenterExample": "node cli.js CenterExample.js"
+    "YogaFlex": "node ../workflow/cli.js --config ../workflow-home-example/config.js YogaFlex.js",
+    "CenterExample": "node ../workflow/cli.js --config ../workflow-home-example/config.js CenterExample.js"
   },
   "dependencies": {
     "yoga-layout": "github:naminho/yoga-layout-windows"

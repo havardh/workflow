@@ -15,7 +15,7 @@
     "index.js"
   ],
   "scripts": {
-    "example": "node cli.js Example.js"
+    "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.js"
   },
   "dependencies": {
     "shelljs": "^0.8.2",

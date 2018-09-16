@@ -9,7 +9,7 @@ const { File } = Emacs;
 const { Status } = Emacs.Plugins.Magit;
 
 export default render(
-  <Workspace>
+  <Workspace name="workflow-app-emacs">
     <Emacs>
       <SplitH>
         <SplitV>
