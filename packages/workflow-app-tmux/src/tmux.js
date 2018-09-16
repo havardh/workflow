@@ -1,7 +1,7 @@
-function open({ sessionName }, context, children) {
+async function open({ sessionName }, context, children) {
   const tree = convert(children[0]);
 
-  const instructions = serialize(tree, context);
+  const instructions = await serialize(tree, context);
 
   const script = `#!/bin/bash
 tmux kill-session -t ${sessionName}
@@ -37,12 +37,12 @@ function convert(node) {
   return node;
 }
 
-function serialize(node, context) {
+async function serialize(node, context) {
   const serialized = [];
 
-  serialized.push(...serializeApp(node, context));
+  serialized.push(...(await serializeApp(node, context)));
   if (node.splitv || node.splith) {
-    serialized.push(...serializeSplit(node, context));
+    serialized.push(...(await serializeSplit(node, context)));
   }
 
   return serialized;
@@ -54,7 +54,7 @@ function countid() {
   return countid.id++;
 }
 
-function serializeSplit(node, context) {
+async function serializeSplit(node, context) {
   const serialized = [];
 
   const PANE_VARIABLE = 'WF_TMUX_PANE_' + countid();
@@ -65,30 +65,30 @@ function serializeSplit(node, context) {
     );
     if (node.first === 'splitv') {
       serialized.push(`tmux splitw -v`);
-      serialized.push(...serialize(node.splitv, context));
+      serialized.push(...(await serialize(node.splitv, context)));
       serialized.push(`tmux selectp -t $${PANE_VARIABLE}`);
       serialized.push(`tmux splitw -h`);
-      serialized.push(...serialize(node.splith, context));
+      serialized.push(...(await serialize(node.splith, context)));
     } else {
       serialized.push(`tmux splitw -h`);
-      serialized.push(...serialize(node.splith, context));
+      serialized.push(...(await serialize(node.splith, context)));
       serialized.push(`tmux selectp -t $${PANE_VARIABLE}`);
       serialized.push(`tmux splitw -v`);
-      serialized.push(...serialize(node.splitv, context));
+      serialized.push(...(await serialize(node.splitv, context)));
     }
   } else if (node.splitv) {
     serialized.push(`tmux splitw -v`);
-    serialized.push(...serialize(node.splitv, context));
+    serialized.push(...(await serialize(node.splitv, context)));
   } else {
     serialized.push(`tmux splitw -h`);
-    serialized.push(...serialize(node.splith, context));
+    serialized.push(...(await serialize(node.splith, context)));
   }
 
   return serialized;
 }
 
-function serializeApp(node, context) {
-  return [`tmux send-keys "${node.open(node, context, node.children)}" C-m`];
+async function serializeApp(node, context) {
+  return [`tmux send-keys "${await node.open(node, context, node.children)}" C-m`];
 }
 
 const Tmux = {
