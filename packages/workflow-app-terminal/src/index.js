@@ -6,7 +6,7 @@ async function evaluate(children, context) {
   const { platform } = context;
   const wm = 'terminal';
 
-  return child.open(child, { platform, wm }, child.children);
+  return await child.open(child, { platform, wm }, child.children);
 }
 
 const Terminal = {
@@ -16,7 +16,7 @@ const Terminal = {
   params: ['cwd', 'cmd'],
   open: async ({ cwd, cmd, args, ...rest }, context, children) => {
     if (context.wm === 'terminal') {
-      return `${cwd}; clear; ${cmd || evaluate(children, context)}`;
+      return `cd ${cwd || ''}; clear; ${cmd || (await evaluate(children, context))}`;
     } else {
       return DefaultTerminal.open({ cwd, cmd, args, ...rest }, context, children);
     }
