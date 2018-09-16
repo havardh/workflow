@@ -6,6 +6,6 @@ const XTerm = requireComponent('workflow-app-xterm');
 
 export default render(
   <Workspace name={'workflow-app-xterm'}>
-    <XTerm />
+    <XTerm cmd={'pwd'} />
   </Workspace>
 );

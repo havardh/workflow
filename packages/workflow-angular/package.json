@@ -4,7 +4,7 @@
   "description": "Angular frontend for workflow",
   "main": "index.js",
   "scripts": {
-    "example": "node cli.js Example.ts"
+    "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.ts"
   },
   "author": "Håvard Wormdal Høiby <havardwhoiby@gmail.com>",
   "license": "MIT",
