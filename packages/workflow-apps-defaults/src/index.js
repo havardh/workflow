@@ -17,11 +17,11 @@ if (process.browser) {
         return {
           Terminal: require('workflow-app-iterm').ITerm,
           Browser: require('workflow-app-safari').Safari,
-          TextEditor: require('workflow-app-textedit').Textedit,
+          TextEditor: require('workflow-app-textedit').TextEdit,
         };
       case 'win32':
         return {
-          Terminal: require('workflow-app-powershell').Powershell,
+          Terminal: require('workflow-app-powershell').PowerShell,
           Browser: require('workflow-app-chrome').Chrome,
           TextEditor: require('workflow-app-notepad').Notepad,
         };

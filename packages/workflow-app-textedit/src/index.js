@@ -1,5 +1,5 @@
 /* global Application */
-export const Textedit = {
+export const TextEdit = {
   type: 'app',
   name: 'Textedit',
   params: ['file'],

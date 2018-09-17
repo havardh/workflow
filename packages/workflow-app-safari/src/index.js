@@ -1,5 +1,5 @@
 /* global Application */
-export const safari = {
+export const Safari = {
   type: 'app',
   name: 'Safari',
   params: ['url'],
