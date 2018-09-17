@@ -8,5 +8,6 @@ const { join } = require('path');
 if (existsSync(join(__dirname, 'dist'))) {
   require('./dist');
 } else {
+  require('babel-register');
   require('./src');
 }
