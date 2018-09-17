@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* global Application, delay */
 
 import { platform } from 'shared/apps';
 
