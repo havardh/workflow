@@ -9,12 +9,12 @@ The package exposes a `Yoga` layout node which can be used as in place of any la
 
 ```
 import React from 'react';
-import render, { Workspace, requireComponent } from 'workflow-react';
+import { render, Workspace, requireComponent } from 'workflow-react';
 
 const { Browser } = requireComponent("workflow-apps-defaults");
 import { Flex } from "workflow-layout-yoga/components";
 
-export default render(
+export const flow = render(
   <Workspace name={'workflow-yoga-example'}>
     <Flex name="flex" style={{
       justifyContent: "center",

@@ -61,7 +61,7 @@ function jxaOpen({ x, y, width, height }, code) {
   }
 }
 
-export default async function open({ file, position }, { run }, children) {
+export async function open({ file, position }, { run }, children) {
   const code = createOpenCode(file, children);
   await run(jxaOpen, position, code);
 }

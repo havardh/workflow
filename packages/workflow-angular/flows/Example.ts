@@ -2,7 +2,7 @@ import { NgModule, Component } from '@angular/core';
 import { render, WorkflowPlatform, requireComponent, Workspace } from 'workflow-angular';
 
 const { Terminal } = requireComponent('workflow-apps-defaults');
-const Emacs = requireComponent('workflow-app-emacs');
+const { Emacs } = requireComponent('workflow-app-emacs');
 const { SplitH } = requireComponent('workflow-layout-tiled');
 
 @Component({
@@ -25,4 +25,4 @@ class Workflow {}
 })
 class WorkflowModule {}
 
-export default render(WorkflowModule);
+export const flow = render(WorkflowModule);

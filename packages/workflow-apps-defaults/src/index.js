@@ -15,22 +15,21 @@ if (process.browser) {
     switch (process.platform) {
       case 'darwin':
         return {
-          Terminal: require('workflow-app-iterm').default || require('workflow-app-iterm'),
-          Browser: require('workflow-app-safari').default || require('workflow-app-safari'),
-          TextEditor: require('workflow-app-textedit').default || require('workflow-app-texedit'),
+          Terminal: require('workflow-app-iterm').ITerm,
+          Browser: require('workflow-app-safari').Safari,
+          TextEditor: require('workflow-app-textedit').Textedit,
         };
       case 'win32':
         return {
-          Terminal:
-            require('workflow-app-powershell').default || require('workflow-app-powershell'),
-          Browser: require('workflow-app-chrome').default || require('workflow-app-chrome'),
-          TextEditor: require('workflow-app-notepad').default || require('workflow-app-notepad'),
+          Terminal: require('workflow-app-powershell').Powershell,
+          Browser: require('workflow-app-chrome').Chrome,
+          TextEditor: require('workflow-app-notepad').Notepad,
         };
       case 'linux':
         return {
-          Terminal: require('workflow-app-xterm').default || require('workflow-app-xterm'),
-          Browser: require('workflow-app-chrome').default || require('workflow-app-chrome'),
-          TextEditor: require('workflow-app-atom').default || require('workflow-app-atom'),
+          Terminal: require('workflow-app-xterm').XTerm,
+          Browser: require('workflow-app-chrome').Chrome,
+          TextEditor: require('workflow-app-atom').Atom,
         };
       default:
         console.log(`Platform '${process.platform}' not supported`);
@@ -46,9 +45,9 @@ if (process.browser) {
   const userDefaults = (() => {
     try {
       const path = join(baseFolder, 'apps', 'defaults');
-      const defaultModule = require(path);
+      const { defaults } = require(path);
 
-      return defaultModule.default || defaultModule;
+      return defaults || {};
     } catch (error) {
       if (error.code !== 'MODULE_NOT_FOUND') {
         throw error;

@@ -1,6 +1,6 @@
 // @flow
 /* eslint-env jest */
-import WorkflowParserArguments from '../../index';
+import { WorkflowParserArguments } from '../../index';
 
 const parser = new WorkflowParserArguments();
 

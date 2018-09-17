@@ -1,11 +1,11 @@
 import { createElement } from '../utils/createElement';
-import WorkflowRenderer from '../reconciler/index';
-import parse from '../parse/index';
+import { WorkflowRenderer } from '../reconciler/index';
+import { parse } from '../parse/index';
 
 export let ROOT_NODE = {}; // eslint-disable-line import/no-mutable-exports
 
 // Renders the input component
-function render(element) {
+export function render(element) {
   // Create root container instance
   ROOT_NODE = createElement('ROOT');
   const container = ROOT_NODE;
@@ -26,5 +26,3 @@ function render(element) {
   // Parse the input component and return the output
   return parse(container);
 }
-
-export default render;

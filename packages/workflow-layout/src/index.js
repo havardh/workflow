@@ -1,10 +1,11 @@
 /* eslint-env node */
 
-module.exports = class WorkflowLayout {
+class WorkflowLayout {
   layout(node, { screen }) {
     return calculate(node, { position: screen, screen });
   }
-};
+}
+module.exports = { WorkflowLayout };
 
 function calculateWorkspace(workspace, { position, screen }) {
   return {

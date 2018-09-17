@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import WorkflowLayout from '../../src/index';
+import { WorkflowLayout } from '../../src/index';
 
 const screen = { top: 0, left: 0, width: 1024, height: 768 };
 const Layout = new WorkflowLayout();

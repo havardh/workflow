@@ -32,7 +32,7 @@ class Workflow {}
 })
 class WorkflowModule {}
 
-export default render(WorkflowModule);
+export const flow = render(WorkflowModule);
 ```
 
 Use with `workflow-loader-typescript` to allow the flow files to be defined in TypeScript.

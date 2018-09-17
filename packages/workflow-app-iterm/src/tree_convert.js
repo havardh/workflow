@@ -1,7 +1,4 @@
-/*
-
-*/
-export default function convert(node) {
+export function convert(node) {
   if (node.layout) {
     const direction = node.layout;
     const root = convert(node.children[0]);

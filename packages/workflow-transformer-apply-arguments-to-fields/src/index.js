@@ -9,7 +9,8 @@ function parseValue(value, args) {
   return value;
 }
 
-export default class WorkflowTransformerApplyArgumentsToFields {
+export class WorkflowTransformerApplyArgumentsToFields {
+  async transformBefore() {}
   async transformAfter(node, { args }) {
     switch (node.type) {
       case 'app': {

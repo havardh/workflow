@@ -6,7 +6,7 @@ import { platform } from 'shared/apps';
 
 const timeout = n => new Promise(resolve => setTimeout(resolve, n));
 
-const code = {
+export const Code = {
   type: 'app',
   name: 'Code',
   xClass: 'Code',
@@ -37,5 +37,3 @@ async function osx({ file, position }, { run }) {
     Code.windows[0].bounds = position;
   }, position);
 }
-
-export default code;

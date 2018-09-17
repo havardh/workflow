@@ -10,7 +10,7 @@ Use in combination with `workflow-transformer-apply-arguments-to-fields`.
 ```
 // flows/Example.js
 
-export default render(
+export const flow = render(
   <Workspace name="workflow-arguments" args="file">
     <TextEditor file={({file}) => file} />
   </Workspace>

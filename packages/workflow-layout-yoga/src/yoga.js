@@ -1,6 +1,6 @@
 import YogaLayout, { Node } from 'yoga-layout';
 
-import apply from './apply';
+import { apply } from './apply';
 
 function layout(node, { position }) {
   const { top, left, width, height } = position;
@@ -60,5 +60,4 @@ function createYogaNode(node) {
   return { ...node, yogaNode, children };
 }
 
-const Yoga = { type: 'layout', layout, style: {}, children: [] };
-export default Yoga;
+export const Yoga = { type: 'layout', layout, style: {}, children: [] };

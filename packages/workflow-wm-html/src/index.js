@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import { findAllApps } from 'shared/tree';
 
-export default class Html {
+export class WorkflowWmHtml {
   constructor({ container }) {
     this.scripts = [];
     if (typeof element === 'string') {

@@ -1,4 +1,4 @@
-export default class Root {
+export class Root {
   constructor() {
     this.children = [];
   }

@@ -4,7 +4,7 @@ import execa from 'execa';
 
 const timeout = n => new Promise(resolve => setTimeout(resolve, n));
 
-export default async function open({ file, position }, context) {
+export async function open({ file, position }, context) {
   const { run } = context;
 
   await execa('atom', ['-n', file]);

@@ -1,6 +1,6 @@
 /* eslint-env node, jest */
 import { join } from 'path';
-import WorkflowResolverRelative from '../../src/index';
+import { WorkflowResolverRelative } from '../../src/index';
 
 const path = join(__dirname, '__fixtures__');
 

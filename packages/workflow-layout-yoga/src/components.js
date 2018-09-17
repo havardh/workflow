@@ -1,4 +1,4 @@
-import Yoga from './yoga';
+import { Yoga } from './yoga';
 
 export const Flex = {
   type: 'layout',

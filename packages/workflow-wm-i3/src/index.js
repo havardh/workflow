@@ -1,13 +1,13 @@
 /* eslint-env node */
 import { createClient } from 'i3';
-import transform from './transform';
-import write from './write';
+import { transform } from './transform';
+import { write } from './write';
 
 async function openNode(node, context) {
   return await node.open(node, context, node.children);
 }
 
-class I3 {
+export class WorkflowWmI3 {
   constructor() {
     this.client = createClient();
     setTimeout(() => {
@@ -75,5 +75,3 @@ class I3 {
     this.client.command(`exec ${open}`);
   }
 }
-
-module.exports = I3;

@@ -2,7 +2,7 @@ import { file } from 'tmp-promise';
 import { outputFile, close } from 'fs-extra';
 import kexec from 'kexec';
 
-class Terminal {
+export class WorkflowWmTerminal {
   async apply(flow) {
     const app = flow.children[0];
 
@@ -29,5 +29,3 @@ class Terminal {
     };
   }
 }
-
-export default Terminal;

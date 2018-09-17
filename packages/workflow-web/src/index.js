@@ -3,14 +3,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import Title from './components/Title';
-import SubTitle from './components/SubTitle';
-import SubSubTitle from './components/SubTitle';
-import Prerequisites from './components/Prerequisites';
-import Note from './components/Note';
-import Code from './components/Code';
-import Paragraph from './components/Paragraph';
-import WorkflowLive from './components/WorkflowLive';
+import { Title } from './components/Title';
+import { SubTitle } from './components/SubTitle';
+import { SubSubTitle } from './components/SubTitle';
+import { Prerequisites } from './components/Prerequisites';
+import { Note } from './components/Note';
+import { Code } from './components/Code';
+import { Paragraph } from './components/Paragraph';
+import { WorkflowLive } from './components/WorkflowLive';
 
 const githubUrl = 'https://github.com/havardh/workflow/tree/master/packages';
 
@@ -166,14 +166,14 @@ const Application = () => (
     <Code>
       {`// file: ~/.workflow/config.js
 import {resolve} from "path";
-import WorkflowResolverRelative from "workflow-resolver-relative";
-import WorkflowResolverAbsolute from "workflow-resolver-absolute";
-import WorkflowLoaderBabel from "workflow-loader-babel";
-import WorkflowTranformAnalytics from "workflow-transform-analytics";
-import WorkflowWmOsx from "workflow-wm-osx";
+import {WorkflowResolverRelative} from "workflow-resolver-relative";
+import {WorkflowResolverAbsolute} from "workflow-resolver-absolute";
+import {WorkflowLoaderBabel} from "workflow-loader-babel";
+import {WorkflowTranformAnalytics} from "workflow-transform-analytics";
+import {WorkflowWmOsx} from "workflow-wm-osx";
 
 /*  */
-export default {
+export const config = {
 
   /* Resolves lets workflow know where to look for flow files. */
   resolvers: [

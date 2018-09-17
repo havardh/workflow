@@ -1,13 +1,13 @@
 /* eslint-env node */
 import React from 'react';
-import render, { Workspace, requireComponent } from 'workflow-react';
+import { render, Workspace, requireComponent } from 'workflow-react';
 
 const { SplitV, SplitH } = requireComponent('workflow-layout-tiled');
-const Tmux = requireComponent('workflow-app-tmux');
-const Vim = requireComponent('workflow-app-vim');
-const Less = requireComponent('workflow-app-less');
+const { Tmux } = requireComponent('workflow-app-tmux');
+const { Vim } = requireComponent('workflow-app-vim');
+const { Less } = requireComponent('workflow-app-less');
 
-export default render(
+export const flow = render(
   <Workspace>
     <Tmux sessionName={'tmux-test'}>
       <SplitV>

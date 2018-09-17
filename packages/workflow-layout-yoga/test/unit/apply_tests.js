@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import yoga from 'yoga-layout';
-import apply from '../../src/apply';
+import { apply } from '../../src/apply';
 
 it('should apply alignment rules to node', () => {
   const node = { setAlignContent: jest.fn() };

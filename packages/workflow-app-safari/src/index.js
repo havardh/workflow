@@ -1,5 +1,5 @@
 /* global Application */
-const safari = {
+export const safari = {
   type: 'app',
   name: 'Safari',
   params: ['url'],
@@ -27,5 +27,3 @@ const safari = {
     );
   },
 };
-
-export default safari;

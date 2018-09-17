@@ -1,7 +1,7 @@
 import { defaults } from 'workflow-apps-html';
 const { TextEditor, Terminal } = defaults;
 
-export default {
+export const flow = {
   name: 'workflow-dev-core',
   type: 'workspace',
   children: [

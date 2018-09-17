@@ -64,7 +64,7 @@ in the `flow` file.
 ```js
 // ...
 
-export default render(
+export const flow = render(
   <Workspace>
     <Tmux sessionName={"session-name"}>...</Tmux>
   </Workspace>

@@ -1,4 +1,4 @@
-export default class Workspace {
+export class Workspace {
   constructor(props) {
     this.props = { ...props, type: 'workspace' };
     this.children = [];

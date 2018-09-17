@@ -13,7 +13,7 @@ with the create-workflow-app initializer.
 `);
 }
 
-export default function parse(args) {
+export function parse(args) {
   if (args.length < 1) {
     console.error('Invalid number of arguments');
     console.log();

@@ -1,18 +1,12 @@
 /* eslint-env node, jest */
 /* global jasmine */
-import { resolve } from 'path';
-import WorkflowResolverAbsolute from 'workflow-resolver-absolute';
-import WorkflowLoaderBabel from 'workflow-loader-babel';
-import WorkflowLayout from 'workflow-layout';
+import { WorkflowResolverAbsolute } from 'workflow-resolver-absolute';
+import { WorkflowLoaderBabel } from 'workflow-loader-babel';
+import { WorkflowLayout } from 'workflow-layout';
 import { platform } from 'shared/env';
 import { requireAsJson } from 'shared/json';
-import take from 'shared/screenshot';
-
-const Wm = require({
-  win32: 'workflow-wm-windows',
-  linux: 'workflow-wm-i3',
-  darwin: 'workflow-wm-osx',
-}[platform]);
+import { take } from 'shared/screenshot';
+import { WorkflowWmAuto } from 'workflow-wm-auto';
 
 const config = requireAsJson('.babelrc');
 
@@ -23,15 +17,15 @@ function requireWorkflow(flow) {
       loaders: [{ loader: new WorkflowLoaderBabel({ config }) }],
       transformers: [],
       layout: new WorkflowLayout(),
-      wm: new Wm(),
+      wm: new WorkflowWmAuto(),
     });
   } else {
     return require('workflow-core').workflow({
       resolvers: [{ resolve: flow => flow }],
-      loaders: [{ loader: { load: flow => ({ default: flow }) }, test: /.*/ }],
+      loaders: [{ loader: { load: flow => ({ flow }) }, test: /.*/ }],
       transformers: [],
       layout: new WorkflowLayout(),
-      wm: new Wm(),
+      wm: new WorkflowWmAuto(),
     });
   }
 }
@@ -44,7 +38,7 @@ async function applyAndCapture(argument) {
   let workflow = requireWorkflow(argument);
 
   const path = await workflow.resolve(argument);
-  const flow = (await workflow.load(path)).default;
+  const { flow } = await workflow.load(path);
   const screen = await workflow.screen();
   const layout = await workflow.layout(flow, { screen });
   await workflow.apply(layout);
@@ -57,7 +51,7 @@ async function applyAndCapture(argument) {
 }
 
 async function clearWorkspace() {
-  const wm = new Wm();
+  const wm = new WorkflowWmAuto();
   if (wm.minimizeAll) {
     wm.minimizeAll();
     await seconds(4);
@@ -88,9 +82,9 @@ function testFlow(name, fn) {
   });
 }
 
-function registerTestCases(name, test_file) {
+function registerTestCases(name, testCases) {
   describeFlow(name, () => {
-    for (let [name, test] of Object.entries(test_file.default)) {
+    for (let [name, test] of Object.entries(testCases)) {
       testFlow(name, test);
     }
   });

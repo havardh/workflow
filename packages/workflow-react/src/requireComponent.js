@@ -1,7 +1,7 @@
 /* eslint-env node */
 import { createComponentRecursive } from './createComponent';
 
-export default function requireComponent(path) {
+export function requireComponent(path) {
   const module = require(path);
 
   const componentModule = createComponentRecursive(module);

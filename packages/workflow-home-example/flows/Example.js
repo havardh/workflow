@@ -1,7 +1,7 @@
 /* eslint-env node */
 import { Browser, TextEditor } from 'workflow-apps-defaults';
 
-export default {
+export const flow = {
   name: 'workflow-example',
   type: 'workspace',
   children: [

@@ -1,4 +1,4 @@
-const Notepad = {
+export const Notepad = {
   type: 'app',
   name: 'Notepad',
   params: ['file'],
@@ -14,5 +14,3 @@ const Notepad = {
     });
   },
 };
-
-export default Notepad;

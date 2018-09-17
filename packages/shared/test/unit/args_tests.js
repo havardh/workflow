@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import args from '../../args';
+import { args } from '../../args';
 
 describe('args(args)', () => {
   it('should parse single character arguments correctly', () => {

@@ -1,12 +1,12 @@
 /* eslint-env node, jest */
 import React from 'react';
-import render, { Workspace, requireComponent } from 'workflow-react';
+import { render, Workspace, requireComponent } from 'workflow-react';
 
 const { Terminal } = requireComponent('workflow-apps-defaults');
 
 const { Flex } = requireComponent('workflow-layout-yoga');
 
-export default {
+export const testCases = {
   'yoga with flex node': async applyAndCapture => {
     const flow = render(
       <Workspace name={'workflow-yoga-test'}>

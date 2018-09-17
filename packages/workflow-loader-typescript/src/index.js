@@ -1,7 +1,7 @@
 /* eslint-env node */
 /* eslint-disable import/no-dynamic-require */
 
-export default class WorkflowLoaderTypescript {
+export class WorkflowLoaderTypescript {
   constructor({ config }) {
     this.config = config;
     this.registered = false;

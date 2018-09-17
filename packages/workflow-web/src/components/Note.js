@@ -3,7 +3,7 @@ import * as React from 'react';
 
 type Props = { children: React.Node };
 
-const Note = ({ children }: Props) => (
+export const Note = ({ children }: Props) => (
   <div className="codeWrapper">
     <strong>Note:&nbsp;</strong>
     {children}
@@ -11,5 +11,3 @@ const Note = ({ children }: Props) => (
     <br />
   </div>
 );
-
-export default Note;

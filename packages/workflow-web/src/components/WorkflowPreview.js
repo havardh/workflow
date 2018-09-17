@@ -3,10 +3,10 @@
 import React from 'react';
 import uuidv4 from 'uuid/v4';
 import { workflow } from 'workflow-core';
-import WorkflowParserArguments from 'workflow-parser-arguments';
-import WorkflowTransformerApplyArgumentsToFields from 'workflow-transformer-apply-arguments-to-fields';
-import WorkflowLayout from 'workflow-layout';
-import WorkflowWmHtml from 'workflow-wm-html';
+import { WorkflowParserArguments } from 'workflow-parser-arguments';
+import { WorkflowTransformerApplyArgumentsToFields } from 'workflow-transformer-apply-arguments-to-fields';
+import { WorkflowLayout } from 'workflow-layout';
+import { WorkflowWmHtml } from 'workflow-wm-html';
 
 function dispatch(elem: Element, event) {
   elem.dispatchEvent(event);
@@ -27,7 +27,7 @@ type Screen = {
   height: number,
 };
 
-class WorkflowPreview extends React.Component<Props> {
+export class WorkflowPreview extends React.Component<Props> {
   id: string;
   workflow: {
     resolve: (path: string) => Promise<string>,
@@ -102,5 +102,3 @@ class WorkflowPreview extends React.Component<Props> {
     return <div id={this.id} className="workflowPreview" />;
   }
 }
-
-export default WorkflowPreview;

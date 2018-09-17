@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const emacs = {
+export const emacs = {
   type: 'app',
   name: 'Emacs',
   xClass: 'Emacs',
@@ -8,5 +8,3 @@ const emacs = {
     return `emacs -nw ${file}`;
   },
 };
-
-export default emacs;

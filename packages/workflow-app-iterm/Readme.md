@@ -12,7 +12,7 @@ be the size of the contained area divide by the number of children.
 
 ```
 import React from 'react';
-import render, { Workspace, requireComponent } from 'workflow-react';
+import { render, Workspace, requireComponent } from 'workflow-react';
 
 import ITerm from "workflow-app-iterm";
 
@@ -21,7 +21,7 @@ const Vim = requireComponent("workflow-app-vim");
 const Terminal = requireComponent("workflow-app-terminal");
 const Emacs = requireComponent("workflow-app-emacs");;
 
-export default render(
+export const flow = render(
   <Workspace name={'workflow-iterm-split'}>
     <ITerm>
       <SplitH>

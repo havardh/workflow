@@ -6,12 +6,12 @@ a 50-50 split between a text editor and a browser.
 
 ```
 import React from 'react';
-import render, { Workspace } from 'workflow-react';
+import { render, Workspace } from 'workflow-react';
 
 const { SplitH } = requireComponent("workflow-layout-tiled");
 const { TextEditor, Browser } = requireComponent("workflow-apps-defaults");
 
-export default render(
+export const flow = render(
   <Workspace name={'workflow-react-example'}>
     <SplitH percent={1}>
       <TextEditor percent={0.5} file={__filename} />
@@ -40,7 +40,7 @@ Example
 ```
 import render from "workflow-react";
 
-export default render(...);
+export const flow = render(...);
 ```
 
 ### Low Level `Components`
@@ -73,11 +73,11 @@ Definition
 Example
 ```
 import React from 'react';
-import render, { Workspace, requireComponent } from 'workflow-react';
+import { render, Workspace, requireComponent } from 'workflow-react';
 
 const { TextEditor } = requireComponent("workflow-apps-defaults");
 
-export default render(
+export const flow = render(
   <Workspace
     name={'editor'}
     args={"file"}
@@ -121,11 +121,11 @@ Definition
 Example
 ```
 import React from 'react';
-import render, { Workspace, Layout, requireComponent } from 'workflow-react';
+import { render, Workspace, Layout, requireComponent } from 'workflow-react';
 
 const { TextEditor, Terminal } = requireComponent("workflow-apps-defaults");
 
-export default render(
+export const flow = render(
   <Workspace name={'editor'}>
     <Layout
       layout={"splitv"}
@@ -185,9 +185,9 @@ Definition
 Example
 ```
 import React from 'react';
-import render, { Workspace, App } from 'workflow-react';
+import { render, Workspace, App } from 'workflow-react';
 
-export default render(
+export const flow = render(
   <Workspace name={'editor'} >
     <App
       params={['file']}
@@ -246,7 +246,7 @@ provide a `React` `Component`. The `App` can easily be used directly.
 Example
 ```
 import React from "react";
-import render, {Workspace, createComponent} from "workflow-react";
+import { render,Workspace, createComponent} from "workflow-react";
 
 const Intellij = {
   params: ["file"],
@@ -256,7 +256,7 @@ const Intellij = {
 
 const IntellijComponent = createComponent(Intellij);
 
-export default render(
+export const flow = render(
   <Workspace
     name={'intellij'}
     args={"file"}
@@ -275,13 +275,13 @@ definition and a collection of definitions.
 
 ```
 import React from "react";
-import render, {Workspace, requireComponent} from "workflow-react";
+import { render,Workspace, requireComponent} from "workflow-react";
 
 const {SplitV} = requireComponent("workflow-layout-tiled");
 const Emacs = requireComponent("workflow-app-emacs");
 const {Terminal, Browser} = requireComponent("workflow-apps-defaults");
 
-export default render(
+export const flow = render(
   <Workspace
     name={'intellij'}
     args={"file"}

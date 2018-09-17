@@ -1,8 +1,8 @@
 import { platform } from 'shared/apps';
 
-import osx from './osx';
+import { open as osx } from './osx';
 
-const atom = {
+export const Atom = {
   type: 'app',
   name: 'Atom',
   xClass: 'Atom',
@@ -12,5 +12,3 @@ const atom = {
     'linux-*': ({ file }) => `atom -n ${file}`,
   }),
 };
-
-export default atom;

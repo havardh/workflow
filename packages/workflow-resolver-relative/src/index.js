@@ -3,7 +3,7 @@ import { dirname, basename, join, isAbsolute, resolve } from 'path';
 import { promisify } from 'util';
 import { debug, error } from 'shared/logger';
 
-export default class WorkflolwResolverRelative {
+export class WorkflowResolverRelative {
   constructor({ path, filter }) {
     if (!isAbsolute(path)) {
       error(

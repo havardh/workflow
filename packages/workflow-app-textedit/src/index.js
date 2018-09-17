@@ -1,5 +1,5 @@
 /* global Application */
-const safari = {
+export const Textedit = {
   type: 'app',
   name: 'Textedit',
   params: ['file'],
@@ -24,5 +24,3 @@ const safari = {
     );
   },
 };
-
-export default safari;

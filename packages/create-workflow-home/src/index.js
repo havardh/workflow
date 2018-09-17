@@ -3,7 +3,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 import get from 'lodash.get';
-import parse from './args';
+import { parse } from './args';
 
 import { platform, wm } from 'shared/env';
 

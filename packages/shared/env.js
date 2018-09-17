@@ -1,6 +1,6 @@
 /* eslint-env node */
 import { execSync } from 'child_process';
-import args from './args';
+import { args } from './args';
 import { which } from './shell';
 import os from 'os';
 import { dirname, join } from 'path';

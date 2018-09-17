@@ -8,7 +8,7 @@ const defaultOptions = {
   pythonPath: 'C:\\Windows\\py.exe',
 };
 
-class Windows {
+export class WorkflowWmWindowsPython {
   async screen() {
     return new Promise((resolve, reject) => {
       PythonShell.run('wms/windows/python/get_desktop_rect.py', defaultOptions, (err, res) => {
@@ -59,5 +59,3 @@ class Windows {
     });
   }
 }
-
-module.exports = Windows;

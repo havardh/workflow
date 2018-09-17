@@ -1,4 +1,4 @@
-export default function args(args) {
+export function args(args) {
   const parsedArgs = {
     named: {},
     positional: [],

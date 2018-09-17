@@ -24,7 +24,7 @@ export default {
 This example contains a
 
 ```
-export default render(
+export const flow = render(
   <Workspace name="File example" args=["file"]>
     <Atom file={({file}) => file} />
   </Workspace>
