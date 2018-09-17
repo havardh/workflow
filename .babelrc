@@ -1,0 +1,35 @@
+{
+  "presets": [
+    "flow",
+    "react",
+    [
+      "env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ],
+  "plugins": ["transform-object-rest-spread", "transform-class-properties"],
+  "env": {
+      "test": {
+        "presets": [
+          "flow",
+          "react",
+          [
+            "env",
+            {
+              "targets": {
+                "node": "current"
+              }
+            }
+          ]
+        ],
+        "plugins": [
+          "transform-object-rest-spread",
+          "transform-class-properties"
+        ]
+      }
+    }
+}

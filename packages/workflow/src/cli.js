@@ -4,7 +4,7 @@
 import prompt from 'prompt';
 import spawn from 'cross-spawn';
 import { resolve, join } from 'path';
-import WorkflowCmd from 'workflow-cmd/cli';
+import * as WorkflowCmd from 'workflow-cmd/cli';
 import { promisify } from 'util';
 import os from 'os';
 import execa from 'execa';
