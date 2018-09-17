@@ -9,5 +9,6 @@ if (existsSync(join(__dirname, 'dist'))) {
   require('./dist');
 } else {
   require('babel-register');
+  require('ts-node').register(require('../../tsconfig.json'));
   require('./src');
 }

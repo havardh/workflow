@@ -8,14 +8,8 @@ const WorkflowTransformerApplyArgumentsToFields = require('workflow-transformer-
 const WorkflowLayout = require('workflow-layout');
 const WorkflowWm = require('workflow-wm-auto');
 
-const babelConfig = requireAsJson('../../.babelrc');
-const typescriptConfig = {
-  config: {
-    compilerOptions: {
-      experimentalDecorators: true,
-    },
-  },
-};
+const babelConfig = { config: requireAsJson('../../.babelrc') };
+const typescriptConfig = { config: requireAsJson('../../tsconfig.json') };
 
 module.exports = {
   resolvers: [new WorkflowResolverRelative({ path: join(process.cwd(), 'flows') })],

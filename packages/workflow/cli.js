@@ -7,6 +7,7 @@ try {
 } catch (error) {
   if (error.code === 'MODULE_NOT_FOUND') {
     require('babel-register');
+    require('ts-node').register(require('../../tsconfig.json'));
     module.exports = require('./src/cli');
   } else {
     throw error;
