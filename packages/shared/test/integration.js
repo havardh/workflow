@@ -1,9 +1,11 @@
 /* eslint-env node, jest */
 /* global jasmine */
+import { resolve } from 'path';
 import WorkflowResolverAbsolute from 'workflow-resolver-absolute';
 import WorkflowLoaderBabel from 'workflow-loader-babel';
 import WorkflowLayout from 'workflow-layout';
 import { platform } from 'shared/env';
+import { requireAsJson } from 'shared/json';
 import take from 'shared/screenshot';
 
 const Wm = require({
@@ -12,21 +14,7 @@ const Wm = require({
   darwin: 'workflow-wm-osx',
 }[platform]);
 
-const config = {
-  presets: [
-    'flow',
-    'react',
-    [
-      'env',
-      {
-        targets: {
-          node: 'current',
-        },
-      },
-    ],
-  ],
-  plugins: ['transform-object-rest-spread', 'transform-class-properties'],
-};
+const config = requireAsJson('.babelrc');
 
 function requireWorkflow(flow) {
   if (typeof flow === 'string') {

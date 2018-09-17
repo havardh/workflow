@@ -10,6 +10,7 @@
     "eslint": "eslint .",
     "build": "rollup -c",
     "release": "yarn build && lerna publish",
+    "clean": "lerna exec -- rm -rf ./dist",
     "format": "prettier '**/*.[jt]s' --write",
     "check-format": "prettier '**/*.[jt]s' --list-different",
     "test": "jest",
@@ -18,45 +19,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "babel": {
-    "presets": [
-      "flow",
-      "react",
-      [
-        "env",
-        {
-          "modules": false,
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "transform-object-rest-spread",
-      "transform-class-properties"
-    ],
-    "env": {
-      "test": {
-        "presets": [
-          "flow",
-          "react",
-          [
-            "env",
-            {
-              "targets": {
-                "node": "current"
-              }
-            }
-          ]
-        ],
-        "plugins": [
-          "transform-object-rest-spread",
-          "transform-class-properties"
-        ]
-      }
-    }
-  },
   "jest": {
     "testMatch": [
       "**/test/**/*_tests.js"
@@ -101,6 +63,7 @@
     "babel-core": "^6.26.0",
     "babel-jest": "^20.0.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-commonjs": "^1.0.0-beta.3",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-polyfill": "^6.9.0",
     "babel-preset-env": "^1.6.1",

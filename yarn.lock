@@ -259,6 +259,10 @@
   dependencies:
     "@babel/types" "^7.0.0"
 
+"@babel/helper-plugin-utils@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0.tgz#bbb3fbee98661c569034237cc03967ba99b4f250"
+
 "@babel/helper-split-export-declaration@7.0.0-beta.51":
   version "7.0.0-beta.51"
   resolved "https://registry.yarnpkg.com/@babel/helper-split-export-declaration/-/helper-split-export-declaration-7.0.0-beta.51.tgz#8a6c3f66c4d265352fc077484f9f6e80a51ab978"
@@ -1980,6 +1984,12 @@ babel-plugin-transform-class-properties@^6.24.1:
     babel-plugin-syntax-class-properties "^6.8.0"
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
+
+babel-plugin-transform-commonjs@^1.0.0-beta.3:
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-commonjs/-/babel-plugin-transform-commonjs-1.0.0-beta.3.tgz#6a3bb66626203c45fdc2e30c02a077423d55e47d"
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
 
 babel-plugin-transform-decorators@^6.24.1:
   version "6.24.1"

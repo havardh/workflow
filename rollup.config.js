@@ -46,7 +46,12 @@ function createConfig(bundle) {
     plugins: [
       postcss({ plugins: [] }),
       typescript(),
-      babel({ exclude: 'node_modules/**' }),
+      babel({
+        exclude: 'node_modules/**',
+        babelrc: false,
+        presets: ['flow', 'react'],
+        plugins: ['transform-object-rest-spread', 'transform-class-properties'],
+      }),
       alias({ shared: __dirname + '/packages/shared' }),
     ],
     external,

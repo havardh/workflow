@@ -15,45 +15,6 @@
     "dist",
     "index.js"
   ],
-  "babel": {
-    "presets": [
-      "flow",
-      "react",
-      [
-        "env",
-        {
-          "modules": false,
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "transform-object-rest-spread",
-      "transform-class-properties"
-    ],
-    "env": {
-      "test": {
-        "presets": [
-          "flow",
-          "react",
-          [
-            "env",
-            {
-              "targets": {
-                "node": "current"
-              }
-            }
-          ]
-        ],
-        "plugins": [
-          "transform-object-rest-spread",
-          "transform-class-properties"
-        ]
-      }
-    }
-  },
   "scripts": {
     "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.js"
   }
