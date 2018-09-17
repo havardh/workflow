@@ -1,4 +1,4 @@
-export default class Async {
+export class Async {
   constructor(props) {
     this.props = { ...props, type: 'async' };
     this.children = [];
