@@ -1,4 +1,4 @@
-const vim = {
+export const Vim = {
   type: 'app',
   name: 'vim',
   xClass: 'Vim',
@@ -11,5 +11,3 @@ const vim = {
     return `vim ${file || ''}`;
   },
 };
-
-export default vim;

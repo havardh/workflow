@@ -13,7 +13,7 @@ import { which } from 'shared/shell';
 
 const promptGetAsync = promisify(prompt.get);
 
-export default async function update(args) {
+export async function update(args) {
   if (args.force || (await noUncommitChanges(baseFolder))) {
     if (args.force) {
       console.log('Ignoring uncommited changes with `--force` flag');

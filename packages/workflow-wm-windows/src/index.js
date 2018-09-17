@@ -3,13 +3,13 @@
 
 import difference from 'lodash.difference';
 
-import exec from './powershell';
+import { exec } from './powershell';
 import * as winApi from './win_api';
 import { findAllApps } from 'shared/tree';
 
 const timeout = n => new Promise(resolve => setTimeout(resolve, n));
 
-class Windows {
+export class WorkflowWmWindows {
   async screen() {
     return new Promise(resolve => {
       resolve(winApi.getDesktopRect());
@@ -61,5 +61,3 @@ class Windows {
     return winApi.minimizeAll();
   }
 }
-
-module.exports = Windows;

@@ -1,6 +1,6 @@
 // @flow
 /* eslint-env jest */
-import convert from '../../src/tree_convert';
+import { convert } from '../../src/tree_convert';
 
 describe('tree_convert(tree)', () => {
   it('should unwrap single item layouts', () => {

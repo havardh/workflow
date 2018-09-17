@@ -18,7 +18,7 @@ async function wrapperRun(code, ...args) {
   }
 }
 
-class Osx {
+export class WorkflowWmOsx {
   screen() {
     const { width, height } = screen.main();
 
@@ -86,5 +86,3 @@ function mapPosition(app) {
     },
   };
 }
-
-module.exports = Osx;

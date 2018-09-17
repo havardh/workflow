@@ -9,7 +9,7 @@ async function evaluate(children, context) {
   return await child.open(child, { platform, wm }, child.children);
 }
 
-const Terminal = {
+export const Terminal = {
   type: 'app',
   name: 'Terminal',
   xClass: 'XTerm',
@@ -22,5 +22,3 @@ const Terminal = {
     }
   },
 };
-
-export default Terminal;

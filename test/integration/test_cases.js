@@ -1,6 +1,6 @@
 /* eslint-env node, jest */
 
-export default {
+export const testCases = {
   'term:split': async applyAndCapture => {
     const path = `${__dirname}/flows/term-split.js`;
 

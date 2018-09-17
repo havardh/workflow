@@ -3,7 +3,7 @@
 import { baseFolder, configPath } from 'shared/env';
 import readPkgUp from 'read-pkg-up';
 
-export default async function version({ verbose }) {
+export async function version({ verbose }) {
   const { pkg } = await readPkgUp({ cwd: __dirname });
   console.log('workflow:', pkg.version);
 

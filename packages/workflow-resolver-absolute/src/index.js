@@ -2,7 +2,7 @@ import fs from 'fs';
 import { dirname, join, basename, resolve } from 'path';
 import { promisify } from 'util';
 
-export default class WorkflowResolverAbsolute {
+export class WorkflowResolverAbsolute {
   async alternatives(path) {
     try {
       const stat = await promisify(fs.stat)(path);

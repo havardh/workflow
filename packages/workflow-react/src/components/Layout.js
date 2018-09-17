@@ -1,4 +1,4 @@
-export default class Layout {
+export class Layout {
   constructor(props) {
     this.props = { ...props, type: 'layout' };
     this.children = [];

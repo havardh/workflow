@@ -107,7 +107,7 @@ function genLayout(node) {
   }
 }
 
-export default function transform(node) {
+export function transform(node) {
   const nodes = extractFloating(node);
 
   const layouts = nodes

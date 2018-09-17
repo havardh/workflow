@@ -2,11 +2,11 @@
 /* eslint-disable no-console */
 import yargs from 'yargs';
 
-import args from 'shared/args';
+import { args } from 'shared/args';
 
 import { resolveFlow, apply } from './commands/apply';
-import version from './commands/version';
-import update from './commands/update';
+import { version } from './commands/version';
+import { update } from './commands/update';
 
 const [command, path] = args(process.argv).positional;
 

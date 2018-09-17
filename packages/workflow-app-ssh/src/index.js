@@ -1,4 +1,4 @@
-const Ssh = {
+export const Ssh = {
   type: 'app',
   name: 'Ssh',
   open: async function({ user, host }, context, children) {
@@ -21,5 +21,3 @@ const Ssh = {
     return `ssh -t ${user}@${host} '${cmd}'`;
   },
 };
-
-export default Ssh;

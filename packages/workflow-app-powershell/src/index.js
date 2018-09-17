@@ -1,4 +1,4 @@
-const PowerShell = {
+export const PowerShell = {
   type: 'app',
   name: 'PowerShell',
   params: ['cwd', 'cmd'],
@@ -21,5 +21,3 @@ const PowerShell = {
     });
   },
 };
-
-export default PowerShell;

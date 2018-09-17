@@ -12,8 +12,8 @@ const workflow = new WorkflowCore.workflow(config);
 
 export async function resolveFlow(path) {
   const absolutePath = await workflow.resolve(path);
-  const flow = await workflow.load(absolutePath);
-  return flow.default || flow;
+  const { flow } = await workflow.load(absolutePath);
+  return flow;
 }
 
 export async function apply(flow, args) {

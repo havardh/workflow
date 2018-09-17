@@ -5,7 +5,7 @@ type Props = {
   prerequisites: Array<string>,
 };
 
-const Prerequisites = ({ prerequisites }: Props) => (
+export const Prerequisites = ({ prerequisites }: Props) => (
   <div className="prerequisites">
     <span>Prerequisites</span>
     <ul>
@@ -15,5 +15,3 @@ const Prerequisites = ({ prerequisites }: Props) => (
     </ul>
   </div>
 );
-
-export default Prerequisites;

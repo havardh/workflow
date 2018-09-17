@@ -1,7 +1,7 @@
 import { omit } from 'lodash';
 import { Root, Workspace, App, Layout, Async } from '../components/index';
 
-const parse = component => {
+export const parse = component => {
   const { children, props } = component;
 
   if (
@@ -23,5 +23,3 @@ const parse = component => {
     };
   }
 };
-
-export default parse;

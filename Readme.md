@@ -10,7 +10,7 @@ frontend and an experimental [Angular](packages/workflow-angular) frontend.
 Workflow turns declarative windows layouts defined in javascript files ...
 
 ```javascript
-export default render(
+export const flow = render(
   <Workspace name={'workflow-react-example'}>
     <SplitH percent={1}>
       <TextEditor percent={0.5} file={__filename} />

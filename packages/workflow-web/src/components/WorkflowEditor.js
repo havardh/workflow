@@ -5,7 +5,7 @@ import uuidv4 from 'uuid/v4';
 
 type Props = { code: string };
 
-class WorkflowEditor extends React.Component<Props> {
+export class WorkflowEditor extends React.Component<Props> {
   id: string;
 
   constructor(props: Props) {
@@ -38,5 +38,3 @@ class WorkflowEditor extends React.Component<Props> {
     );
   }
 }
-
-export default WorkflowEditor;

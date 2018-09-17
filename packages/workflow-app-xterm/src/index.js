@@ -11,7 +11,7 @@ function escape(string) {
   return string.replace(/'/g, "'\\''");
 }
 
-const XTerm = {
+export const XTerm = {
   type: 'app',
   name: 'XTerm',
   params: ['cwd', 'cmd', 'args'],
@@ -48,5 +48,3 @@ const XTerm = {
   },
   xClass: 'XTerm',
 };
-
-export default XTerm;

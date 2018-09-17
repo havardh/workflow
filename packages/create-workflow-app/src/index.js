@@ -7,7 +7,7 @@ import prompt from 'prompt';
 import { fileSync } from 'find';
 import execa from 'execa';
 
-import parse from './args';
+import { parse } from './args';
 
 const { targetFolder } = parse(process.argv);
 

@@ -1,12 +1,12 @@
 /* eslint-env node */
 
 import React from 'react';
-import render, { Workspace, requireComponent } from 'workflow-react';
+import { render, Workspace, requireComponent } from 'workflow-react';
 
 const { SplitH, SplitV } = requireComponent('workflow-layout-tiled');
 const { TextEditor, Browser, Terminal } = requireComponent('workflow-apps-defaults');
 
-export default render(
+export const flow = render(
   <Workspace name={'workflow-react-example'}>
     <SplitV percent={1.0}>
       <SplitH percent={0.8}>

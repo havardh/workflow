@@ -1,4 +1,4 @@
-const less = {
+export const Less = {
   type: 'app',
   name: 'Less',
   params: ['file', 'follow'],
@@ -14,5 +14,3 @@ const less = {
     return `less ${file}`;
   },
 };
-
-export default less;

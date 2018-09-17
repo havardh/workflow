@@ -1,11 +1,11 @@
-import unixOpen from './common/open';
-import windows from './windows/index';
-import osx from './osx/index';
+import { open as unixOpen } from './common/open';
+import { open as windows } from './windows/index';
+import { open as osx } from './osx/index';
 import { File, Plugins } from './components/index';
 
 import { platform } from 'shared/apps';
 
-const emacs = {
+export const Emacs = {
   type: 'app',
   name: 'Emacs',
   xClass: 'Emacs',
@@ -18,7 +18,5 @@ const emacs = {
     '*-terminal': ({ file }, ctx, children) => unixOpen({ file, flags: '-nw' }, ctx, children),
   }),
 };
-
-export default emacs;
 
 export { File, Plugins };

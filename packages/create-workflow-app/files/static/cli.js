@@ -1,13 +1,15 @@
 /* eslint-env node */
 /* eslint-disable no-console */
 const { join } = require('path');
-const WorkflowResolverRelative = require('workflow-resolver-relative');
-const WorkflowResolverAbsolute = require('workflow-resolver-absolute');
-const WorkflowLoaderBabel = require('workflow-loader-babel');
-const WorkflowParserArguments = require('workflow-parser-arguments');
-const WorkflowTransformerApplyArgumentsToFields = require('workflow-transformer-apply-arguments-to-fields');
-const WorkflowLayout = require('workflow-layout');
-const WorkflowWm = require('workflow-wm-terminal');
+const { WorkflowResolverRelative } = require('workflow-resolver-relative');
+const { WorkflowResolverAbsolute } = require('workflow-resolver-absolute');
+const { WorkflowLoaderBabel } = require('workflow-loader-babel');
+const { WorkflowParserArguments } = require('workflow-parser-arguments');
+const {
+  WorkflowTransformerApplyArgumentsToFields,
+} = require('workflow-transformer-apply-arguments-to-fields');
+const { WorkflowLayout } = require('workflow-layout');
+const { WorkflowWm } = require('workflow-wm-terminal');
 
 const babelConfig = {
   config: {

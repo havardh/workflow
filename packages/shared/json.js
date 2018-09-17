@@ -1,3 +1,4 @@
+/* eslint-env node */
 const { readFileSync } = require('fs');
 
 function requireAsJson(file) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import render, { Workspace, createComponent } from 'workflow-react';
+import { render, Workspace, createComponent } from 'workflow-react';
 import { defaults } from 'workflow-apps-html';
 import * as Tiles from 'workflow-layout-tiled';
 
@@ -8,7 +8,7 @@ const TextEditor = createComponent(defaults.TextEditor);
 const SplitH = createComponent(Tiles.SplitH);
 const SplitV = createComponent(Tiles.SplitV);
 
-export default render(
+export const flow = render(
   <Workspace name={'workflow-test'}>
     <SplitV>
       <SplitH percent={0.8}>

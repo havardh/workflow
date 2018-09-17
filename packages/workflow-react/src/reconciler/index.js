@@ -4,7 +4,7 @@ const emptyObject = {};
 
 import { createElement, getHostContextNode } from '../utils/createElement';
 
-const WorkflowRenderer = Reconciler({
+export const WorkflowRenderer = Reconciler({
   createInstance(type, props) {
     return createElement(type, props);
   },
@@ -108,5 +108,3 @@ const WorkflowRenderer = Reconciler({
     // noop
   },
 });
-
-export default WorkflowRenderer;

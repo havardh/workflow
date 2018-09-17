@@ -1,10 +1,10 @@
 import React from 'react';
-import render, { Workspace, requireComponent } from 'workflow-react';
+import { render, Workspace, requireComponent } from 'workflow-react';
 
 const { Flex } = requireComponent('workflow-layout-yoga');
 const { Browser } = requireComponent('workflow-apps-defaults');
 
-export default render(
+export const flow = render(
   <Workspace name={'workflow-yoga-example'}>
     <Flex
       name="flex"

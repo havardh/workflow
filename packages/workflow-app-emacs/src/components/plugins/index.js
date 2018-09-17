@@ -1,4 +1,3 @@
-import Magit from './magit/index';
+import { Magit } from './magit/index';
 
-const Plugins = { Magit };
-export default Plugins;
+export const Plugins = { Magit };

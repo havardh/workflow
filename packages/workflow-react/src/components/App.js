@@ -1,4 +1,4 @@
-export default class App {
+export class App {
   constructor(props) {
     this.props = { ...props, type: 'app' };
     this.children = [];

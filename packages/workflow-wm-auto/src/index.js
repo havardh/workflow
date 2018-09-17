@@ -9,16 +9,19 @@ function useTerminalWm() {
   return (index !== -2 && argv.length === index + 1) || argv[index + 1] === 'true';
 }
 
+let WorkflowWmAuto;
 if (useTerminalWm()) {
-  module.exports = require('workflow-wm-terminal');
+  WorkflowWmAuto = require('workflow-wm-terminal').WorkflowWmTerminal;
 } else if (platform === 'darwin' && wm === 'default') {
-  module.exports = require('workflow-wm-osx');
+  WorkflowWmAuto = require('workflow-wm-osx').WorkflowWmOsx;
 } else if (platform === 'win32' && wm === 'default') {
-  module.exports = require('workflow-wm-windows');
+  WorkflowWmAuto = require('workflow-wm-windows').WorkflowWmWindows;
 } else if (platform === 'linux' && wm === 'i3') {
-  module.exports = require('workflow-wm-i3');
+  WorkflowWmAuto = require('workflow-wm-i3').WorkflowWmI3;
 } else if (platform === 'linux' && wm === 'wmctrl') {
-  module.exports = require('workflow-wm-wmctrl');
+  WorkflowWmAuto = require('workflow-wm-wmctrl').WorkflowWmWmCtrl;
 } else {
   throw new Error('Platform and/or wm not supported ' + platform + '/' + wm);
 }
+
+module.exports = { WorkflowWmAuto };

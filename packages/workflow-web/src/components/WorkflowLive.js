@@ -1,8 +1,8 @@
 // @flow
 /* eslint-env commonjs */
 import * as React from 'react';
-import WorkflowEditor from './WorkflowEditor';
-import WorkflowPreview from './WorkflowPreview';
+import { WorkflowEditor } from './WorkflowEditor';
+import { WorkflowPreview } from './WorkflowPreview';
 
 const WorkflowCommand = ({ children }: { children: React.Node }) => (
   <div className="workflowCommand">{children}</div>
@@ -13,7 +13,7 @@ type Props = {
   args: Array<string>,
 };
 
-class WorkflowLive extends React.Component<Props> {
+export class WorkflowLive extends React.Component<Props> {
   render() {
     const { name, args } = this.props;
 
@@ -35,5 +35,3 @@ class WorkflowLive extends React.Component<Props> {
     );
   }
 }
-
-export default WorkflowLive;

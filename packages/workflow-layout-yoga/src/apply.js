@@ -16,7 +16,7 @@ const percentStyles = [
   'setPosition',
 ];
 
-export default function apply(node, style, value) {
+export function apply(node, style, value) {
   if (!mapping.hasOwnProperty(style)) {
     throw new Error('Unknown style:', style);
   }

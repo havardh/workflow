@@ -1,7 +1,7 @@
 /* global Application */
 import { platform } from 'shared/apps';
 
-const chrome = {
+export const Chrome = {
   type: 'app',
   name: 'Chrome',
   xClass: 'Google-chrome',
@@ -37,5 +37,3 @@ async function windows({ url, position }, { startOnPositionByWindowClass }) {
     position,
   });
 }
-
-export default chrome;

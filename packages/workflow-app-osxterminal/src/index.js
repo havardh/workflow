@@ -1,6 +1,6 @@
 /* global Application, delay */
 
-const Terminal = {
+export const Terminal = {
   type: 'app',
   name: 'Terminal',
   params: ['cwd', 'cmd'],
@@ -41,5 +41,3 @@ const Terminal = {
     );
   },
 };
-
-export default Terminal;

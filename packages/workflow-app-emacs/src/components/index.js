@@ -1,4 +1,4 @@
-import P from './plugins/index';
+import { Plugins as P } from './plugins/index';
 
 export const File = {
   type: 'app',

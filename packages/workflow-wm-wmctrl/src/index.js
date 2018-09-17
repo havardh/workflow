@@ -4,7 +4,7 @@ import shell from 'shelljs';
 
 import { findAllApps } from 'shared/tree';
 
-class Wmctrl {
+export class WorkflowWmWmctrl {
   async screen() {
     // eslint-disable-line class-methods-use-this
     /* eslint-disable no-useless-escape */
@@ -71,5 +71,3 @@ class Wmctrl {
     });
   }
 }
-
-module.exports = Wmctrl;

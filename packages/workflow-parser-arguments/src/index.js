@@ -1,7 +1,7 @@
 /* eslint-env node */
 /* eslint-disable no-console */
 
-class WorkflowParserArguments {
+export class WorkflowParserArguments {
   parse(flow, argv) {
     const [node, path, ...args] = argv; // eslint-disable-line no-unused-vars
     return parseArgs(flow.args, args);
@@ -92,5 +92,3 @@ function parseArgs(config, args) {
   }
   return {};
 }
-
-module.exports = WorkflowParserArguments;

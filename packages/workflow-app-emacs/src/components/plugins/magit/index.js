@@ -14,5 +14,4 @@ const Status = {
       .join(' '),
 };
 
-const Magit = { Status };
-export default Magit;
+export const Magit = { Status };

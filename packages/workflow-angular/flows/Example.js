@@ -1,3 +1,3 @@
 import { render } from '../index';
 
-export default render();
+export const flow = render();

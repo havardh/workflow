@@ -1,6 +1,6 @@
 import PowerShell from 'powershell';
 
-const exec = async cmd => {
+export const exec = async cmd => {
   return new Promise((resolve, reject) => {
     const process = new PowerShell(cmd);
 
@@ -16,5 +16,3 @@ const exec = async cmd => {
     });
   });
 };
-
-export default exec;
