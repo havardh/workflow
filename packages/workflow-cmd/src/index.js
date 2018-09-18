@@ -36,9 +36,13 @@ const isImplicitApplyWithFlow = command => !!command && !commands.includes(comma
       'Update workflow and workflow-home dependencies',
       yargs =>
         yargs
+          .option('latest', {
+            type: 'boolean',
+            description: 'Updates dependencies in workflow-home to @latest',
+          })
           .option('force', {
             type: 'boolean',
-            description: 'Force update the workflow-home ignoring uncommited changes.',
+            description: 'Ignore uncommited check when updating workflow-home',
           }),
       update
     )

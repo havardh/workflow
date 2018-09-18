@@ -71,9 +71,6 @@ async function updateWorkflowCommand() {
 
     if (version.toString() !== latest.toString()) {
       await execa('npm', ['install', '--global', 'workflow'], { stdio: 'inherit' });
-      console.log(' $ workflow version');
-      await execa('workflow', ['version'], { stdio: 'inherit' });
-      console.log();
     } else {
       console.log('workflow is up to date at', version.trim());
     }
@@ -88,7 +85,7 @@ async function updateWorkflowHome(args) {
     packageFile: join(baseFolder, 'package.json'),
     silent: false,
     jsonUpgraded: true,
-    semverLevel: 'major',
+    semverLevel: args.latest ? undefined : 'major',
   });
 
   if (hasUpdates(updates)) {
@@ -115,19 +112,21 @@ async function updateWorkflowHome(args) {
       }
     }
 
+    let flags = [];
+    if (args.latest) {
+      flags = ['npm-check-updates', '--packageFile', join(baseFolder, 'package.json'), '-u'];
+    } else {
+      flags = [
+        'npm-check-updates',
+        '--packageFile',
+        join(baseFolder, 'package.json'),
+        '--semverLevel',
+        'major',
+        '-u',
+      ];
+    }
     try {
-      await execa(
-        'npx',
-        [
-          'npm-check-updates',
-          '--packageFile',
-          join(baseFolder, 'package.json'),
-          '--semverLevel',
-          'major',
-          '-u',
-        ],
-        { stdio: 'inherit' }
-      );
+      await execa('npx', flags, { stdio: 'inherit' });
     } catch (e) {
       console.error(e);
       process.exit(1);
@@ -139,6 +138,8 @@ async function updateWorkflowHome(args) {
       console.error(e);
       process.exit(1);
     }
+  } else {
+    console.log('workflow-home is up to date');
   }
 }
 
