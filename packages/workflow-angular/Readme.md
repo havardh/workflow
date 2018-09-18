@@ -9,7 +9,7 @@ import {NgModule, Component} from "@angular/core";
 import {render, WorkflowPlatform, requireComponent, Workspace, SplitH} from "workflow-angular";
 
 const {Terminal} = requireComponent("workflow-apps-defaults");
-const Emacs = requireComponent("workflow-app-emacs");
+const {Emacs} = requireComponent("workflow-app-emacs");
 
 @Component({
   selector: 'app',

@@ -12,9 +12,9 @@ Add the plugin to your `~/.workflow/config.js` file.
 in the list of `transformers` for the rest of the transformers to work properly.
 
 ```
-import WorkflowTranformerAsync from "workflow-transformer-async";
+import {WorkflowTranformerAsync} from "workflow-transformer-async";
 
-export default {
+export const config = {
   transformers: [new WorkflowTranformerAsync()]
   ...
 };

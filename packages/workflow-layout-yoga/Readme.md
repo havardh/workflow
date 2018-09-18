@@ -12,7 +12,7 @@ import React from 'react';
 import { render, Workspace, requireComponent } from 'workflow-react';
 
 const { Browser } = requireComponent("workflow-apps-defaults");
-import { Flex } from "workflow-layout-yoga/components";
+const { Flex } = requireComponent("workflow-layout-yoga");
 
 export const flow = render(
   <Workspace name={'workflow-yoga-example'}>

@@ -14,9 +14,7 @@ overrides.
 
 Example:
 ```
-import {Chrome} from "workflow-app-chrome";
+import { Chrome } from "workflow-app-chrome";
 
-export default {
-  Chrome
-};
+export const defaults = { Chrome };
 ```

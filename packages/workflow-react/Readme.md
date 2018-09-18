@@ -38,7 +38,7 @@ export of a `flow`, as shown in the example above.
 
 Example
 ```
-import render from "workflow-react";
+import { render } from "workflow-react";
 
 export const flow = render(...);
 ```
@@ -219,13 +219,13 @@ Definition
 Example
 ```
 import React from 'react';
-import render, { Workspace, App } from 'workflow-react';
+import { render, Workspace, App } from 'workflow-react';
 
 async function defaultApp() {
   // returns a default app node async
 }
 
-export default render(
+export const flow = render(
   <Workspace name={'editor'} >
     <Async
       loader={async (props) => ({ ...await defaultApp(), ...props})}
@@ -246,7 +246,7 @@ provide a `React` `Component`. The `App` can easily be used directly.
 Example
 ```
 import React from "react";
-import { render,Workspace, createComponent} from "workflow-react";
+import { render, Workspace, createComponent} from "workflow-react";
 
 const Intellij = {
   params: ["file"],
@@ -275,7 +275,7 @@ definition and a collection of definitions.
 
 ```
 import React from "react";
-import { render,Workspace, requireComponent} from "workflow-react";
+import { render, Workspace, requireComponent} from "workflow-react";
 
 const {SplitV} = requireComponent("workflow-layout-tiled");
 const Emacs = requireComponent("workflow-app-emacs");

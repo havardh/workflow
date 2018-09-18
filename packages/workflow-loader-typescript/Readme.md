@@ -7,15 +7,16 @@ Loads `.ts` files.
 See [`workflow-angular/cli.js`](`../workflow-angular/cli.js`) for an example.
 
 ```
-const WorkflowLoaderTypescript = require("workflow-loader-typescript");
+const { WorkflowLoaderTypescript } = require("workflow-loader-typescript");
 
 
-module.exports = {
-   ...
-
-   loaders: [{
-     loader: new WorkflowLoaderTypescript({config: <typescript configuration>})
-   }]
-   ...
+module.exports = { 
+  config: {
+    ...
+    loaders: [{
+      loader: new WorkflowLoaderTypescript({config: <typescript configuration>})
+    }]
+    ...
+  }
 }
 ```

@@ -13,7 +13,7 @@ tree which adheres to the rules of the `CFT`.
 
 ## Usage
 ```
-const WorkflowLayout = require("workflow-layout");
+const { WorkflowLayout } = require("workflow-layout");
 
 cont workflow = require("workflow-core").workflow({
   layout: new WorkflowLayout(),
