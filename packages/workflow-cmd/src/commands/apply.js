@@ -5,7 +5,7 @@
 import { resolve } from 'path';
 import { configPath } from 'shared/env';
 
-const config = require(resolve(configPath)).default || require(resolve(configPath));
+const { config } = require(resolve(configPath));
 
 import * as WorkflowCore from 'workflow-core';
 const workflow = new WorkflowCore.workflow(config);
