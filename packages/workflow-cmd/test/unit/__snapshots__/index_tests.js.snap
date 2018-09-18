@@ -18,6 +18,23 @@ Options:
 "
 `;
 
+exports[`help should be available for the update command 1`] = `
+"stdout -------------------------------------------------------------------------
+workflow update
+
+Update workflow and workflow-home dependencies
+
+Options:
+  --version        Show version number                                 [boolean]
+  --config, -c     Set the workflow-home by path to config.js           [string]
+  --verbose, --vv  Set output mode to verbose                          [boolean]
+  --help           Show help                                           [boolean]
+  --latest         Updates dependencies in workflow-home to @latest    [boolean]
+  --force          Ignore uncommited check when updating workflow-home [boolean]
+ --------------------------------------------------------------------------------
+"
+`;
+
 exports[`help should have a command: help 1`] = `
 "stdout -------------------------------------------------------------------------
 workflow [<cmd>]

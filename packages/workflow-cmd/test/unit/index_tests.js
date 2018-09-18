@@ -29,6 +29,12 @@ describe('help', () => {
     expect(output).toMatchSnapshot();
   });
 
+  it('should be available for the update command', async () => {
+    const output = await run(`workflow --config ${config} update --help`);
+
+    expect(output).toMatchSnapshot();
+  });
+
   it('should be available for the apply command', async () => {
     const output = await run(`workflow --config ${config} apply --help`);
 
