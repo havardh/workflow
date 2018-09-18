@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.8"></a>
+## [0.3.8](https://github.com/havardh/workflow/compare/workflow-apps-defaults@0.3.7...workflow-apps-defaults@0.3.8) (2018-09-18)
+
+
+### Bug Fixes
+
+* replace local cli.js with workflow and workflow-home-example ([af45171](https://github.com/havardh/workflow/commit/af45171))
+
+
+
+
+
 <a name="0.3.7"></a>
 ## [0.3.7](https://github.com/havardh/workflow/compare/workflow-apps-defaults@0.3.6...workflow-apps-defaults@0.3.7) (2018-09-12)
 

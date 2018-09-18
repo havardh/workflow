@@ -1,6 +1,6 @@
 {
   "name": "workflow-layout-tiled",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Tiled layout for workflow",
   "main": "index.js",
   "repository": "https://github.com/havardh/workflow",

@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-spotify",
-  "version": "1.0.0-rc1",
+  "version": "1.0.0",
   "main": "index.js",
   "description": "Workflow app for the Spotify Media Player",
   "license": "MIT",

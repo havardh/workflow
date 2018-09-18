@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.7"></a>
+## [0.2.7](https://github.com/havardh/workflow/compare/workflow-app-terminal@0.2.6...workflow-app-terminal@0.2.7) (2018-09-18)
+
+
+### Bug Fixes
+
+* **workflow-app-terminal:** support async open ([2ba1d3b](https://github.com/havardh/workflow/commit/2ba1d3b))
+* replace local cli.js with workflow and workflow-home-example ([af45171](https://github.com/havardh/workflow/commit/af45171))
+
+
+
+
+
 <a name="0.2.6"></a>
 ## [0.2.6](https://github.com/havardh/workflow/compare/workflow-app-terminal@0.2.5...workflow-app-terminal@0.2.6) (2018-09-12)
 

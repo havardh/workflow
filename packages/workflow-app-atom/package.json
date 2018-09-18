@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-atom",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "index.js",
   "description": "Workflow app for the Atom text editor",
   "license": "MIT",

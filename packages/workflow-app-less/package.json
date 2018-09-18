@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-less",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "index.js",
   "description": "Workflow app for the less command",
   "license": "MIT",

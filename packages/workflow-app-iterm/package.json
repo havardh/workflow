@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-iterm",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "iTerm app wrapper for workflow.",
   "main": "index.js",
   "repository": "https://github.com/havardh/workflow",
