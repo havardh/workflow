@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const XV = {
+export const XV = {
   type: 'app',
   name: 'xv',
   xClass: 'XVroot',
@@ -8,5 +8,3 @@ const XV = {
     return `xv ${file}`;
   },
 };
-
-export default XV;
