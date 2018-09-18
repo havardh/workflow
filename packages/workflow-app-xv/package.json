@@ -1,0 +1,13 @@
+{
+  "name": "workflow-app-xv",
+  "version": "0.0.1",
+  "main": "index.js",
+  "description": "Workflow app for the xv command",
+  "license": "MIT",
+  "keywords": [
+    "workflow-wm"
+  ],
+  "scripts": {
+    "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.js"
+  }
+}
