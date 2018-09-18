@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-chrome",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "main": "index.js",
   "description": "Workflow app for Google Chrome",
   "license": "MIT",

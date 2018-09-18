@@ -1,6 +1,6 @@
 {
   "name": "create-workflow-home",
-  "version": "1.0.10",
+  "version": "2.0.0",
   "description": "Create workflow home folder",
   "bin": "./index.js",
   "repository": "https://github.com/havardh/workflow",
@@ -20,7 +20,7 @@
     "shelljs": "^0.8.2"
   },
   "devDependencies": {
-    "workflow-apps-defaults": "^0.3.8",
+    "workflow-apps-defaults": "^1.0.0",
     "workflow-core": "^1.0.1",
     "workflow-layout": "1.0.0",
     "workflow-layout-tiled": "^1.0.3",
@@ -32,7 +32,7 @@
     "workflow-transformer-apply-arguments-to-fields": "^1.0.1",
     "workflow-wm-i3": "1.0.0",
     "workflow-wm-osx": "^1.0.2",
-    "workflow-wm-windows": "0.3.0",
+    "workflow-wm-windows": "^1.0.0",
     "workflow-wm-wmctrl": "0.2.1"
   }
 }

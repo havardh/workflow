@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-code",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "main": "index.js",
   "description": "Workflow app for VS Code",
   "license": "MIT",

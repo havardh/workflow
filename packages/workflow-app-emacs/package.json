@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-emacs",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "Workflow emacs terminal app",
   "scripts": {
     "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.js --terminal"

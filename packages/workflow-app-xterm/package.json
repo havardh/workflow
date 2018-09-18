@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-xterm",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "main": "index.js",
   "description": "Workflow app for xterm terminal emulator",
   "license": "MIT",
