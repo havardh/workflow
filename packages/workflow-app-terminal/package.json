@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-terminal",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "index.js",
   "description": "Workflow app for terminal nodes",
   "license": "MIT",
@@ -14,6 +14,6 @@
     "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.js --terminal"
   },
   "dependencies": {
-    "workflow-apps-defaults": "^1.0.0"
+    "workflow-apps-defaults": "^2.0.0"
   }
 }

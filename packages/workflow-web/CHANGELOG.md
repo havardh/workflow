@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.4"></a>
+# [0.2.4](https://github.com/havardh/workflow/compare/workflow.web@0.2.3...workflow.web@0.2.4) (2018-09-18)
+
+
+### Features
+
+* use only named exports for all files. ([ca77860](https://github.com/havardh/workflow/commit/ca77860))
+
+
+
+
+
 <a name="0.2.3"></a>
 ## [0.2.3](https://github.com/havardh/workflow/compare/workflow.web@0.2.2...workflow.web@0.2.3) (2018-09-12)
 

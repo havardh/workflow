@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/havardh/workflow/compare/workflow-cmd@1.3.2...workflow-cmd@2.0.0) (2018-09-18)
+
+
+### Bug Fixes
+
+* make `config.js` export named property `config` ([c393540](https://github.com/havardh/workflow/commit/c393540))
+
+
+### Features
+
+* use only named exports for all files. ([ca77860](https://github.com/havardh/workflow/commit/ca77860))
+* **workflow-cmd:** add update --latest flag ([6095b02](https://github.com/havardh/workflow/commit/6095b02))
+
+
+### BREAKING CHANGES
+
+* changes the api exported by most modules.
+
+
+
+
+
 <a name="1.3.2"></a>
 ## [1.3.2](https://github.com/havardh/workflow/compare/workflow-cmd@1.3.1...workflow-cmd@1.3.2) (2018-09-18)
 

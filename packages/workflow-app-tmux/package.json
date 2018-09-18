@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-tmux",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Workflow tmux terminal app",
   "scripts": {
     "TmuxSplit": "node ../workflow/cli.js --config ../workflow-home-example/config.js TmuxSplit.js --terminal",

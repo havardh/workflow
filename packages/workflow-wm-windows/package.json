@@ -1,6 +1,6 @@
 {
   "name": "workflow-wm-windows",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Windows window manager adapter for workflow",
   "main": "index.js",
   "files": [

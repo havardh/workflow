@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/havardh/workflow/compare/create-workflow-app@1.0.9...create-workflow-app@2.0.0) (2018-09-18)
+
+
+### Bug Fixes
+
+* **create-workflow-app:** fix named export and cli for new apps ([b7f6cd0](https://github.com/havardh/workflow/commit/b7f6cd0))
+
+
+### Features
+
+* use only named exports for all files. ([ca77860](https://github.com/havardh/workflow/commit/ca77860))
+
+
+### BREAKING CHANGES
+
+* changes the api exported by most modules.
+
+
+
+
+
 <a name="1.0.9"></a>
 # [1.0.9](https://github.com/havardh/workflow/compare/create-workflow-app@1.0.8...create-workflow-app@1.0.9) (2018-09-18)
 
