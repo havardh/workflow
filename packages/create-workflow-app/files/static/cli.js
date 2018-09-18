@@ -9,7 +9,7 @@ const {
   WorkflowTransformerApplyArgumentsToFields,
 } = require('workflow-transformer-apply-arguments-to-fields');
 const { WorkflowLayout } = require('workflow-layout');
-const { WorkflowWm } = require('workflow-wm-terminal');
+const { WorkflowWmTerminal } = require('workflow-wm-terminal');
 
 const babelConfig = {
   config: {
@@ -39,7 +39,7 @@ const config = {
   argumentParser: new WorkflowParserArguments(),
   transformers: [new WorkflowTransformerApplyArgumentsToFields()],
   layout: new WorkflowLayout(),
-  wm: new WorkflowWm(),
+  wm: new WorkflowWmTerminal(),
 };
 
 const workflow = require('workflow-core').workflow(config);
@@ -47,9 +47,9 @@ const workflow = require('workflow-core').workflow(config);
 async function run() {
   const path = process.argv[2];
   const absolutePath = await workflow.resolve(path);
-  let flow = await workflow.load(absolutePath);
+  let { flow } = await workflow.load(absolutePath);
   const args = {};
-  flow = await workflow.transform(flow.default, { args });
+  flow = await workflow.transform(flow, { args });
   const screen = await workflow.screen();
   const layout = await workflow.layout(flow, { screen });
 
