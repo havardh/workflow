@@ -12,9 +12,9 @@ npm install workflow-transformer-apply-arguments-to-fields
 
 Add the plugin to your `~/.workflow/config.js` file.
 ```
-import WorkflowTranformerApplyArgumentsToFields from "workflow-transformer-apply-arguments-to-fields";
+import {WorkflowTranformerApplyArgumentsToFields} from "workflow-transformer-apply-arguments-to-fields";
 
-export default {
+export const config = {
   transformers: [new WorkflowTranformerApplyArgumentsToFields()]
   ...
 };

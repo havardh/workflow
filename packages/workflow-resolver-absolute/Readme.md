@@ -11,9 +11,9 @@ npm install --save workflow-resolver-absolute
 ## Usage in Workflow `config.js`.
 
 ```
-import WorkflowResolverAbsolute from "workflow-resolver-absolute";
+import { WorkflowResolverAbsolute } from "workflow-resolver-absolute";
 
-export default {
+export const config = {
   resolvers: [
     new WorkflowResolverAbsolute()
   ],

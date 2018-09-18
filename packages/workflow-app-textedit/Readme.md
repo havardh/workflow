@@ -10,7 +10,7 @@ npm i workflow-app-textedit
 
 ```
 import path from "path"
-import TextEdit from 'workflow-app-textedit';
+import { TextEdit } from 'workflow-app-textedit';
 
 export default {
   name: 'workflow-example',

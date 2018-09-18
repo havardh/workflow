@@ -13,9 +13,9 @@ npm install --save workflow-resolver-relative
 Usage in Workflow `config.js`.
 
 ```
-import WorkflowResolverRelative from "workflow-resolver-relative";
+import { WorkflowResolverRelative } from "workflow-resolver-relative";
 
-export default {
+export const config = {
   resolvers: [
     new WorkflowResolverRelative({
       path: "/path/to/dir", // path to resolve relative to.
