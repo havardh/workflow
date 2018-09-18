@@ -31,7 +31,17 @@ const isImplicitApplyWithFlow = command => !!command && !commands.includes(comma
     .scriptName('workflow')
     .usage('$0 [<cmd>]')
     .command('version', 'Show the version', () => {}, version)
-    .command('update', 'Update workflow and workflow-home dependencies', () => {}, update)
+    .command(
+      'update',
+      'Update workflow and workflow-home dependencies',
+      yargs =>
+        yargs
+          .option('force', {
+            type: 'boolean',
+            description: 'Force update the workflow-home ignoring uncommited changes.',
+          }),
+      update
+    )
     .command(
       ['apply <flow>' + positionalArguments(flow), '* <flow>' + positionalArguments(flow)],
       'apply the flow',
