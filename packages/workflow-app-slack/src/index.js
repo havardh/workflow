@@ -8,7 +8,7 @@ function buildUri({ teamId }) {
   }
 }
 
-const slack = {
+export const Slack = {
   type: 'app',
   name: 'Slack',
   xClass: 'Slack',
@@ -24,5 +24,3 @@ const slack = {
     return `xdg-open ${buildUri({ teamId })}`;
   },
 };
-
-export default slack;
