@@ -10,22 +10,24 @@ const {
 const { WorkflowLayout } = require('workflow-layout');
 const { WorkflowWmAuto } = require('workflow-wm-auto');
 
-const babelConfig = { config: requireAsJson('../../.babelrc') };
+const babelConfig = { config: { ...requireAsJson('../../.babelrc'), ignore: undefined } };
 const typescriptConfig = { config: requireAsJson('../../tsconfig.json') };
 
 module.exports = {
-  resolvers: [new WorkflowResolverRelative({ path: join(process.cwd(), 'flows') })],
-  loaders: [
-    {
-      loader: new WorkflowLoaderBabel(babelConfig),
-      filter: path => path.match(/.*\.js/),
-    },
-    {
-      loader: new WorkflowLoaderTypescript(typescriptConfig),
-      filter: path => path.match(/.*\.ts/),
-    },
-  ],
-  transformers: [new WorkflowTransformerApplyArgumentsToFields()],
-  layout: new WorkflowLayout(),
-  wm: new WorkflowWmAuto(),
+  config: {
+    resolvers: [new WorkflowResolverRelative({ path: join(process.cwd(), 'flows') })],
+    loaders: [
+      {
+        loader: new WorkflowLoaderBabel(babelConfig),
+        filter: path => path.match(/.*\.js/),
+      },
+      {
+        loader: new WorkflowLoaderTypescript(typescriptConfig),
+        filter: path => path.match(/.*\.ts/),
+      },
+    ],
+    transformers: [new WorkflowTransformerApplyArgumentsToFields()],
+    layout: new WorkflowLayout(),
+    wm: new WorkflowWmAuto(),
+  },
 };
