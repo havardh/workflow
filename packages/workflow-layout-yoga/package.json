@@ -1,6 +1,6 @@
 {
   "name": "workflow-layout-yoga",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "yoga-layout for workflow",
   "main": "index.js",
   "repository": "https://github.com/havardh/workflow",

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.11"></a>
+# [1.0.11](https://github.com/havardh/workflow/compare/create-workflow-home@1.0.10...create-workflow-home@1.0.11) (2018-09-18)
+
+**Note:** Version bump only for package create-workflow-home
+
+
+
+
+
 <a name="1.0.10"></a>
 ## [1.0.10](https://github.com/havardh/workflow/compare/create-workflow-home@1.0.9...create-workflow-home@1.0.10) (2018-09-18)
 

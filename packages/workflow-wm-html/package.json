@@ -1,6 +1,6 @@
 {
   "name": "workflow-wm-html",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "osx window manager adapter for workflow",
   "main": "index.js",
   "files": [

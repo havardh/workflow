@@ -1,6 +1,6 @@
 {
   "name": "create-workflow-app",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Create workflow app",
   "bin": "./index.js",
   "repository": "https://github.com/havardh/workflow",
@@ -23,7 +23,7 @@
     "shelljs": "^0.8.2"
   },
   "devDependencies": {
-    "workflow-apps-defaults": "^0.3.8",
+    "workflow-apps-defaults": "^1.0.0",
     "workflow-core": "^1.0.1",
     "workflow-layout": "1.0.0",
     "workflow-layout-tiled": "^1.0.3",
@@ -33,6 +33,6 @@
     "workflow-resolver-absolute": "1.0.0",
     "workflow-resolver-relative": "1.0.0",
     "workflow-transformer-apply-arguments-to-fields": "^1.0.1",
-    "workflow-wm-terminal": "0.3.0"
+    "workflow-wm-terminal": "^1.0.0"
   }
 }

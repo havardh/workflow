@@ -1,6 +1,6 @@
 {
   "name": "workflow-loader-typescript",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Workflow typescript loader",
   "license": "MIT",
   "main": "index.js",

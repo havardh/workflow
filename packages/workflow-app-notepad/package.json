@@ -1,6 +1,6 @@
 {
   "name": "workflow-app-notepad",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "main": "index.js",
   "description": "Workflow app for Notepad",
   "license": "MIT",
