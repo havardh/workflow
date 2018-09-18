@@ -62,45 +62,46 @@ The result of the first phase will be passed into the next phase and so on.
 
 ```javascript
 module.exports = {
+  config: {
+    // A resolver translates a name into an absolute path to a flow file.
+    // The defaults are workflow-resolver-relative and *-absolute.
+    // Conflicts when multiple resolvers provide a valid path is resolved
+    // by the order they appear in this list.
+    resolvers: [
+      new WorkflowResolverAbsolute(),
+      new WorkflowResolverRelative({ path: "/path/to/resolve/relative/to" })
+    ],
 
-  // A resolver translates a name into an absolute path to a flow file.
-  // The defaults are workflow-resolver-relative and *-absolute.
-  // Conflicts when multiple resolvers provide a valid path is resolved
-  // by the order they appear in this list.
-  resolvers: [
-    new WorkflowResolverAbsolute(),
-    new WorkflowResolverRelative({ path: "/path/to/resolve/relative/to" })
-  ],
+    // A loader takes the absolute path from a resolver and load the flow from
+    // the specified file. The optional filter function can be used to specify
+    // when the loader should be used. The example below shows how to only run
+    // babel on files with js or jsx extensions
+    loaders: [{
+      loader: new WorkflowLoaderBabel({/* babel configuration */*}),
+      filter: path => path.match(/\.jsx?$/)
+    }],
 
-  // A loader takes the absolute path from a resolver and load the flow from
-  // the specified file. The optional filter function can be used to specify
-  // when the loader should be used. The example below shows how to only run
-  // babel on files with js or jsx extensions
-  loaders: [{
-    loader: new WorkflowLoaderBabel({/* babel configuration */*}),
-    filter: path => path.match(/\.jsx?$/)
-  }],
+    // The arguments parser will translate the command line arguments into
+    // data structure which is passed to the transformers, layout and wm.
+    argumentParser: new WorkflowParserArguments(),
 
-  // The arguments parser will translate the command line arguments into
-  // data structure which is passed to the transformers, layout and wm.
-  argumentParser: new WorkflowParserArguments(),
+    // A transformer reads the flow and the arguments data structure.
+    // It is free to modify the flow return the results. The input flow
+    // will be passed through all the transformers in turn.
+    transformers: [new WorkflowTransformerApplyArgumentsToFields()],
 
-  // A transformer reads the flow and the arguments data structure.
-  // It is free to modify the flow return the results. The input flow
-  // will be passed through all the transformers in turn.
-  transformers: [new WorkflowTransformerApplyArgumentsToFields()],
+    // The layouts pass is responsible for translating the input flow into
+    // the strict format that all wm implementations supports. This means that
+    // up untill this point you are free to define a flow format, as long as
+    // you use a layout pass here which translates it to the expected format.
+    // See the workflow-layout Readme.md [1] for details.
+    layout: new WorkflowLayout(),
 
-  // The layouts pass is responsible for translating the input flow into
-  // the strict format that all wm implementations supports. This means that
-  // up untill this point you are free to define a flow format, as long as
-  // you use a layout pass here which translates it to the expected format.
-  // See the workflow-layout Readme.md [1] for details.
-  layout: new WorkflowLayout(),
-
-  // The wm is the adapter to the underlying windows manager. This will communicate
-  // with the windows manager and shell for your platform to open and position
-  // applications on the screen
-  wm: new WorkflowWmI3()
+    // The wm is the adapter to the underlying windows manager. This will communicate
+    // with the windows manager and shell for your platform to open and position
+    // applications on the screen
+    wm: new WorkflowWmI3()
+  }
 };
 ```
 
