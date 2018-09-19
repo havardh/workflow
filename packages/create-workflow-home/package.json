@@ -15,6 +15,7 @@
     "index.js"
   ],
   "dependencies": {
+    "change-case": "^3.0.2",
     "fs-extra": "^7.0.0",
     "lodash.get": "^4.4.2",
     "shelljs": "^0.8.2"
