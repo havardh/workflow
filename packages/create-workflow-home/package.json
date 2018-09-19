@@ -33,6 +33,6 @@
     "workflow-wm-i3": "^2.0.0",
     "workflow-wm-osx": "^2.0.0",
     "workflow-wm-windows": "^2.0.0",
-    "workflow-wm-wmctrl": "^1.0.0"
+    "workflow-wm-wmctrl": "^0.2.2"
   }
 }
