@@ -37,6 +37,6 @@ module.exports = {
     argumentParser: new WorkflowParserArguments(),
     transformers: [new WorkflowTransformerApplyArgumentsToFields()],
     layout: new WorkflowLayout(),
-    wm: new WorkflowWm(),
+    wm: new WorkflowWmI3(),
   },
 };
