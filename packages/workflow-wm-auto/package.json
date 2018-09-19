@@ -1,6 +1,6 @@
 {
   "name": "workflow-wm-auto",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "auto window manager for workflow",
   "main": "index.js",
   "files": [

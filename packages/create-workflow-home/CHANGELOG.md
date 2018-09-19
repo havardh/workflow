@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/havardh/workflow/compare/create-workflow-home@2.0.0...create-workflow-home@2.0.1) (2018-09-19)
+
+
+### Bug Fixes
+
+* make config template be excempt from static analysis ([f1d45e7](https://github.com/havardh/workflow/commit/f1d45e7))
+* make create-workflow-home use correct named exports for wm ([178b761](https://github.com/havardh/workflow/commit/178b761))
+* render correct wm name in config ([ebcdaf9](https://github.com/havardh/workflow/commit/ebcdaf9))
+* set correct version for workflow-wm-wmctrl dependency ([3761518](https://github.com/havardh/workflow/commit/3761518))
+
+
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/havardh/workflow/compare/create-workflow-home@1.0.11...create-workflow-home@2.0.0) (2018-09-18)
 

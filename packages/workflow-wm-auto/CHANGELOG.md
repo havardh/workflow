@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/havardh/workflow/compare/workflow-wm-auto@2.0.0...workflow-wm-auto@2.0.1) (2018-09-19)
+
+
+### Bug Fixes
+
+* set correct version for workflow-wm-wmctrl dependency ([3761518](https://github.com/havardh/workflow/commit/3761518))
+
+
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/havardh/workflow/compare/workflow-wm-auto@1.0.0...workflow-wm-auto@2.0.0) (2018-09-18)
 
