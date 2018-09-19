@@ -8,7 +8,7 @@ const {
   WorkflowTransformerApplyArgumentsToFields,
 } = require('workflow-transformer-apply-arguments-to-fields');
 const { WorkflowLayout } = require('workflow-layout');
-const { WorkflowWm } = require('{{workflow.wm.name}}');
+const { {{workflow.wm.named-export}} } = require('{{workflow.wm.name}}');
 
 const config = {
   presets: [

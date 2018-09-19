@@ -4,6 +4,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import get from 'lodash.get';
 import { parse } from './args';
+import { pascalCase } from 'change-case';
 
 import { platform, wm } from 'shared/env';
 
@@ -62,6 +63,7 @@ function readVersions() {
       ...devDependencies,
       'workflow.home.version': version,
       'workflow.wm.name': workflowWmName,
+      'workflow.wm.named-export': pascalCase(workflowWmName),
       'workflow.wm.version': devDependencies[workflowWmName],
     };
   }
