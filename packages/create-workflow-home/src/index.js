@@ -37,7 +37,7 @@ function createPackageJson() {
 
 function createConfigJs() {
   const configPath = resolveTarget('config.js');
-  const configTemplatePath = resolveSource('templates', 'config.js');
+  const configTemplatePath = resolveSource('templates', 'config.js.template');
   const versions = readVersions();
 
   renderTemplate(configTemplatePath, configPath, versions);
