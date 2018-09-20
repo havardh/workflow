@@ -26,10 +26,23 @@ export class WorkflowWmWmctrl {
   async apply(layout) {
     const apps = findAllApps(layout);
 
+    const { run } = this;
+
+    const context = {
+      platform: 'linux',
+      wm: 'wmctrl',
+      run,
+    };
+
     for (let app of apps) {
       const pid = await this.runCmd(app);
       await this.setPosition({ ...app, pid });
     }
+  }
+
+  async run({ cmd, args, position }) {
+    const { pid } = execa(cmd, args);
+    this.setPosition({ pid, position });
   }
 
   async setPosition({ pid, position }) {
@@ -44,30 +57,6 @@ export class WorkflowWmWmctrl {
     }
 
     const { left, top, width, height } = position;
-    shell.exec(`wmctrl -i -r ${windowId} -e 0,${left},${top},${width},${height}`, { silent: true });
-
-    return Promise.resolve({});
-  }
-
-  async runCmd(app) {
-    // eslint-disable-line class-methods-use-this
-    return new Promise((resolve, reject) => {
-      const options = {
-        args: app.open.split(' '),
-        pythonPath: '/usr/bin/python',
-        mode: 'json',
-      };
-      const script = new PythonShell('wms/windows/open.py', options);
-
-      script.on('message', data => {
-        resolve(data.pid);
-      });
-      script.on('error', error => {
-        reject(error);
-      });
-      script.end(() => {
-        // resolve(pid);
-      });
-    });
+    await execa('wmctrl', ['-i', '-r', windowId, '-e', `0,${left},${top},${width},${height}`]);
   }
 }
