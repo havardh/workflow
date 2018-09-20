@@ -1,0 +1,13 @@
+{
+  "name": "workflow-app-gedit",
+  "version": "2.0.0-rc1",
+  "main": "index.js",
+  "description": "Workflow app for the Gedit text editor",
+  "license": "MIT",
+  "keywords": [
+    "workflow-wm"
+  ],
+  "scripts": {
+    "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.js"
+  }
+}
