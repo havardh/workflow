@@ -17,7 +17,7 @@ function isRunningI3() {
 }
 
 function isRunningWmctrl() {
-  return which('wmctrl');
+  return which('wmctrl').code === 0;
 }
 
 export const wm = (() => {
