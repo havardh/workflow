@@ -36,7 +36,7 @@ jobs:
           path: reports
       - store_artifacts:
           path: reports
-  integration-tests:
+  integration-tests-i3:
     docker:
       - image: havardh/workflow-i3:0.0.4
     working_directory: ~/workflow
@@ -64,10 +64,39 @@ jobs:
           path: reports
       - store_artifacts:
           path: test/integration/__image_snapshots__
+  integration-tests-xfce:
+    docker:
+      - image: havardh/workflow-xfce:1.0.0
+    working_directory: ~/workflow
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
+      - run: yarn config set workspaces-experimental true
+      - run: yarn || yarn || yarn
+      - run: yarn bootstrap
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
+      - run: yarn build
+      - run:
+          name: "JavaScript Integration Test Suite"
+          environment:
+            JEST_JUNIT_OUTPUT: reports/js-test-integration-results.xml
+          command: ./scripts/ci-xfce
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: reports
+      - store_artifacts:
+          path: test/integration/__image_snapshots__
 
 workflows:
   version: 2
   workflow_jobs:
     jobs:
       - unit-tests
-      - integration-tests
+      - integration-tests-i3
+      - integration-tests-xfce
