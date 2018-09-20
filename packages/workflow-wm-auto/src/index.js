@@ -19,7 +19,7 @@ if (useTerminalWm()) {
 } else if (platform === 'linux' && wm === 'i3') {
   WorkflowWmAuto = require('workflow-wm-i3').WorkflowWmI3;
 } else if (platform === 'linux' && wm === 'wmctrl') {
-  WorkflowWmAuto = require('workflow-wm-wmctrl').WorkflowWmWmCtrl;
+  WorkflowWmAuto = require('workflow-wm-wmctrl').WorkflowWmWmctrl;
 } else {
   throw new Error('Platform and/or wm not supported ' + platform + '/' + wm);
 }
