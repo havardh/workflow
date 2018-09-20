@@ -1,0 +1,13 @@
+{
+  "name": "workflow-app-gnometerminal",
+  "version": "2.0.0-rc1",
+  "main": "index.js",
+  "description": "Workflow app for the Gnome Terminal",
+  "license": "MIT",
+  "keywords": [
+    "workflow-wm"
+  ],
+  "scripts": {
+    "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.js"
+  }
+}
