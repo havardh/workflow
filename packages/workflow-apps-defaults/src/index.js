@@ -1,7 +1,7 @@
 /* eslint-env node */
 /* eslint-disable no-console */
 
-import { baseFolder } from 'shared/env';
+import { baseFolder, platform, wm } from 'shared/env';
 import { join } from 'path';
 
 const defaultApps = ['Terminal', 'Browser', 'TextEditor'];
@@ -12,7 +12,7 @@ if (process.browser) {
   defaults = require('workflow-apps-html').defaults;
 } else {
   const platformDefaults = (() => {
-    switch (process.platform) {
+    switch (platform) {
       case 'darwin':
         return {
           Terminal: require('workflow-app-iterm').ITerm,
@@ -26,11 +26,19 @@ if (process.browser) {
           TextEditor: require('workflow-app-notepad').Notepad,
         };
       case 'linux':
-        return {
-          Terminal: require('workflow-app-xterm').XTerm,
-          Browser: require('workflow-app-chrome').Chrome,
-          TextEditor: require('workflow-app-atom').Atom,
-        };
+        if (wm === 'i3') {
+          return {
+            Terminal: require('workflow-app-xterm').XTerm,
+            Browser: require('workflow-app-chrome').Chrome,
+            TextEditor: require('workflow-app-atom').Atom,
+          };
+        } else if (wm === 'wmctrl') {
+          return {
+            Terminal: require('workflow-app-gnometerminal').GnomeTerminal,
+            Browser: require('workflow-app-firefox').Firefox,
+            TextEditor: require('workflow-app-gedit').Gedit,
+          };
+        }
       default:
         console.log(`Platform '${process.platform}' not supported`);
         console.log(
