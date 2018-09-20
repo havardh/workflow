@@ -1,3 +1,4 @@
+/* eslint-env node */
 /* eslint-disable no-unused-vars */
 export const GnomeTerminal = {
   type: 'app',
@@ -6,13 +7,6 @@ export const GnomeTerminal = {
   open: async ({ cmd, cwd, position }, context, children) => {
     const { run } = context;
 
-    console.log(
-      'gnome-terminal',
-      '--working-directory',
-      cwd || process.cwd(),
-      '-e',
-      `bash -c '${cmd || ''} && $SHELL'`
-    );
     await run({
       cmd: 'gnome-terminal',
       args: [

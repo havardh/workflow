@@ -39,7 +39,9 @@ if (process.browser) {
             TextEditor: require('workflow-app-gedit').Gedit,
           };
         }
+      // eslint-disable no-fallthrough
       default:
+        // eslint-enable no-fallthrough
         console.log(`Platform '${process.platform}' not supported`);
         console.log(
           'Look for an issue for your platform here: https://github.com/havardh/workflow/issues'

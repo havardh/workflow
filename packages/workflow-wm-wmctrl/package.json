@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/havardh/workflow/tree/master/packages/workflow-wm-wmctrl#readme",
   "dependencies": {
-    "python-shell": "^0.5.0",
     "shelljs": "^0.8.1"
   }
 }

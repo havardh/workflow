@@ -1,5 +1,4 @@
 /* eslint-env node */
-import PythonShell from 'python-shell';
 import shell from 'shelljs';
 import { difference } from 'lodash';
 import execa from 'execa';
@@ -66,7 +65,7 @@ export class WorkflowWmWmctrl {
     };
 
     for (let app of apps) {
-      const pid = await app.open(app, context, app.children);
+      await app.open(app, context, app.children);
     }
   }
 
