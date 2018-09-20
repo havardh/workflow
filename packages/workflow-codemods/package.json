@@ -1,0 +1,9 @@
+{
+  "name": "workflow-codemods",
+  "version": "2.0.0-rc1",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "jscodeshift": "^0.5.1"
+  }
+}
