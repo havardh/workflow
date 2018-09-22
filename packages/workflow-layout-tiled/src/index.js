@@ -1,6 +1,6 @@
 export const SplitV = {
   type: 'layout',
-  name: 'SplitV',
+  name: 'SpltiV',
   layout: 'splitv',
 };
 

@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/havardh/workflow/issues"
   },
-  "homepage": "https://github.com/havardh/workflow#readme"
+  "homepage": "https://github.com/havardh/workflow#readme",
+  "dependencies": {
+    "uuid": "^3.3.2"
+  }
 }

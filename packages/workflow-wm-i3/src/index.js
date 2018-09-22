@@ -2,19 +2,13 @@
 import { createClient } from 'i3';
 import { transform } from './transform';
 import { write } from './write';
+import { join } from 'path';
 import execa from 'execa';
-
-async function openNode(node, context) {
-  return await node.open(node, context, node.children);
-}
 
 // https://stackoverflow.com/questions/151407/how-to-get-an-x11-window-from-a-process-id
 export class WorkflowWmI3 {
   constructor() {
     this.client = createClient();
-    setTimeout(() => {
-      this.client._stream.destroy();
-    }, 4000);
   }
 
   async apply(config) {
@@ -27,6 +21,29 @@ export class WorkflowWmI3 {
     config.children.forEach(root => this.findApps(root).forEach(app => this.open(app)));
 
     return config;
+  }
+
+  async wrap(node) {
+    node.open = async function(props) {
+      switch (props.type) {
+        case 'workspace':
+          console.log('open workspace', props);
+          this.client.command(`workspace --no-auto-back-and-forth ${props.name}`);
+          break;
+        case 'app':
+          console.log('open app', props);
+          const context = { platform: 'linux', wm: 'i3' };
+          this.client.command(`exec ${await props.open(props, context, props.children)}`);
+          break;
+      }
+    };
+  }
+
+  async update(node, oldProps, newProps) {
+    if (node.type === 'workspace') {
+      this.createOrGoToWorkspace(node);
+      this.applyLayout(node.children[0]);
+    }
   }
 
   async screen() {
@@ -50,12 +67,13 @@ export class WorkflowWmI3 {
     this.client.command(`workspace --no-auto-back-and-forth ${config.name}`);
   }
 
+  clearWorkspace() {}
+
   async applyLayout(node) {
     const layout = transform(node);
     const path = await write(layout);
 
-    await execa('../scripts/i3-apply-layout', [path]);
-    // this.client.command(`append_layout ${path}`);
+    await execa(join(__dirname, '../scripts/i3-apply-layout'), [path]);
   }
 
   findApps(root) {
@@ -72,7 +90,6 @@ export class WorkflowWmI3 {
 
   async open(app) {
     const context = { platform: 'linux', wm: 'i3' };
-    const open = await openNode(app, context);
-    this.client.command(`exec ${open}`);
+    this.client.command(`exec ${await app.open(app, context, app.children)}`);
   }
 }

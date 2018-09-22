@@ -9,6 +9,7 @@ const {
 } = require('workflow-transformer-apply-arguments-to-fields');
 const { WorkflowLayout } = require('workflow-layout');
 const { WorkflowWmAuto } = require('workflow-wm-auto');
+const { WorkflowServer } = require('workflow-server');
 
 const babelConfig = { config: { ...requireAsJson('../../.babelrc'), ignore: undefined } };
 const typescriptConfig = { config: requireAsJson('../../tsconfig.json') };
@@ -28,6 +29,7 @@ module.exports = {
     ],
     transformers: [new WorkflowTransformerApplyArgumentsToFields()],
     layout: new WorkflowLayout(),
+    server: new WorkflowServer(),
     wm: new WorkflowWmAuto(),
   },
 };

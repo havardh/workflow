@@ -6,11 +6,12 @@ export const Atom = {
   type: 'app',
   name: 'Atom',
   xClass: 'Atom',
-  params: ['file', 'appId'],
-  open: platform({
-    'osx-default': osx,
-    'linux-*': ({ file, appId }) => `WORKFLOW_APP_INSTANCE_ID=${appId} atom -dn ${file}`,
-  }),
-};
 
-export { File };
+  async open({ file, appId }, { run }, children) {
+    return `WORKFLOW_APP_INSTANCE_ID=${appId} atom -dn ${file}`;
+  },
+
+  async update({ file }, { send }) {
+    send({ topic: 'workflow.apply', message: { file } });
+  },
+};

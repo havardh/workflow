@@ -23,7 +23,7 @@ const isImplicitApplyWithFlow = ([command]) => !!command && !commands.includes(c
     } else if (isImplicitApplyWithFlow(positional)) {
       path = positional[0];
     }
-    flow = await resolveFlow(path);
+    //flow = await resolveFlow(path);
   } catch (e) {
     console.error(e);
     process.exit(1);

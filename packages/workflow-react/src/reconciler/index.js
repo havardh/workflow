@@ -3,118 +3,113 @@ import Reconciler from 'react-reconciler';
 const emptyObject = {};
 
 import { createElement, getHostContextNode } from '../utils/createElement';
+import { parse } from '../parse/index';
 
-let id = 0;
-export const WorkflowRenderer = Reconciler({
-  createInstance(type, props) {
-    const nodeId = id++;
+export const createRenderer = workflow =>
+  Reconciler({
+    createInstance(type, props) {
+      return createElement(type, workflow.register(props));
+    },
 
-    return createElement(type, { nodeId, ...props });
-  },
+    createTextInstance(text) {
+      return { text };
+    },
 
-  createTextInstance(text) {
-    return { text };
-  },
+    finalizeInitialChildren() {
+      return false;
+    },
 
-  finalizeInitialChildren() {
-    return false;
-  },
+    getPublicInstance(inst) {
+      return inst;
+    },
 
-  getPublicInstance(inst) {
-    return inst;
-  },
+    prepareForCommit() {
+      // noop
+    },
 
-  prepareForCommit() {
-    // noop
-  },
+    prepareUpdate(...args) {
+      //console.log("prepareUpdate", args);
+      return {};
+    },
 
-  prepareUpdate(...args) {
-    //console.log("prepareUpdate", args);
-    return {};
-  },
+    resetAfterCommit() {
+      // noop
+    },
 
-  resetAfterCommit() {
-    // noop
-  },
+    getRootHostContext(instance) {
+      return getHostContextNode(instance);
+      // return emptyObject;
+    },
 
-  getRootHostContext(instance) {
-    return getHostContextNode(instance);
-    // return emptyObject;
-  },
+    getChildHostContext() {
+      return emptyObject;
+    },
 
-  getChildHostContext() {
-    return emptyObject;
-  },
+    shouldSetTextContent() {
+      return false;
+    },
 
-  shouldSetTextContent() {
-    return false;
-  },
+    now: () => {},
 
-  now: () => {},
+    isPrimaryRenderer: false,
 
-  isPrimaryRenderer: false,
+    supportsMutation: true,
 
-  supportsMutation: true,
+    appendInitialChild(parentInstance, child) {
+      if (parentInstance.appendChild) {
+        parentInstance.appendChild(child);
+      } else {
+        parentInstance.root = child; // eslint-disable-line no-param-reassign
+      }
+    },
 
-  appendInitialChild(parentInstance, child) {
-    if (parentInstance.appendChild) {
-      parentInstance.appendChild(child);
-    } else {
-      parentInstance.root = child; // eslint-disable-line no-param-reassign
-    }
-  },
+    appendChild(parentInstance, child) {
+      if (parentInstance.appendChild) {
+        parentInstance.appendChild(child);
+      } else {
+        parentInstance.root = child; // eslint-disable-line no-param-reassign
+      }
+    },
 
-  appendChild(parentInstance, child) {
-    if (parentInstance.appendChild) {
-      parentInstance.appendChild(child);
-    } else {
-      parentInstance.root = child; // eslint-disable-line no-param-reassign
-    }
-  },
+    appendChildToContainer(parentInstance, child) {
+      if (parentInstance.appendChild) {
+        parentInstance.appendChild(child);
+      } else {
+        parentInstance.root = child; // eslint-disable-line no-param-reassign
+      }
+    },
 
-  appendChildToContainer(parentInstance, child) {
-    if (parentInstance.appendChild) {
-      parentInstance.appendChild(child);
-    } else {
-      parentInstance.root = child; // eslint-disable-line no-param-reassign
-    }
-  },
+    removeChild() {
+      // noop
+    },
 
-  removeChild() {
-    // noop
-  },
+    removeChildFromContainer() {
+      // noop
+    },
 
-  removeChildFromContainer() {
-    // noop
-  },
+    insertBefore() {
+      // noop
+    },
 
-  insertBefore() {
-    // noop
-  },
+    insertInContainerBefore() {
+      // noop
+    },
 
-  insertInContainerBefore() {
-    // noop
-  },
+    commitUpdate(instance, updatePayload, type, oldProps, newProps) {
+      instance.props = { ...instance.props, ...newProps };
 
-  commitUpdate(instance, updatePayload, type, oldProps, newProps) {
-    instance.prop = newProps.prop; // eslint-disable-line no-param-reassign
+      workflow.update(parse(instance));
+    },
 
-    if (newProps.type === 'app') {
-      console.log(newProps);
-    }
+    commitMount() {
+      // noop
+    },
 
-    //console.log("commitUpdate", oldProps, newProps);
-  },
+    commitTextUpdate(instance, oldText, newText) {
+      instance.text = newText; // eslint-disable-line no-param-reassign
+    },
 
-  commitMount() {
-    // noop
-  },
-
-  commitTextUpdate(instance, oldText, newText) {
-    instance.text = newText; // eslint-disable-line no-param-reassign
-  },
-
-  resetTextContent() {
-    // noop
-  },
-});
+    resetTextContent() {
+      // noop
+    },
+  });

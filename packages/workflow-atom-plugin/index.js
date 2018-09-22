@@ -7,7 +7,8 @@ import ipc from 'node-ipc';
 ipc.config.id = 'workflow-app-atom';
 ipc.config.retry = 5000;
 ipc.config.maxRetries = 10;
-ipc.config.sync = true;
+ipc.config.networkHost = '127.0.0.1';
+ipc.config.networkfPort = 8002;
 
 const appId = process.env.WORKFLOW_APP_INSTANCE_ID;
 const processId = process.pid;
@@ -21,11 +22,11 @@ export default {
   server: null,
 
   activate(state) {
-    this.connect();
+    this.connectWs();
   },
 
-  connect() {
-    ipc.connectToNet(channelId, () => {
+  connectIpc() {
+    ipc.connectToNet('workflow-server', () => {
       this.server = ipc.of['workflow-server'];
 
       this.server.on('connect', () => this.onConnect());
@@ -43,6 +44,27 @@ export default {
     console.log('workflow.client connected');
 
     this.sendMessage('workflow.register', register());
+  },
+
+  connectWs() {
+    const socket = new WebSocket('ws://localhost:8080');
+
+    socket.addEventListener('open', event => {
+      console.log('socket opened');
+
+      socket.send(
+        JSON.stringify({
+          type: 'workflow.register',
+          ...register(),
+        })
+      );
+    });
+
+    socket.addEventListener('message', event => {
+      const { file } = event.data;
+
+      this.onApply({ file });
+    });
   },
 
   onApply({ file }) {

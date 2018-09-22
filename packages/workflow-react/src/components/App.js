@@ -1,7 +1,11 @@
 export class App {
   constructor(props) {
-    const { nodeId } = props;
-    this.props = { ...props, appId: nodeId, type: 'app' };
+    console.log(props.open);
+    console.log(props.update);
+    this.props = { ...props };
+    this.props.type = 'app';
+    this.open = props.open;
+    this.update = props.update;
     this.children = [];
   }
 

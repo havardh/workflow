@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "WorkflowAtom": "node ../workflow/cli.js --server true --config ../workflow-home-example/config.js WorkflowServerAtom.js",
+        "WorkflowAtom2": "node ../workflow/cli.js --server true --config ../workflow-home-example/config.js WorkflowServerAtom-2.js",
     "index.js": "node ../workflow/cli.js --server true ./flows/Example.js ${PWD}/index.js",
     "package.json": "node ../workflow/cli.js --server true ./flows/Example.js ${PWD}/package.json"
   },

@@ -1,22 +1,53 @@
+/* eslint-env node */
+/* eslint-disable no-console */
+import spawn from 'cross-spawn';
+import { join } from 'path';
+import fs from 'fs';
 import ipc from 'node-ipc';
 
-ipc.config.retry = 5000;
-ipc.config.maxRetries = 10;
-ipc.config.sync = true;
+ipc.config.id = 'workflow-server';
+ipc.config.retry = 1000;
+ipc.config.maxRetries = 5;
 
-const channelId = 'workflow-server/client';
-
-export async function start() {
-  console.log('starting...');
-  await execa('../cli', ['--config', configFile], { detached: true });
+export function isRunning() {
+  return fs.existsSync('/tmp/workflow-server.lock');
 }
 
-export function stop() {}
+export async function start(node, cmd, args) {
+  console.log('starting server');
+  var env = Object.create(process.env);
+  try {
+    const out = fs.openSync(
+      join(__dirname, '..', '..', 'workflow-home-example', 'stdout.log'),
+      'a'
+    );
+    const err = fs.openSync(
+      join(__dirname, '..', '..', 'workflow-home-example', 'stderr.log'),
+      'a'
+    );
 
-export function apply(path, args) {
-  ipc.connectToNet(channelId, () => {
-    const server = ipc.of[channelId];
+    const subprocess = spawn(join(__dirname, '..', 'apply.js'), [], {
+      detached: true,
+      stdio: ['ignore', out, err],
+      env: env,
+    });
 
-    server.emit('apply', JSON.stringify({ path, args }));
+    subprocess.unref();
+
+    console.log('server started');
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export async function apply(path, args) {
+  ipc.connectToNet('workflow-server', () => {
+    const server = ipc.of['workflow-server'];
+
+    server.on('connect', () => {
+      server.emit('workflow.apply', JSON.stringify({ path, args }));
+
+      ipc.disconnect('workflow-server');
+    });
   });
 }
