@@ -2,8 +2,17 @@
 /* eslint-env node */
 /* eslint-disable global-require */
 import { join } from 'path';
-import * as ipc from './ipc';
+import * as ipc from "./ipc";
+import {findAllApps} from "shared/tree"
 import fs from "fs"
+
+if ( global.v8debug ) {
+	global.v8debug.Debug.setBreakOnException(); // speaks for itself
+}
+
+console.log();
+console.log();
+console.log("--- workflow-server --- ");
 
 const { config } = require(join(__dirname, '../../workflow-home-example/config.js'));
 
@@ -25,29 +34,36 @@ const workflow = new WorkflowCore.workflow(config);
 ipc.on('workflow.apply', (data, socket) => {
   const { path, args } = JSON.parse(data);
 
-  console.log({path, args});
-
   apply(path, args)
     .then(() => console.log("done"))
     .catch(e => console.error(e));
 });
 
-let first = true;
+const timeout = n => new Promise(resolve => setTimeout(resolve, n));
+
 let oldFlow = null;
-async function apply(path, args) {
+export async function apply(path, args) {
   const absolutePath = await workflow.resolve(path);
-  let { flow } = await workflow.load(absolutePath);
-  if (typeof flow === 'function') {
-    flow = await flow(workflow);
-  }
-  if (first) {
-    flow = await workflow.transform(flow, { args: {} });
-    const screen = await workflow.screen();
-    const layout = await workflow.layout(flow, { screen });
-    await workflow.apply(layout);
-    first = false;
-    oldFlow = layout;
-  }
+  const { flow } = await workflow.load(absolutePath);
+
+  const transformed = await workflow.transform(flow, { args });
+  const screen = await workflow.screen();
+  const layout = await workflow.layout(transformed, { screen });
+
+  console.log("unregister");
+  workflow.unregister();
+
+  console.log("register in 10");
+  //await timeout(10);
+  const registered = await workflow.register(layout);
+
+  console.log("apply");
+  await timeout(2000);
+  await workflow.apply(registered);
+
+  console.log("update");
+  await timeout(15000);
+  await workflow.update(registered);
 }
 
 function exitHandler() {
@@ -68,8 +84,13 @@ process.on('SIGINT', exitHandler);
 process.on('SIGUSR1', exitHandler);
 process.on('SIGUSR2', exitHandler);
 
+
 //catches uncaught exceptions
-//process.on('uncaughtException', exitHandler);
+process.on('uncaughtException', (e) => {
+  console.error(e);
+
+  process.exit(1);
+});
 
 workflow.startServer();
 

@@ -7,19 +7,21 @@ import execa from 'execa';
 
 // https://stackoverflow.com/questions/151407/how-to-get-an-x11-window-from-a-process-id
 export class WorkflowWmI3 {
-  constructor() {
-    this.client = createClient();
-  }
+  constructor() {}
 
   async apply(config) {
+    this.client = createClient();
     this.createOrGoToWorkspace(config);
 
-    this.clearWorkspace();
+    //this.clearWorkspace();
 
     await this.applyLayout(config.children[0]);
 
     config.children.forEach(root => this.findApps(root).forEach(app => this.open(app)));
 
+    setTimeout(() => {
+      this.client._stream.destroy();
+    }, 4000);
     return config;
   }
 
@@ -39,16 +41,21 @@ export class WorkflowWmI3 {
     };
   }
 
-  async update(node, oldProps, newProps) {
+  /*async update(node, oldProps, newProps) {
     if (node.type === 'workspace') {
       this.createOrGoToWorkspace(node);
       this.applyLayout(node.children[0]);
     }
-  }
+  }*/
 
   async screen() {
+    const client = createClient();
+    setTimeout(() => {
+      client._stream.destroy();
+    }, 4000);
+
     const workspaces = await new Promise((resolve, reject) => {
-      this.client.workspaces((err, res) => {
+      client.workspaces((err, res) => {
         if (err) {
           reject(err);
         } else {
@@ -89,7 +96,9 @@ export class WorkflowWmI3 {
   }
 
   async open(app) {
-    const context = { platform: 'linux', wm: 'i3' };
-    this.client.command(`exec ${await app.open(app, context, app.children)}`);
+    if (!app.isOpen) {
+      const context = { platform: 'linux', wm: 'i3' };
+      this.client.command(`exec ${await app.open(app, context, app.children)}`);
+    }
   }
 }

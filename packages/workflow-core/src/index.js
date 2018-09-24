@@ -17,8 +17,8 @@ export function workflow({ resolvers, loaders, argumentParser, transformers, lay
 
     /* workflow-server */
     startServer: () => server.start(),
-    register: app => register(app, server, wm),
-    unregister: app => unregister(app, server, wm),
-    update: (instance, oldProps, newProps) => update(instance, oldProps, newProps, server, wm),
+    register: flow => register(flow, server, wm),
+    unregister: () => unregister(server, wm),
+    update: flow => update(flow, server),
   };
 }

@@ -14,8 +14,8 @@ export class WorkflowTransformerApplyArgumentsToFields {
   async transformAfter(node, { args }) {
     switch (node.type) {
       case 'app': {
-        const { open, ...rest } = node;
-        return { open, ...mapValues(rest, v => parseValue(v, args)) };
+        const { open, update, ...rest } = node;
+        return { open, update, ...mapValues(rest, v => parseValue(v, args)) };
       }
       default:
         return node;

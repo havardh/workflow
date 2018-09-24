@@ -11,7 +11,9 @@ export const Atom = {
     return `WORKFLOW_APP_INSTANCE_ID=${appId} atom -dn ${file}`;
   },
 
-  async update({ file }, { send }) {
-    send({ topic: 'workflow.apply', message: { file } });
+  async update({ file }, context) {
+    if (context && context.send && typeof context.send === 'function') {
+      context.send({ topic: 'workflow.apply', message: { file } });
+    }
   },
 };

@@ -61,13 +61,18 @@ export default {
     });
 
     socket.addEventListener('message', event => {
-      const { file } = event.data;
+      console.log(event);
+
+      const { topic, message } = JSON.parse(event.data);
+
+      const { file } = message;
 
       this.onApply({ file });
     });
   },
 
   onApply({ file }) {
+    console.log('opening file', file);
     const panes = atom.workspace.getPanes();
     const activePane = atom.workspace.getActivePane();
 
