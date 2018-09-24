@@ -50,19 +50,10 @@ export async function apply(path, args) {
   const screen = await workflow.screen();
   const layout = await workflow.layout(transformed, { screen });
 
-  console.log("unregister");
   workflow.unregister();
-
-  console.log("register in 10");
-  //await timeout(10);
   const registered = await workflow.register(layout);
-
-  console.log("apply");
-  await timeout(2000);
   await workflow.apply(registered);
-
-  console.log("update");
-  await timeout(15000);
+  await timeout(10);
   await workflow.update(registered);
 }
 

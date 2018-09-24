@@ -48,7 +48,7 @@ export class WorkflowServer {
   }
 
   register(node) {
-    this.registry.register(node);
+    return this.registry.register(node);
   }
 
   unregister() {
@@ -57,9 +57,12 @@ export class WorkflowServer {
 
   update(node) {
     if (node && node.type === 'app') {
-      const app = this.registry.findById(node);
-      if (app && app.send && typeof app.send === 'function') {
-        node.update(node, { send: app.send, platform: 'linux', wm: 'server' }, node.children);
+      const res = this.registry.findById(node);
+      if (res) {
+        const { app } = res;
+        if (app && app.send && typeof app.send === 'function') {
+          node.update(node, { send: app.send, platform: 'linux', wm: 'server' }, node.children);
+        }
       }
     }
   }

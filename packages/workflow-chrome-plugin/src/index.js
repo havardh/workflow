@@ -24,7 +24,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeObject) => {
       chrome.tabs.update(tabId, { url: redirect });
 
       socket.addEventListener('message', function(event) {
-        const { url } = JSON.parse(event.data);
+        const { topic, message } = JSON.parse(event.data);
 
         console.log('open', url);
         chrome.tabs.update(tabId, { url });

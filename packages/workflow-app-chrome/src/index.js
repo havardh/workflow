@@ -16,6 +16,9 @@ export const Chrome = {
     'osx-default': osx,
     'linux-*': linux,
   }),
+  update({ url }, { send }) {
+    send({ topic: 'workflow.apply', message: { url } });
+  },
 };
 
 function linux({ url, appId }) {

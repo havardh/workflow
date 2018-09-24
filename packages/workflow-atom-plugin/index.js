@@ -25,27 +25,6 @@ export default {
     this.connectWs();
   },
 
-  connectIpc() {
-    ipc.connectToNet('workflow-server', () => {
-      this.server = ipc.of['workflow-server'];
-
-      this.server.on('connect', () => this.onConnect());
-      this.server.on('disconnect', () => this.onDisconnect());
-
-      this.server.on('workflow.apply', msg => this.onApply(JSON.parse(msg)));
-    });
-  },
-
-  sendMessage(type, message) {
-    this.server.emit(type, JSON.stringify(message));
-  },
-
-  onConnect() {
-    console.log('workflow.client connected');
-
-    this.sendMessage('workflow.register', register());
-  },
-
   connectWs() {
     const socket = new WebSocket('ws://localhost:8080');
 

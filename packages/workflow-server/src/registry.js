@@ -1,3 +1,5 @@
+import uuid from 'uuid';
+
 export class AppRegistry {
   constructor() {
     this.apps = [];
@@ -7,61 +9,69 @@ export class AppRegistry {
     if (node.type !== 'app') {
       return node;
     }
-    const { appId, name, open, update } = node;
 
-    if (this.findById({ appId })) {
-      return { ...this.findById({ appId }), ...node, open, update, isOpen: true };
+    if (this.findById(node)) {
+      return { isOpen: true, ...this.findById(node).app, ...node };
     }
 
-    const app = this.findByName({ name });
-    if (app && !app.appId) {
-      const i = this.apps.indexOf(app);
-      const newApp = { ...app, ...node, appId: uuid.v4(), open, update, isOpen: true };
-      this.apps[i] = newApp;
-      return newApp;
+    const res = this.findByName(node);
+    if (res && res.app && !res.app.appId) {
+      const { app, index } = res;
+      return (this.apps[index] = { isOpen: true, ...app, ...node, appId: uuid.v4() });
     }
 
-    const newNode = { ...node, appId: uuid.v4(), open, update, isOpen: false };
+    const newNode = { ...node, appId: uuid.v4(), isOpen: false };
     this.apps.push(newNode);
     return newNode;
   }
 
   unregister() {
     const newApps = [];
-    for (let app in this.apps) {
-      const { open, update } = app;
-      newApps.push({ ...app, open, update, appId: undefined });
+    for (let app of this.apps) {
+      newApps.push({ ...app, appId: undefined });
     }
     this.apps = newApps;
   }
 
   findById({ appId }) {
-    for (let app of this.apps) {
-      if (app.appId === appId) {
-        return app;
+    if (appId) {
+      for (let i in this.apps) {
+        if (this.apps[i].appId === appId) {
+          return { app: { ...this.apps[i] }, index: i };
+        }
       }
     }
     return null;
   }
 
   findByName({ name }) {
-    for (let app of this.apps) {
-      if (app.name === name && !app.appId) {
-        return app;
+    for (let i in this.apps) {
+      if (this.apps[i].name === name && !this.apps[i].appId) {
+        return { app: { ...this.apps[i] }, index: i };
       }
     }
     return null;
   }
 
   connect({ appId, processId, send }) {
-    const app = this.findById({ appId });
+    const res = this.findById({ appId });
 
-    if (app) {
-      const i = this.apps.indexOf(app);
+    if (res) {
+      const { app, index } = res;
 
-      this.apps[i] = { ...app, processId, send };
+      return (this.apps[index] = { ...app, processId, send, isOpen: true });
+    } else {
+      return null;
     }
   }
 
-  disconnect({ appId }) {}
+  disconnect({ appId }) {
+    const res = this.findById({ appId });
+
+    if (res) {
+      const { app, index } = res;
+
+      return (this.apps[index] = { ...app, processId: undefined, isOpen: false, send: undefined });
+    }
+  }
 }
