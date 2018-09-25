@@ -6,6 +6,6 @@ const { XTerm } = requireComponent('workflow-app-xterm');
 
 export const flow = render(
   <Workspace name={'workflow-app-xterm'}>
-    <XTerm cmd={'pwd'} />
+    <XTerm cwd={'~'} cmd={'less ' + __filename} style={{ fontSize: 20, fontFamily: 'monaco' }} />
   </Workspace>
 );
