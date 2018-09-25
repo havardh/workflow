@@ -11,11 +11,28 @@ function escape(string) {
   return string.replace(/'/g, "'\\''");
 }
 
+function parseStyle(style) {
+  let options = '';
+
+  if (style) {
+    const { fontSize, fontFamily } = style;
+    if (fontSize) {
+      options += '-fs ' + fontSize;
+    }
+
+    if (fontFamily) {
+      options += ' -fa ' + fontFamily;
+    }
+  }
+
+  return options;
+}
+
 export const XTerm = {
   type: 'app',
   name: 'XTerm',
-  params: ['cwd', 'cmd', 'args'],
-  open: async ({ cwd, cmd, args }, context, children) => {
+  params: ['cwd', 'cmd', 'args', 'style'],
+  open: async ({ cwd, cmd, args, style }, context, children) => {
     if (cmd && children && children.length) {
       throw new Error('Supports only either cmd or children');
     }
@@ -24,25 +41,27 @@ export const XTerm = {
       throw new Error('Supports only a single child element');
     }
 
+    const styleOptions = parseStyle(style);
+
     if (cmd) {
       const argsString = (args || []).join(' ');
       if (cwd) {
-        return `cd ${cwd} && xterm -T '${cmd} ${argsString}' -e '${cmd} ${argsString}'`;
+        return `cd ${cwd} && xterm ${styleOptions} -T '${cmd} ${argsString}' -e '${cmd} ${argsString}'`;
       } else {
-        return `xterm -T '${cmd} ${argsString}' -e '${cmd} ${argsString}'`;
+        return `xterm ${styleOptions} -T '${cmd} ${argsString}' -e '${cmd} ${argsString}'`;
       }
     } else if (children && children.length) {
       const command = await evaluate(children, context);
       if (cwd) {
-        return `cd ${cwd} && xterm -T '${command}' -e '${command}'`;
+        return `cd ${cwd} && xterm ${styleOptions} -T '${command}' -e '${command}'`;
       } else {
-        return `xterm -T '${escape(command)}' -e '${escape(command)}'`;
+        return `xterm ${styleOptions} -T '${escape(command)}' -e '${escape(command)}'`;
       }
     } else {
       if (cwd) {
-        return `cd ${cwd} && xterm -ls -hold`;
+        return `cd ${cwd} && xterm ${styleOptions} -ls -hold`;
       } else {
-        return 'xterm -ls -hold';
+        return `xterm ${styleOptions} -ls -hold`;
       }
     }
   },
