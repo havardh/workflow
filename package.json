@@ -9,7 +9,7 @@
     "start": "node cli.js",
     "eslint": "eslint .",
     "build": "rollup -c",
-    "release": "yarn build && lerna publish",
+    "release": "npm login && yarn build && lerna publish",
     "clean": "lerna exec -- rm -rf ./dist",
     "format": "prettier '**/*.[jt]s' --write",
     "check-format": "prettier '**/*.[jt]s' --list-different",
