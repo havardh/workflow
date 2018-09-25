@@ -7,6 +7,9 @@
     "index.js",
     "dist"
   ],
+  "scripts": {
+    "example": "node ../workflow/cli.js --server true --config ./config.js Example.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/havardh/workflow.git"
@@ -24,6 +27,7 @@
   },
   "homepage": "https://github.com/havardh/workflow/tree/master/packages/workflow-wm-windows-python#readme",
   "dependencies": {
+    "powershell": "^2.3.0",
     "python-shell": "^0.5.0"
   }
 }
