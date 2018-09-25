@@ -13,6 +13,7 @@
   "files": [
     "dist",
     "files",
+    "cli.js",
     "index.js"
   ],
   "dependencies": {

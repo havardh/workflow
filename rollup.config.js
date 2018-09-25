@@ -31,6 +31,7 @@ const nodeInternalDependencies = {
 
 const sourceRoots = {
   'workflow-cmd': ['cli.js', 'index.js'],
+  'create-workflow-home': ['cli.js', 'index.js'],
   workflow: ['cli.js'],
 };
 
