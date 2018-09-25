@@ -1,12 +1,10 @@
 /* eslint-env node */
 /* eslint-disable no-console */
 import execa from 'execa';
-import ncu from 'npm-check-updates';
 import { join } from 'path';
 import fs from 'fs';
 import prompt from 'prompt';
 import { promisify } from 'util';
-import readPkgUp from 'read-pkg-up';
 
 import { baseFolder } from 'shared/env';
 import { which } from 'shared/shell';
@@ -105,12 +103,12 @@ async function updateWorkflowHome(args) {
         },
       },
     });
-  }
 
-  if (update === 'n' || update === 'N') {
-    console.log();
-    console.log('Exit without making changes to', baseFolder);
-    process.exit(0);
+    if (update === 'n' || update === 'N') {
+      console.log();
+      console.log('Exit without making changes to', baseFolder);
+      process.exit(0);
+    }
   }
 
   let stdout;
@@ -140,10 +138,6 @@ async function updateWorkflowHome(args) {
     console.error(e);
     process.exit(1);
   }
-}
-
-function hasUpdates(code) {
-  return code !== 0;
 }
 
 function parsePackages(outdatedOutput) {
