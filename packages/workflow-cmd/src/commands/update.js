@@ -81,96 +81,80 @@ async function updateWorkflowCommand() {
 }
 
 async function updateWorkflowHome(args) {
-  const updates = await ncu.run({
-    packageFile: join(baseFolder, 'package.json'),
-    silent: false,
-    jsonUpgraded: true,
-    semverLevel: args.latest ? undefined : 'major',
-  });
+  try {
+    await execa('npm', ['outdated'], { cwd: baseFolder, stdio: 'inherit' });
 
-  if (hasUpdates(updates)) {
-    console.log(await buildUpdatesMessage(updates));
+    console.log('workflow home is up to date');
+    return;
+  } catch (e) {
+    if (e.code !== 1) {
+      throw e;
+    }
+  }
 
-    if (!args.force) {
-      prompt.message = '';
-      prompt.start();
-      const { update } = await promptGetAsync({
-        properties: {
-          update: {
-            type: 'string',
-            pattern: '^[ynYN]$',
-            description: 'Are you sure? (Y/n)\n',
-            default: 'y',
-          },
+  if (!args.force) {
+    prompt.message = '';
+    prompt.start();
+    const { update } = await promptGetAsync({
+      properties: {
+        update: {
+          type: 'string',
+          pattern: '^[ynYN]$',
+          description: 'Are you sure? (Y/n)',
+          default: 'y',
         },
-      });
+      },
+    });
+  }
 
-      if (update === 'n' || update === 'N') {
-        console.log();
-        console.log('Exit without making changes to', baseFolder);
-        process.exit(0);
+  if (update === 'n' || update === 'N') {
+    console.log();
+    console.log('Exit without making changes to', baseFolder);
+    process.exit(0);
+  }
+
+  let stdout;
+  try {
+    await execa('npm', ['outdated'], { cwd: baseFolder });
+  } catch (e) {
+    stdout = e.stdout;
+  }
+
+  const updatedPackages = parsePackages(stdout);
+  try {
+    for (let pkg of updatedPackages) {
+      if (args.latest) {
+        await execa('npm', ['install', `${pkg}@latest`], { cwd: baseFolder, stdio: 'inherit' });
+      } else {
+        await execa('npm', ['update', pkg], { cwd: baseFolder, stdio: 'inherit' });
       }
     }
+  } catch (e) {
+    console.error(e);
+    process.exit(1);
+  }
 
-    let flags = [];
-    if (args.latest) {
-      flags = ['npm-check-updates', '--packageFile', join(baseFolder, 'package.json'), '-u'];
-    } else {
-      flags = [
-        'npm-check-updates',
-        '--packageFile',
-        join(baseFolder, 'package.json'),
-        '--semverLevel',
-        'major',
-        '-u',
-      ];
-    }
-    try {
-      await execa('npx', flags, { stdio: 'inherit' });
-    } catch (e) {
-      console.error(e);
-      process.exit(1);
-    }
-
-    try {
-      await execa('npm', ['install'], { cwd: baseFolder, stdio: 'inherit' });
-    } catch (e) {
-      console.error(e);
-      process.exit(1);
-    }
-  } else {
-    console.log('workflow-home is up to date');
+  try {
+    await execa('npm', ['install'], { cwd: baseFolder, stdio: 'inherit' });
+  } catch (e) {
+    console.error(e);
+    process.exit(1);
   }
 }
 
-function hasUpdates(updates) {
-  return Object.entries(updates).length !== 0;
+function hasUpdates(code) {
+  return code !== 0;
 }
 
-async function buildUpdatesMessage(updates) {
-  const { pkg } = await readPkgUp({ cwd: baseFolder });
-  let message = 'The following packages will be updated\n\n';
-
-  if (pkg.dependencies) {
-    message += buildDependenciesMessage(pkg.dependencies, updates);
-  }
-
-  if (pkg.optionalDepenencies) {
-    message += buildDependenciesMessage(pkg.optionalDependencies, updates);
-  }
-
-  if (pkg.devDepenencies) {
-    message += buildDependenciesMessage(pkg.devDependencies, updates);
-  }
-  return message + '\n';
-}
-
-function buildDependenciesMessage(dependencies, updates) {
-  let message = '';
-  for (let [name, version] of Object.entries(dependencies)) {
-    if (updates[name]) {
-      message += `  - ${name}  ${version} → ${updates[name]}` + '\n';
+function parsePackages(outdatedOutput) {
+  const packages = [];
+  const lines = outdatedOutput.split('\n');
+  for (let line of lines) {
+    if (!line.startsWith('Package')) {
+      if (line.split(' ')[0]) {
+        packages.push(line.split(' ')[0]);
+      }
     }
   }
-  return message;
+  return packages;
 }
