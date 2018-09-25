@@ -31,7 +31,7 @@ function calculateLayout(layout, { position, screen }) {
       const [child] = layout.children;
       return { ...layout, position, children: [calculate(child, { position, screen })] };
     }
-    case 'splitv': {
+    case 'splith': {
       let startTop = top;
       return {
         ...layout,
@@ -44,7 +44,7 @@ function calculateLayout(layout, { position, screen }) {
         }),
       };
     }
-    case 'splith': {
+    case 'splitv': {
       let startLeft = left;
       return {
         ...layout,
