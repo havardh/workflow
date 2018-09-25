@@ -7,10 +7,10 @@ import time
 [hwnd, x, y, width, height] = sys.argv[1:]
 
 hwnd = int(hwnd)
-x = int(x)
-y = int(y)
-right = int(width)
-bottom = int(height)
+x = int(float(x))
+y = int(float(y))
+right = int(float(width))
+bottom = int(float(height))
 
 win32gui.SetWindowPos(
   hwnd,
