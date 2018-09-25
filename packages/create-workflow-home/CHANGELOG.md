@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.4"></a>
+## [2.0.4](https://github.com/havardh/workflow/compare/create-workflow-home@2.0.3...create-workflow-home@2.0.4) (2018-09-25)
+
+
+### Bug Fixes
+
+* **create-workflow-home:** remove executable permission from index.js ([e4f10b3](https://github.com/havardh/workflow/commit/e4f10b3))
+* **workflow:** make create-workflow-home version fixed ([bfba80e](https://github.com/havardh/workflow/commit/bfba80e))
+
+
+
+
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/havardh/workflow/compare/create-workflow-home@2.0.2...create-workflow-home@2.0.3) (2018-09-25)
 

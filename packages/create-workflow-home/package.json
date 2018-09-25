@@ -1,6 +1,6 @@
 {
   "name": "create-workflow-home",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Create workflow home folder",
   "bin": "cli.js",
   "main": "index.js",

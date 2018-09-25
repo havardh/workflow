@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.2"></a>
+## [2.0.2](https://github.com/havardh/workflow/compare/workflow@2.0.1...workflow@2.0.2) (2018-09-25)
+
+
+### Bug Fixes
+
+* **workflow:** make create-workflow-home version fixed ([bfba80e](https://github.com/havardh/workflow/commit/bfba80e))
+
+
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/havardh/workflow/compare/workflow@2.0.0...workflow@2.0.1) (2018-09-25)
 
