@@ -1,5 +1,4 @@
 import uuid from 'uuid';
-//import * as ipc from './ipc';
 import WebSocket from 'ws';
 import nodeHttp from 'http';
 import { AppRegistry } from './registry';
@@ -60,7 +59,7 @@ export class WorkflowServer {
       const res = this.registry.findById(node);
       if (res) {
         const { app } = res;
-        if (app && app.send && typeof app.send === 'function') {
+        if (app.send) {
           node.update(node, { send: app.send, platform: 'linux', wm: 'server' }, node.children);
         }
       }

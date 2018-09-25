@@ -25,34 +25,8 @@ export class WorkflowWmI3 {
     return config;
   }
 
-  async wrap(node) {
-    node.open = async function(props) {
-      switch (props.type) {
-        case 'workspace':
-          console.log('open workspace', props);
-          this.client.command(`workspace --no-auto-back-and-forth ${props.name}`);
-          break;
-        case 'app':
-          console.log('open app', props);
-          const context = { platform: 'linux', wm: 'i3' };
-          this.client.command(`exec ${await props.open(props, context, props.children)}`);
-          break;
-      }
-    };
-  }
-
-  /*async update(node, oldProps, newProps) {
-    if (node.type === 'workspace') {
-      this.createOrGoToWorkspace(node);
-      this.applyLayout(node.children[0]);
-    }
-  }*/
-
   async screen() {
     const client = createClient();
-    setTimeout(() => {
-      client._stream.destroy();
-    }, 4000);
 
     const workspaces = await new Promise((resolve, reject) => {
       client.workspaces((err, res) => {
@@ -61,6 +35,7 @@ export class WorkflowWmI3 {
         } else {
           resolve(res);
         }
+        client._stream.destroy();
       });
     });
 

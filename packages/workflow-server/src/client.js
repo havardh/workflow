@@ -26,10 +26,9 @@ export async function start(node, cmd, args) {
       'a'
     );
 
-    const subprocess = spawn('node', ['--inspect', join(__dirname, '..', 'apply.js')], {
+    const subprocess = spawn(join(__dirname, '..', 'apply.js'), [], {
       detached: true,
       stdio: ['ignore', out, err],
-      //stdio: ['inherit'],
       env: env,
     });
 

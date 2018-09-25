@@ -6,10 +6,6 @@ import * as ipc from "./ipc";
 import {findAllApps} from "shared/tree"
 import fs from "fs"
 
-if ( global.v8debug ) {
-	global.v8debug.Debug.setBreakOnException(); // speaks for itself
-}
-
 console.log();
 console.log();
 console.log("--- workflow-server --- ");
@@ -78,7 +74,6 @@ process.on('SIGUSR2', exitHandler);
 //catches uncaught exceptions
 process.on('uncaughtException', (e) => {
   console.error(e);
-
   process.exit(1);
 });
 

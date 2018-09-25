@@ -1,16 +1,10 @@
 {
   "name": "workflow-server",
-  "version": "1.0.0",
+  "version": "1.0.0-rc1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "WorkflowAtom": "node ../workflow/cli.js --server true --config ../workflow-home-example/config.js WorkflowServerAtom.js",
-    "WorkflowAtom2": "node ../workflow/cli.js --server true --config ../workflow-home-example/config.js WorkflowServerAtom-2.js",
-    "WorkflowAtomChrome1": "node ../workflow/cli.js --server true --config ../workflow-home-example/config.js WorkflowAtomChrome-1.js",
-    "WorkflowAtomChrome2": "node ../workflow/cli.js --server true --config ../workflow-home-example/config.js WorkflowAtomChrome-2.js",
-    "example": "node ../workflow/cli.js --server true --config ../workflow-home-example/config.js ",
-    "index.js": "node ../workflow/cli.js --server true ./flows/Example.js ${PWD}/index.js",
-    "package.json": "node ../workflow/cli.js --server true ./flows/Example.js ${PWD}/package.json"
+    "example": "node ../workflow/cli.js --server true --config ../workflow-home-example/config.js "
   },
   "author": "",
   "license": "ISC",
