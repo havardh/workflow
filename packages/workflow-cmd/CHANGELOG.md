@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/havardh/workflow/compare/workflow-cmd@2.0.0...workflow-cmd@2.0.1) (2018-09-25)
+
+
+### Bug Fixes
+
+* **workflow-cmd:** clean up after messy changes :| ([244c672](https://github.com/havardh/workflow/commit/244c672))
+* **workflow-cmd:** replace npm-check-updates dependency with npm ([b3241b5](https://github.com/havardh/workflow/commit/b3241b5))
+
+
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/havardh/workflow/compare/workflow-cmd@1.3.2...workflow-cmd@2.0.0) (2018-09-18)
 

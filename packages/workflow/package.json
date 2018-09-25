@@ -1,6 +1,6 @@
 {
   "name": "workflow",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Workflow-centric workspace manager",
   "bin": "cli.js",
   "files": [
@@ -34,6 +34,6 @@
     "execa": "^0.11.0",
     "prompt": "^1.0.0",
     "shelljs": "^0.8.2",
-    "workflow-cmd": "^2.0.0"
+    "workflow-cmd": "^2.0.1"
   }
 }
