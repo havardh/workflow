@@ -1,6 +1,7 @@
 /* eslint-env node */
 const { join } = require('path');
 const { requireAsJson } = require('shared/json');
+const { WorkflowResolverAbsolute } = require('workflow-resolver-absolute');
 const { WorkflowResolverRelative } = require('workflow-resolver-relative');
 const { WorkflowLoaderBabel } = require('workflow-loader-babel');
 const { WorkflowLoaderTypescript } = require('workflow-loader-typescript');
@@ -16,7 +17,10 @@ const typescriptConfig = { config: requireAsJson('../../tsconfig.json') };
 
 module.exports = {
   config: {
-    resolvers: [new WorkflowResolverRelative({ path: join(process.cwd(), 'flows') })],
+    resolvers: [
+      new WorkflowResolverAbsolute(),
+      new WorkflowResolverRelative({ path: join(process.cwd(), 'flows') }),
+    ],
     loaders: [
       {
         loader: new WorkflowLoaderBabel(babelConfig),

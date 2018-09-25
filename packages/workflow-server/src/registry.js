@@ -28,7 +28,9 @@ export class AppRegistry {
   unregister() {
     const newApps = [];
     for (let app of this.apps) {
-      newApps.push({ ...app, appId: undefined });
+      if (app.isOpen) {
+        newApps.push({ ...app, appId: undefined });
+      }
     }
     this.apps = newApps;
   }

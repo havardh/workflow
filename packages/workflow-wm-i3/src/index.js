@@ -96,6 +96,7 @@ export class WorkflowWmI3 {
   }
 
   async open(app) {
+    console.log(app.name, app.isOpen);
     if (!app.isOpen) {
       const context = { platform: 'linux', wm: 'i3' };
       this.client.command(`exec ${await app.open(app, context, app.children)}`);

@@ -71,5 +71,7 @@ export class WorkflowServer {
     this.registry.connect({ appId, processId, send });
   }
 
-  disconnect({ appId, processId }) {}
+  disconnect({ appId, processId }) {
+    this.registry.disconnect({ appId });
+  }
 }

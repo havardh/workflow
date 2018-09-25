@@ -17,11 +17,13 @@ export const Chrome = {
     'linux-*': linux,
   }),
   update({ url }, { send }) {
+    console.log('send chrome');
     send({ topic: 'workflow.apply', message: { url } });
   },
 };
 
 function linux({ url, appId }) {
+  console.log('open chrome');
   return `google-chrome-stable --new-window ${buildUrl({ url, appId })}`;
 }
 

@@ -53,7 +53,6 @@ export async function apply(path, args) {
   workflow.unregister();
   const registered = await workflow.register(layout);
   await workflow.apply(registered);
-  await timeout(10);
   await workflow.update(registered);
 }
 
