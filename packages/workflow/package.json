@@ -34,6 +34,7 @@
     "execa": "^0.11.0",
     "prompt": "^1.0.0",
     "shelljs": "^0.8.2",
-    "workflow-cmd": "^2.0.1"
+    "workflow-cmd": "^2.0.1",
+    "create-workflow-home": "2.0.3"
   }
 }
