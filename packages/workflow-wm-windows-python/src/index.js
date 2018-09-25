@@ -1,17 +1,21 @@
 /* eslint-env node */
 /* eslint-disable class-methods-use-this */
 import PythonShell from 'python-shell';
-
+import { resolve } from 'path';
 import { findAllApps } from 'shared/tree';
+import difference from 'lodash.difference';
+import { exec } from './powershell';
 
 const defaultOptions = {
   pythonPath: 'C:\\Windows\\py.exe',
 };
 
+const timeout = n => new Promise(resolve => setTimeout(resolve, n));
+
 export class WorkflowWmWindowsPython {
   async screen() {
     return new Promise((resolve, reject) => {
-      PythonShell.run('wms/windows/python/get_desktop_rect.py', defaultOptions, (err, res) => {
+      PythonShell.run(resolve('get_desktop_rect.py'), defaultOptions, (err, res) => {
         if (err) {
           reject(err);
         }
@@ -23,21 +27,52 @@ export class WorkflowWmWindowsPython {
   async apply(layout) {
     const apps = findAllApps(layout);
 
+    const { startOnPositionByWindowClass, startOnPositionByReturnedPid } = this;
+
+    const context = {
+      platform: 'win32',
+      wm: 'default',
+      startOnPositionByWindowClass,
+      startOnPositionByReturnedPid,
+    };
+
     for (let app of apps) {
-      const pid = await this.runCmd(app);
-      await this.setPosition({ ...app, pid });
+      await app.open(app, context, app.children);
     }
   }
 
-  async setPosition({ pid, position }) {
+  async startOnPositionByReturnedPid({ cmd, args, position }) {
+    const pid = await exec(`Start-Process ${cmd} -PassThru "${args.join(' ')}"`);
+
+    const { left, top, width, height } = position;
+    this.setPosition(pid, left, top, width, height);
+  }
+
+  async startOnPositionByWindowClass({ cmd, args, className, position }) {
+    const before = this.getListOfWindows(className);
+
+    await exec(`Start-Process ${cmd} -PassThru "${args.join(' ')}"`);
+
+    await timeout(1000);
+
+    const after = this.getListOfWindows(className);
+
+    const windowIds = difference(after, before);
+
+    const { left, top, width, height } = position;
+    for (let windowId of windowIds) {
+      this.setPositionByWindowId(windowId, left, top, width, height);
+    }
+  }
+
+  async setPosition(pid, top, left, width, height) {
     return new Promise((resolve, reject) => {
-      const { top, left, width, height } = position;
       const options = {
         ...defaultOptions,
         args: [pid, left, top, width, height],
       };
 
-      PythonShell.run('wms/windows/python/set_position.py', options, (err, res) => {
+      PythonShell.run(resolve('set_position.py'), options, (err, res) => {
         if (err) {
           reject(err);
         }
@@ -46,15 +81,36 @@ export class WorkflowWmWindowsPython {
     });
   }
 
-  async runCmd(app) {
-    // eslint-disable-line class-methods-use-this
+  async getListOfWindows(className) {
     return new Promise((resolve, reject) => {
-      const options = { ...defaultOptions, args: app.open };
-      PythonShell.run('wms/windows/python/open.py', options, (err, res) => {
+      const options = {
+        ...defaultOptions,
+        args: [className],
+      };
+
+      PythonShell.run(resolve('get_list_of_windows.py'), options, (err, res) => {
         if (err) {
           reject(err);
         }
-        resolve(JSON.parse(res[0]).pid);
+        resolve(JSON.parse(res[0]));
+      });
+    });
+  }
+
+  async setPositionByWindowId(windowId, left, top, width, height) {
+    return new Promise((resolve, reject) => {
+      const options = {
+        ...defaultOptions,
+        args: [windowId, left, top, width, height],
+      };
+
+      return new Promise((resolve, reject) => {
+        PythonShell.run(resolve('set_position_window_id.py'), options, (err, res) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(res);
+        });
       });
     });
   }

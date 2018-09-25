@@ -18,7 +18,7 @@ def get_hwnd_for_pid (pid):
       if found_pid == pid:
         hwnds.append (hwnd)
     return True
-    
+
   hwnds = []
   win32gui.EnumWindows (callback, hwnds)
   return hwnds
