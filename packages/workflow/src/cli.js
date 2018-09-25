@@ -9,7 +9,8 @@ import { promisify } from 'util';
 import os from 'os';
 import execa from 'execa';
 
-import { dev, homedir, devhomedir, baseFolder } from 'shared/env';
+import { createWorkflowHome } from 'create-workflow-home';
+import { homedir, devhomedir, baseFolder } from 'shared/env';
 import { isValidWorkflowHome } from 'shared/homefolder';
 
 (async function cli([node, cmd, ...args]) {
@@ -40,47 +41,8 @@ async function initWorkflowHome(path) {
   if (
     await promptYesNo('Would you like to initialize a workflow-home directory at: ' + resolve(path))
   ) {
-    if (dev) {
-      await execa('node', ['../create-workflow-home/index.js', path], {
-        stdio: 'inherit',
-      });
-    } else {
-      const errors = {};
+    createWorkflowHome(path);
 
-      try {
-        await execa('npx', ['create-workflow-home', path], {
-          stdio: 'inherit',
-        });
-      } catch (error) {
-        errors.npx = error;
-
-        try {
-          await execa('yarn', ['create', 'workflow-home', path], {
-            stdio: 'inherit',
-          });
-        } catch (error) {
-          errors.yarn = error;
-
-          try {
-            await execa('npm', ['init', 'workflow-home', path], {
-              stdio: 'inherit',
-            });
-          } catch (error) {
-            errors.npm = error;
-
-            console.log();
-            console.error('Could not generate workflow-home at:', path);
-            console.error();
-            console.error('Tried all of these: ');
-            for (let [cmd, error] of Object.entries(errors)) {
-              console.error(cmd + ':');
-              console.error(error);
-              console.log();
-            }
-          }
-        }
-      }
-    }
     console.log();
     console.log('Running `npm install`');
     await execa('npm', ['i'], { stdio: 'inherit', cwd: path });
