@@ -1,6 +1,6 @@
 {
   "name": "workflow-apps-defaults",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Platform independent default apps",
   "main": "index.js",
   "license": "MIT",
@@ -26,7 +26,7 @@
     "workflow-app-powershell": "^2.0.0",
     "workflow-app-safari": "^2.0.0",
     "workflow-app-textedit": "^2.0.0",
-    "workflow-app-xterm": "^2.0.0",
+    "workflow-app-xterm": "^2.1.0",
     "workflow-apps-html": "^2.0.0"
   }
 }

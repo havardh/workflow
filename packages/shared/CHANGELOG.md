@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/havardh/workflow/compare/shared@2.0.0...shared@2.0.1) (2018-09-25)
+
+
+### Bug Fixes
+
+* **shared/env:** make wmctrl check work when not installed ([bb57da0](https://github.com/havardh/workflow/commit/bb57da0))
+
+
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/havardh/workflow/compare/shared@0.1.1...shared@2.0.0) (2018-09-18)
 
