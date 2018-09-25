@@ -77,7 +77,7 @@ function resolvePlatformWorkflowWm() {
       return 'workflow-wm-i3';
     case 'darwin-default':
       return 'workflow-wm-osx';
-    case 'windows-default':
+    case 'win32-default':
       return 'workflow-wm-windows';
     case 'linux-default':
       return 'workflow-wm-wmctrl';
