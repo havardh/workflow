@@ -1,6 +1,6 @@
 {
   "name": "workflow",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Workflow-centric workspace manager",
   "bin": "cli.js",
   "files": [
@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/havardh/workflow#readme",
   "dependencies": {
-    "create-workflow-home": "^2.0.4",
+    "create-workflow-home": "^2.0.5",
     "cross-spawn": "^6.0.5",
     "execa": "^0.11.0",
     "prompt": "^1.0.0",

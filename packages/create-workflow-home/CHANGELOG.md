@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.5"></a>
+## [2.0.5](https://github.com/havardh/workflow/compare/create-workflow-home@2.0.4...create-workflow-home@2.0.5) (2018-09-25)
+
+
+### Bug Fixes
+
+* **create-workflow-home:** add missing binary file ([c945f41](https://github.com/havardh/workflow/commit/c945f41))
+
+
+
+
+
 <a name="2.0.4"></a>
 ## [2.0.4](https://github.com/havardh/workflow/compare/create-workflow-home@2.0.3...create-workflow-home@2.0.4) (2018-09-25)
 
