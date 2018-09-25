@@ -1,13 +1,13 @@
 /* eslint-env node */
 /* eslint-disable class-methods-use-this */
 import PythonShell from 'python-shell';
-import { resolve } from 'path';
+import path from 'path';
 import { findAllApps } from 'shared/tree';
 import difference from 'lodash.difference';
 import { exec } from './powershell';
 
 const defaultOptions = {
-  pythonPath: 'C:\\Windows\\py.exe',
+  pythonPath: 'python',
 };
 
 const timeout = n => new Promise(resolve => setTimeout(resolve, n));
@@ -15,7 +15,9 @@ const timeout = n => new Promise(resolve => setTimeout(resolve, n));
 export class WorkflowWmWindowsPython {
   async screen() {
     return new Promise((resolve, reject) => {
-      PythonShell.run(resolve('get_desktop_rect.py'), defaultOptions, (err, res) => {
+      console.log(path.join(__dirname, path.sep, 'get_desktop_rect.py'));
+      PythonShell.run(path.join(__dirname, path.sep, 'get_desktop_rect.py'), defaultOptions, (err, res) => {
+        console.log(res);
         if (err) {
           reject(err);
         }
@@ -25,6 +27,8 @@ export class WorkflowWmWindowsPython {
   }
 
   async apply(layout) {
+    console.log(JSON.stringify(layout, null, 2));
+
     const apps = findAllApps(layout);
 
     const { startOnPositionByWindowClass, startOnPositionByReturnedPid } = this;
@@ -32,8 +36,8 @@ export class WorkflowWmWindowsPython {
     const context = {
       platform: 'win32',
       wm: 'default',
-      startOnPositionByWindowClass,
-      startOnPositionByReturnedPid,
+      startOnPositionByWindowClass: startOnPositionByWindowClass.bind(this),
+      startOnPositionByReturnedPid: startOnPositionByReturnedPid.bind(this),
     };
 
     for (let app of apps) {
@@ -43,22 +47,21 @@ export class WorkflowWmWindowsPython {
 
   async startOnPositionByReturnedPid({ cmd, args, position }) {
     const pid = await exec(`Start-Process ${cmd} -PassThru "${args.join(' ')}"`);
-
+    console.log(cmd, pid);
     const { left, top, width, height } = position;
-    this.setPosition(pid, left, top, width, height);
+    this.setPosition(pid, top, left, width, height);
   }
 
   async startOnPositionByWindowClass({ cmd, args, className, position }) {
-    const before = this.getListOfWindows(className);
-
+    const before = await this.getListOfWindows(className);
     await exec(`Start-Process ${cmd} -PassThru "${args.join(' ')}"`);
 
     await timeout(1000);
-
-    const after = this.getListOfWindows(className);
+    
+    const after = await this.getListOfWindows(className);
 
     const windowIds = difference(after, before);
-
+    console.log(cmd, before, after, windowIds);
     const { left, top, width, height } = position;
     for (let windowId of windowIds) {
       this.setPositionByWindowId(windowId, left, top, width, height);
@@ -71,8 +74,8 @@ export class WorkflowWmWindowsPython {
         ...defaultOptions,
         args: [pid, left, top, width, height],
       };
-
-      PythonShell.run(resolve('set_position.py'), options, (err, res) => {
+      console.log({pid, left, top, width, height})
+      PythonShell.run(path.join(__dirname, path.sep, 'set_position.py'), options, (err, res) => {
         if (err) {
           reject(err);
         }
@@ -88,7 +91,8 @@ export class WorkflowWmWindowsPython {
         args: [className],
       };
 
-      PythonShell.run(resolve('get_list_of_windows.py'), options, (err, res) => {
+      PythonShell.run(path.join(__dirname, path.sep, 'get_list_of_windows.py'), options, (err, res) => {
+        console.log(res);
         if (err) {
           reject(err);
         }
@@ -104,13 +108,11 @@ export class WorkflowWmWindowsPython {
         args: [windowId, left, top, width, height],
       };
 
-      return new Promise((resolve, reject) => {
-        PythonShell.run(resolve('set_position_window_id.py'), options, (err, res) => {
-          if (err) {
-            reject(err);
-          }
-          resolve(res);
-        });
+      PythonShell.run(path.join(__dirname, path.sep, 'set_position_by_window_id.py'), options, (err, res) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(res);
       });
     });
   }

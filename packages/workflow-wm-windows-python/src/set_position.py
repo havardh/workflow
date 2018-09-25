@@ -6,10 +6,10 @@ import time
 
 [pid, x, y, width, height] = sys.argv[1:]
 
-x = int(x)
-y = int(y)
-right = int(width)
-bottom = int(height)
+x = int(float(x))
+y = int(float(y))
+right = int(float(width))
+bottom = int(float(height))
 
 def get_hwnd_for_pid (pid):
   def callback (hwnd, hwnds):

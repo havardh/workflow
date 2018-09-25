@@ -7,4 +7,4 @@ rect = win32gui.GetWindowRect(desktopWnd)
 width = right - x
 height = bottom - y
 
-print('{ "x": %s, "y": %s, "width": %s, "height": %s }' % (x, y, width, height))
+print('{ "left": %s, "top": %s, "width": %s, "height": %s }' % (x, y, width, height))
