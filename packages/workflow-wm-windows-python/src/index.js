@@ -8,7 +8,7 @@ import { exec } from './powershell';
 import { promisify } from 'util';
 
 function resolvePython(file) {
-  return path.join(__dirname, path.sep, file);
+  return path.join(__dirname, path.sep, '..', path.sep, 'scripts', file);
 }
 
 const defaultOptions = {
