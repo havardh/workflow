@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.4"></a>
+## [2.0.4](https://github.com/havardh/workflow/compare/workflow@2.0.3...workflow@2.0.4) (2018-09-26)
+
+
+### Bug Fixes
+
+* **workflow:** wait on createWorkflowHome before running npm install ([7de33cc](https://github.com/havardh/workflow/commit/7de33cc))
+
+
+
+
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/havardh/workflow/compare/workflow@2.0.2...workflow@2.0.3) (2018-09-25)
 
