@@ -15,20 +15,20 @@ const timeout = n => new Promise(resolve => setTimeout(resolve, n));
 export class WorkflowWmWindowsPython {
   async screen() {
     return new Promise((resolve, reject) => {
-      console.log(path.join(__dirname, path.sep, 'get_desktop_rect.py'));
-      PythonShell.run(path.join(__dirname, path.sep, 'get_desktop_rect.py'), defaultOptions, (err, res) => {
-        console.log(res);
-        if (err) {
-          reject(err);
+      PythonShell.run(
+        path.join(__dirname, path.sep, 'get_desktop_rect.py'),
+        defaultOptions,
+        (err, res) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(JSON.parse(res[0]));
         }
-        resolve(JSON.parse(res[0]));
-      });
+      );
     });
   }
 
   async apply(layout) {
-    console.log(JSON.stringify(layout, null, 2));
-
     const apps = findAllApps(layout);
 
     const { startOnPositionByWindowClass, startOnPositionByReturnedPid } = this;
@@ -47,7 +47,6 @@ export class WorkflowWmWindowsPython {
 
   async startOnPositionByReturnedPid({ cmd, args, position }) {
     const pid = await exec(`Start-Process ${cmd} -PassThru "${args.join(' ')}"`);
-    console.log(cmd, pid);
     const { left, top, width, height } = position;
     this.setPosition(pid, top, left, width, height);
   }
@@ -57,11 +56,10 @@ export class WorkflowWmWindowsPython {
     await exec(`Start-Process ${cmd} -PassThru "${args.join(' ')}"`);
 
     await timeout(1000);
-    
+
     const after = await this.getListOfWindows(className);
 
     const windowIds = difference(after, before);
-    console.log(cmd, before, after, windowIds);
     const { left, top, width, height } = position;
     for (let windowId of windowIds) {
       this.setPositionByWindowId(windowId, left, top, width, height);
@@ -74,7 +72,6 @@ export class WorkflowWmWindowsPython {
         ...defaultOptions,
         args: [pid, left, top, width, height],
       };
-      console.log({pid, left, top, width, height})
       PythonShell.run(path.join(__dirname, path.sep, 'set_position.py'), options, (err, res) => {
         if (err) {
           reject(err);
@@ -91,13 +88,16 @@ export class WorkflowWmWindowsPython {
         args: [className],
       };
 
-      PythonShell.run(path.join(__dirname, path.sep, 'get_list_of_windows.py'), options, (err, res) => {
-        console.log(res);
-        if (err) {
-          reject(err);
+      PythonShell.run(
+        path.join(__dirname, path.sep, 'get_list_of_windows.py'),
+        options,
+        (err, res) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(JSON.parse(res[0]));
         }
-        resolve(JSON.parse(res[0]));
-      });
+      );
     });
   }
 
@@ -108,12 +108,16 @@ export class WorkflowWmWindowsPython {
         args: [windowId, left, top, width, height],
       };
 
-      PythonShell.run(path.join(__dirname, path.sep, 'set_position_by_window_id.py'), options, (err, res) => {
-        if (err) {
-          reject(err);
+      PythonShell.run(
+        path.join(__dirname, path.sep, 'set_position_by_window_id.py'),
+        options,
+        (err, res) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(res);
         }
-        resolve(res);
-      });
+      );
     });
   }
 }
