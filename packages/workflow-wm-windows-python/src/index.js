@@ -24,7 +24,7 @@ const timeout = n => new Promise(resolve => setTimeout(resolve, n));
 
 export class WorkflowWmWindowsPython {
   async screen() {
-    const [rect] = await runPython(resolvePython('get_desktop_rect.py'));
+    const [rect] = await runPython('get_desktop_rect.py');
     return JSON.parse(rect);
   }
 
