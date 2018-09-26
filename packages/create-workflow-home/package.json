@@ -1,6 +1,6 @@
 {
   "name": "create-workflow-home",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Create workflow home folder",
   "bin": "cli.js",
   "main": "index.js",
@@ -35,7 +35,7 @@
     "workflow-transformer-apply-arguments-to-fields": "^2.0.0",
     "workflow-wm-i3": "^2.0.0",
     "workflow-wm-osx": "^2.0.0",
-    "workflow-wm-windows": "^2.0.0",
+    "workflow-wm-windows": "^2.1.0",
     "workflow-wm-wmctrl": "^0.2.2"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "workflow-wm-auto",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "auto window manager for workflow",
   "main": "index.js",
   "files": [
@@ -26,7 +26,7 @@
     "shelljs": "^0.8.2",
     "workflow-wm-i3": "^2.0.0",
     "workflow-wm-osx": "^2.0.0",
-    "workflow-wm-windows": "^2.0.0",
+    "workflow-wm-windows": "^2.1.0",
     "workflow-wm-wmctrl": "^0.2.2"
   }
 }

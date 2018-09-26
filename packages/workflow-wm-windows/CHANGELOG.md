@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/havardh/workflow/compare/workflow-wm-windows@2.0.0...workflow-wm-windows@2.1.0) (2018-09-26)
+
+
+### Features
+
+* **workflow-wm-windows-python:** update to new wm standard ([9dac4f0](https://github.com/havardh/workflow/commit/9dac4f0))
+
+
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/havardh/workflow/compare/workflow-wm-windows@1.0.0...workflow-wm-windows@2.0.0) (2018-09-18)
 

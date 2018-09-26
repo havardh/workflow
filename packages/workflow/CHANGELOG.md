@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.5"></a>
+## [2.0.5](https://github.com/havardh/workflow/compare/workflow@2.0.4...workflow@2.0.5) (2018-09-26)
+
+
+### Bug Fixes
+
+* **workflow:** disable workflow home check in dev mode ([d991a15](https://github.com/havardh/workflow/commit/d991a15))
+
+
+
+
+
 <a name="2.0.4"></a>
 ## [2.0.4](https://github.com/havardh/workflow/compare/workflow@2.0.3...workflow@2.0.4) (2018-09-26)
 
