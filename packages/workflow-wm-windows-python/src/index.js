@@ -3,7 +3,7 @@
 import PythonShell from 'python-shell';
 import path from 'path';
 import { findAllApps } from 'shared/tree';
-import difference from 'lodash.difference';
+import { difference } from 'lodash';
 import { exec } from './powershell';
 import { promisify } from 'util';
 
