@@ -7,7 +7,7 @@ const { WorkflowLoaderTypescript } = require('workflow-loader-typescript');
 const {
   WorkflowTransformerApplyArgumentsToFields,
 } = require('workflow-transformer-apply-arguments-to-fields');
-const { WorkflowTransformAsync } = require('workflow-transformer-async');
+const { WorkflowTransformerAsync } = require('workflow-transformer-async');
 const { WorkflowLayout } = require('workflow-layout');
 const { WorkflowWmAuto } = require('workflow-wm-auto');
 
