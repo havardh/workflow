@@ -10,7 +10,7 @@ import os from 'os';
 import execa from 'execa';
 
 import { createWorkflowHome } from 'create-workflow-home';
-import { homedir, devhomedir, baseFolder } from 'shared/env';
+import { dev, homedir, devhomedir, baseFolder } from 'shared/env';
 import { isValidWorkflowHome } from 'shared/homefolder';
 
 (async function cli([node, cmd, ...args]) {
