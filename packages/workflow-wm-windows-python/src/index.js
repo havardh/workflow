@@ -5,27 +5,27 @@ import path from 'path';
 import { findAllApps } from 'shared/tree';
 import difference from 'lodash.difference';
 import { exec } from './powershell';
+import { promisify } from 'util';
+
+function resolvePython(file) {
+  return path.join(__dirname, path.sep, file);
+}
 
 const defaultOptions = {
   pythonPath: 'python',
 };
 
+const PythonShellRunAsync = promisify(PythonShell.run);
+async function runPython(file, options = {}) {
+  return PythonShellRunAsync(resolvePython(file), { ...defaultOptions, ...options });
+}
+
 const timeout = n => new Promise(resolve => setTimeout(resolve, n));
 
 export class WorkflowWmWindowsPython {
   async screen() {
-    return new Promise((resolve, reject) => {
-      PythonShell.run(
-        path.join(__dirname, path.sep, 'get_desktop_rect.py'),
-        defaultOptions,
-        (err, res) => {
-          if (err) {
-            reject(err);
-          }
-          resolve(JSON.parse(res[0]));
-        }
-      );
-    });
+    const [rect] = await runPython(resolvePython('get_desktop_rect.py'));
+    return JSON.parse(rect);
   }
 
   async apply(layout) {
@@ -67,57 +67,27 @@ export class WorkflowWmWindowsPython {
   }
 
   async setPosition(pid, top, left, width, height) {
-    return new Promise((resolve, reject) => {
-      const options = {
-        ...defaultOptions,
-        args: [pid, left, top, width, height],
-      };
-      PythonShell.run(path.join(__dirname, path.sep, 'set_position.py'), options, (err, res) => {
-        if (err) {
-          reject(err);
-        }
-        resolve(res);
-      });
-    });
+    const options = {
+      args: [pid, left, top, width, height],
+    };
+    return await runPython('set_position.py', options);
   }
 
   async getListOfWindows(className) {
-    return new Promise((resolve, reject) => {
-      const options = {
-        ...defaultOptions,
-        args: [className],
-      };
+    const options = {
+      args: [className],
+    };
 
-      PythonShell.run(
-        path.join(__dirname, path.sep, 'get_list_of_windows.py'),
-        options,
-        (err, res) => {
-          if (err) {
-            reject(err);
-          }
-          resolve(JSON.parse(res[0]));
-        }
-      );
-    });
+    const [windowIds] = await runPython('get_list_of_windows.py', options);
+
+    return JSON.parse(windowIds);
   }
 
   async setPositionByWindowId(windowId, left, top, width, height) {
-    return new Promise((resolve, reject) => {
-      const options = {
-        ...defaultOptions,
-        args: [windowId, left, top, width, height],
-      };
+    const options = {
+      args: [windowId, left, top, width, height],
+    };
 
-      PythonShell.run(
-        path.join(__dirname, path.sep, 'set_position_by_window_id.py'),
-        options,
-        (err, res) => {
-          if (err) {
-            reject(err);
-          }
-          resolve(res);
-        }
-      );
-    });
+    await runPython('set_position_by_window_id.py', options);
   }
 }
