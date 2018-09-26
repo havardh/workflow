@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "example": "node ../workflow/cli.js --config ../workflow-home-example/config.js Example.js"
+    "example": "WORKFLOW_DEV_MODE=true node ../workflow/cli.js --config ./config.js Example.js"
   },
   "repository": {
     "type": "git",
