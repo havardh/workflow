@@ -13,8 +13,10 @@ import { dev, homedir, devhomedir, baseFolder } from 'shared/env';
 import { isValidWorkflowHome } from 'shared/homefolder';
 
 (async function cli([node, cmd, ...args]) {
-  if (!isValidWorkflowHome(baseFolder)) {
-    await initWorkflowHome(baseFolder);
+  if (!dev) {
+    if (!isValidWorkflowHome(baseFolder)) {
+      await initWorkflowHome(baseFolder);
+    }
   }
 
   WorkflowCmd.cli(node, cmd, args);
