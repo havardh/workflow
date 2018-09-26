@@ -41,7 +41,7 @@ async function initWorkflowHome(path) {
   if (
     await promptYesNo('Would you like to initialize a workflow-home directory at: ' + resolve(path))
   ) {
-    createWorkflowHome(path);
+    await createWorkflowHome(path);
 
     console.log();
     console.log('Running `npm install`');
