@@ -6,18 +6,26 @@ import { AppRegistry } from './registry';
 function ws(server) {
   const wss = new WebSocket.Server({ port: 8080 });
   wss.on('connection', function connection(ws) {
+    let clientAppId;
+
     ws.on('message', function incoming(message) {
       const { type, appId, processId } = JSON.parse(message);
 
+      clientAppId = appId;
       server.connect({
         appId,
         processId,
         send: ({ topic, message }) => {
           if (ws && ws.send && typeof ws.send === 'function') {
+            console.log('sending:', JSON.stringify({ topic, message }));
             ws.send(JSON.stringify({ topic, message }));
           }
         },
       });
+    });
+
+    ws.on('close', function disconnect() {
+      server.disconnect({ appId: clientAppId });
     });
   });
   console.log('ws://localhost:8080');
@@ -46,31 +54,32 @@ export class WorkflowServer {
     }
   }
 
-  register(node) {
-    return this.registry.register(node);
+  async waitFor(app) {
+    return await this.registry.waitFor(app);
   }
 
-  unregister() {
+  register(flow) {
     this.registry.unregister();
+    return this.registry.register(flow);
   }
 
-  update(node) {
-    if (node && node.type === 'app') {
-      const res = this.registry.findById(node);
-      if (res) {
-        const { app } = res;
-        if (app.send) {
-          node.update(node, { send: app.send, platform: 'linux', wm: 'server' }, node.children);
-        }
-      }
+  updateRegister(node) {
+    if (node.type === 'app') {
+      this.registry.updateRegister(node);
+    }
+
+    for (let child of node.children || []) {
+      this.updateRegister(child);
     }
   }
 
   connect({ appId, processId, send }) {
+    console.log('Client connected', appId);
     this.registry.connect({ appId, processId, send });
   }
 
   disconnect({ appId, processId }) {
+    console.log('Client disconnected', appId);
     this.registry.disconnect({ appId });
   }
 }

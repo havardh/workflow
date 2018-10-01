@@ -1,5 +1,5 @@
-export async function apply(wm, flow) {
-  return wm.apply(flow);
+export async function apply(wm, flow, waitFor) {
+  return wm.apply(flow, waitFor);
 }
 
 export async function screen(wm) {

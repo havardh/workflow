@@ -1,94 +1,89 @@
+import React from 'react';
 import { AppRegistry } from '../../src/registry';
+import uuid from 'uuid';
 
-function createApp() {
-  return {
-    type: 'app',
-    name: 'App',
-    open: function() {},
-    update: function() {},
-  };
-}
+import { render, Workspace, requireComponent } from 'workflow-react';
+
+const { SplitV, SplitH } = requireComponent('workflow-layout-tiled');
+const { Terminal, TextEditor } = requireComponent('workflow-apps-defaults');
 
 describe('AppRegistry', () => {
   let registry, app;
   beforeEach(() => {
     registry = new AppRegistry();
-    app = createApp();
   });
-  describe('.register(app)', () => {
-    it('should create appId', () => {
-      const registeredApp = registry.register(app);
+  describe('.register(flow)', () => {
+    it('should create appId for all closed apps', () => {
+      const flow = render(
+        <Workspace>
+          <SplitV>
+            <TextEditor />
+            <TextEditor />
+          </SplitV>
+        </Workspace>
+      );
 
-      expect(registeredApp.open).toBe(app.open);
-      expect(registeredApp.update).toBe(app.update);
-      expect(registeredApp.appId).toBeDefined();
+      const registeredFlow = registry.register(flow);
+
+      const [splitv] = registeredFlow.children;
+      const [textEditor1, textEditor2] = splitv.children;
+      expect(textEditor1.appId).not.toBeUndefined();
+      expect(textEditor2.appId).not.toBeUndefined();
     });
 
-    it('should be registered as not open', () => {
-      const registered = registry.register(app);
+    it('should map open apps by name', () => {
+      const flow = render(
+        <Workspace>
+          <SplitV>
+            <TextEditor />
+            <TextEditor />
+          </SplitV>
+        </Workspace>
+      );
 
-      expect(registered.isOpen).toBe(false);
+      const first = registry.register(flow);
+      const [splitvFirst] = first.children;
+      const [textEditorOneFirst, textEditorTwoFirst] = splitvFirst.children;
+
+      const second = registry.register(flow);
+      const [splitvSecond] = second.children;
+      const [textEditorOneSecond, textEditorTwoSecond] = splitvSecond.children;
+
+      expect(textEditorOneFirst.appId).toBe(textEditorOneSecond.appId);
+      expect(textEditorTwoFirst.appId).toBe(textEditorTwoSecond.appId);
     });
 
-    it('should not add appId to argument', () => {
-      registry.register(app);
+    it('should register all apps', () => {
+      const flow = render(
+        <Workspace>
+          <SplitV>
+            <TextEditor />
+            <TextEditor />
+          </SplitV>
+        </Workspace>
+      );
 
-      expect(app.appId).toBeUndefined();
-    });
+      const first = registry.register(flow);
+      const [splitvFirst] = first.children;
+      const [{ appId: firstAppId }, { appId: secondAppId }] = splitvFirst.children;
 
-    it('should make the app retrievable by id', () => {
-      const registeredApp = registry.register(app);
-
-      const { app: foundApp } = registry.findById(registeredApp);
-
-      expect(foundApp.open).toBe(foundApp.open);
-      expect(foundApp.update).toBe(foundApp.update);
-      expect(foundApp).toEqual(registeredApp);
-    });
-
-    it('return the same app if already registered', () => {
-      const first = registry.register(app);
-      const second = registry.register(first);
-
-      expect(first).toEqual(second);
-    });
-
-    it('should reuse open app by name if app is unregistered', () => {
-      const first = registry.register(app);
-      registry.connect(first);
-
-      registry.unregister();
-      const second = registry.register(app);
-
-      expect(first.appId).not.toEqual(second.appId);
-      expect(second.isOpen).toBe(true);
-    });
-
-    it('should not find app by name if registered', () => {
-      registry.register(app);
-
-      const found = registry.findByName(app);
-
-      expect(found).toBe(null);
-    });
-  });
-
-  describe('.unregister()', () => {
-    it('should not find any apps after unregister', () => {
-      const registered = registry.register(app);
-
-      registry.unregister();
-
-      const found = registry.findById(registered);
-      expect(found).toBe(null);
+      expect(registry.findById({ appId: firstAppId })).not.toBe(null);
+      expect(registry.findById({ appId: secondAppId })).not.toBe(null);
     });
   });
 
   describe('connect', () => {
     it('should mark app as open', () => {
-      const registered = registry.register(app);
+      const flow = registry.register(
+        render(
+          <Workspace>
+            <TextEditor />
+          </Workspace>
+        )
+      );
 
-      const connected = registry.connect({ ...registered, send: () => {} });
+      const { appId } = flow.children[0];
+      const connected = registry.connect({ appId, send: () => {} });
 
       expect(connected.isOpen).toBe(true);
     });
@@ -102,13 +97,48 @@ describe('AppRegistry', () => {
 
   describe('disconnnect', () => {
     it('should mark app as not open', () => {
-      const registered = registry.register(app);
-      const connected = registry.connect({ ...registered, send: () => {} });
+      const flow = registry.register(
+        render(
+          <Workspace>
+            <TextEditor />
+          </Workspace>
+        )
+      );
 
-      const disconnected = registry.disconnect(connected);
+      const { appId } = flow.children[0];
+      const connected = registry.connect({ appId, send: () => {} });
 
-      expect(disconnected.isOpen).toBe(false);
-      expect(disconnected.send).toBeUndefined();
+      const disconnected = registry.disconnect({ appId });
+
+      expect(registry.findById({ appId })).toBe(null);
+    });
+  });
+
+  describe('.waitFor(app)', () => {
+    it('should return a promise', () => {
+      const promise = registry.waitFor({ appId: uuid.v4() });
+
+      expect(promise).toBeInstanceOf(Promise);
+    });
+
+    it('should promise should resolve when app is connected', async () => {
+      const flow = registry.register(
+        render(
+          <Workspace>
+            <TextEditor />
+          </Workspace>
+        )
+      );
+
+      const appId = flow.children[0].appId;
+
+      const promise = registry.waitFor({ appId });
+
+      const send = () => {};
+      registry.connect({ appId, send });
+
+      const app = await promise;
+      expect(app.send).toBe(send);
     });
   });
 });

@@ -2,7 +2,6 @@ import { resolve, alternatives } from './resolver';
 import { load } from './loader';
 import { transform } from './transformer';
 import { apply, screen } from './wm';
-import { register, unregister, update } from './node';
 
 export function workflow({ resolvers, loaders, argumentParser, transformers, layout, server, wm }) {
   return {
@@ -13,12 +12,12 @@ export function workflow({ resolvers, loaders, argumentParser, transformers, lay
     transform: async (flow, args) => transform(transformers, flow, args),
     layout: async (flow, { screen }) => layout.layout(flow, { screen }),
     screen: async () => screen(wm),
-    apply: async flow => apply(wm, flow),
+    apply: async (flow, waitFor) => apply(wm, flow, waitFor),
 
     /* workflow-server */
     startServer: () => server.start(),
-    register: flow => register(flow, server, wm),
-    unregister: () => unregister(server, wm),
-    update: flow => update(flow, server),
+    register: async flow => server.register(flow),
+    waitFor: async app => server.waitFor(app),
+    updateRegister: async flow => server.updateRegister(flow),
   };
 }

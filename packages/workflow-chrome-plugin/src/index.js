@@ -20,11 +20,19 @@ chrome.tabs.onUpdated.addListener((tabId, changeObject) => {
           })
         );
       });
+
       chrome.tabs.update(tabId, { url: redirect });
       socket.addEventListener('message', function(event) {
         const { topic, message } = JSON.parse(event.data);
         const { url } = message;
         chrome.tabs.update(tabId, { url });
+      });
+
+      // Hack to stay awake
+      chrome.alarms.onAlarm.addListener(function() {});
+      chrome.alarms.create('alarm', {
+        delayInMinutes: 1,
+        periodInMinutes: 1,
       });
     }
   }

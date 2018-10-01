@@ -8,7 +8,7 @@ import { findAllApps } from 'shared/tree';
 
 async function wrapperRun(code, ...args) {
   try {
-    await run(code, ...args);
+    return await run(code, ...args);
   } catch (error) {
     console.error('Could not execute jxa:');
     console.log(code.toString());
@@ -18,6 +18,58 @@ async function wrapperRun(code, ...args) {
   }
 }
 
+async function open(node) {
+  if (node.type !== 'app') {
+    return {
+      ...node,
+      children: await Promise.all((node.children || []).map(open)),
+    };
+  } else {
+    if (!node.isOpen) {
+      console.log('open', node.name);
+      const { windowId } = await node.open(
+        mapPosition(node),
+        { platform: 'osx', wm: 'default', run: wrapperRun },
+        node.children
+      );
+      console.log('opened', windowId);
+      return { ...node, windowId };
+    } else {
+      return { ...node };
+    }
+  }
+}
+
+async function register(node, waitFor) {
+  if (node.type !== 'app') {
+    return {
+      ...node,
+      children: await Promise.all((node.children || []).map(child => register(child, waitFor))),
+    };
+  } else {
+    console.log('register', node.name);
+    const { appId, send } = await waitFor(node);
+    console.log('registered', appId, send);
+    return { ...node, send };
+  }
+}
+
+async function update(node) {
+  if (node.update) {
+    await node.update(
+      mapPosition(node),
+      { platform: 'osx', wm: 'default', run: wrapperRun, send: node.send },
+      node.children
+    );
+    console.log('done');
+  }
+
+  return {
+    ...node,
+    children: await Promise.all((node.children || []).map(update)),
+  };
+}
+
 export class WorkflowWmOsx {
   screen() {
     const { width, height } = screen.main();
@@ -25,14 +77,14 @@ export class WorkflowWmOsx {
     return { left: 0, top: 0, width, height };
   }
 
-  async apply(layout) {
-    const apps = findAllApps(layout);
+  async apply(flow, waitFor) {
+    flow = await open(flow); // call open on all not open apps and return windowIds
 
-    for (let app of apps) {
-      app = mapPosition(app);
+    flow = await register(flow, waitFor); // await newly open apps to return send method
 
-      await app.open(app, { platform: 'osx', wm: 'default', run: wrapperRun }, app.children);
-    }
+    flow = await update(flow); // call update on all apps
+
+    return flow;
   }
 
   async minimizeAll() {

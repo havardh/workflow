@@ -40,16 +40,18 @@ const timeout = n => new Promise(resolve => setTimeout(resolve, n));
 let oldFlow = null;
 export async function apply(path, args) {
   const absolutePath = await workflow.resolve(path);
-  const { flow } = await workflow.load(absolutePath);
-
-  const transformed = await workflow.transform(flow, { args });
   const screen = await workflow.screen();
-  const layout = await workflow.layout(transformed, { screen });
 
-  workflow.unregister();
-  const registered = await workflow.register(layout);
-  await workflow.apply(registered);
-  await workflow.update(registered);
+  let { flow } = await workflow.load(absolutePath);
+
+  flow = await workflow.transform(flow, { args });
+  flow = await workflow.layout(flow, { screen });
+
+  flow = await workflow.register(flow);
+
+  flow = await workflow.apply(flow, async app => workflow.waitFor(app));
+  console.log(JSON.stringify(flow, 0, 2));
+  await workflow.updateRegister(flow);
 }
 
 function exitHandler() {
