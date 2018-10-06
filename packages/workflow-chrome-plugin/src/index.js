@@ -28,6 +28,9 @@ chrome.tabs.onUpdated.addListener((tabId, changeObject) => {
         chrome.tabs.update(tabId, { url });
       });
 
+      const port = chrome.extensions.connect({ name: 'dummy' });
+      port.onMessage.addListener(() => {});
+
       // Hack to stay awake
       chrome.alarms.onAlarm.addListener(function() {});
       chrome.alarms.create('alarm', {

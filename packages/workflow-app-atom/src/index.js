@@ -7,6 +7,7 @@ export const Atom = {
   type: 'app',
   name: 'Atom',
   xClass: 'Atom',
+  connected: true,
 
   open: platform({
     'osx-default': osxOpen,

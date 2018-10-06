@@ -9,6 +9,9 @@ import fs from "fs"
 console.log();
 console.log();
 console.log("--- workflow-server --- ");
+console.error();
+console.error();
+console.error("--- workflow-server --- ");
 
 const { config } = require(join(__dirname, '../../workflow-home-example/config.js'));
 

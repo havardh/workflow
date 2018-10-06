@@ -11,8 +11,8 @@ async function wrapperRun(code, ...args) {
     return await run(code, ...args);
   } catch (error) {
     console.error('Could not execute jxa:');
-    console.log(code.toString());
-    console.log();
+    console.error(code.toString());
+    console.error();
     console.error(error);
     throw error;
   }
@@ -46,6 +46,8 @@ async function register(node, waitFor) {
       ...node,
       children: await Promise.all((node.children || []).map(child => register(child, waitFor))),
     };
+  } else if (node.type.connected !== true) {
+    return { ...node };
   } else {
     console.log('register', node.name);
     const { appId, send } = await waitFor(node);

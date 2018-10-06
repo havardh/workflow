@@ -1,4 +1,13 @@
+# Workflow Server
 
+## todo
+
+[ ] make the chrome extension not terminate
+[ ] make iterm handle closing the iterm window
+[ ] add a broadcast message to reconnect to apps which where started before workflow-server
+
+
+### Example interactions
 
 1. <SplitV> <Term /> <Atom /> </SplitV>
 
@@ -50,6 +59,5 @@ apply() {
   flow = wm.apply(flow, server.registry);
   
   server.updateRegister(flow);
-
 }
 

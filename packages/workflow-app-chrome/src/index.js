@@ -10,6 +10,7 @@ export const Chrome = {
   type: 'app',
   name: 'Chrome',
   xClass: 'Google-chrome',
+  connected: true,
   params: ['url', 'appId'],
   open: platform({
     'win32-default': openWindows,
@@ -83,5 +84,7 @@ async function updateOsx({ url, windowId, position }, { send, run }) {
   );
 
   console.log('sending to chrome');
-  await send({ topic: 'workflow.apply', message: { url } });
+  if (send) {
+    await send({ topic: 'workflow.apply', message: { url } });
+  }
 }

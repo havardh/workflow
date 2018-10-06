@@ -64,13 +64,7 @@ export class WorkflowServer {
   }
 
   updateRegister(node) {
-    if (node.type === 'app') {
-      this.registry.updateRegister(node);
-    }
-
-    for (let child of node.children || []) {
-      this.updateRegister(child);
-    }
+    this.registry.updateRegister(node);
   }
 
   connect({ appId, processId, send }) {

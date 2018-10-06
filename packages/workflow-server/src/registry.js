@@ -24,7 +24,6 @@ export class AppRegistry {
 
     for (let { appId, windowId } of apps) {
       const { app, index } = this.findById({ appId });
-
       this.apps[index] = { ...app, windowId };
     }
   }
