@@ -29,7 +29,6 @@ function openLinux({ url, appId }) {
 }
 
 async function openOsx({ url, appId, position }, { run }) {
-  console.log('chromw', position);
   const windowId = await run(
     (url, position) => {
       const chrome = Application('Google Chrome');
@@ -52,8 +51,6 @@ async function openOsx({ url, appId, position }, { run }) {
     position
   );
 
-  console.log('chrome', windowId);
-
   return { windowId };
 }
 
@@ -72,19 +69,37 @@ async function updateLinux({ url }, { send }) {
   }
 }
 
-async function updateOsx({ url, windowId, position }, { send, run }) {
-  await run(
-    (windowId, position) => {
+async function updateOsx({ url, windowId, position, appId }, { send, run }) {
+  windowId = await run(
+    (windowId, position, registerUrl) => {
       const chrome = Application('Google Chrome');
-      const window = chrome.windows.byId(windowId);
-      window.bounds = position;
+
+      if (chrome.windows.byId(windowId).exists()) {
+        const window = chrome.windows.byId(windowId);
+        window.bounds = position;
+        return windowId;
+      } else {
+        chrome.activate();
+        const window = chrome.Window().make();
+        window.tabs[0].url = registerUrl;
+        window.bounds = position;
+
+        let id = 0;
+        while (id <= 0) {
+          id = window.id();
+          delay(0.1);
+        }
+        return id;
+      }
     },
     windowId,
-    position
+    position,
+    buildUrl({ url, appId })
   );
 
-  console.log('sending to chrome');
   if (send) {
     await send({ topic: 'workflow.apply', message: { url } });
   }
+
+  return { windowId };
 }

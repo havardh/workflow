@@ -20,7 +20,7 @@ export const flow = render(
 
       <ITerm percent={0.5}>
         <SplitH percent={1.0}>
-          <Terminal percent={0.5} cwd={__dirname} cmd={'pwd'} />
+          <Terminal percent={0.5} cwd={__dirname} cmd={'echo "hello"'} />
           <Terminal percent={0.5} cwd={__dirname} cmd={'pwd'} />
         </SplitH>
       </ITerm>

@@ -15,7 +15,7 @@ export const Atom = {
   }),
 
   async update({ file, position, windowId }, { send, run }) {
-    await run(
+    windowId = await run(
       (position, windowId) => {
         const Atom = Application('Atom');
         const window = Atom.windows.byId(windowId);
@@ -30,6 +30,7 @@ export const Atom = {
     if (send) {
       await send({ topic: 'workflow.apply', message: { file } });
     }
+    return { windowId };
   },
 };
 
@@ -42,7 +43,6 @@ async function linuxUpdate({ file }, { send }) {
 }
 
 async function osxOpen({ file, appId, position }, { run }) {
-  console.log('atom', position);
   await execa('atom', ['-dn', file], { env: { WORKFLOW_APP_INSTANCE_ID: appId } });
   await timeout(2000);
 
@@ -61,21 +61,23 @@ async function osxOpen({ file, appId, position }, { run }) {
     return id;
   }, position);
 
-  console.log('Atom', windowId);
-
   return { windowId };
 }
 
 async function osxUpdate({ file, windowId, position }, { send, run }) {
-  await run(
+  windowId = await run(
     (windowId, position) => {
       const Atom = Application('Atom');
       const window = Atom.windows.byId(windowId);
       window.bounds = position;
+
+      return windowId;
     },
     windowId,
     position
   );
 
   await send({ topic: 'workflow.apply', message: { file } });
+
+  return { windowId };
 }

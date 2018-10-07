@@ -1,3 +1,4 @@
+console.log('Running');
 chrome.tabs.onUpdated.addListener((tabId, changeObject) => {
   const { url } = changeObject;
   if (typeof url === 'string') {
@@ -27,16 +28,12 @@ chrome.tabs.onUpdated.addListener((tabId, changeObject) => {
         const { url } = message;
         chrome.tabs.update(tabId, { url });
       });
-
-      const port = chrome.extensions.connect({ name: 'dummy' });
-      port.onMessage.addListener(() => {});
-
-      // Hack to stay awake
-      chrome.alarms.onAlarm.addListener(function() {});
-      chrome.alarms.create('alarm', {
-        delayInMinutes: 1,
-        periodInMinutes: 1,
-      });
     }
   }
 });
+
+setTimeout(function foo() {
+  console.log('ping');
+
+  setTimeout(foo, 5000);
+}, 5000);

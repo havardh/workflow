@@ -14,13 +14,16 @@ export const flow = render(
   <Workspace name={'workflow-atom-chrome'}>
     <SplitV percent={1.0}>
       <SplitH percent={0.5}>
-        <Atom percent={0.5} file={join(__dirname, '..', 'package.json')} />
-        <Chrome percent={0.5} url={'https://www.github.com/havardh/workflow'} />
+        <Atom percent={0.5} file={join(__dirname, '..', 'Readme.md')} />
+        <Chrome
+          percent={0.5}
+          url={'https://www.github.com/havardh/workflow/packages/workflow-react'}
+        />
       </SplitH>
 
       <ITerm percent={0.5}>
         <SplitH percent={1.0}>
-          <Terminal percent={0.5} cwd={'~'} cmd={'pwd'} />
+          <Terminal percent={0.5} cwd={'~'} cmd={'ls -la'} />
           <Terminal percent={0.5} cwd={'~'} cmd={'pwd'} />
         </SplitH>
       </ITerm>

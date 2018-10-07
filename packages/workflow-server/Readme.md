@@ -2,8 +2,8 @@
 
 ## todo
 
-[ ] make the chrome extension not terminate
-[ ] make iterm handle closing the iterm window
+[x] make the chrome extension not terminate
+[x] make iterm handle closing the iterm window
 [ ] add a broadcast message to reconnect to apps which where started before workflow-server
 
 
@@ -55,9 +55,8 @@
 
 apply() {
   const flow = server.register(flow);
-  
+
   flow = wm.apply(flow, server.registry);
-  
+
   server.updateRegister(flow);
 }
-

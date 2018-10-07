@@ -4,11 +4,11 @@
   "description": "Plugin for registering chrome instances with workflow-server",
   "background": {
     "scripts": ["src/index.js"],
-    "persistent": false
+    "persistent": true
   },
   "permissions": [
-    "tabs",
-    "alarms"
+    "tabs"
   ],
   "manifest_version": 2
 }
+

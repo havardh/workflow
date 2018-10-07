@@ -58,12 +58,15 @@ async function register(node, waitFor) {
 
 async function update(node) {
   if (node.update) {
-    await node.update(
+    console.error(node.update);
+    const { windowId } = await node.update(
       mapPosition(node),
       { platform: 'osx', wm: 'default', run: wrapperRun, send: node.send },
       node.children
     );
     console.log('done');
+
+    return { ...node, windowId };
   }
 
   return {
