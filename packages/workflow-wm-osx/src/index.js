@@ -1,8 +1,7 @@
 /* eslint-env node */
 /* eslint-disable no-console */
-import * as osascript from 'osascript';
+
 import { run } from '@jxa/run';
-import screen from 'screen-info';
 
 import { findAllApps } from 'shared/tree';
 
@@ -19,8 +18,8 @@ async function wrapperRun(code, ...args) {
 }
 
 export class WorkflowWmOsx {
-  screen() {
-    const { width, height } = screen.main();
+  async screen() {
+    const { width, height } = await run(() => Application('Finder').desktop.window.bounds());
 
     return { left: 0, top: 0, width, height };
   }
@@ -57,6 +56,7 @@ export class WorkflowWmOsx {
     `;
 
     return new Promise((resolve, reject) => {
+      const osascript = require("osascript");
       osascript.eval(script, function(err, result) {
         if (err) {
           console.error('Failed to execute osascript:');
