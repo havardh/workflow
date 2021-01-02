@@ -7,14 +7,17 @@ const { SplitH } = requireComponent('workflow-layout-tiled');
 
 @Component({
   selector: 'app',
-  template: `Workflow [<workspace>
-     [
-       <splith>[
-         <emacs percent=20 file="${__filename}"></emacs>,
-         <xterm percent=80 cwd="${__dirname}"></xterm>
-       ]</splith>
-     ]
-   </workspace>]`,
+  template: `
+    Workflow [<workspace>
+      [
+      <splith
+        >[ <emacs percent="20" file="${__filename}"></emacs>,
+        <xterm percent="80" cwd="${__dirname}"></xterm>
+        ]</splith
+      >
+      ] </workspace
+    >]
+  `,
 })
 class Workflow {}
 

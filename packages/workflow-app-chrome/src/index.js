@@ -14,7 +14,7 @@ export const Chrome = {
 };
 
 async function osx({ url, position }, { run }) {
-  run(
+  return run(
     (url, position) => {
       const chrome = Application('Google Chrome');
 

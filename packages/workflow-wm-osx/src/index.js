@@ -1,8 +1,8 @@
+/* global Application */
 /* eslint-env node */
 /* eslint-disable no-console */
 
 import { run } from '@jxa/run';
-
 import { findAllApps } from 'shared/tree';
 
 async function wrapperRun(code, ...args) {
@@ -56,7 +56,7 @@ export class WorkflowWmOsx {
     `;
 
     return new Promise((resolve, reject) => {
-      const osascript = require("osascript");
+      const osascript = require('osascript');
       osascript.eval(script, function(err, result) {
         if (err) {
           console.error('Failed to execute osascript:');

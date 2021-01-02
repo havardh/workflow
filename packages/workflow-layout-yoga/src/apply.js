@@ -17,7 +17,7 @@ const percentStyles = [
 ];
 
 export function apply(node, style, value) {
-  if (!mapping.hasOwnProperty(style)) {
+  if (!Object.prototype.hasOwnProperty.call(mapping, style)) {
     throw new Error('Unknown style:', style);
   }
 

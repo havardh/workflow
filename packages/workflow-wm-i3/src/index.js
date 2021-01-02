@@ -36,10 +36,12 @@ export class WorkflowWmI3 {
       });
     });
 
-    return workspaces.filter(({ visible }) => visible).map(({ rect }) => {
-      const { x, y, width, height } = rect;
-      return { left: x, top: y, width, height };
-    })[0];
+    return workspaces
+      .filter(({ visible }) => visible)
+      .map(({ rect }) => {
+        const { x, y, width, height } = rect;
+        return { left: x, top: y, width, height };
+      })[0];
   }
 
   createWorkspace(config) {

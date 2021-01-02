@@ -6,7 +6,9 @@ export default function createComponent(node) {
   @Component({
     selector: node.name.toLowerCase(),
     inputs: node.params,
-    template: `${node.name} [<ng-content></ng-content>]`,
+    template: `
+      ${node.name} [<ng-content></ng-content>]
+    `,
   })
   class Comp {
     constructor(@Inject(ElementRef) ref, @Inject(Renderer2) renderer) {

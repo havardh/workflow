@@ -14,11 +14,7 @@ export function platform(spec) {
   return async (app, context, children) => {
     for (let [matchString, fn] of Object.entries(spec)) {
       if (matches(matchString, context)) {
-        try {
-          return await fn.apply(null, [app, context, children]);
-        } catch (e) {
-          throw e;
-        }
+        return await fn.apply(null, [app, context, children]);
       }
     }
 
