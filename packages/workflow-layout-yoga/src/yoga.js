@@ -1,4 +1,4 @@
-import YogaLayout, { Node } from 'yoga-layout';
+import YogaLayout, { Node } from 'yoga-layout-prebuilt';
 
 import { apply } from './apply';
 

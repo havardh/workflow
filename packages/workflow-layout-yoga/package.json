@@ -21,6 +21,6 @@
     "CenterExample": "node ../workflow/cli.js --config ../workflow-home-example/config.js CenterExample.js"
   },
   "dependencies": {
-    "yoga-layout": "github:naminho/yoga-layout-windows"
+    "yoga-layout-prebuilt": "^1.10.0"
   }
 }
