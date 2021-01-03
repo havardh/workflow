@@ -50,7 +50,7 @@ function createConfig(bundle) {
       babel({
         exclude: 'node_modules/**',
         babelrc: false,
-        presets: ['flow', 'react'],
+        presets: ['react'],
         plugins: ['transform-object-rest-spread', 'transform-class-properties'],
       }),
       alias({ shared: __dirname + '/packages/shared' }),

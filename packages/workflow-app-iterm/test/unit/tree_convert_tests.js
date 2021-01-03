@@ -1,4 +1,3 @@
-// @flow
 /* eslint-env jest */
 import { convert } from '../../src/tree_convert';
 

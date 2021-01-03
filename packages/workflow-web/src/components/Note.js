@@ -1,9 +1,6 @@
-// @flow
 import * as React from 'react';
 
-type Props = { children: React.Node };
-
-export const Note = ({ children }: Props) => (
+export const Note = ({ children }) => (
   <div className="codeWrapper">
     <strong>Note:&nbsp;</strong>
     {children}

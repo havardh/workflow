@@ -1,4 +1,3 @@
-// @flow
 /* eslint-env browser */
 import React from 'react';
 import uuidv4 from 'uuid/v4';
@@ -8,39 +7,16 @@ import { WorkflowTransformerApplyArgumentsToFields } from 'workflow-transformer-
 import { WorkflowLayout } from 'workflow-layout';
 import { WorkflowWmHtml } from 'workflow-wm-html';
 
-function dispatch(elem: Element, event) {
+function dispatch(elem, event) {
   elem.dispatchEvent(event);
   for (let child of elem.children || []) {
     dispatch(child, event);
   }
 }
 
-type Props = {
-  flow: string,
-  args: Array<string>,
-};
+export class WorkflowPreview extends React.Component{
 
-type Screen = {
-  top: number,
-  left: number,
-  width: number,
-  height: number,
-};
-
-export class WorkflowPreview extends React.Component<Props> {
-  id: string;
-  workflow: {
-    resolve: (path: string) => Promise<string>,
-    alternatives: (path: string) => Array<string>,
-    load: (path: string) => Promise<any>,
-    parseArguments: (flow: any, argv: Array<string>) => Promise<any>,
-    transform: (flow: any, args: any) => Promise<any>,
-    layout: (flow: any, params: { screen: Screen }) => Promise<any>,
-    screen: () => Promise<Screen>,
-    apply: (flow: any) => Promise<void>,
-  };
-
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
     this.id = uuidv4();
   }
@@ -67,7 +43,7 @@ export class WorkflowPreview extends React.Component<Props> {
     this.update();
   }
 
-  async run(flow: string, argv: Array<string>) {
+  async run(flow, argv) {
     const { workflow } = this;
 
     const args = await workflow.parseArguments(flow, ['node', 'cli', ...argv]);

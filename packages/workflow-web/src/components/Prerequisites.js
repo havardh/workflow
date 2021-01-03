@@ -1,11 +1,6 @@
-// @flow
 import React from 'react';
 
-type Props = {
-  prerequisites: Array<string>,
-};
-
-export const Prerequisites = ({ prerequisites }: Props) => (
+export const Prerequisites = ({ prerequisites }) => (
   <div className="prerequisites">
     <span>Prerequisites</span>
     <ul>

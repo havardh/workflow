@@ -1,14 +1,10 @@
-// @flow
 /* eslint-env browser */
 import React from 'react';
 import uuidv4 from 'uuid/v4';
 
-type Props = { code: string };
+export class WorkflowEditor extends React.Component {
 
-export class WorkflowEditor extends React.Component<Props> {
-  id: string;
-
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
     this.id = uuidv4();
   }

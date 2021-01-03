@@ -1,7 +1,6 @@
 {
   "ignore": "*.ts",
   "presets": [
-    "flow",
     "react",
     [
       "env",
@@ -16,7 +15,6 @@
   "env": {
       "test": {
         "presets": [
-          "flow",
           "react",
           [
             "env",

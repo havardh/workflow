@@ -1,4 +1,3 @@
-// @Flow
 import * as React from 'react';
 import { Workspace, App, Layout, Async } from './components';
 
@@ -13,14 +12,10 @@ export function createAppComponent(app) {
   };
 }
 
-type Props = {
-  children?: React.Node,
-};
-
 export function createLayoutComponent(layout) {
   const name = ({ layout, customName }) =>
     typeof layout === 'string' ? layout : customName || 'custom';
-  return class extends React.Component<Props> {
+  return class extends React.Component {
     static displayName = `layout-${name(layout)}`;
 
     render() {
@@ -34,7 +29,7 @@ export function createLayoutComponent(layout) {
 }
 
 export function createWorkspaceComponent(workspace) {
-  return class extends React.Component<Props> {
+  return class extends React.Component {
     static displayName = `workspace-${workspace.name || 'unknown'}`;
 
     render() {

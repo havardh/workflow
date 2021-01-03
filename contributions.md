@@ -27,7 +27,6 @@ only run on specific platforms.
 
 - `yarn eslint` - ESLint. Please fix any errors/warnings :)
 - `yarn format` - Prettier js to autoformat all code.
-- `yarn flow` - Some files are covered by [flowtype][flowtype]
 - `yarn test unit` - Runs the unit tests
 - `yarn test integration` - Runs platform dependent integration tests
 
@@ -63,6 +62,5 @@ This guide is adapted from the [Downshift][downshift] contributors guide.
 [issues]: https://github.com/havardh/workflow/issues
 [downshift]: https://github.com/paypal/downshift
 [yarn-workspaces]: https://yarnpkg.com/lang/en/docs/workspaces/
-[flowtype]: https://flow.org/
 [angular-commit]: https://gist.github.com/stephenparish/9941e89d80e2bc58a153
 [code-of-conduct]: code-of-conduct.md

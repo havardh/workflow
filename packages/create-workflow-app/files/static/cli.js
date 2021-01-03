@@ -14,7 +14,6 @@ const { WorkflowWmTerminal } = require('workflow-wm-terminal');
 const babelConfig = {
   config: {
     presets: [
-      'flow',
       'react',
       [
         'env',

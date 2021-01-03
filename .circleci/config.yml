@@ -29,9 +29,6 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT: reports/js-test-unit-results.xml
           command: yarn test unit --ci --testResultsProcessor="jest-junit"
-      - run:
-          name: "JavaScript FlowType Check"
-          command: yarn flow
       - store_test_results:
           path: reports
       - store_artifacts:
