@@ -3,9 +3,7 @@ import * as React from 'react';
 import { WorkflowEditor } from './WorkflowEditor';
 import { WorkflowPreview } from './WorkflowPreview';
 
-const WorkflowCommand = ({ children }) => (
-  <div className="workflowCommand">{children}</div>
-);
+const WorkflowCommand = ({ children }) => <div className="workflowCommand">{children}</div>;
 
 export class WorkflowLive extends React.Component {
   render() {

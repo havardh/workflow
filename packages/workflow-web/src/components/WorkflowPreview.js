@@ -14,8 +14,7 @@ function dispatch(elem, event) {
   }
 }
 
-export class WorkflowPreview extends React.Component{
-
+export class WorkflowPreview extends React.Component {
   constructor(props) {
     super(props);
     this.id = uuidv4();

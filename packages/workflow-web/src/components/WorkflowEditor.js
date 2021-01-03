@@ -3,7 +3,6 @@ import React from 'react';
 import uuidv4 from 'uuid/v4';
 
 export class WorkflowEditor extends React.Component {
-
   constructor(props) {
     super(props);
     this.id = uuidv4();
